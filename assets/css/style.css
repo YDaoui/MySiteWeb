@@ -325,3 +325,47 @@ section {
 .service-card.open .arrow {
   transform: rotate(180deg);
 }
+.project-card {
+  background-color: var(--darker);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  color: var(--light);
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.carousel img {
+  width: 100%;
+  display: none;
+  transition: opacity 0.5s ease;
+}
+
+.carousel img.active {
+  display: block;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+
+.carousel-controls button {
+  background: var(--primary);
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
