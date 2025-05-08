@@ -229,3 +229,27 @@ document.querySelector('.mobile-menu-toggle').addEventListener('click', () => {
     document.querySelector('.navbar').classList.toggle('active');
 });
 
+  document.querySelectorAll('.carousel').forEach(carousel => {
+    const images = carousel.querySelectorAll('img');
+    let index = 0;
+
+    const showImage = i => {
+      images.forEach(img => img.classList.remove('active'));
+      images[i].classList.add('active');
+    };
+
+    carousel.querySelector('.next').addEventListener('click', () => {
+      index = (index + 1) % images.length;
+      showImage(index);
+    });
+
+    carousel.querySelector('.prev').addEventListener('click', () => {
+      index = (index - 1 + images.length) % images.length;
+      showImage(index);
+    });
+
+    showImage(index);
+  });
+
+
+
