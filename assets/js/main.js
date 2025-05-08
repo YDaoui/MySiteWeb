@@ -220,3 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+document.querySelector('.mobile-menu-toggle').addEventListener('click', () => {
+    document.querySelector('.navbar').classList.toggle('active');
+});
+
