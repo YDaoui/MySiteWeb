@@ -220,6 +220,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+function toggleServiceDetails(id) {
+    const detail = document.getElementById(id);
+    detail.classList.toggle('active'); // à condition que `.active` contrôle l'affichage en CSS
+}
+
 document.querySelector('.mobile-menu-toggle').addEventListener('click', () => {
     document.querySelector('.navbar').classList.toggle('active');
 });
