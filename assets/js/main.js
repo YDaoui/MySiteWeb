@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 showAlert('Veuillez entrer une adresse email valide.', 'error');
                 return;
             }
-            showAlert('Message envoyé avec succès! Je vous répondrai dès que possible.', 'success');
+            showAlert('Message envoyÃ© avec succÃ¨s! Je vous rÃ©pondrai dÃ¨s que possible.', 'success');
             this.reset();
         });
     }
