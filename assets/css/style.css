@@ -471,13 +471,15 @@ section {
 }
 
 .project-info h3 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: var(--primary);
 }
 
 .project-info p {
-  margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
 }
+
 
 /* Project Gallery */
 .project-gallery {
@@ -687,6 +689,14 @@ section {
     align-items: center;
     padding: 2rem 0;
   }
+  .navbar ul.show {
+    display: flex;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+}
   
   .navbar ul li {
     margin: 1rem 0;
