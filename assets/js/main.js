@@ -240,3 +240,11 @@ function toggleServiceDetails(id) {
         detail.classList.toggle('active');
     }
 }
+
+  const toggleBtn = document.querySelector('.mobile-menu-toggle');
+  const navbar = document.querySelector('.navbar');
+  toggleBtn.addEventListener('click', () => {
+    navbar.classList.toggle('open');
+  });
+
+
