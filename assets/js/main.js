@@ -48,23 +48,27 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Scroll animations
-    const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
-        const windowHeight = window.innerHeight;
+   const animateOnScroll = () => {
+    const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
+    const windowHeight = window.innerHeight;
 
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const animationPoint = windowHeight * 0.85;
-            if (elementPosition < animationPoint) {
-                element.classList.add('animated');
-            }
-        });
+    elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const animationTrigger = windowHeight * 0.85;
 
-        const backToTop = document.querySelector('.back-to-top');
-        if (backToTop) {
-            backToTop.classList.toggle('visible', window.pageYOffset > 300);
+        if (elementTop < animationTrigger) {
+            element.classList.add('animated');
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
         }
-    };
+    });
+
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+        backToTop.classList.toggle('visible', window.pageYOffset > 300);
+    }
+};
+
 
     // Initial styles
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
