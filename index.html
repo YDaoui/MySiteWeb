@@ -15,18 +15,65 @@
     <!-- Icônes Ionicon -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <style>
+        /* Styles de base pour le responsive */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        
+        /* Ajustements pour les tablettes */
+        @media (max-width: 992px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .about-img, .about-text {
+                width: 100%;
+                padding: 0 15px;
+            }
+            
+            .services__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Ajustements pour les mobiles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .services__grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .navbar ul {
+                flex-direction: column;
+            }
+        }
+        
+        /* Marges pour le contenu central */
+        .container-section {
+            padding: 60px 0;
+        }
+        
+        .hero, .projects, .contact {
+            padding: 80px 0;
+        }
+    </style>
 </head>
-    <script>
-  window.addEventListener('scroll', function () {
-    const header = document.querySelector('.header');
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-</script>
-
 <body>
     <!-- En-tête / Navigation -->
     <header class="header">
@@ -423,8 +470,6 @@
         </div>
     </section>
 
-   
-
     <!-- Section Contact -->
     <section id="contact" class="contact">
         <div class="container">
@@ -447,5 +492,22 @@
 
     <!-- Scripts JS -->
     <script src="assets/js/main.js"></script>
+    <script>
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        function toggleServiceDetails(id) {
+            const details = document.getElementById(id);
+            details.classList.toggle('active');
+            const arrow = details.previousElementSibling.querySelector('.service-arrow');
+            arrow.classList.toggle('rotate');
+        }
+    </script>
 </body>
 </html>
