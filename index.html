@@ -4,75 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Yassine Daoui | Data Analyse & Consultant</title>
-    <!-- Liens vers vos fichiers CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- Si vous utilisez SASS, décommentez la ligne suivante -->
-    <!-- <link rel="stylesheet" href="assets/sass/styles.scss"> -->
-    <!-- Police Google Fonts (optionnelle) -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Icônes Font Awesome (optionnelles) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Icônes Ionicon -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <style>
-        /* Styles de base pour le responsive */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-        
-        /* Ajustements pour les tablettes */
-        @media (max-width: 992px) {
-            .container {
-                padding: 0 15px;
-            }
-            
-            .about-img, .about-text {
-                width: 100%;
-                padding: 0 15px;
-            }
-            
-            .services__grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        /* Ajustements pour les mobiles */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 10px;
-            }
-            
-            .services__grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .tech-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .navbar ul {
-                flex-direction: column;
-            }
-        }
-        
-        /* Marges pour le contenu central */
-        .container-section {
-            padding: 60px 0;
-        }
-        
-        .hero, .projects, .contact {
-            padding: 80px 0;
-        }
-    </style>
 </head>
 <body>
     <!-- En-tête / Navigation -->
@@ -103,10 +39,10 @@
     </section>
 
     <!-- Section À propos -->
-   <section id="about" class="container-section">
+    <section id="about" class="about">
         <div class="container">
             <div class="about-img">
-                <img src="assets/img/Myphoto.jpg" alt="Photo de Yassine Daoui" style="height: 100%;">
+                <img src="assets/img/Myphoto.jpg" alt="Photo de Yassine Daoui">
             </div>
             <div class="about-text">
                 <h2>Bonjour, je suis Yassine</h2>
@@ -117,10 +53,10 @@
     </section>
 
     <!-- Section Services -->
-    <section id="services" class="container-section">
-        <div class="bd-grid">
-            <h2 class="section-title anime-text">Mes Services</h2>
-            <div class="services__grid">
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Mes Services</h2>
+            <div class="services-grid">
                 <!-- Service 1 - Analyse de Données -->
                 <div class="service-card">
                     <div class="service-header" onclick="toggleServiceDetails('analyse-details')">
@@ -313,7 +249,7 @@
     </section>
 
     <!-- Section Technologies -->
-    <section id="technologies" class="container-section">
+    <section id="technologies" class="technologies">
         <div class="container">
             <h2>Technologies Maîtrisées</h2>
             <div class="tech-icons">
@@ -352,10 +288,7 @@
 
                 <!-- Autres outils -->
                 <img src="https://img.shields.io/badge/Merise-000000?style=for-the-badge&logo=merise&logoColor=white" alt="Merise">
-                <img src="https://img.shields.io/badge/RPA%20Power%20Automate-0061F2?style=for-the-badge&logo=microsoftpowerautomate&logoColor=white" alt="RPA Power Automate">
-            </div>
-        </div>
-    </section>
+                <img src="https://img.shields.io/badge
 
     <section class="technologies">
         <div class="container">
