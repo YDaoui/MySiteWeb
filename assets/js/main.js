@@ -2,26 +2,24 @@ document.addEventListener('DOMContentLoaded', function () {
     // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            if (targetId === '#' || !document.querySelector(targetId)) return;
 
+            e.preventDefault();
             const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const header = document.querySelector('.header');
-                const headerHeight = header ? header.offsetHeight : 0;
-                const targetPosition = targetElement.offsetTop - headerHeight;
+            const header = document.querySelector('.header');
+            const headerHeight = header ? header.offsetHeight : 0;
+            const targetPosition = targetElement.offsetTop - headerHeight;
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
 
-                if (history.pushState) {
-                    history.pushState(null, null, targetId);
-                } else {
-                    location.hash = targetId;
-                }
+            if (history.pushState) {
+                history.pushState(null, null, targetId);
+            } else {
+                location.hash = targetId;
             }
         });
     });
@@ -48,27 +46,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Scroll animations
-   const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
-    const windowHeight = window.innerHeight;
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
+        const windowHeight = window.innerHeight;
 
-    elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const animationTrigger = windowHeight * 0.85;
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const animationTrigger = windowHeight * 0.85;
 
-        if (elementTop < animationTrigger) {
-            element.classList.add('animated');
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
+            if (elementTop < animationTrigger) {
+                element.classList.add('animated');
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+
+        const backToTop = document.querySelector('.back-to-top');
+        if (backToTop) {
+            backToTop.classList.toggle('visible', window.pageYOffset > 300);
         }
-    });
-
-    const backToTop = document.querySelector('.back-to-top');
-    if (backToTop) {
-        backToTop.classList.toggle('visible', window.pageYOffset > 300);
-    }
-};
-
+    };
 
     // Initial styles
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
@@ -157,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
     animatedElements.forEach(el => observer.observe(el));
 
     // GSAP ScrollTrigger Animation
-    if (typeof gsap !== 'undefined' && ScrollTrigger) {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
         const navLinks = document.querySelectorAll('.navbar ul li a');
@@ -171,22 +168,22 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             link.addEventListener('click', function (e) {
-                e.preventDefault();
                 const href = this.getAttribute('href');
+                const targetElement = document.querySelector(href);
+                if (!targetElement) return;
+
+                e.preventDefault();
                 gsap.to(this, {
                     y: 3,
                     duration: 0.1,
                     ease: "power2.out",
                     onComplete: () => {
                         gsap.to(this, { y: 0, duration: 0.3 });
-                        const targetElement = document.querySelector(href);
-                        if (targetElement) {
-                            const offset = document.querySelector('.header').offsetHeight;
-                            window.scrollTo({
-                                top: targetElement.offsetTop - offset,
-                                behavior: 'smooth'
-                            });
-                        }
+                        const offset = document.querySelector('.header').offsetHeight;
+                        window.scrollTo({
+                            top: targetElement.offsetTop - offset,
+                            behavior: 'smooth'
+                        });
                     }
                 });
             });
@@ -195,16 +192,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Mobile menu toggle
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    if (mobileToggle) {
+    const navbar = document.querySelector('.navbar');
+    if (mobileToggle && navbar) {
         mobileToggle.addEventListener('click', () => {
-            document.querySelector('.navbar').classList.toggle('active');
+            navbar.classList.toggle('active');
+            navbar.classList.toggle('open'); // <-- ajout correctif pour garder le toggle `.open` demandé plus bas
         });
     }
 
     // Close menu on nav link click (mobile)
     document.querySelectorAll('.navbar a').forEach(link => {
         link.addEventListener('click', () => {
-            document.querySelector('.navbar').classList.remove('active');
+            if (navbar) navbar.classList.remove('active', 'open');
         });
     });
 
@@ -244,11 +243,3 @@ function toggleServiceDetails(id) {
         detail.classList.toggle('active');
     }
 }
-
-  const toggleBtn = document.querySelector('.mobile-menu-toggle');
-  const navbar = document.querySelector('.navbar');
-  toggleBtn.addEventListener('click', () => {
-    navbar.classList.toggle('open');
-  });
-
-
