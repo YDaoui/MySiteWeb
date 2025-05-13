@@ -297,3 +297,71 @@ function toggleServiceDetails(id) {
         }
     }
 }
+// Carrousel projets - Nouvelle implémentation
+function initProjectCarousels() {
+  document.querySelectorAll('.project-card').forEach(card => {
+    const container = card.querySelector('.project-images-container');
+    const images = card.querySelectorAll('.project-image');
+    const prevBtn = card.querySelector('.project-nav.prev');
+    const nextBtn = card.querySelector('.project-nav.next');
+    
+    if (!container || images.length === 0) return;
+    
+    let currentIndex = 0;
+    const totalImages = images.length;
+    
+    // Set container width
+    container.style.width = `${totalImages * 100}%`;
+    
+    // Set individual image width
+    images.forEach(img => {
+      img.style.width = `${100 / totalImages}%`;
+    });
+    
+    const updateCarousel = () => {
+      container.style.transform = `translateX(-${currentIndex * (100 / totalImages)}%)`;
+    };
+    
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        updateCarousel();
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateCarousel();
+      });
+    }
+    
+    // Touch events for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    container.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    container.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+    
+    const handleSwipe = () => {
+      if (touchEndX < touchStartX - 50) {
+        // Swipe left
+        currentIndex = (currentIndex + 1) % totalImages;
+      } else if (touchEndX > touchStartX + 50) {
+        // Swipe right
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+      }
+      updateCarousel();
+    };
+    
+    // Initialize
+    updateCarousel();
+  });
+}
+
+// Appeler cette fonction au chargement
+document.addEventListener('DOMContentLoaded', initProjectCarousels);
