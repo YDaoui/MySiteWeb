@@ -246,3 +246,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+document.querySelectorAll('.service-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const card = header.closest('.service-card');
+    card.classList.toggle('active');
+  });
+});
+
