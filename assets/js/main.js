@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (mobileToggle && navbar) {
         mobileToggle.addEventListener('click', () => {
             navbar.classList.toggle('active');
-            navbar.classList.toggle('open'); // <-- ajout correctif pour garder le toggle `.open` demandé plus bas
+            navbar.classList.toggle('open');
         });
     }
 
@@ -234,12 +234,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         showImage(index);
     });
-});
 
-// Toggle service details
-function toggleServiceDetails(id) {
-    const detail = document.getElementById(id);
-    if (detail) {
-        detail.classList.toggle('active');
-    }
-}
+    // Toggle service details
+    document.querySelectorAll('.service-card .arrow').forEach(arrow => {
+        arrow.addEventListener('click', function () {
+            const serviceCard = this.closest('.service-card');
+            const serviceDetails = serviceCard.querySelector('.service-details');
+            if (serviceDetails) {
+                serviceDetails.classList.toggle('active');
+            }
+        });
+    });
+});
