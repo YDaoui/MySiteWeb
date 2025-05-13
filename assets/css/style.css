@@ -654,9 +654,13 @@ section {
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 0 10px;
-  }
+    .service-card {
+        display: block !important; /* Assurez-vous qu'elles sont visibles */
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+}
+
 
   .header .container {
     flex-direction: row;
