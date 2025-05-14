@@ -686,9 +686,11 @@ section {
     padding: 6rem 20px;
 }
 
-.technologies h2 {
-    text-align: center;
-    margin-bottom: 3rem;
+.technologies .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 20px; /* Ajustez le padding vertical si nécessaire */
 }
 
 .tech-scroll-container {
@@ -703,27 +705,27 @@ section {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding: 1rem 0;
+    display: flex; /* Important pour le défilement horizontal */
 }
 
 .tech-items-wrapper::-webkit-scrollbar {
     display: none;
 }
 
-.tech-item {
-    /* ... autres styles ... */
-    padding-left: 0.5rem; /* Réduisez le padding gauche si nécessaire */
-    padding-right: 0.5rem; /* Réduisez le padding droit si nécessaire */
-    margin-left: 0.25rem; /* Réduisez la marge gauche si nécessaire */
-    margin-right: 0.25rem; /* Réduisez la marge droite si nécessaire */
-    min-width: auto; /* Laissez la largeur s'adapter au contenu */
+.tech-items {
+    display: flex; /* Aligner les éléments horizontalement */
+    gap: 1.5rem;
+    padding: 0 2rem;
+    width: auto; /* S'adapte au contenu */
 }
 
 .tech-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 80px;
+    min-width: auto; /* La largeur s'adapte au contenu */
     padding: 0.5rem;
+    margin: 0 0.25rem; /* Réduire la marge horizontale */
     transition: transform 0.2s ease-in-out;
     color: var(--light);
     text-align: center;
@@ -772,7 +774,6 @@ section {
 .right-scroll-btn {
     right: 10px;
 }
-
 /* Section Contact */
 .contact {
     background-color: var(--darker);
