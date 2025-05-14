@@ -995,55 +995,102 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
     line-height: 1.6;
 }
 
+/* Styles pour la section Technologie */
 .tech-section {
-  margin-top: 2rem;
+    width: 100%;
+    margin-top: 2rem;
 }
 
 .tech-scroll-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 1rem;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
-.tech-icons {
-  display: flex;
-  overflow-x: auto;
-  gap: 20px;
-  padding: 10px 0;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Pour Firefox */
+.tech-items-wrapper {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    padding: 1rem 0;
 }
 
-.tech-icons::-webkit-scrollbar {
-  display: none; /* Pour Chrome/Safari */
+.tech-items-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
 }
 
-.tech-icon {
-  flex: 0 0 auto;
-  width: 50px;
-  height: 50px;
+.tech-items {
+    display: inline-flex;
+    gap: 1.5rem;
+    padding: 0 2rem;
 }
 
-.tech-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    padding: 0.5rem;
+    transition: transform 0.2s;
+}
+
+.tech-item:hover {
+    transform: translateY(-5px);
+}
+
+.tech-item i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color); /* Adaptez à votre couleur principale */
+}
+
+.tech-item span {
+    font-size: 0.8rem;
+    text-align: center;
 }
 
 .scroll-btn {
-  background: #f0f0f0;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  flex-shrink: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background 0.3s;
 }
 
 .scroll-btn:hover {
-  background: #ddd;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.left-scroll-btn {
+    left: 10px;
+}
+
+.right-scroll-btn {
+    right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tech-item {
+        min-width: 70px;
+    }
+    
+    .tech-item i {
+        font-size: 1.8rem;
+    }
+    
+    .scroll-btn {
+        width: 35px;
+        height: 35px;
+    }
 }
 
 /* Smooth scrolling */
