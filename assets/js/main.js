@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
             if (targetId === '#' || !document.querySelector(targetId)) return;
 
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Project filtering - Correction pour un meilleur fonctionnement
+    // Project filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
@@ -63,24 +63,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Service cards toggle - Nouvelle implémentation plus robuste
+    // Service cards toggle
     const serviceHeaders = document.querySelectorAll('.service-header');
     serviceHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
             const isActive = card.classList.contains('active');
 
-            // Fermer toutes les autres cartes
+            // Close all other cards
             document.querySelectorAll('.service-card').forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.classList.remove('active');
                 }
             });
 
-            // Basculer l'état de la carte actuelle
+            // Toggle current card
             card.classList.toggle('active', !isActive);
 
-            // Animation du chevron
+            // Arrow animation
             const arrow = header.querySelector('.service-arrow');
             if (arrow) {
                 arrow.style.transform = card.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
@@ -88,14 +88,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Project image carousel - Nouvelle implémentation
+    // Project image carousel
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
+        if (!gallery) return;
+
         const container = gallery.querySelector('.gallery-container');
         const slides = gallery.querySelectorAll('.gallery-slide');
         const prevBtn = gallery.querySelector('.project-nav.prev');
         const nextBtn = gallery.querySelector('.project-nav.next');
-        const counter = card.querySelector('.slide-counter'); // Sélectionne le compteur à l'intérieur de la carte
+        const counter = card.querySelector('.slide-counter');
 
         if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
@@ -106,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
             container.style.transform = `translateX(-${currentIndex * 100}%)`;
             counter.textContent = `${currentIndex + 1}/${totalSlides}`;
 
-            // Mise à jour des classes active
             slides.forEach((slide, index) => {
                 slide.classList.toggle('active', index === currentIndex);
             });
@@ -136,19 +137,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }, { passive: true });
 
         const handleSwipe = () => {
-            if (Math.abs(touchEndX - touchStartX) > 50) { // Seuil de 50px
+            if (Math.abs(touchEndX - touchStartX) > 50) {
                 if (touchEndX < touchStartX) {
-                    // Swipe gauche
                     currentIndex = (currentIndex + 1) % totalSlides;
                 } else {
-                    // Swipe droit
                     currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 }
                 updateCarousel();
             }
         };
 
-        // Initialisation
+        // Initialize
         container.style.width = `${totalSlides * 100}%`;
         slides.forEach(slide => {
             slide.style.width = `${100 / totalSlides}%`;
@@ -156,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCarousel();
     });
 
-    // Scroll animations (conservé tel quel)
+    // Scroll animations
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
         const windowHeight = window.innerHeight;
@@ -178,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    // Initial styles (conservé tel quel)
+    // Initial styles
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -200,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
 
-
+    // Back to top button
     const backToTopButton = document.querySelector('.back-to-top');
     if (backToTopButton) {
         backToTopButton.addEventListener('click', () => {
@@ -214,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Contact form validation
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const name = this.querySelector('input[type="text"]').value.trim();
             const email = this.querySelector('input[type="email"]').value.trim();
@@ -278,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 gsap.to(link, { y: 0, duration: 0.3, ease: "power2.out" });
             });
 
-            link.addEventListener('click', function (e) {
+            link.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 const targetElement = document.querySelector(href);
                 if (!targetElement) return;
@@ -317,13 +316,51 @@ document.addEventListener('DOMContentLoaded', function () {
             if (navbar) navbar.classList.remove('active', 'open');
         });
     });
+
+    // Technologies horizontal scroll
+    const techScrollContainer = document.querySelector('.tech-items-wrapper');
+    const techLeftBtn = document.querySelector('.left-scroll-btn');
+    const techRightBtn = document.querySelector('.right-scroll-btn');
+
+    if (techScrollContainer && techLeftBtn && techRightBtn) {
+        const scrollAmount = 300;
+        
+        techLeftBtn.addEventListener('click', () => {
+            techScrollContainer.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        techRightBtn.addEventListener('click', () => {
+            techScrollContainer.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        // Hide buttons when at start/end
+        const updateButtonVisibility = () => {
+            techLeftBtn.style.display = techScrollContainer.scrollLeft > 0 ? 'block' : 'none';
+            techRightBtn.style.display = 
+                techScrollContainer.scrollLeft < (techScrollContainer.scrollWidth - techScrollContainer.clientWidth) 
+                ? 'block' : 'none';
+        };
+
+        techScrollContainer.addEventListener('scroll', updateButtonVisibility);
+        updateButtonVisibility();
+    }
+
+    // Initialize project carousels and modals
+    initProjectCarousels();
+    initProjectModals();
 });
 
-// Carousel et modal pour les projets
+// Project Carousels
 function initProjectCarousels() {
     document.querySelectorAll('.project-card').forEach(cardElement => {
         const carousel = cardElement.querySelector('.project-carousel');
-        if (!carousel) return; // Vérifie si le carousel existe dans cette carte
+        if (!carousel) return;
 
         const container = carousel.querySelector('.carousel-container');
         const images = carousel.querySelectorAll('.carousel-container img');
@@ -353,7 +390,7 @@ function initProjectCarousels() {
             updateCarousel();
         });
 
-        // Touch events for mobile
+        // Touch events
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -368,10 +405,8 @@ function initProjectCarousels() {
 
         const handleSwipe = () => {
             if (touchEndX < touchStartX - 50) {
-                // Swipe left
                 currentIndex = (currentIndex + 1) % totalImages;
             } else if (touchEndX > touchStartX + 50) {
-                // Swipe right
                 currentIndex = (currentIndex - 1 + totalImages) % totalImages;
             }
             updateCarousel();
@@ -381,14 +416,13 @@ function initProjectCarousels() {
     });
 }
 
-// Gestion de la modal des projets
+// Project Modals
 function initProjectModals() {
     const modal = document.getElementById('project-modal');
     const modalContent = document.getElementById('modal-content');
     const closeBtn = document.querySelector('.modal-close');
     const viewDetailBtns = document.querySelectorAll('.view-details');
 
-    // Données des projets (peut être chargé depuis une API ou un JSON)
     const projectsData = {
         1: {
             title: "Dashboard de ventes",
@@ -444,46 +478,3 @@ function initProjectModals() {
         }
     });
 }
-document.addEventListener('DOMContentLoaded', function() {
-    const techContainer = document.querySelector('.tech-items-wrapper');
-    const leftBtn = document.querySelector('.left-scroll-btn');
-    const rightBtn = document.querySelector('.right-scroll-btn');
-    
-    if (techContainer && leftBtn && rightBtn) {
-        const scrollAmount = 300; // Ajustez cette valeur selon vos besoins
-        
-        leftBtn.addEventListener('click', () => {
-            techContainer.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
-        });
-        
-        rightBtn.addEventListener('click', () => {
-            techContainer.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Masquer les boutons si on est au début/à la fin
-        techContainer.addEventListener('scroll', function() {
-            leftBtn.style.display = this.scrollLeft > 0 ? 'block' : 'none';
-            rightBtn.style.display = this.scrollLeft < (this.scrollWidth - this.clientWidth) ? 'block' : 'none';
-        });
-        
-        // Initial state
-        leftBtn.style.display = 'none';
-        if (techContainer.scrollWidth <= techContainer.clientWidth) {
-            rightBtn.style.display = 'none';
-        }
-    }
-});
-
-// Appel des fonctions d'initialisation
-document.addEventListener('DOMContentLoaded', function() {
-    initProjectCarousels();
-    initProjectModals();
-
-   
-});
