@@ -246,60 +246,149 @@ section {
 
 /* Section À propos */
 /* Section À propos - Mise en page corrigée */
-.about {
-    background-color: var(--darker);
-    position: relative;
-}
-
+/* Correction de la Section À propos */
 .about .container {
-    width: 90%; /* Respecter les marges latérales */
-    max-width: 1200px; /* Largeur maximale du conteneur */
-    margin: 0 auto; /* Centrer le conteneur */
-    padding: 6rem 20px; /* Ajuster le padding vertical et horizontal */
-    display: flex; /* Pour aligner les éléments principaux (image/texte et technologies) */
-    flex-direction: column; /* Empiler les éléments sur les petits écrans */
-    gap: 3rem; /* Espacement entre les blocs */
-}
-
-.about-top-content {
     display: flex; /* Pour aligner l'image et le texte principal */
-    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si l'espace est insuffisant */
-    gap: 2rem; /* Espacement entre l'image et le texte */
+    gap: 4rem; /* Espacement entre l'image et le bloc de texte */
     align-items: center; /* Aligner verticalement l'image et le texte */
-    width: 100%;
+    flex-direction: row; /* Aligner image et texte horizontalement par défaut */
 }
 
-.about-image {
+.about-img {
     flex: 0 0 auto; /* Ne pas grandir ni rétrécir, taille automatique */
-    max-width: 300px; /* Largeur maximale de l'image */
+    max-width: 300px; /* Largeur maximale de l'image (ajustez selon vos besoins) */
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.about-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.about-text-area {
+.about-text {
     flex: 1 1 auto; /* Prend l'espace restant */
 }
 
-.about-text-area h2 {
-    margin-bottom: 1rem;
-}
-
-.about-text-area p {
+.about-text h2 {
     margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.7;
 }
 
-.about-text-area .btn-outline {
+.about-text p {
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.about-text .btn-outline {
     margin-bottom: 2rem; /* Espacement avant la section des technologies */
     display: inline-block; /* Pour que le bouton ne prenne pas toute la largeur */
+}
+
+/* Section Technologies - En bas, avec boutons chauchants */
+.tech-section {
+    width: 100%;
+    position: relative; /* Pour positionner les boutons de défilement */
+    margin-top: 3rem; /* Espacement au-dessus de la section des technologies */
+}
+
+.tech-scroll-container {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 1rem 0;
+}
+
+.tech-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.tech-items {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0 50px; /* Marge intérieure pour l'espace des boutons chauchants */
+    align-items: center; /* Aligner verticalement les icônes */
+}
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    padding: 0.5rem;
+    transition: transform 0.2s ease-in-out;
+    color: var(--light);
+    text-align: center;
+}
+
+.tech-item:hover {
+    transform: scale(1.2);
+}
+
+.tech-item i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.tech-item span {
+    font-size: 0.8rem;
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(26, 26, 46, 0.8); /* Couleur de fond plus sombre pour le contraste */
+    color: var(--light);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 2; /* Pour être au-dessus du contenu */
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-btn:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+    background: var(--primary);
+}
+
+.left-scroll-btn {
+    left: 10px; /* Positionnement à gauche */
+}
+
+.right-scroll-btn {
+    right: 10px; /* Positionnement à droite */
+}
+
+/* Responsive pour la section à propos */
+@media (max-width: 768px) {
+    .about .container {
+        flex-direction: column; /* Empiler l'image et le texte sur les petits écrans */
+        align-items: center; /* Centrer les éléments sur les petits écrans */
+        text-align: center; /* Centrer le texte */
+    }
+
+    .about-img {
+        max-width: 80%; /* Ajuster la largeur de l'image sur les petits écrans */
+        margin-bottom: 2rem;
+    }
+
+    .about-text {
+        text-align: center; /* Centrer le texte */
+    }
+
+    .tech-items {
+        padding: 0 20px; /* Réduire le padding horizontal sur mobile */
+    }
+
+    .scroll-btn {
+        display: none !important; /* Cacher les boutons sur mobile si le défilement tactile est suffisant */
+    }
 }
 
 /* Section Technologies - En bas, avec boutons chauchants */
