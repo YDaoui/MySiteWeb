@@ -208,20 +208,17 @@
             <button class="filter-btn" data-filter="telecom">Télécom</button>
         </div>
         <div class="projects-grid">
+            <!-- Projet 1 -->
             <div class="project-card" data-category="data">
-                <div class="project-gallery">
-                    <div class="gallery-container">
-                        <div class="gallery-slide active">
-                            <img src="assets/img/Dentale_Capture_screen_siteweb.jpg" alt="Dashboard Power BI et Python">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="assets/img/Dentale_detail1.jpg" alt="Détails du dashboard">
-                        </div>
-                        <div class="gallery-nav">
-                            <button class="gallery-prev" aria-label="Image précédente">‹</button>
-                            <span class="slide-counter">1/2</span>
-                            <button class="gallery-next" aria-label="Image suivante">›</button>
-                        </div>
+                <div class="project-carousel">
+                    <div class="carousel-container">
+                        <img src="assets/img/Dentale_Capture_screen_siteweb.jpg" alt="Dashboard Power BI et Python" class="active">
+                        <img src="assets/img/Dentale_detail1.jpg" alt="Détails du dashboard">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-prev" aria-label="Image précédente">‹</button>
+                        <span class="slide-counter">1/2</span>
+                        <button class="carousel-next" aria-label="Image suivante">›</button>
                     </div>
                 </div>
                 <div class="project-info">
@@ -231,23 +228,18 @@
                 </div>
             </div>
 
+            <!-- Projet 2 -->
             <div class="project-card" data-category="automation">
-                <div class="project-gallery">
-                    <div class="gallery-container">
-                        <div class="gallery-slide active">
-                            <img src="assets/img/project2.jpg" alt="Bot RPA">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="assets/img/project2_detail1.jpg" alt="Code du bot">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="assets/img/project2_detail2.jpg" alt="Résultats">
-                        </div>
-                        <div class="gallery-nav">
-                            <button class="gallery-prev" aria-label="Image précédente">‹</button>
-                            <span class="slide-counter">1/3</span>
-                            <button class="gallery-next" aria-label="Image suivante">›</button>
-                        </div>
+                <div class="project-carousel">
+                    <div class="carousel-container">
+                        <img src="assets/img/project2.jpg" alt="Bot RPA" class="active">
+                        <img src="assets/img/project2_detail1.jpg" alt="Code du bot">
+                        <img src="assets/img/project2_detail2.jpg" alt="Résultats">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-prev" aria-label="Image précédente">‹</button>
+                        <span class="slide-counter">1/3</span>
+                        <button class="carousel-next" aria-label="Image suivante">›</button>
                     </div>
                 </div>
                 <div class="project-info">
@@ -257,26 +249,19 @@
                 </div>
             </div>
 
+            <!-- Projet 3 -->
             <div class="project-card" data-category="telecom">
-                <div class="project-gallery">
-                    <div class="gallery-container">
-                        <div class="gallery-slide active">
-                            <img src="assets/img/Byg_1.jpg" alt="Projet Bouygues Telecom - Dashboard">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="assets/img/Byg_2.jpg" alt="Projet Bouygues Telecom - Architecture">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="assets/img/Byg_3.jpg" alt="Projet Bouygues Telecom - Analyse">
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="assets/img/Byg_4.jpg" alt="Projet Bouygues Telecom - Résultats">
-                        </div>
-                        <div class="gallery-nav">
-                            <button class="gallery-prev" aria-label="Image précédente">‹</button>
-                            <span class="slide-counter">1/4</span>
-                            <button class="gallery-next" aria-label="Image suivante">›</button>
-                        </div>
+                <div class="project-carousel">
+                    <div class="carousel-container">
+                        <img src="assets/img/Byg_1.jpg" alt="Projet Bouygues Telecom - Dashboard" class="active">
+                        <img src="assets/img/Byg_2.jpg" alt="Projet Bouygues Telecom - Architecture">
+                        <img src="assets/img/Byg_3.jpg" alt="Projet Bouygues Telecom - Analyse">
+                        <img src="assets/img/Byg_4.jpg" alt="Projet Bouygues Telecom - Résultats">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-prev" aria-label="Image précédente">‹</button>
+                        <span class="slide-counter">1/4</span>
+                        <button class="carousel-next" aria-label="Image suivante">›</button>
                     </div>
                 </div>
                 <div class="project-info">
@@ -288,10 +273,13 @@
         </div>
     </div>
 
+    <!-- Modal pour les détails des projets -->
     <div id="project-modal" class="modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
-            <div id="modal-content"></div>
+            <div id="modal-content">
+                <!-- Contenu chargé dynamiquement -->
+            </div>
         </div>
     </div>
 </section>
