@@ -254,14 +254,14 @@ document.addEventListener('DOMContentLoaded', function () {
 // Carousel et modal pour les projets
 function initProjectCarousels() {
     document.querySelectorAll('.project-card').forEach(cardElement => {
-        const gallery = cardElement.querySelector('.project-gallery');
-        if (!gallery) return; // Vérifie si la galerie existe dans cette carte
+        const projectGallery = cardElement.querySelector('.project-gallery');
+        if (!projectGallery) return;
 
-        const container = gallery.querySelector('.gallery-container');
-        const slides = gallery.querySelectorAll('.gallery-slide');
-        const prevBtn = gallery.querySelector('.project-nav.prev');
-        const nextBtn = gallery.querySelector('.project-nav.next');
-        const counter = cardElement.querySelector('.slide-counter'); // Sélectionne le compteur à l'intérieur de la carte
+        const container = projectGallery.querySelector('.gallery-container');
+        const slides = projectGallery.querySelectorAll('.gallery-slide');
+        const prevBtn = projectGallery.querySelector('.project-nav.prev');
+        const nextBtn = projectGallery.querySelector('.project-nav.next');
+        const counter = projectGallery.querySelector('.slide-counter');
 
         if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
@@ -271,8 +271,6 @@ function initProjectCarousels() {
         const updateCarousel = () => {
             container.style.transform = `translateX(-${currentIndex * 100}%)`;
             counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-
-            // Mise à jour des classes active
             slides.forEach((slide, index) => {
                 slide.classList.toggle('active', index === currentIndex);
             });
@@ -302,19 +300,16 @@ function initProjectCarousels() {
         }, { passive: true });
 
         const handleSwipe = () => {
-            if (Math.abs(touchEndX - touchStartX) > 50) { // Seuil de 50px
+            if (Math.abs(touchEndX - touchStartX) > 50) {
                 if (touchEndX < touchStartX) {
-                    // Swipe gauche
                     currentIndex = (currentIndex + 1) % totalSlides;
                 } else {
-                    // Swipe droit
                     currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 }
                 updateCarousel();
             }
         };
 
-        // Initialisation
         container.style.width = `${totalSlides * 100}%`;
         slides.forEach(slide => {
             slide.style.width = `${100 / totalSlides}%`;
