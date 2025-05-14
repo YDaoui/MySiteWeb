@@ -1,4 +1,8 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
+    initProjectCarousels();
+    initProjectModals();
+
+
     // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -444,11 +448,41 @@ function initProjectModals() {
         }
     });
 }
+ const techScrollContainer = document.querySelector('.tech-items-wrapper');
+    const techLeftBtn = document.querySelector('.left-scroll-btn');
+    const techRightBtn = document.querySelector('.right-scroll-btn');
+
+    if (techScrollContainer && techLeftBtn && techRightBtn) {
+        const scrollAmount = 300;
+
+        techLeftBtn.addEventListener('click', () => {
+            techScrollContainer.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        techRightBtn.addEventListener('click', () => {
+            techScrollContainer.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        // Hide buttons when at start/end
+        const updateButtonVisibility = () => {
+            techLeftBtn.style.display = techScrollContainer.scrollLeft > 0 ? 'block' : 'none';
+            techRightBtn.style.display =
+                techScrollContainer.scrollLeft < (techScrollContainer.scrollWidth - techScrollContainer.clientWidth)
+                ? 'block' : 'none';
+        };
+
+        techScrollContainer.addEventListener('scroll', updateButtonVisibility);
+        updateButtonVisibility(); // Initial check
+    }
 
 // Appel des fonctions d'initialisation
-document.addEventListener('DOMContentLoaded', function() {
-    initProjectCarousels();
-    initProjectModals();
+
 
     // Le reste de votre code existant...
 });
