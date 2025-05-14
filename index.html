@@ -215,33 +215,70 @@
 
     <!-- Section Projets -->
     <section id="projects" class="projects">
-        <div class="container">
-            <h2>Projets Récents</h2>
-            <div class="projects-filter">
-                <button class="filter-btn active" data-filter="all">Tous</button>
-                <button class="filter-btn" data-filter="data">Data</button>
-                <button class="filter-btn" data-filter="automation">Automatisation</button>
-                <button class="filter-btn" data-filter="telecom">Télécom</button>
+    <div class="container">
+        <h2>Projets Récents</h2>
+        <div class="projects-filter">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="data">Data</button>
+            <button class="filter-btn" data-filter="automation">Automatisation</button>
+            <button class="filter-btn" data-filter="telecom">Télécom</button>
+        </div>
+        <div class="projects-grid">
+            <!-- Projet 1 -->
+            <div class="project-card" data-category="data">
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slide active">
+                            <img src="assets/img/Dentale_Capture_screen_siteweb.jpg" alt="Dashboard Power BI et Python">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="assets/img/Dentale_detail1.jpg" alt="Détails du dashboard">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-prev" aria-label="Image précédente">‹</button>
+                            <span class="slide-counter">1/2</span>
+                            <button class="gallery-next" aria-label="Image suivante">›</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>Dashboard de ventes</h3>
+                    <p>Visualisation interactive des performances commerciales avec Power BI.</p>
+                    <button class="btn view-details" data-project="1">Détails</button>
+                </div>
             </div>
-            <div class="projects-grid">
-                <div class="project-card" data-category="data">
-                    <img src="assets/img/Dentale_Capture_screen_siteweb.jpg" alt="Dashboard Power BI et Python">
-                    <div class="project-info">
-                        <h3>Dashboard de ventes</h3>
-                        <p>Visualisation interactive des performances commerciales avec Power BI.</p>
-                        <a href="#" class="btn">Détails</a>
+
+            <!-- Projet 2 -->
+            <div class="project-card" data-category="automation">
+                <div class="project-gallery">
+                    <div class="gallery-container">
+                        <div class="gallery-slide active">
+                            <img src="assets/img/project2.jpg" alt="Bot RPA">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="assets/img/project2_detail1.jpg" alt="Code du bot">
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="assets/img/project2_detail2.jpg" alt="Résultats">
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-prev" aria-label="Image précédente">‹</button>
+                            <span class="slide-counter">1/3</span>
+                            <button class="gallery-next" aria-label="Image suivante">›</button>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="automation">
-                    <img src="assets/img/project2.jpg" alt="Bot RPA">
-                    <div class="project-info">
-                        <h3>Bot de collecte de données</h3>
-                        <p>Automatisation de la récupération de données via Selenium (Python).</p>
-                        <a href="#" class="btn">Détails</a>
-                    </div>
+                <div class="project-info">
+                    <h3>Bot de collecte de données</h3>
+                    <p>Automatisation de la récupération de données via Selenium (Python).</p>
+                    <button class="btn view-details" data-project="2">Détails</button>
                 </div>
-                <div class="project-card" data-category="telecom">
-                    <div class="project-gallery">
+            </div>
+
+            <!-- Projet 3 -->
+            <div class="project-card" data-category="telecom">
+                <div class="project-gallery">
+                    <div class="gallery-container">
                         <div class="gallery-slide active">
                             <img src="assets/img/Byg_1.jpg" alt="Projet Bouygues Telecom - Dashboard">
                         </div>
@@ -256,18 +293,28 @@
                         </div>
                         <div class="gallery-nav">
                             <button class="gallery-prev" aria-label="Image précédente">‹</button>
+                            <span class="slide-counter">1/4</span>
                             <button class="gallery-next" aria-label="Image suivante">›</button>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3>Optimisation réseau Bouygues Telecom</h3>
-                        <p>Analyse des performances réseau et recommandations pour l'amélioration de la qualité de service.</p>
-                        <a href="#" class="btn">Voir le cas d'étude</a>
-                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>Optimisation réseau Bouygues Telecom</h3>
+                    <p>Analyse des performances réseau et recommandations pour l'amélioration de la qualité de service.</p>
+                    <button class="btn view-details" data-project="3">Voir le cas d'étude</button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Modal pour les détails du projet -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+</section>
 
     <!-- Section Technologies -->
     <section id="technologies" class="technologies">
