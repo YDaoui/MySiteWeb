@@ -257,6 +257,8 @@ section {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+    padding-top: 6rem; /* Ajouter padding-top */
+    padding-bottom: 6rem; /* Ajouter padding-bottom */
 }
 
 .about-img {
@@ -331,6 +333,8 @@ section {
     background-color: var(--darker);
     position: relative;
     overflow: hidden;
+    padding-top: 6rem; /* Ajouter padding-top */
+    padding-bottom: 6rem; /* Ajouter padding-bottom */
 }
 
 .services::before {
@@ -340,7 +344,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnz4PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
 }
 
 .services h2 {
@@ -467,6 +471,8 @@ section {
     background-color: var(--dark);
     position: relative;
     overflow: hidden;
+    padding-top: 6rem; /* Ajouter padding-top */
+    padding-bottom: 6rem; /* Ajouter padding-bottom */
 }
 
 .projects h2 {
@@ -666,344 +672,8 @@ section {
 /* Section Technologies */
 .technologies {
     background-color: var(--dark);
-    padding: 6rem 0; /* Ensure consistent padding */
-}
-
-.technologies h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1.5rem;
-}
-
-.tech-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.5rem 1rem;
-    background: var(--darker);
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-    color: var(--light);
-    text-align: center;
-}
-
-.tech-item:hover {
-    transform: translateY(-5px);
-}
-
-.tech-item i { /* Style for Font Awesome icons */
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary); /* Example color */
-}
-
-.tech-item span {
-    font-size: 0.9rem;
-}
-
-/* Section Contact */
-.contact {
-    background-color: var(--darker);
-}
-
-.contact h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.contact form {
-    max-width: 600px;
-    margin: 0 auto;
-    display: grid;
-    gap: 1.5rem;
-}
-
-.contact input,
-.contact textarea {
-    width: 100%;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    color: white;
-}
-
-.contact textarea {
-    min-height: 150px;
-    resize: vertical;
-}
-
-/* Footer */
-footer { /* Changed from .footer to footer tag */
-    background-color: var(--darker);
-    padding: 3rem 0;
-    text-align: center;
-}
-
-footer p { /* Changed from .footer p to footer p */
-    color: rgba(255, 255, 255, 0.7);
-}
-
-footer a { /* Changed from .footer a to footer a */
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-footer a:hover { /* Changed from .footer a:hover to footer a:hover */
-    text-decoration: underline;
-}
-
-
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Applied this animation to sections */
-/* section {
-    opacity: 0;
-    animation: fadeInUp 1s ease forwards;
-} */
-
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .header .container {
-        flex-direction: row; /* Keep logo and toggle on the same line */
-        align-items: center;
-    }
-
-    /* Show the mobile menu toggle button */
-    .mobile-menu-toggle {
-        display: block;
-    }
-
-    /* Hide the navbar by default on small screens */
-    .navbar {
-        position: absolute;
-        top: 100%; /* Position below the header */
-        left: 0;
-        width: 100%;
-        background-color: var(--darker); /* Background for the dropdown menu */
-        flex-direction: column; /* Stack menu items vertically */
-        align-items: center; /* Center menu items */
-        padding: 1rem 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        display: none; /* Hidden by default */
-        transition: all 0.3s ease-in-out;
-    }
-
-    /* Display the navbar when the 'active' class is added by JS */
-    .navbar.active {
-        display: flex;
-    }
-
-    .navbar ul {
-        flex-direction: column; /* Ensure list items are stacked */
-        width: 100%; /* Make list take full width */
-        padding: 0; /* Remove default padding */
-    }
-
-    .navbar ul li {
-        margin: 0; /* Remove horizontal margin */
-        width: 100%; /* Make list items take full width */
-        text-align: center; /* Center text */
-        padding: 0.5rem 0; /* Add some vertical padding */
-    }
-
-     .navbar ul li a {
-        padding: 0.5rem 1rem; /* Add padding to links */
-        display: block; /* Make links block level for padding */
-     }
-
-     .navbar ul li a::after {
-          content: none; /* Remove the underline animation on mobile */
-     }
-
-    .about .container {
-        grid-template-columns: 1fr;
-        gap: 2rem; /* Adjust gap for smaller screens */
-    }
-
-    .about-img {
-        order: -1; /* Place image above text on mobile */
-    }
-
-    h1 {
-        font-size: 2.5rem; /* Adjust font size for smaller screens */
-    }
-
-    h2 {
-        font-size: 2rem; /* Adjust font size for smaller screens */
-    }
-
-    .hero p {
-        font-size: 1rem; /* Adjust font size for smaller screens */
-    }
-
-    .services-grid,
-    .projects-grid {
-        grid-template-columns: 1fr; /* Stack cards vertically on mobile */
-    }
-
-    .service-card,
-    .project-card {
-        padding: 1.5rem; /* Adjust padding */
-    }
-}
-/* Carousel styles */
-.project-carousel {
-    position: relative;
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.2);
-}
-
-.carousel-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.carousel-container img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    background: #fff;
-    padding: 10px;
-}
-
-.carousel-container img.active {
-    opacity: 1;
-    z-index: 1;
-}
-
-.carousel-nav {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 5px;
-    border-radius: 20px;
-    width: max-content;
-    margin: 0 auto;
-}
-
-.carousel-prev, .carousel-next {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 0 10px;
-    transition: all 0.3s ease;
-}
-
-.carousel-prev:hover, .carousel-next:hover {
-    background: var(--primary);
-}
-
-.slide-counter {
-    color: white;
-    font-size: 0.9rem;
-    min-width: 40px;
-    text-align: center;
-}
-
-/* Modal styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    overflow-y: auto;
-}
-
-.modal-content {
-    background-color: var(--dark);
-    margin: 5% auto;
-    padding: 2rem;
-    border: 1px solid rgba(58, 134, 255, 0.3);
-    border-radius: 10px;
-    width: 80%;
-    max-width: 800px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.modal-close {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.modal-close:hover {
-    color: var(--primary);
-    transform: scale(1.2);
-}
-
-.modal h3 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-}
-
-.modal-description {
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 1.5rem;
-}
-
-.modal-details {
-    margin-top: 2rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
-}
-
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Section Technologies - Placed at the bottom with scrolling buttons */
-technologies {
-    background-color: var(--dark);
-    padding: 4rem 0; /* Adjusted padding */
+    padding-top: 4rem; /* Adjusted padding */
+    padding-bottom: 4rem; /* Adjusted padding */
 }
 
 .technologies h2 {
@@ -1103,6 +773,8 @@ technologies {
 /* Section Contact */
 .contact {
     background-color: var(--darker);
+    padding-top: 6rem; /* Ajouter padding-top */
+    padding-bottom: 6rem; /* Ajouter padding-bottom */
 }
 
 .contact h2 {
@@ -1230,6 +902,8 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
     .about .container {
         grid-template-columns: 1fr;
         gap: 2rem; /* Adjust gap for smaller screens */
+        padding-top: 4rem; /* Ajuster padding-top sur mobile */
+        padding-bottom: 4rem; /* Ajuster padding-bottom sur mobile */
     }
 
     .about-img {
@@ -1318,7 +992,7 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
 }
 
 .carousel-container img.active {
-    opacity: 1;
+    opacity:1;
     z-index: 1;
 }
 
@@ -1422,3 +1096,5 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
 html {
     scroll-behavior: smooth;
 }
+
+
