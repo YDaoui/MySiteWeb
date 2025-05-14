@@ -88,42 +88,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Project image carousel
+    // Project image carousel (Correction: Using the dedicated carousel elements)
     document.querySelectorAll('.project-card').forEach(card => {
-        const gallery = card.querySelector('.project-gallery');
-        if (!gallery) return;
+        const carousel = card.querySelector('.project-carousel');
+        if (!carousel) return;
 
-        const container = gallery.querySelector('.gallery-container');
-        const slides = gallery.querySelectorAll('.gallery-slide');
-        const prevBtn = gallery.querySelector('.project-nav.prev');
-        const nextBtn = gallery.querySelector('.project-nav.next');
-        const counter = card.querySelector('.slide-counter');
+        const container = carousel.querySelector('.carousel-container');
+        const images = carousel.querySelectorAll('.carousel-container img');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        const counter = carousel.querySelector('.slide-counter');
 
-        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
+        if (!container || !images.length || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
-        const totalSlides = slides.length;
+        const totalImages = images.length;
 
         const updateCarousel = () => {
-            container.style.transform = `translateX(-${currentIndex * 100}%)`;
-            counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-
-            slides.forEach((slide, index) => {
-                slide.classList.toggle('active', index === currentIndex);
+            images.forEach((img, index) => {
+                img.classList.toggle('active', index === currentIndex);
             });
+            counter.textContent = `${currentIndex + 1}/${totalImages}`;
         };
 
         prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
             updateCarousel();
         });
 
         nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalSlides;
+            currentIndex = (currentIndex + 1) % totalImages;
             updateCarousel();
         });
 
-        // Touch events for mobile
+        // Touch events for carousel
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -133,25 +131,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         container.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
+            handleSwipeCarousel();
         }, { passive: true });
 
-        const handleSwipe = () => {
+        const handleSwipeCarousel = () => {
             if (Math.abs(touchEndX - touchStartX) > 50) {
                 if (touchEndX < touchStartX) {
-                    currentIndex = (currentIndex + 1) % totalSlides;
+                    currentIndex = (currentIndex + 1) % totalImages;
                 } else {
-                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
                 }
                 updateCarousel();
             }
         };
 
-        // Initialize
-        container.style.width = `${totalSlides * 100}%`;
-        slides.forEach(slide => {
-            slide.style.width = `${100 / totalSlides}%`;
-        });
         updateCarousel();
     });
 
@@ -263,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     animatedElements.forEach(el => observer.observe(el));
 
-    // GSAP ScrollTrigger Animation
+    // GSAP ScrollTrigger Animation (Correction: Ensuring GSAP and ScrollTrigger are defined)
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -324,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (techScrollContainer && techLeftBtn && techRightBtn) {
         const scrollAmount = 300;
-        
+
         techLeftBtn.addEventListener('click', () => {
             techScrollContainer.scrollBy({
                 left: -scrollAmount,
@@ -342,8 +335,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Hide buttons when at start/end
         const updateButtonVisibility = () => {
             techLeftBtn.style.display = techScrollContainer.scrollLeft > 0 ? 'block' : 'none';
-            techRightBtn.style.display = 
-                techScrollContainer.scrollLeft < (techScrollContainer.scrollWidth - techScrollContainer.clientWidth) 
+            techRightBtn.style.display =
+                techScrollContainer.scrollLeft < (techScrollContainer.scrollWidth - techScrollContainer.clientWidth)
                 ? 'block' : 'none';
         };
 
@@ -356,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initProjectModals();
 });
 
-// Project Carousels
+// Project Carousels (Moved inside DOMContentLoaded for proper element access)
 function initProjectCarousels() {
     document.querySelectorAll('.project-card').forEach(cardElement => {
         const carousel = cardElement.querySelector('.project-carousel');
@@ -416,7 +409,7 @@ function initProjectCarousels() {
     });
 }
 
-// Project Modals
+// Project Modals (Moved inside DOMContentLoaded for proper element access)
 function initProjectModals() {
     const modal = document.getElementById('project-modal');
     const modalContent = document.getElementById('modal-content');
@@ -478,3 +471,60 @@ function initProjectModals() {
         }
     });
 }
+// Header scroll effect
+    const header = document.querySelector('.header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Initial check on load in case of a scrolled position from a previous page
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        }
+    }
+
+    // Mobile menu behavior (Correction: Ensuring proper toggle)
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navElement = document.querySelector('.navbar');
+
+    if (mobileMenuToggle && navElement) {
+        mobileMenuToggle.addEventListener('click', () => {
+            navElement.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        navElement.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navElement.classList.remove('active');
+            });
+        });
+    }
+
+    // Skill bars animation (Correction: Triggering on scroll)
+    const skillBars = document.querySelectorAll('.skill-item');
+
+    const animateSkillsOnScroll = () => {
+        skillBars.forEach(skill => {
+            const skillTop = skill.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            const progress = skill.querySelector('.skill-progress');
+            const value = skill.querySelector('.skill-name span');
+            const percentage = value ? parseInt(value.textContent) : 0;
+
+            if (skillTop < windowHeight * 0.8) {
+                if (progress && !progress.dataset.animated) {
+                    progress.style.width = `${percentage}%`;
+                    progress.dataset.animated = true;
+                }
+            }
+        });
+    };
+
+    window.addEventListener('scroll', animateSkillsOnScroll);
+    animateSkillsOnScroll(); // Initial check on load
+});
