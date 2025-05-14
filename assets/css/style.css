@@ -467,12 +467,13 @@ section {
 }
 
 /* Section Projets - Version harmonisée */
+/* Section Projets - Version harmonisée */
 .projects {
     background-color: var(--dark);
     position: relative;
     overflow: hidden;
-    padding-top: 6rem; /* Ajouter padding-top */
-    padding-bottom: 6rem; /* Ajouter padding-bottom */
+    padding-top: 6rem;
+    padding-bottom: 6rem;
 }
 
 .projects h2 {
@@ -534,6 +535,8 @@ section {
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex; /* Ajout de flex pour organiser la galerie et les infos */
+    flex-direction: column; /* Organisation verticale par défaut */
 }
 
 .project-card:hover {
@@ -559,19 +562,19 @@ section {
 .gallery-slide {
     min-width: 100%;
     height: 100%;
-    display: none; /* Hide all slides by default */
+    display: none; /* Cacher toutes les diapositives par défaut */
 }
 
 .gallery-slide.active {
-    display: block; /* Show only the active slide */
+    display: block; /* Afficher uniquement la diapositive active */
 }
 
-
-.project-image img { /* Corrected selector */
+.project-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    display: block; /* Assurez-vous que l'image est un élément de bloc */
 }
 
 .project-nav {
@@ -609,6 +612,7 @@ section {
 
 .project-info {
     padding: 2rem;
+    /* Vous pouvez ajuster la hauteur si nécessaire pour éviter le chevauchement */
 }
 
 .project-info h3 {
@@ -672,26 +676,26 @@ section {
 /* Section Technologies */
 .technologies {
     background-color: var(--dark);
-    padding-top: 4rem; /* Adjusted padding */
-    padding-bottom: 4rem; /* Adjusted padding */
+    padding-top: 4rem;
+    padding-bottom: 4rem;
 }
 
 .technologies h2 {
     text-align: center;
-    margin-bottom: 2rem; /* Adjusted margin */
+    margin-bottom: 2rem;
 }
 
 .tech-scroll-container {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding-bottom: 1rem; /* Space for potential scrollbar */
-    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
-    scrollbar-width: none; /* Hide default scrollbar for Firefox */
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
 }
 
 .tech-scroll-container::-webkit-scrollbar {
-    display: none; /* Hide default scrollbar for Chrome, Safari, Edge */
+    display: none;
 }
 
 .tech-item {
@@ -704,8 +708,8 @@ section {
     transition: transform 0.3s ease;
     color: var(--light);
     text-align: center;
-    margin: 0 0.5rem; /* Space between items */
-    min-width: 100px; /* Minimum width of each item */
+    margin: 0 0.5rem;
+    min-width: 100px;
     scroll-snap-align: start;
 }
 
@@ -717,10 +721,10 @@ section {
     margin-right: 1rem;
 }
 
-.tech-item i { /* Style for Font Awesome icons */
+.tech-item i {
     font-size: 2rem;
     margin-bottom: 0.5rem;
-    color: var(--primary); /* Example color */
+    color: var(--primary);
 }
 
 .tech-item span {
@@ -763,18 +767,18 @@ section {
 }
 
 .left-scroll-btn {
-    /* Specific styles if needed */
+    /* Styles spécifiques si nécessaire */
 }
 
 .right-scroll-btn {
-    /* Specific styles if needed */
+    /* Styles spécifiques si nécessaire */
 }
 
 /* Section Contact */
 .contact {
     background-color: var(--darker);
-    padding-top: 6rem; /* Ajouter padding-top */
-    padding-bottom: 6rem; /* Ajouter padding-bottom */
+    padding-top: 6rem;
+    padding-bottom: 6rem;
 }
 
 .contact h2 {
@@ -805,26 +809,25 @@ section {
 }
 
 /* Footer */
-footer { /* Changed from .footer to footer tag */
+footer {
     background-color: var(--darker);
     padding: 3rem 0;
     text-align: center;
 }
 
-footer p { /* Changed from .footer p to footer p */
+footer p {
     color: rgba(255, 255, 255, 0.7);
 }
 
-footer a { /* Changed from .footer a to footer a */
+footer a {
     color: var(--primary);
     text-decoration: none;
     font-weight: 600;
 }
 
-footer a:hover { /* Changed from .footer a:hover to footer a:hover */
+footer a:hover {
     text-decoration: underline;
 }
-
 
 /* Animations */
 @keyframes fadeInUp {
@@ -838,102 +841,101 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
     }
 }
 
-/* Applied this animation to sections */
-/* section {
-    opacity: 0;
-    animation: fadeInUp 1s ease forwards;
-} */
-
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .header .container {
-        flex-direction: row; /* Keep logo and toggle on the same line */
+        flex-direction: row;
         align-items: center;
     }
 
-    /* Show the mobile menu toggle button */
     .mobile-menu-toggle {
         display: block;
     }
 
-    /* Hide the navbar by default on small screens */
     .navbar {
         position: absolute;
-        top: 100%; /* Position below the header */
+        top: 100%;
         left: 0;
         width: 100%;
-        background-color: var(--darker); /* Background for the dropdown menu */
-        flex-direction: column; /* Stack menu items vertically */
-        align-items: center; /* Center menu items */
+        background-color: var(--darker);
+        flex-direction: column;
+        align-items: center;
         padding: 1rem 0;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
-        display: none; /* Hidden by default */
+        display: none;
         transition: all 0.3s ease-in-out;
     }
 
-    /* Display the navbar when the 'active' class is added by JS */
     .navbar.active {
         display: flex;
     }
 
     .navbar ul {
-        flex-direction: column; /* Ensure list items are stacked */
-        width: 100%; /* Make list take full width */
-        padding: 0; /* Remove default padding */
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
     }
 
     .navbar ul li {
-        margin: 0; /* Remove horizontal margin */
-        width: 100%; /* Make list items take full width */
-        text-align: center; /* Center text */
-        padding: 0.5rem 0; /* Add some vertical padding */
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0;
     }
 
      .navbar ul li a {
-        padding: 0.5rem 1rem; /* Add padding to links */
-        display: block; /* Make links block level for padding */
+        padding: 0.5rem 1rem;
+        display: block;
      }
 
      .navbar ul li a::after {
-          content: none; /* Remove the underline animation on mobile */
+          content: none;
      }
 
     .about .container {
         grid-template-columns: 1fr;
-        gap: 2rem; /* Adjust gap for smaller screens */
-        padding-top: 4rem; /* Ajuster padding-top sur mobile */
-        padding-bottom: 4rem; /* Ajuster padding-bottom sur mobile */
+        gap: 2rem;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
     }
 
     .about-img {
-        order: -1; /* Place image above text on mobile */
+        order: -1;
     }
 
     h1 {
-        font-size: 2.5rem; /* Adjust font size for smaller screens */
+        font-size: 2.5rem;
     }
 
     h2 {
-        font-size: 2rem; /* Adjust font size for smaller screens */
+        font-size: 2rem;
     }
 
     .hero p {
-        font-size: 1rem; /* Adjust font size for smaller screens */
+        font-size: 1rem;
     }
 
     .services-grid,
     .projects-grid {
-        grid-template-columns: 1fr; /* Stack cards vertically on mobile */
+        grid-template-columns: 1fr;
     }
 
     .service-card,
     .project-card {
-        padding: 1.5rem; /* Adjust padding */
+        padding: 1.5rem;
+        flex-direction: column; /* Assurez-vous que la direction est verticale sur mobile aussi */
+    }
+
+    .project-gallery {
+        height: auto; /* Laisser la hauteur s'ajuster au contenu sur mobile */
+    }
+
+    .project-image img {
+        height: auto; /* Laisser la hauteur s'ajuster au contenu sur mobile */
     }
 
     .tech-grid {
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Adjust tech grid for smaller screens */
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     }
 
     .tech-item {
@@ -961,7 +963,8 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
         margin: 0 0.3rem;
     }
 }
-/* Carousel styles */
+
+/* Styles du carrousel de projet */
 .project-carousel {
     position: relative;
     width: 100%;
@@ -992,7 +995,7 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
 }
 
 .carousel-container img.active {
-    opacity:1;
+    opacity: 1;
     z-index: 1;
 }
 
@@ -1012,7 +1015,8 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
     margin: 0 auto;
 }
 
-.carousel-prev, .carousel-next {
+.carousel-prev,
+.carousel-next {
     background: rgba(255, 255, 255, 0.2);
     border: none;
     color: white;
@@ -1024,7 +1028,8 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
     transition: all 0.3s ease;
 }
 
-.carousel-prev:hover, .carousel-next:hover {
+.carousel-prev:hover,
+.carousel-next:hover {
     background: var(--primary);
 }
 
@@ -1096,5 +1101,3 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
 html {
     scroll-behavior: smooth;
 }
-
-
