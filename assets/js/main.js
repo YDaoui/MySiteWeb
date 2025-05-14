@@ -198,8 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
 
-    // Le reste du code original est conservé inchangé...
-    // Back to top button
+  
     const backToTopButton = document.querySelector('.back-to-top');
     if (backToTopButton) {
         backToTopButton.addEventListener('click', () => {
@@ -318,14 +317,131 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Toggle service details - Fonction conservée pour compatibilité
-function toggleServiceDetails(id) {
-    const detail = document.getElementById(id);
-    if (detail) {
-        detail.classList.toggle('active');
-        const arrow = detail.querySelector('.service-arrow');
-        if (arrow) {
-            arrow.style.transform = detail.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
-        }
-    }
+// Carousel et modal pour les projets
+function initProjectCarousels() {
+    document.querySelectorAll('.project-carousel').forEach(carousel => {
+        const container = carousel.querySelector('.carousel-container');
+        const images = carousel.querySelectorAll('.carousel-container img');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        const counter = carousel.querySelector('.slide-counter');
+        
+        let currentIndex = 0;
+        const totalImages = images.length;
+
+        const updateCarousel = () => {
+            images.forEach((img, index) => {
+                img.classList.toggle('active', index === currentIndex);
+            });
+            counter.textContent = `${currentIndex + 1}/${totalImages}`;
+        };
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateCarousel();
+        });
+
+        // Touch events for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        const handleSwipe = () => {
+            if (touchEndX < touchStartX - 50) {
+                // Swipe left
+                currentIndex = (currentIndex + 1) % totalImages;
+            } else if (touchEndX > touchStartX + 50) {
+                // Swipe right
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            }
+            updateCarousel();
+        };
+
+        updateCarousel();
+    });
 }
+
+// Gestion de la modal des projets
+function initProjectModals() {
+    const modal = document.getElementById('project-modal');
+    const modalContent = document.getElementById('modal-content');
+    const closeBtn = document.querySelector('.modal-close');
+    const viewDetailBtns = document.querySelectorAll('.view-details');
+
+    // Données des projets (peut être chargé depuis une API ou un JSON)
+    const projectsData = {
+        1: {
+            title: "Dashboard de ventes",
+            description: "Visualisation interactive des performances commerciales avec Power BI.",
+            details: "<p>Détails complets sur le projet Dashboard de ventes...</p>",
+            tags: ["Power BI", "Python", "Data Visualization"]
+        },
+        2: {
+            title: "Bot de collecte de données",
+            description: "Automatisation de la récupération de données via Selenium (Python).",
+            details: "<p>Détails complets sur le Bot de collecte...</p>",
+            tags: ["Python", "Selenium", "RPA"]
+        },
+        3: {
+            title: "Optimisation réseau Bouygues Telecom",
+            description: "Analyse des performances réseau et recommandations pour l'amélioration de la qualité de service.",
+            details: "<p>Détails complets sur l'optimisation réseau...</p>",
+            tags: ["Telecom", "Data Analysis", "Network Optimization"]
+        }
+    };
+
+    viewDetailBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const projectId = btn.getAttribute('data-project');
+            const project = projectsData[projectId];
+            
+            if (project) {
+                modalContent.innerHTML = `
+                    <h3>${project.title}</h3>
+                    <p class="modal-description">${project.description}</p>
+                    <div class="project-tags">
+                        ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="modal-details">
+                        ${project.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
+
+// Appel des fonctions d'initialisation
+document.addEventListener('DOMContentLoaded', function() {
+    initProjectCarousels();
+    initProjectModals();
+    
+    // Le reste de votre code existant...
+});
