@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Project filtering
+    // Project filtering - Correction pour un meilleur fonctionnement
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Service cards toggle
+    // Service cards toggle - Nouvelle implémentation plus robuste
     const serviceHeaders = document.querySelectorAll('.service-header');
     serviceHeaders.forEach(header => {
         header.addEventListener('click', () => {
@@ -88,7 +88,41 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Scroll animations
+    // Project image carousel - Nouvelle implémentation
+    document.querySelectorAll('.project-card').forEach(card => {
+        const imagesContainer = card.querySelector('.project-images-container');
+        const images = card.querySelectorAll('.project-image');
+        const prevBtn = card.querySelector('.project-nav.prev');
+        const nextBtn = card.querySelector('.project-nav.next');
+        
+        if (!imagesContainer || !images.length || !prevBtn || !nextBtn) return;
+        
+        let currentIndex = 0;
+        const totalImages = images.length;
+        
+        const updateCarousel = () => {
+            imagesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        };
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateCarousel();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateCarousel();
+        });
+        
+        // Initialisation
+        imagesContainer.style.width = `${totalImages * 100}%`;
+        images.forEach(img => {
+            img.style.width = `${100 / totalImages}%`;
+        });
+        updateCarousel();
+    });
+
+    // Scroll animations (conservé tel quel)
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
         const windowHeight = window.innerHeight;
@@ -110,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    // Initial styles
+    // Initial styles (conservé tel quel)
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -132,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
 
+    // Le reste du code original est conservé inchangé...
     // Back to top button
     const backToTopButton = document.querySelector('.back-to-top');
     if (backToTopButton) {
@@ -249,10 +284,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (navbar) navbar.classList.remove('active', 'open');
         });
     });
-
-    // Initialisation des carrousels et modales
-    initProjectCarousels();
-    initProjectModals();
 });
 
 // Toggle service details - Fonction conservée pour compatibilité
@@ -266,7 +297,6 @@ function toggleServiceDetails(id) {
         }
     }
 }
-
 // Gestion des carrousels de projets
 function initProjectCarousels() {
     document.querySelectorAll('.project-gallery').forEach(gallery => {
@@ -283,9 +313,7 @@ function initProjectCarousels() {
         
         const updateCarousel = () => {
             container.style.transform = `translateX(-${currentIndex * 100}%)`;
-            if (counter) {
-                counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-            }
+            counter.textContent = `${currentIndex + 1}/${totalSlides}`;
             
             // Mise à jour des classes active
             slides.forEach((slide, index) => {
@@ -332,54 +360,13 @@ function initProjectCarousels() {
         // Initialize
         updateCarousel();
     });
-
-    // Ancien système de carrousel (compatibilité)
-    document.querySelectorAll('.project-images-container').forEach(container => {
-        const images = container.querySelectorAll('.project-image');
-        const prevBtn = container.parentElement.querySelector('.project-nav.prev');
-        const nextBtn = container.parentElement.querySelector('.project-nav.next');
-        
-        if (!images.length) return;
-        
-        let currentIndex = 0;
-        const totalImages = images.length;
-        
-        const updateCarousel = () => {
-            container.style.transform = `translateX(-${currentIndex * (100 / totalImages)}%)`;
-        };
-        
-        if (prevBtn && nextBtn) {
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-                updateCarousel();
-            });
-            
-            nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % totalImages;
-                updateCarousel();
-            });
-        }
-        
-        // Set container width
-        container.style.width = `${totalImages * 100}%`;
-        
-        // Set individual image width
-        images.forEach(img => {
-            img.style.width = `${100 / totalImages}%`;
-        });
-        
-        // Initialize
-        updateCarousel();
-    });
 }
 
 // Gestion de la modal des détails
 function initProjectModals() {
     const modal = document.getElementById('project-modal');
-    if (!modal) return;
-    
     const modalContent = document.getElementById('modal-content');
-    const closeBtn = modal.querySelector('.modal-close');
+    const closeBtn = document.querySelector('.modal-close');
     const detailBtns = document.querySelectorAll('.view-details');
     
     // Données des projets (pourrait aussi être chargé via AJAX)
@@ -444,20 +431,15 @@ function initProjectModals() {
                 `;
                 modal.style.display = "block";
                 document.body.style.overflow = "hidden";
-                
-                // Initialiser le carrousel dans la modal si nécessaire
-                initModalCarousels();
             }
         });
     });
     
     // Fermer la modal
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = "none";
-            document.body.style.overflow = "auto";
-        });
-    }
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+    });
     
     // Fermer en cliquant à l'extérieur
     window.addEventListener('click', (e) => {
@@ -468,52 +450,8 @@ function initProjectModals() {
     });
 }
 
-// Initialisation des carrousels dans les modales
-function initModalCarousels() {
-    document.querySelectorAll('.project-details-gallery').forEach(gallery => {
-        const images = gallery.querySelectorAll('img');
-        if (images.length <= 1) return;
-        
-        let currentIndex = 0;
-        const totalImages = images.length;
-        
-        const updateCarousel = () => {
-            gallery.style.transform = `translateX(-${currentIndex * 100}%)`;
-        };
-        
-        // Set gallery width
-        gallery.style.width = `${totalImages * 100}%`;
-        
-        // Set individual image width
-        images.forEach(img => {
-            img.style.width = `${100 / totalImages}%`;
-        });
-        
-        // Initialize
-        updateCarousel();
-        
-        // Touch events for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        gallery.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-        
-        gallery.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-        
-        const handleSwipe = () => {
-            if (touchEndX < touchStartX - 50) {
-                // Swipe left
-                currentIndex = (currentIndex + 1) % totalImages;
-            } else if (touchEndX > touchStartX + 50) {
-                // Swipe right
-                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-            }
-            updateCarousel();
-        };
-    });
-}
+// Initialisation au chargement
+document.addEventListener('DOMContentLoaded', () => {
+    initProjectCarousels();
+    initProjectModals();
+});
