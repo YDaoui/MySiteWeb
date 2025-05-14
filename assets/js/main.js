@@ -93,9 +93,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const gallery = card.querySelector('.project-gallery');
         const container = gallery.querySelector('.gallery-container');
         const slides = gallery.querySelectorAll('.gallery-slide');
-        const prevBtn = gallery.querySelector('.gallery-prev');
-        const nextBtn = gallery.querySelector('.gallery-next');
-        const counter = gallery.querySelector('.slide-counter');
+        const prevBtn = gallery.querySelector('.project-nav.prev');
+        const nextBtn = gallery.querySelector('.project-nav.next');
+        const counter = card.querySelector('.slide-counter'); // Sélectionne le compteur à l'intérieur de la carte
 
         if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
@@ -135,14 +135,14 @@ document.addEventListener('DOMContentLoaded', function () {
             handleSwipe();
         }, { passive: true });
 
-       const handleSwipe = () => {
+        const handleSwipe = () => {
             if (Math.abs(touchEndX - touchStartX) > 50) { // Seuil de 50px
                 if (touchEndX < touchStartX) {
                     // Swipe gauche
-                    currentIndex = (currentIndex + 1) % totalImages;
+                    currentIndex = (currentIndex + 1) % totalSlides;
                 } else {
                     // Swipe droit
-                    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 }
                 updateCarousel();
             }
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
 
-  
+
     const backToTopButton = document.querySelector('.back-to-top');
     if (backToTopButton) {
         backToTopButton.addEventListener('click', () => {
@@ -321,13 +321,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Carousel et modal pour les projets
 function initProjectCarousels() {
-    document.querySelectorAll('.project-carousel').forEach(carousel => {
+    document.querySelectorAll('.project-card').forEach(cardElement => {
+        const carousel = cardElement.querySelector('.project-carousel');
+        if (!carousel) return; // Vérifie si le carousel existe dans cette carte
+
         const container = carousel.querySelector('.carousel-container');
         const images = carousel.querySelectorAll('.carousel-container img');
         const prevBtn = carousel.querySelector('.carousel-prev');
         const nextBtn = carousel.querySelector('.carousel-next');
         const counter = carousel.querySelector('.slide-counter');
-        
+
+        if (!container || !images.length || !prevBtn || !nextBtn || !counter) return;
+
         let currentIndex = 0;
         const totalImages = images.length;
 
@@ -409,7 +414,7 @@ function initProjectModals() {
         btn.addEventListener('click', () => {
             const projectId = btn.getAttribute('data-project');
             const project = projectsData[projectId];
-            
+
             if (project) {
                 modalContent.innerHTML = `
                     <h3>${project.title}</h3>
@@ -444,6 +449,6 @@ function initProjectModals() {
 document.addEventListener('DOMContentLoaded', function() {
     initProjectCarousels();
     initProjectModals();
-    
+
     // Le reste de votre code existant...
 });
