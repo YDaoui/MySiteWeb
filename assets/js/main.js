@@ -135,15 +135,17 @@ document.addEventListener('DOMContentLoaded', function () {
             handleSwipe();
         }, { passive: true });
 
-        const handleSwipe = () => {
-            if (touchEndX < touchStartX - 50) {
-                // Swipe left
-                currentIndex = (currentIndex + 1) % totalSlides;
-            } else if (touchEndX > touchStartX + 50) {
-                // Swipe right
-                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+       const handleSwipe = () => {
+            if (Math.abs(touchEndX - touchStartX) > 50) { // Seuil de 50px
+                if (touchEndX < touchStartX) {
+                    // Swipe gauche
+                    currentIndex = (currentIndex + 1) % totalImages;
+                } else {
+                    // Swipe droit
+                    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                }
+                updateCarousel();
             }
-            updateCarousel();
         };
 
         // Initialisation
