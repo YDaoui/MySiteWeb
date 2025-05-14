@@ -709,10 +709,13 @@ section {
     display: none;
 }
 
-.tech-items {
-    display: flex;
-    gap: 1.5rem;
-    padding: 0 2rem;
+.tech-item {
+    /* ... autres styles ... */
+    padding-left: 0.5rem; /* Réduisez le padding gauche si nécessaire */
+    padding-right: 0.5rem; /* Réduisez le padding droit si nécessaire */
+    margin-left: 0.25rem; /* Réduisez la marge gauche si nécessaire */
+    margin-right: 0.25rem; /* Réduisez la marge droite si nécessaire */
+    min-width: auto; /* Laissez la largeur s'adapter au contenu */
 }
 
 .tech-item {
