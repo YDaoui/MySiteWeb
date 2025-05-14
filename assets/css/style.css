@@ -192,7 +192,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnz4PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
 }
 
 .hero .container {
@@ -246,21 +246,33 @@ section {
     color: white;
 }
 
-/* Section À propos */
+/* Section À propos - Correction de la mise en page */
 .about {
     background-color: var(--darker);
     position: relative;
 }
 
 .about .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+    display: flex; /* Utiliser flexbox pour aligner les éléments */
+    flex-direction: column; /* Empiler les éléments par défaut sur les petits écrans */
+    gap: 3rem; /* Espacement entre les blocs (texte/image et technologies) */
+    padding: 6rem 20px; /* Ajuster le padding horizontal pour correspondre aux autres sections */
+    max-width: 1200px; /* Assure la largeur maximale du conteneur */
+    margin: 0 auto; /* Centre le conteneur */
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne sur les petits écrans */
+    gap: 2rem; /* Espacement entre l'image et le texte */
+    align-items: center; /* Aligner verticalement l'image et le texte */
+    width: 100%; /* Prend toute la largeur du conteneur parent */
+    max-width: 900px; /* Limiter la largeur du contenu à propos */
 }
 
 .about-img {
-    position: relative;
+    flex: 1 1 300px; /* Taille de base de l'image, peut grandir/rétrécir */
+    max-width: 400px; /* Largeur maximale de l'image */
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -288,13 +300,22 @@ section {
     transform: scale(1.05);
 }
 
-.about-text h2 {
+.about-text-area {
+    flex: 1 1 400px; /* Taille de base du texte, peut grandir/rétrécir */
+}
+
+.about-text-area h2 {
     margin-bottom: 1.5rem;
 }
 
-.about-text p {
+.about-text-area p {
     margin-bottom: 2rem;
     color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+}
+
+.about-text-area .btn-outline {
+    margin-bottom: 2rem; /* Espacement avant les icônes */
 }
 
 .skills {
@@ -340,7 +361,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnz4PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
 }
 
 .services h2 {
@@ -417,7 +438,7 @@ section {
 }
 
 .service-details {
-    max-height: 0;
+    max-heightmax-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease, padding 0.3s ease;
 }
@@ -663,10 +684,10 @@ section {
     box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
 }
 
-/* Section Technologies */
+/* Section Technologies - Mise en page et animation */
 .technologies {
     background-color: var(--dark);
-    padding: 6rem 0; /* Ensure consistent padding */
+    padding: 6rem 20px; /* Ajuster le padding horizontal pour correspondre aux autres sections */
 }
 
 .technologies h2 {
@@ -674,36 +695,83 @@ section {
     margin-bottom: 3rem;
 }
 
-.tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+.tech-scroll-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.tech-items-wrapper {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 1rem 0;
+}
+
+.tech-items-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.tech-items {
+    display: flex; /* Aligner les éléments horizontalement */
     gap: 1.5rem;
+    padding: 0 2rem;
 }
 
 .tech-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1.5rem 1rem;
-    background: var(--darker);
-    border-radius: 10px;
-    transition: transform 0.3s ease;
+    min-width: 80px; /* Empêcher les éléments de devenir trop petits */
+    padding: 0.5rem;
+    transition: transform 0.2s ease-in-out; /* Animation douce */
     color: var(--light);
     text-align: center;
 }
 
-.tech-item:hover {
-    transform: translateY(-5px);
-}
-
-.tech-item i { /* Style for Font Awesome icons */
+.tech-item i { /* Style pour les icônes (Font Awesome, Ionicons, etc.) */
     font-size: 2rem;
     margin-bottom: 0.5rem;
-    color: var(--primary); /* Example color */
+    color: var(--primary);
 }
 
 .tech-item span {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+}
+
+.tech-item:hover {
+    transform: scale(1.2); /* Effet d'agrandissement au survol */
+}
+
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background 0.3s, color 0.3s;
+    color: var(--light);
+}
+
+.scroll-btn:hover {
+    background: var(--primary);
+    color: var(--light);
+}
+
+.left-scroll-btn {
+    left: 10px;
+}
+
+.right-scroll-btn {
+    right: 10px;
 }
 
 /* Section Contact */
@@ -772,11 +840,6 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
     }
 }
 
-/* Applied this animation to sections */
-/* section {
-    opacity: 0;
-    animation: fadeInUp 1s ease forwards;
-} */
 
 
 /* Responsive adjustments */
@@ -834,12 +897,23 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
      }
 
     .about .container {
-        grid-template-columns: 1fr;
-        gap: 2rem; /* Adjust gap for smaller screens */
+        flex-direction: column; /* Empiler les éléments sur les petits écrans */
+        gap: 2rem; /* Ajuster l'espacement */
+        padding: 6rem 20px; /* Conserver le padding horizontal */
+    }
+
+    .about-content {
+        flex-direction: column; /* Empiler image et texte */
     }
 
     .about-img {
-        order: -1; /* Place image above text on mobile */
+        order: -1; /* Placer l'image au-dessus du texte sur mobile */
+        max-width: 80%; /* Ajuster la largeur de l'image */
+        margin-bottom: 2rem;
+    }
+
+    .about-text-area {
+        text-align: center; /* Centrer le texte sur mobile */
     }
 
     h1 {
@@ -862,6 +936,10 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
     .service-card,
     .project-card {
         padding: 1.5rem; /* Adjust padding */
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Ajuster la largeur minimale des éléments de technologie */
     }
 }
 /* Carousel styles */
