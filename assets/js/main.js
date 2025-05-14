@@ -88,6 +88,74 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Project image carousel - Nouvelle implémentation
+    document.querySelectorAll('.project-card').forEach(card => {
+        const gallery = card.querySelector('.project-gallery');
+        const container = gallery.querySelector('.gallery-container');
+        const slides = gallery.querySelectorAll('.gallery-slide');
+        const prevBtn = gallery.querySelector('.project-nav.prev');
+        const nextBtn = gallery.querySelector('.project-nav.next');
+        const counter = card.querySelector('.slide-counter'); // Sélectionne le compteur à l'intérieur de la carte
+
+        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
+
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+
+        const updateCarousel = () => {
+            container.style.transform = `translateX(-${currentIndex * 100}%)`;
+            counter.textContent = `${currentIndex + 1}/${totalSlides}`;
+
+            // Mise à jour des classes active
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentIndex);
+            });
+        };
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        });
+
+        // Touch events for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        const handleSwipe = () => {
+            if (Math.abs(touchEndX - touchStartX) > 50) { // Seuil de 50px
+                if (touchEndX < touchStartX) {
+                    // Swipe gauche
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                } else {
+                    // Swipe droit
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                }
+                updateCarousel();
+            }
+        };
+
+        // Initialisation
+        container.style.width = `${totalSlides * 100}%`;
+        slides.forEach(slide => {
+            slide.style.width = `${100 / totalSlides}%`;
+        });
+        updateCarousel();
+    });
+
     // Scroll animations (conservé tel quel)
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
@@ -254,35 +322,34 @@ document.addEventListener('DOMContentLoaded', function () {
 // Carousel et modal pour les projets
 function initProjectCarousels() {
     document.querySelectorAll('.project-card').forEach(cardElement => {
-        const projectGallery = cardElement.querySelector('.project-gallery');
-        if (!projectGallery) return;
+        const carousel = cardElement.querySelector('.project-carousel');
+        if (!carousel) return; // Vérifie si le carousel existe dans cette carte
 
-        const container = projectGallery.querySelector('.gallery-container');
-        const slides = projectGallery.querySelectorAll('.gallery-slide');
-        const prevBtn = projectGallery.querySelector('.project-nav.prev');
-        const nextBtn = projectGallery.querySelector('.project-nav.next');
-        const counter = projectGallery.querySelector('.slide-counter');
+        const container = carousel.querySelector('.carousel-container');
+        const images = carousel.querySelectorAll('.carousel-container img');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        const counter = carousel.querySelector('.slide-counter');
 
-        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
+        if (!container || !images.length || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
-        const totalSlides = slides.length;
+        const totalImages = images.length;
 
         const updateCarousel = () => {
-            container.style.transform = `translateX(-${currentIndex * 100}%)`;
-            counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-            slides.forEach((slide, index) => {
-                slide.classList.toggle('active', index === currentIndex);
+            images.forEach((img, index) => {
+                img.classList.toggle('active', index === currentIndex);
             });
+            counter.textContent = `${currentIndex + 1}/${totalImages}`;
         };
 
         prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
             updateCarousel();
         });
 
         nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalSlides;
+            currentIndex = (currentIndex + 1) % totalImages;
             updateCarousel();
         });
 
@@ -300,20 +367,16 @@ function initProjectCarousels() {
         }, { passive: true });
 
         const handleSwipe = () => {
-            if (Math.abs(touchEndX - touchStartX) > 50) {
-                if (touchEndX < touchStartX) {
-                    currentIndex = (currentIndex + 1) % totalSlides;
-                } else {
-                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                }
-                updateCarousel();
+            if (touchEndX < touchStartX - 50) {
+                // Swipe left
+                currentIndex = (currentIndex + 1) % totalImages;
+            } else if (touchEndX > touchStartX + 50) {
+                // Swipe right
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
             }
+            updateCarousel();
         };
 
-        container.style.width = `${totalSlides * 100}%`;
-        slides.forEach(slide => {
-            slide.style.width = `${100 / totalSlides}%`;
-        });
         updateCarousel();
     });
 }
@@ -386,4 +449,6 @@ function initProjectModals() {
 document.addEventListener('DOMContentLoaded', function() {
     initProjectCarousels();
     initProjectModals();
+
+    
 });
