@@ -445,19 +445,39 @@ function initProjectModals() {
     });
 }
 document.addEventListener('DOMContentLoaded', function() {
-  const leftBtn = document.querySelector('.left-scroll-btn');
-  const rightBtn = document.querySelector('.right-scroll-btn');
-  const techIcons = document.querySelector('.tech-icons');
-
-  if (leftBtn && rightBtn && techIcons) {
-    leftBtn.addEventListener('click', () => {
-      techIcons.scrollBy({ left: -100, behavior: 'smooth' });
-    });
-
-    rightBtn.addEventListener('click', () => {
-      techIcons.scrollBy({ left: 100, behavior: 'smooth' });
-    });
-  }
+    const techContainer = document.querySelector('.tech-items-wrapper');
+    const leftBtn = document.querySelector('.left-scroll-btn');
+    const rightBtn = document.querySelector('.right-scroll-btn');
+    
+    if (techContainer && leftBtn && rightBtn) {
+        const scrollAmount = 300; // Ajustez cette valeur selon vos besoins
+        
+        leftBtn.addEventListener('click', () => {
+            techContainer.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+        
+        rightBtn.addEventListener('click', () => {
+            techContainer.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Masquer les boutons si on est au début/à la fin
+        techContainer.addEventListener('scroll', function() {
+            leftBtn.style.display = this.scrollLeft > 0 ? 'block' : 'none';
+            rightBtn.style.display = this.scrollLeft < (this.scrollWidth - this.clientWidth) ? 'block' : 'none';
+        });
+        
+        // Initial state
+        leftBtn.style.display = 'none';
+        if (techContainer.scrollWidth <= techContainer.clientWidth) {
+            rightBtn.style.display = 'none';
+        }
+    }
 });
 
 // Appel des fonctions d'initialisation
@@ -465,5 +485,5 @@ document.addEventListener('DOMContentLoaded', function() {
     initProjectCarousels();
     initProjectModals();
 
-    // Le reste de votre code existant...
+   
 });
