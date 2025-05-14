@@ -444,6 +444,21 @@ function initProjectModals() {
         }
     });
 }
+document.addEventListener('DOMContentLoaded', function() {
+  const leftBtn = document.querySelector('.left-scroll-btn');
+  const rightBtn = document.querySelector('.right-scroll-btn');
+  const techIcons = document.querySelector('.tech-icons');
+
+  if (leftBtn && rightBtn && techIcons) {
+    leftBtn.addEventListener('click', () => {
+      techIcons.scrollBy({ left: -100, behavior: 'smooth' });
+    });
+
+    rightBtn.addEventListener('click', () => {
+      techIcons.scrollBy({ left: 100, behavior: 'smooth' });
+    });
+  }
+});
 
 // Appel des fonctions d'initialisation
 document.addEventListener('DOMContentLoaded', function() {
