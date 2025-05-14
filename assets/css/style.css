@@ -253,16 +253,14 @@ section {
 }
 
 .about .container {
-    display: flex; /* Changed from grid to flex */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
-    flex-direction: row; /* Align image and text horizontally */
-    padding: 2rem 20px; /* Adjust padding to respect side margins */
 }
 
 .about-img {
-    flex: 0 0 auto; /* Don't grow or shrink, auto width */
-    max-width: 300px; /* Adjust as needed */
+    position: relative;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -290,10 +288,6 @@ section {
     transform: scale(1.05);
 }
 
-.about-text {
-    flex: 1 1 auto; /* Take remaining space */
-}
-
 .about-text h2 {
     margin-bottom: 1.5rem;
 }
@@ -301,11 +295,6 @@ section {
 .about-text p {
     margin-bottom: 2rem;
     color: rgba(255, 255, 255, 0.7);
-}
-
-.about-text .btn-outline {
-    margin-bottom: 2rem;
-    display: inline-block;
 }
 
 .skills {
@@ -845,15 +834,12 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
      }
 
     .about .container {
-        grid-template-columns: 1fr; /* Changed back to grid for stacking on mobile */
+        grid-template-columns: 1fr;
         gap: 2rem; /* Adjust gap for smaller screens */
-        padding: 6rem 20px; /* Adjust padding to respect side margins */
     }
 
     .about-img {
         order: -1; /* Place image above text on mobile */
-        max-width: 80%; /* Limit image width on mobile */
-        margin-bottom: 2rem;
     }
 
     h1 {
@@ -1015,104 +1001,424 @@ html {
 }
 
 /* Section Technologies - Placed at the bottom with scrolling buttons */
-.tech-section {
-    background-color: var(--darker);
-    padding: 4rem 0;
+technologies {
+    background-color: var(--dark);
+    padding: 4rem 0; /* Adjusted padding */
 }
 
-.tech-section h2 {
+.technologies h2 {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem; /* Adjusted margin */
 }
 
 .tech-scroll-container {
-    position: relative;
-    overflow: hidden;
-    padding: 0 20px; /* Space for scroll buttons */
-}
-
-.tech-items {
     display: flex;
-    gap: 2rem;
-    padding: 1rem 0;
     overflow-x: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem; /* Space for potential scrollbar */
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+    scrollbar-width: none; /* Hide default scrollbar for Firefox */
 }
 
-.tech-items::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+.tech-scroll-container::-webkit-scrollbar {
+    display: none; /* Hide default scrollbar for Chrome, Safari, Edge */
 }
 
 .tech-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 100px;
-    padding: 1rem;
-    border-radius: 8px;
-    background: rgba(30, 30, 46, 0.7);
-    backdrop-filter: blur(5px);
+    padding: 1.5rem 1rem;
+    background: var(--darker);
+    border-radius: 10px;
     transition: transform 0.3s ease;
     color: var(--light);
     text-align: center;
+    margin: 0 0.5rem; /* Space between items */
+    min-width: 100px; /* Minimum width of each item */
+    scroll-snap-align: start;
 }
 
-.tech-item:hover {
-    transform: translateY(-5px);
+.tech-item:first-child {
+    margin-left: 1rem;
 }
 
-.tech-item i {
-    font-size: 2.5rem;
+.tech-item:last-child {
+    margin-right: 1rem;
+}
+
+.tech-item i { /* Style for Font Awesome icons */
+    font-size: 2rem;
     margin-bottom: 0.5rem;
-    color: var(--primary);
+    color: var(--primary); /* Example color */
 }
 
 .tech-item span {
     font-size: 0.9rem;
 }
 
+.tech-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
 .scroll-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(26, 26, 46, 0.8);
-    color: var(--light);
-    border: none;
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    font-size: 1.2rem;
-    cursor: pointer;
-    z-index: 10;
-    opacity: 0.7;
-    transition: opacity 0.3s ease, transform 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 0.5rem;
 }
 
 .scroll-btn:hover {
-    opacity: 1;
     background: var(--primary);
-    transform: translateY(-50%) scale(1.1);
+    color: white;
+}
+
+.scroll-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: var(--gray);
+    color: var(--gray);
+    background: transparent;
 }
 
 .left-scroll-btn {
-    left: 10px;
+    /* Specific styles if needed */
 }
 
 .right-scroll-btn {
-    right: 10px;
+    /* Specific styles if needed */
 }
 
+/* Section Contact */
+.contact {
+    background-color: var(--darker);
+}
+
+.contact h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.contact input,
+.contact textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: white;
+}
+
+.contact textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Footer */
+footer { /* Changed from .footer to footer tag */
+    background-color: var(--darker);
+    padding: 3rem 0;
+    text-align: center;
+}
+
+footer p { /* Changed from .footer p to footer p */
+    color: rgba(255, 255, 255, 0.7);
+}
+
+footer a { /* Changed from .footer a to footer a */
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer a:hover { /* Changed from .footer a:hover to footer a:hover */
+    text-decoration: underline;
+}
+
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Applied this animation to sections */
+/* section {
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+} */
+
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .tech-scroll-container {
-        padding: 0 10px;
+    .header .container {
+        flex-direction: row; /* Keep logo and toggle on the same line */
+        align-items: center;
+    }
+
+    /* Show the mobile menu toggle button */
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    /* Hide the navbar by default on small screens */
+    .navbar {
+        position: absolute;
+        top: 100%; /* Position below the header */
+        left: 0;
+        width: 100%;
+        background-color: var(--darker); /* Background for the dropdown menu */
+        flex-direction: column; /* Stack menu items vertically */
+        align-items: center; /* Center menu items */
+        padding: 1rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: none; /* Hidden by default */
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Display the navbar when the 'active' class is added by JS */
+    .navbar.active {
+        display: flex;
+    }
+
+    .navbar ul {
+        flex-direction: column; /* Ensure list items are stacked */
+        width: 100%; /* Make list take full width */
+        padding: 0; /* Remove default padding */
+    }
+
+    .navbar ul li {
+        margin: 0; /* Remove horizontal margin */
+        width: 100%; /* Make list items take full width */
+        text-align: center; /* Center text */
+        padding: 0.5rem 0; /* Add some vertical padding */
+    }
+
+     .navbar ul li a {
+        padding: 0.5rem 1rem; /* Add padding to links */
+        display: block; /* Make links block level for padding */
+     }
+
+     .navbar ul li a::after {
+          content: none; /* Remove the underline animation on mobile */
+     }
+
+    .about .container {
+        grid-template-columns: 1fr;
+        gap: 2rem; /* Adjust gap for smaller screens */
+    }
+
+    .about-img {
+        order: -1; /* Place image above text on mobile */
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Adjust font size for smaller screens */
+    }
+
+    h2 {
+        font-size: 2rem; /* Adjust font size for smaller screens */
+    }
+
+    .hero p {
+        font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+
+    .services-grid,
+    .projects-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically on mobile */
+    }
+
+    .service-card,
+    .project-card {
+        padding: 1.5rem; /* Adjust padding */
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Adjust tech grid for smaller screens */
+    }
+
+    .tech-item {
+        padding: 1rem 0.5rem;
+        margin: 0 0.3rem;
+    }
+
+    .tech-item i {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .tech-item span {
+        font-size: 0.8rem;
+    }
+
+    .tech-controls {
+        margin-top: 0.5rem;
     }
 
     .scroll-btn {
-        display: none !important; /* Hide buttons on smaller screens, allow touch scrolling */
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        margin: 0 0.3rem;
     }
+}
+/* Carousel styles */
+.project-carousel {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.carousel-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-container img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background: #fff;
+    padding: 10px;
+}
+
+.carousel-container img.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.carousel-nav {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 20px;
+    width: max-content;
+    margin: 0 auto;
+}
+
+.carousel-prev, .carousel-next {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+}
+
+.carousel-prev:hover, .carousel-next:hover {
+    background: var(--primary);
+}
+
+.slide-counter {
+    color: white;
+    font-size: 0.9rem;
+    min-width: 40px;
+    text-align: center;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: var(--dark);
+    margin: 5% auto;
+    padding: 2rem;
+    border: 1px solid rgba(58, 134, 255, 0.3);
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modal-close:hover {
+    color: var(--primary);
+    transform: scale(1.2);
+}
+
+.modal h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.modal-description {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+}
+
+.modal-details {
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
 }
