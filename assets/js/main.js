@@ -71,6 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.service-card').forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.classList.remove('active');
+                    const otherArrow = otherCard.querySelector('.service-arrow');
+                    if (otherArrow) otherArrow.style.transform = 'rotate(0)';
                 }
             });
 
@@ -84,13 +86,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Project image carousel
-        // Project image carousel
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
-        if (!gallery) {
-            console.warn("Galerie non trouvée dans .project-card");
-            return;
-        }
+        if (!gallery) return;
 
         const container = gallery.querySelector('.gallery-container');
         const slides = gallery.querySelectorAll('.gallery-slide');
@@ -98,10 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const nextBtn = gallery.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
 
-        if (!container || slides.length === 0 || !prevBtn || !nextBtn || !counter) {
-            console.warn("Éléments manquants dans le carrousel");
-            return;
-        }
+        if (!container || slides.length === 0 || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
         const totalSlides = slides.length;
@@ -146,14 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateCarousel();
             }
         };
-
-        container.style.width = `${totalSlides * 100}%`;
-        slides.forEach(slide => {
-            slide.style.width = `${100 / totalSlides}%`;
-        });
-
-        updateCarousel();
-    });
 
         container.style.width = `${totalSlides * 100}%`;
         slides.forEach(slide => {
@@ -325,23 +312,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-// Gestion du menu mobile
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleButton = document.querySelector(".mobile-menu-toggle");
-  const navbar = document.querySelector(".navbar");
-
-  if (toggleButton && navbar) {
-    toggleButton.addEventListener("click", () => {
-      navbar.classList.toggle("active");
-    });
-  }
-
-  // Ajout pour gérer les toggle de services
-  window.toggleServiceDetails = function (id) {
-    const el = document.getElementById(id);
-    if (el) {
-      el.classList.toggle("open");
-    }
-  };
-});
-
