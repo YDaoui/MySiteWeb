@@ -92,7 +92,7 @@ section {
 
 .header.scrolled {
     background-color: rgba(26, 26, 46, 0.6);
-    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3); /* Changé en blanc */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .logo {
@@ -117,7 +117,7 @@ section {
 }
 
 .navbar.scrolled {
-    background-color: rgba(0, 1, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .navbar ul {
@@ -159,7 +159,7 @@ section {
 
 /* Mobile menu toggle - Version améliorée avec animation */
 .mobile-menu-toggle {
-    display: flex;
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
@@ -175,7 +175,7 @@ section {
     display: block;
     width: 100%;
     height: 3px;
-    background: white; /* Changé en blanc */
+    background: var(--light);
     position: absolute;
     left: 0;
     transition: all 0.3s ease;
@@ -326,21 +326,13 @@ section {
     transform: scale(1.05);
 }
 
-.about-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
 .about-text h2 {
     margin-bottom: 1.5rem;
-    text-align: left;
 }
 
 .about-text p {
     margin-bottom: 2rem;
     color: rgba(255, 255, 255, 0.7);
-    text-align: left;
 }
 
 .skills {
@@ -707,11 +699,10 @@ section {
     box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
 }
 
-/* Section Technologies - Modifiée pour le défilement horizontal */
+/* Section Technologies */
 .technologies {
     background-color: var(--dark);
     padding: 6rem 0;
-    overflow: hidden;
 }
 
 .technologies h2 {
@@ -719,32 +710,10 @@ section {
     margin-bottom: 3rem;
 }
 
-.tech-scroll-container {
-    overflow-x: auto;
-    padding-bottom: 20px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) var(--darker);
-}
-
-.tech-scroll-container::-webkit-scrollbar {
-    height: 8px;
-}
-
-.tech-scroll-container::-webkit-scrollbar-track {
-    background: var(--darker);
-    border-radius: 10px;
-}
-
-.tech-scroll-container::-webkit-scrollbar-thumb {
-    background-color: var(--primary);
-    border-radius: 10px;
-}
-
 .tech-grid {
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 1.5rem;
-    padding: 0 1rem;
-    animation: scrollAnimation 30s linear infinite;
 }
 
 .tech-item {
@@ -754,17 +723,13 @@ section {
     padding: 1.5rem 1rem;
     background: var(--darker);
     border-radius: 10px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
     color: var(--light);
     text-align: center;
-    min-width: 120px;
-    flex-shrink: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .tech-item:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 8px 16px rgba(58, 134, 255, 0.2);
+    transform: translateY(-5px);
 }
 
 .tech-item i {
@@ -775,15 +740,6 @@ section {
 
 .tech-item span {
     font-size: 0.9rem;
-}
-
-@keyframes scrollAnimation {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
 }
 
 /* Section Contact */
@@ -852,8 +808,20 @@ footer a:hover {
 }
 
 /* Responsive adjustments */
-/* Correction pour le menu mobile */
 @media (max-width: 768px) {
+    .header .container {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    /* Mobile menu toggle visible */
+    .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* Navbar styles for mobile */
     .navbar {
         position: fixed;
         top: 70px;
@@ -863,14 +831,13 @@ footer a:hover {
         background-color: var(--darker);
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         padding: 2rem 0;
         display: none;
         opacity: 0;
         transform: translateY(-20px);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        z-index: 999;
     }
 
     .navbar.active {
@@ -891,13 +858,13 @@ footer a:hover {
         text-align: center;
         padding: 1rem 0;
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateX(-20px);
         transition: all 0.3s ease;
     }
 
     .navbar.active ul li {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
     }
 
     /* Animation delay for each menu item */
@@ -911,53 +878,41 @@ footer a:hover {
         padding: 1rem;
         display: block;
         font-size: 1.2rem;
-        color: var(--light);
-    }
-
-    .navbar ul li a:hover {
-        color: var(--primary);
     }
 
     .navbar ul li a::after {
-        display: none;
+        content: none;
     }
 
-    .mobile-menu-toggle {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 24px;
-        width: 30px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        z-index: 1000;
+    .about .container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
-    .mobile-menu-toggle:focus {
-        outline: none;
+    .about-img {
+        order: -1;
     }
 
-    .mobile-menu-toggle .hamburger-line {
-        display: block;
-        width: 100%;
-        height: 3px;
-        background: white;
-        transition: all 0.3s ease;
-        border-radius: 3px;
+    h1 {
+        font-size: 2.5rem;
     }
 
-    .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
-        transform: translateY(10px) rotate(45deg);
+    h2 {
+        font-size: 2rem;
     }
 
-    .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
-        opacity: 0;
+    .hero p {
+        font-size: 1rem;
     }
 
-    .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
-        transform: translateY(-10px) rotate(-45deg);
+    .services-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card,
+    .project-card {
+        padding: 1.5rem;
     }
 }
 
@@ -1095,153 +1050,4 @@ footer a:hover {
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
-}
-
-/* Styles spécifiques pour la section "À Propos" */
-.about-text .skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.about-text .skill-item {
-    flex: 0 0 auto;
-    margin-bottom: 0;
-}
-
-.about-text .skill-name {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.3rem;
-}
-
-.about-text .skill-name i {
-    font-size: 1.5rem;
-    margin-right: 0.8rem;
-    color: var(--primary);
-}
-
-.about-text .skill-bar {
-    display: none;
-}
-/* Styles pour le carrousel */
-.project-gallery {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.gallery-container {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.gallery-slide {
-  flex: 0 0 100%;
-  transition: opacity 0.5s ease;
-}
-
-.gallery-slide img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.project-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 10;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.project-nav.prev {
-  left: 15px;
-}
-
-.project-nav.next {
-  right: 15px;
-}
-
-.slide-counter {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(0,0,0,0.7);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  z-index: 10;
-}
-
-/* Styles pour la modale des détails */
-.project-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-}
-
-.project-modal.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-content {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 800px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-}
-
-.close-modal {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.details-btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.details-btn:hover {
-  background: #45a049;
 }
