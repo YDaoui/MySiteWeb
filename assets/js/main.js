@@ -444,14 +444,6 @@ function initProjectModals() {
         }
     });
 }
-
-// Appel des fonctions d'initialisation
-document.addEventListener('DOMContentLoaded', function() {
-    initProjectCarousels();
-    initProjectModals();
-
-    // Le reste de votre code existant...
-});
 document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
@@ -461,3 +453,11 @@ document.addEventListener('DOMContentLoaded', function() {
         navbar.classList.toggle('active');
     });
 });
+// Appel des fonctions d'initialisation
+document.addEventListener('DOMContentLoaded', function() {
+    initProjectCarousels();
+    initProjectModals();
+
+    // Le reste de votre code existant...
+});
+
