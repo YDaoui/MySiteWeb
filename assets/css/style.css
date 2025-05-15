@@ -378,7 +378,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnz4PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
 }
 
 .services h2 {
@@ -711,9 +711,10 @@ section {
 }
 
 .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    display: flex;
+    overflow-x: auto; /* Ajout pour le défilement horizontal */
     gap: 1.5rem;
+    padding-bottom: 1rem; /* Pour éviter que le contenu ne soit coupé par la barre de défilement */
 }
 
 .tech-item {
@@ -726,6 +727,7 @@ section {
     transition: transform 0.3s ease;
     color: var(--light);
     text-align: center;
+    min-width: 100px; /* Empêche les éléments de devenir trop petits */
 }
 
 .tech-item:hover {
@@ -736,6 +738,11 @@ section {
     font-size: 2rem;
     margin-bottom: 0.5rem;
     color: var(--primary);
+    transition: color 0.3s ease; /* Ajout de la transition pour la couleur */
+}
+
+.tech-item:hover i {
+    color: var(--secondary); /* Changement de couleur au survol */
 }
 
 .tech-item span {
@@ -893,6 +900,18 @@ footer a:hover {
         order: -1;
     }
 
+    .about-text {
+        text-align: left; /* Réaligner le texte à gauche sur mobile */
+    }
+
+    .about-text .skills {
+        margin-top: 1rem; /* Réduire la marge pour les compétences sur mobile */
+    }
+
+    .skill-item {
+        margin-bottom: 1rem; /* Réduire la marge entre les compétences sur mobile */
+    }
+
     h1 {
         font-size: 2.5rem;
     }
@@ -914,8 +933,71 @@ footer a:hover {
     .project-card {
         padding: 1.5rem;
     }
+
+    .tech-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Ajuster la largeur minimale des icônes */
+    }
+
+    .tech-item {
+        padding: 1rem 0.5rem; /* Réduire le padding des éléments de technologie */
+    }
+
+    .tech-item i {
+        font-size: 1.5rem; /* Réduire la taille des icônes sur mobile */
+        margin-bottom: 0.3rem;
+    }
+
+    .tech-item span {
+        font-size: 0.8rem; /* Réduire la taille du texte sur mobile */
+    }
 }
 
+/* Styles spécifiques pour la section About - Icônes de technologie */
+.about-text .tech-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    margin-top: 1rem; /* Ajouter une marge au-dessus des icônes */
+}
+
+.about-text .tech-item {
+    min-width: 80px;
+    padding: 0.5rem;
+    background: transparent;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+}
+
+.about-text .tech-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.about-text .tech-item i {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+}
+
+.about-text .tech-item span {
+    display: none; /* Cacher le texte sous les icônes dans cette mise en page */
+}
+
+/* Ajustement du texte à côté de l'image About */
+.about-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrer le contenu verticalement */
+}
+
+.about-text > *:not(.tech-grid) {
+    margin-right: 0; /* Supprimer la marge à droite pour les éléments autres que la grille de technologies */
+}
+
+.about-text p {
+    text-align: left; /* Aligner le texte à gauche */
+}
 /* Carousel styles */
 .project-carousel {
     position: relative;
@@ -1051,31 +1133,3 @@ footer a:hover {
 html {
     scroll-behavior: smooth;
 }
-/* Responsive Navbar - Mobile version */
-@media (max-width: 768px) {
-    .navbar ul {
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: var(--darker);
-        overflow: hidden;
-        max-height: 0;
-        transition: max-height 0.3s ease-in-out;
-    }
-
-    .navbar ul.open {
-        max-height: 500px; /* valeur suffisante pour tout le menu */
-    }
-
-    .navbar ul li {
-        margin: 1rem 0;
-        text-align: center;
-    }
-
-    .mobile-menu-toggle {
-        display: block;
-    }
-}
-
