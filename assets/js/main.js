@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+corrige le main.js sans rien enlever stp ===document.addEventListener('DOMContentLoaded', function () {
     // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -24,17 +24,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Project filtering
+    // Project filtering - Correction pour un meilleur fonctionnement
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
+            // Reset all buttons
             filterButtons.forEach(btn => {
                 btn.classList.remove('active');
                 btn.setAttribute('aria-pressed', 'false');
             });
 
+            // Activate clicked button
             button.classList.add('active');
             button.setAttribute('aria-pressed', 'true');
 
@@ -61,21 +63,24 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Service cards toggle
+    // Service cards toggle - Nouvelle implémentation plus robuste
     const serviceHeaders = document.querySelectorAll('.service-header');
     serviceHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
             const isActive = card.classList.contains('active');
 
+            // Fermer toutes les autres cartes
             document.querySelectorAll('.service-card').forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.classList.remove('active');
                 }
             });
 
+            // Basculer l'état de la carte actuelle
             card.classList.toggle('active', !isActive);
 
+            // Animation du chevron
             const arrow = header.querySelector('.service-arrow');
             if (arrow) {
                 arrow.style.transform = card.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
@@ -83,14 +88,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Project image carousel
+    // Project image carousel - Nouvelle implémentation
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
-        const container = gallery?.querySelector('.gallery-container');
-        const slides = gallery?.querySelectorAll('.gallery-slide');
-        const prevBtn = gallery?.querySelector('.project-nav.prev');
-        const nextBtn = gallery?.querySelector('.project-nav.next');
-        const counter = card.querySelector('.slide-counter');
+        const container = gallery.querySelector('.gallery-container');
+        const slides = gallery.querySelectorAll('.gallery-slide');
+        const prevBtn = gallery.querySelector('.project-nav.prev');
+        const nextBtn = gallery.querySelector('.project-nav.next');
+        const counter = card.querySelector('.slide-counter'); // Sélectionne le compteur à l'intérieur de la carte
 
         if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
@@ -100,6 +105,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const updateCarousel = () => {
             container.style.transform = `translateX(-${currentIndex * 100}%)`;
             counter.textContent = `${currentIndex + 1}/${totalSlides}`;
+
+            // Mise à jour des classes active
             slides.forEach((slide, index) => {
                 slide.classList.toggle('active', index === currentIndex);
             });
@@ -115,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
             updateCarousel();
         });
 
+        // Touch events for mobile
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -128,16 +136,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }, { passive: true });
 
         const handleSwipe = () => {
-            if (Math.abs(touchEndX - touchStartX) > 50) {
+            if (Math.abs(touchEndX - touchStartX) > 50) { // Seuil de 50px
                 if (touchEndX < touchStartX) {
+                    // Swipe gauche
                     currentIndex = (currentIndex + 1) % totalSlides;
                 } else {
+                    // Swipe droit
                     currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 }
                 updateCarousel();
             }
         };
 
+        // Initialisation
         container.style.width = `${totalSlides * 100}%`;
         slides.forEach(slide => {
             slide.style.width = `${100 / totalSlides}%`;
@@ -145,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCarousel();
     });
 
-    // Scroll animations
+    // Scroll animations (conservé tel quel)
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
         const windowHeight = window.innerHeight;
@@ -167,6 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    // Initial styles (conservé tel quel)
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -187,6 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
+
 
     const backToTopButton = document.querySelector('.back-to-top');
     if (backToTopButton) {
@@ -298,13 +311,151 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Close mobile menu on nav link click
+    // Close menu on nav link click (mobile)
     document.querySelectorAll('.navbar a').forEach(link => {
         link.addEventListener('click', () => {
-            if (navbar && navbar.classList.contains('open')) {
-                navbar.classList.remove('active');
-                navbar.classList.remove('open');
+            if (navbar) navbar.classList.remove('active', 'open');
+        });
+    });
+});
+
+// Carousel et modal pour les projets
+function initProjectCarousels() {
+    document.querySelectorAll('.project-card').forEach(cardElement => {
+        const carousel = cardElement.querySelector('.project-carousel');
+        if (!carousel) return; // Vérifie si le carousel existe dans cette carte
+
+        const container = carousel.querySelector('.carousel-container');
+        const images = carousel.querySelectorAll('.carousel-container img');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        const counter = carousel.querySelector('.slide-counter');
+
+        if (!container || !images.length || !prevBtn || !nextBtn || !counter) return;
+
+        let currentIndex = 0;
+        const totalImages = images.length;
+
+        const updateCarousel = () => {
+            images.forEach((img, index) => {
+                img.classList.toggle('active', index === currentIndex);
+            });
+            counter.textContent = `${currentIndex + 1}/${totalImages}`;
+        };
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateCarousel();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateCarousel();
+        });
+
+        // Touch events for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        const handleSwipe = () => {
+            if (touchEndX < touchStartX - 50) {
+                // Swipe left
+                currentIndex = (currentIndex + 1) % totalImages;
+            } else if (touchEndX > touchStartX + 50) {
+                // Swipe right
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            }
+            updateCarousel();
+        };
+
+        updateCarousel();
+    });
+}
+
+// Gestion de la modal des projets
+function initProjectModals() {
+    const modal = document.getElementById('project-modal');
+    const modalContent = document.getElementById('modal-content');
+    const closeBtn = document.querySelector('.modal-close');
+    const viewDetailBtns = document.querySelectorAll('.view-details');
+
+    // Données des projets (peut être chargé depuis une API ou un JSON)
+    const projectsData = {
+        1: {
+            title: "Dashboard de ventes",
+            description: "Visualisation interactive des performances commerciales avec Power BI.",
+            details: "<p>Détails complets sur le projet Dashboard de ventes...</p>",
+            tags: ["Power BI", "Python", "Data Visualization"]
+        },
+        2: {
+            title: "Bot de collecte de données",
+            description: "Automatisation de la récupération de données via Selenium (Python).",
+            details: "<p>Détails complets sur le Bot de collecte...</p>",
+            tags: ["Python", "Selenium", "RPA"]
+        },
+        3: {
+            title: "Optimisation réseau Bouygues Telecom",
+            description: "Analyse des performances réseau et recommandations pour l'amélioration de la qualité de service.",
+            details: "<p>Détails complets sur l'optimisation réseau...</p>",
+            tags: ["Telecom", "Data Analysis", "Network Optimization"]
+        }
+    };
+
+    viewDetailBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const projectId = btn.getAttribute('data-project');
+            const project = projectsData[projectId];
+
+            if (project) {
+                modalContent.innerHTML = `
+                    <h3>${project.title}</h3>
+                    <p class="modal-description">${project.description}</p>
+                    <div class="project-tags">
+                        ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="modal-details">
+                        ${project.details}
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
             }
         });
     });
+
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    
+    toggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navbar.classList.toggle('active');
+    });
+});
+// Appel des fonctions d'initialisation
+document.addEventListener('DOMContentLoaded', function() {
+    initProjectCarousels();
+    initProjectModals();
+
 });
