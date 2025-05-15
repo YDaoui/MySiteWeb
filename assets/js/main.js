@@ -84,15 +84,24 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Project image carousel
+        // Project image carousel
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
-        const container = gallery?.querySelector('.gallery-container');
-        const slides = gallery?.querySelectorAll('.gallery-slide');
-        const prevBtn = gallery?.querySelector('.project-nav.prev');
-        const nextBtn = gallery?.querySelector('.project-nav.next');
+        if (!gallery) {
+            console.warn("Galerie non trouvée dans .project-card");
+            return;
+        }
+
+        const container = gallery.querySelector('.gallery-container');
+        const slides = gallery.querySelectorAll('.gallery-slide');
+        const prevBtn = gallery.querySelector('.project-nav.prev');
+        const nextBtn = gallery.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
 
-        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
+        if (!container || slides.length === 0 || !prevBtn || !nextBtn || !counter) {
+            console.warn("Éléments manquants dans le carrousel");
+            return;
+        }
 
         let currentIndex = 0;
         const totalSlides = slides.length;
@@ -137,6 +146,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 updateCarousel();
             }
         };
+
+        container.style.width = `${totalSlides * 100}%`;
+        slides.forEach(slide => {
+            slide.style.width = `${100 / totalSlides}%`;
+        });
+
+        updateCarousel();
+    });
 
         container.style.width = `${totalSlides * 100}%`;
         slides.forEach(slide => {
