@@ -1051,3 +1051,31 @@ footer a:hover {
 html {
     scroll-behavior: smooth;
 }
+/* Responsive Navbar - Mobile version */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--darker);
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease-in-out;
+    }
+
+    .navbar ul.open {
+        max-height: 500px; /* valeur suffisante pour tout le menu */
+    }
+
+    .navbar ul li {
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
