@@ -92,7 +92,7 @@ section {
 
 .header.scrolled {
     background-color: rgba(26, 26, 46, 0.6);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3); /* Changé en blanc */
 }
 
 .logo {
@@ -159,7 +159,7 @@ section {
 
 /* Mobile menu toggle - Version améliorée avec animation */
 .mobile-menu-toggle {
-    display: flex; /* Correction: Rendre le toggle visible par défaut */
+    display: flex;
     background: none;
     border: none;
     cursor: pointer;
@@ -175,7 +175,7 @@ section {
     display: block;
     width: 100%;
     height: 3px;
-    background: var(--light);
+    background: white; /* Changé en blanc */
     position: absolute;
     left: 0;
     transition: all 0.3s ease;
@@ -327,20 +327,20 @@ section {
 }
 
 .about-text {
-    display: flex; /* Correction: Utiliser flexbox pour aligner le contenu */
-    flex-direction: column; /* Aligner les éléments verticalement par défaut */
-    justify-content: center; /* Centrer le contenu verticalement */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .about-text h2 {
     margin-bottom: 1.5rem;
-    text-align: left; /* Aligner le titre à gauche */
+    text-align: left;
 }
 
 .about-text p {
     margin-bottom: 2rem;
     color: rgba(255, 255, 255, 0.7);
-    text-align: left; /* Aligner le paragraphe à gauche */
+    text-align: left;
 }
 
 .skills {
@@ -707,10 +707,11 @@ section {
     box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
 }
 
-/* Section Technologies */
+/* Section Technologies - Modifiée pour le défilement horizontal */
 .technologies {
     background-color: var(--dark);
     padding: 6rem 0;
+    overflow: hidden;
 }
 
 .technologies h2 {
@@ -718,10 +719,32 @@ section {
     margin-bottom: 3rem;
 }
 
+.tech-scroll-container {
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--darker);
+}
+
+.tech-scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.tech-scroll-container::-webkit-scrollbar-track {
+    background: var(--darker);
+    border-radius: 10px;
+}
+
+.tech-scroll-container::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 10px;
+}
+
 .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    display: inline-flex;
     gap: 1.5rem;
+    padding: 0 1rem;
+    animation: scrollAnimation 30s linear infinite;
 }
 
 .tech-item {
@@ -731,13 +754,17 @@ section {
     padding: 1.5rem 1rem;
     background: var(--darker);
     border-radius: 10px;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     color: var(--light);
     text-align: center;
+    min-width: 120px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .tech-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(58, 134, 255, 0.2);
 }
 
 .tech-item i {
@@ -748,6 +775,15 @@ section {
 
 .tech-item span {
     font-size: 0.9rem;
+}
+
+@keyframes scrollAnimation {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 /* Section Contact */
@@ -902,7 +938,17 @@ footer a:hover {
     }
 
     .about-text {
-        text-align: left; /* Réaligner le texte à gauche sur mobile */
+        text-align: left;
+    }
+
+    /* Technologies section on mobile */
+    .tech-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
+        animation: none;
     }
 }
 
@@ -1002,8 +1048,7 @@ footer a:hover {
     width: 80%;
     max-width: 800px;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0,
-    0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .modal-close {
@@ -1045,29 +1090,29 @@ html {
 
 /* Styles spécifiques pour la section "À Propos" */
 .about-text .skills {
-    display: flex; /* Afficher les compétences horizontalement */
-    flex-wrap: wrap; /* Permettre aux compétences de passer à la ligne si nécessaire */
-    gap: 1rem; /* Espacement entre les éléments de compétence */
-    margin-top: 1.5rem; /* Réduire la marge supérieure */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .about-text .skill-item {
-    flex: 0 0 auto; /* Empêcher les éléments de compétence de s'étirer */
-    margin-bottom: 0; /* Supprimer la marge inférieure des éléments de compétence */
+    flex: 0 0 auto;
+    margin-bottom: 0;
 }
 
 .about-text .skill-name {
     display: flex;
-    align-items: center; /* Aligner l'icône et le texte verticalement */
-    margin-bottom: 0.3rem; /* Réduire la marge inférieure du nom de la compétence */
+    align-items: center;
+    margin-bottom: 0.3rem;
 }
 
 .about-text .skill-name i {
-    font-size: 1.5rem; /* Taille des icônes */
-    margin-right: 0.8rem; /* Espacement à droite de l'icône */
-    color: var(--primary); /* Couleur des icônes */
+    font-size: 1.5rem;
+    margin-right: 0.8rem;
+    color: var(--primary);
 }
 
 .about-text .skill-bar {
-    display: none; /* Cacher la barre de progression */
+    display: none;
 }
