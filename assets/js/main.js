@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Project image carousel
+    // Project image carousel functionality
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
         const container = gallery?.querySelector('.gallery-container');
@@ -92,57 +92,104 @@ document.addEventListener('DOMContentLoaded', function () {
         const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
 
-        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
+        if (container && slides && slides.length > 0 && prevBtn && nextBtn && counter) {
+            let currentIndex = 0;
+            const totalSlides = slides.length;
 
-        let currentIndex = 0;
-        const totalSlides = slides.length;
+            const updateCarousel = () => {
+                container.style.transform = `translateX(-${currentIndex * 100}%)`;
+                counter.textContent = `${currentIndex + 1}/${totalSlides}`;
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentIndex);
+                });
+            };
 
-        const updateCarousel = () => {
-            container.style.transform = `translateX(-${currentIndex * 100}%)`;
-            counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-            slides.forEach((slide, index) => {
-                slide.classList.toggle('active', index === currentIndex);
-            });
-        };
-
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            updateCarousel();
-        });
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        container.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        container.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-
-        const handleSwipe = () => {
-            if (Math.abs(touchEndX - touchStartX) > 50) {
-                if (touchEndX < touchStartX) {
-                    currentIndex = (currentIndex + 1) % totalSlides;
-                } else {
-                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                }
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 updateCarousel();
-            }
-        };
+            });
 
-        container.style.width = `${totalSlides * 100}%`;
-        slides.forEach(slide => {
-            slide.style.width = `${100 / totalSlides}%`;
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            container.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            container.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            const handleSwipe = () => {
+                if (Math.abs(touchEndX - touchStartX) > 50) {
+                    if (touchEndX < touchStartX) {
+                        currentIndex = (currentIndex + 1) % totalSlides;
+                    } else {
+                        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    }
+                    updateCarousel();
+                }
+            };
+
+            container.style.width = `${totalSlides * 100}%`;
+            slides.forEach(slide => {
+                slide.style.width = `${100 / totalSlides}%`;
+            });
+            updateCarousel();
+        }
+    });
+
+    // Modal functionality for project details
+    const projectCardsWithDetails = document.querySelectorAll('.project-card');
+    const modal = document.querySelector('.modal');
+    const modalClose = modal?.querySelector('.modal-close');
+    const modalTitle = modal?.querySelector('h3');
+    const modalDescription = modal?.querySelector('.modal-description');
+    const modalDetails = modal?.querySelector('.modal-details');
+
+    projectCardsWithDetails.forEach(card => {
+        const detailsButton = card.querySelector('.project-links a:last-child'); // Assuming "Details" is the last link
+
+        if (detailsButton && modal && modalTitle && modalDescription && modalDetails) {
+            detailsButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const projectTitle = card.querySelector('.project-info h3')?.textContent || 'Project Details';
+                const projectDescription = card.querySelector('.project-info p')?.textContent || 'More details about this project.';
+                const projectTags = Array.from(card.querySelectorAll('.project-tag')).map(tag => tag.textContent).join(', ');
+                const liveLink = card.querySelector('.project-links a:first-child')?.getAttribute('href') || '#';
+                const repoLink = detailsButton.getAttribute('href') || '#'; // Assuming the "Details" button has the repo link for now
+
+                modalTitle.textContent = projectTitle;
+                modalDescription.textContent = projectDescription;
+                modalDetails.innerHTML = `
+                    <p><strong>Technologies:</strong> ${projectTags}</p>
+                    <p><a href="${liveLink}" target="_blank">Voir le site</a></p>
+                    <p><a href="${repoLink}" target="_blank">Voir le code</a></p>
+                    `;
+                modal.style.display = 'block';
+                setTimeout(() => modal.classList.add('show'), 10);
+            });
+        }
+    });
+
+    if (modalClose) {
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
         });
-        updateCarousel();
+    }
+
+    window.addEventListener('click', (event) => {
+        if (modal && event.target === modal) {
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
     });
 
     // Scroll animations
