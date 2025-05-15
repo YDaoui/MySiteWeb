@@ -452,3 +452,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Le reste de votre code existant...
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    
+    toggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navbar.classList.toggle('active');
+    });
+});
