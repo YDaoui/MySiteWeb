@@ -3,15 +3,18 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (!targetElement || targetId === '#') return;
+            if (targetId === '#' || !document.querySelector(targetId)) return;
 
             e.preventDefault();
+            const targetElement = document.querySelector(targetId);
             const header = document.querySelector('.header');
             const headerHeight = header ? header.offsetHeight : 0;
             const targetPosition = targetElement.offsetTop - headerHeight;
 
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
 
             if (history.pushState) {
                 history.pushState(null, null, targetId);
@@ -27,8 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const filterValue = button.getAttribute('data-filter');
-
             filterButtons.forEach(btn => {
                 btn.classList.remove('active');
                 btn.setAttribute('aria-pressed', 'false');
@@ -37,9 +38,10 @@ document.addEventListener('DOMContentLoaded', function () {
             button.classList.add('active');
             button.setAttribute('aria-pressed', 'true');
 
+            const filterValue = button.getAttribute('data-filter');
+
             projectCards.forEach(card => {
                 const match = filterValue === 'all' || card.getAttribute('data-category') === filterValue;
-
                 if (match) {
                     card.style.display = 'block';
                     setTimeout(() => {
@@ -60,13 +62,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Service cards toggle
-    document.querySelectorAll('.service-header').forEach(header => {
+    const serviceHeaders = document.querySelectorAll('.service-header');
+    serviceHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
             const isActive = card.classList.contains('active');
 
             document.querySelectorAll('.service-card').forEach(otherCard => {
-                if (otherCard !== card) otherCard.classList.remove('active');
+                if (otherCard !== card) {
+                    otherCard.classList.remove('active');
+                }
             });
 
             card.classList.toggle('active', !isActive);
@@ -82,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
         const container = gallery?.querySelector('.gallery-container');
-        const slides = gallery?.querySelectorAll('.gallery-slide') || [];
+        const slides = gallery?.querySelectorAll('.gallery-slide');
         const prevBtn = gallery?.querySelector('.project-nav.prev');
         const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
@@ -111,26 +116,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         let touchStartX = 0;
+        let touchEndX = 0;
 
-        container.addEventListener('touchstart', e => {
+        container.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
 
-        container.addEventListener('touchend', e => {
-            const touchEndX = e.changedTouches[0].screenX;
+        container.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        const handleSwipe = () => {
             if (Math.abs(touchEndX - touchStartX) > 50) {
-                currentIndex = (touchEndX < touchStartX)
-                    ? (currentIndex + 1) % totalSlides
-                    : (currentIndex - 1 + totalSlides) % totalSlides;
+                if (touchEndX < touchStartX) {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                } else {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                }
                 updateCarousel();
             }
-        }, { passive: true });
+        };
 
         container.style.width = `${totalSlides * 100}%`;
         slides.forEach(slide => {
             slide.style.width = `${100 / totalSlides}%`;
         });
-
         updateCarousel();
     });
 
@@ -139,14 +150,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
         const windowHeight = window.innerHeight;
 
-        elements.forEach(el => {
-            const elementTop = el.getBoundingClientRect().top;
-            const threshold = windowHeight * 0.85;
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const animationTrigger = windowHeight * 0.85;
 
-            if (elementTop < threshold) {
-                el.classList.add('animated');
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
+            if (elementTop < animationTrigger) {
+                element.classList.add('animated');
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
             }
         });
 
@@ -156,23 +167,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    // Initial animation setup
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'all 0.5s ease';
     });
 
-    document.querySelectorAll('.contact-item').forEach((el, i) => {
+    document.querySelectorAll('.contact-item').forEach((el, index) => {
         el.style.opacity = '0';
         el.style.transform = 'translateX(-20px)';
-        el.style.transition = `all 0.5s ease ${i * 0.1}s`;
+        el.style.transition = `all 0.5s ease ${index * 0.1}s`;
     });
 
-    document.querySelectorAll('.form-group').forEach((el, i) => {
+    document.querySelectorAll('.form-group').forEach((el, index) => {
         el.style.opacity = '0';
         el.style.transform = 'translateX(20px)';
-        el.style.transition = `all 0.5s ease ${i * 0.1}s`;
+        el.style.transition = `all 0.5s ease ${index * 0.1}s`;
     });
 
     window.addEventListener('scroll', animateOnScroll);
@@ -181,7 +191,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const backToTopButton = document.querySelector('.back-to-top');
     if (backToTopButton) {
         backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     }
 
@@ -198,12 +211,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 showAlert('Veuillez remplir tous les champs du formulaire.', 'error');
                 return;
             }
-
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 showAlert('Veuillez entrer une adresse email valide.', 'error');
                 return;
             }
-
             showAlert('Message envoyé avec succès! Je vous répondrai dès que possible.', 'success');
             this.reset();
         });
@@ -222,12 +233,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 5000);
     }
 
-    // Floating elements animation
+    // Floating animation
     document.querySelectorAll('.floating').forEach(el => {
         el.style.animationDelay = `${Math.random() * 2}s`;
     });
 
-    // Animate data-animate items with IntersectionObserver
+    // IntersectionObserver for data-animate
     const animatedElements = document.querySelectorAll('[data-animate]');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -240,12 +251,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     animatedElements.forEach(el => observer.observe(el));
 
-    // GSAP ScrollTrigger navigation animation
+    // GSAP ScrollTrigger Animation
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
         const navLinks = document.querySelectorAll('.navbar ul li a');
-
         navLinks.forEach(link => {
             link.addEventListener('mouseenter', () => {
                 gsap.to(link, { y: -3, duration: 0.3, ease: "power2.out" });
@@ -257,20 +267,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
             link.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
-                const target = document.querySelector(href);
-                if (!target) return;
+                const targetElement = document.querySelector(href);
+                if (!targetElement) return;
 
                 e.preventDefault();
-
                 gsap.to(this, {
                     y: 3,
                     duration: 0.1,
                     ease: "power2.out",
                     onComplete: () => {
                         gsap.to(this, { y: 0, duration: 0.3 });
-                        const offset = document.querySelector('.header')?.offsetHeight || 0;
+                        const offset = document.querySelector('.header').offsetHeight;
                         window.scrollTo({
-                            top: target.offsetTop - offset,
+                            top: targetElement.offsetTop - offset,
                             behavior: 'smooth'
                         });
                     }
@@ -282,7 +291,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Mobile menu toggle
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
-
     if (mobileToggle && navbar) {
         mobileToggle.addEventListener('click', () => {
             navbar.classList.toggle('active');
@@ -290,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Close mobile menu on link click
+    // Close mobile menu on nav link click
     document.querySelectorAll('.navbar a').forEach(link => {
         link.addEventListener('click', () => {
             if (navbar && navbar.classList.contains('open')) {
