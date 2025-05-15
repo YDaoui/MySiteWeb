@@ -302,23 +302,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Mobile menu toggle
-  const mobileToggle = document.querySelector('.mobile-menu-toggle');
-const navbar = document.querySelector('.navbar');
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    if (mobileToggle && navbar) {
+        mobileToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            navbar.classList.toggle('open');
+        });
+    }
 
-if (mobileToggle && navbar) {
-    mobileToggle.addEventListener('click', () => {
-        navbar.classList.toggle('active');
-        mobileToggle.classList.toggle('open'); // Pour une éventuelle icône hamburger
-    });
-
-    // Fermer le menu quand on clique sur un lien
+    // Close menu on nav link click (mobile)
     document.querySelectorAll('.navbar a').forEach(link => {
         link.addEventListener('click', () => {
-            navbar.classList.remove('active');
-            mobileToggle.classList.remove('open');
+            if (navbar) navbar.classList.remove('active', 'open');
         });
     });
-}
+});
+
 // Carousel et modal pour les projets
 function initProjectCarousels() {
     document.querySelectorAll('.project-card').forEach(cardElement => {
@@ -444,17 +444,11 @@ function initProjectModals() {
         }
     });
 }
-const toggle = document.querySelector(".mobile-menu-toggle");
-const navbar = document.querySelector(".navbar");
-
-toggle.addEventListener("click", () => {
-    navbar.classList.toggle("open");
-});
 
 // Appel des fonctions d'initialisation
 document.addEventListener('DOMContentLoaded', function() {
     initProjectCarousels();
     initProjectModals();
 
-    
+    // Le reste de votre code existant...
 });
