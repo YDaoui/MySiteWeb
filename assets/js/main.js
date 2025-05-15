@@ -23,6 +23,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+    document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.querySelector(".mobile-menu-toggle");
+    const navList = document.querySelector(".navbar ul");
+
+    toggleBtn.addEventListener("click", function () {
+        toggleBtn.classList.toggle("active");
+        navList.classList.toggle("open");
+    });
+});
+
 
     // Project filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
