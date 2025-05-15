@@ -302,23 +302,21 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Mobile menu toggle
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const navbar = document.querySelector('.navbar');
-    if (mobileToggle && navbar) {
-        mobileToggle.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-            navbar.classList.toggle('open');
-        });
-    }
+   const mobileToggle = document.querySelector('.mobile-menu-toggle');
+const navbar = document.querySelector('.navbar');
 
-    // Close menu on nav link click (mobile)
-    document.querySelectorAll('.navbar a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (navbar) navbar.classList.remove('active', 'open');
-        });
+if (mobileToggle && navbar) {
+    mobileToggle.addEventListener('click', () => {
+        navbar.classList.toggle('active'); // On utilise seulement 'active'
+    });
+}
+
+// Close menu on nav link click (mobile)
+document.querySelectorAll('.navbar a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (navbar) navbar.classList.remove('active');
     });
 });
-
 // Carousel et modal pour les projets
 function initProjectCarousels() {
     document.querySelectorAll('.project-card').forEach(cardElement => {
