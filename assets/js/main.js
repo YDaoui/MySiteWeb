@@ -310,3 +310,54 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButton.addEventListener('click', () => {
         navbar.classList.toggle('active');
     });
+ window.addEventListener('scroll', function () {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        function toggleServiceDetails(id) {
+            const details = document.getElementById(id);
+            details.classList.toggle('active');
+            const arrow = details.previousElementSibling.querySelector('.service-arrow');
+            arrow.classList.toggle('rotate');
+        }
+
+        // Script pour le défilement horizontal des technologies
+        document.addEventListener('DOMContentLoaded', function() {
+            const techScrollContainer = document.querySelector('.tech-scroll-container');
+            const techItemsWrapper = document.querySelector('.tech-items-wrapper');
+            const leftScrollBtn = document.querySelector('.left-scroll-btn');
+            const rightScrollBtn = document.querySelector('.right-scroll-btn');
+
+            if (techScrollContainer && techItemsWrapper && leftScrollBtn && rightScrollBtn) {
+                leftScrollBtn.addEventListener('click', () => {
+                    techScrollContainer.scrollLeft -= 100; // Ajustez la valeur du défilement selon vos besoins
+                });
+
+                rightScrollBtn.addEventListener('click', () => {
+                    techScrollContainer.scrollLeft += 100; // Ajustez la valeur du défilement selon vos besoins
+                });
+
+                // Gestion de l'affichage des boutons de défilement en fonction de la position
+                const updateScrollButtons = () => {
+                    if (techScrollContainer.scrollLeft === 0) {
+                        leftScrollBtn.style.visibility = 'hidden';
+                    } else {
+                        leftScrollBtn.style.visibility = 'visible';
+                    }
+
+                    if (techScrollContainer.scrollLeft + techScrollContainer.offsetWidth >= techItemsWrapper.offsetWidth) {
+                        rightScrollBtn.style.visibility = 'hidden';
+                    } else {
+                        rightScrollBtn.style.visibility = 'visible';
+                    }
+                };
+
+                techScrollContainer.addEventListener('scroll', updateScrollButtons);
+                updateScrollButtons(); // Appel initial pour configurer l'état des boutons
+            }
+        });
