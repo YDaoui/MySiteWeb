@@ -80,66 +80,112 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Project image carousel
-  document.querySelectorAll('.project-card').forEach(card => {
-    const gallery = card.querySelector('.project-gallery');
-    if (!gallery) return;
+  // Project image carousel - Version corrigée
+document.querySelectorAll('.project-card').forEach(card => {
+  const gallery = card.querySelector('.project-gallery');
+  if (!gallery) return;
 
-    const container = gallery.querySelector('.gallery-container');
-    const slides = gallery.querySelectorAll('.gallery-slide');
-    const prevBtn = gallery.querySelector('.project-nav.prev');
-    const nextBtn = gallery.querySelector('.project-nav.next');
-    const counter = card.querySelector('.slide-counter');
+  const container = gallery.querySelector('.gallery-container');
+  const slides = gallery.querySelectorAll('.gallery-slide');
+  const prevBtn = gallery.querySelector('.project-nav.prev');
+  const nextBtn = gallery.querySelector('.project-nav.next');
+  const counter = card.querySelector('.slide-counter');
 
-    if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
+  // Vérifier que tous les éléments nécessaires existent
+  if (!container || !slides.length || !prevBtn || !nextBtn) return;
 
-    let currentIndex = 0;
-    const totalSlides = slides.length;
+  let currentIndex = 0;
+  const totalSlides = slides.length;
 
-    const updateCarousel = () => {
-      container.style.transform = `translateX(-${currentIndex * 100}%)`;
+  // Fonction pour mettre à jour le carrousel
+  const updateCarousel = () => {
+    container.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Mettre à jour le compteur seulement s'il existe
+    if (counter) {
       counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-      slides.forEach((slide, index) => slide.classList.toggle('active', index === currentIndex));
-    };
-
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-      updateCarousel();
+    }
+    
+    // Mettre à jour les slides actives
+    slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === currentIndex);
     });
+  };
 
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      updateCarousel();
-    });
-
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    container.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    container.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-
-    const handleSwipe = () => {
-      if (Math.abs(touchEndX - touchStartX) > 50) {
-        currentIndex = touchEndX < touchStartX
-          ? (currentIndex + 1) % totalSlides
-          : (currentIndex - 1 + totalSlides) % totalSlides;
-        updateCarousel();
-      }
-    };
-
-    container.style.width = `${totalSlides * 100}%`;
-    slides.forEach(slide => {
-      slide.style.width = `${100 / totalSlides}%`;
-    });
-
+  // Gestion des boutons précédent/suivant
+  prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
     updateCarousel();
   });
+
+  nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateCarousel();
+  });
+
+  // Gestion du swipe tactile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+
+  const handleSwipe = () => {
+    if (Math.abs(touchEndX - touchStartX) > 50) {
+      if (touchEndX < touchStartX) {
+        // Swipe gauche
+        currentIndex = (currentIndex + 1) % totalSlides;
+      } else {
+        // Swipe droit
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      }
+      updateCarousel();
+    }
+  };
+
+  // Initialisation du carrousel
+  container.style.width = `${totalSlides * 100}%`;
+  slides.forEach(slide => {
+    slide.style.width = `${100 / totalSlides}%`;
+  });
+
+  // Empêcher la propagation des événements pour éviter les conflits
+  [prevBtn, nextBtn, container].forEach(el => {
+    el.addEventListener('click', (e) => e.stopPropagation());
+  });
+
+  // Initialiser l'affichage
+  updateCarousel();
+});
+
+// Fonction pour afficher les détails du projet
+function showProjectDetails(projectId) {
+  const detailsElement = document.getElementById(projectId);
+  if (detailsElement) {
+    // Fermer tous les autres détails ouverts
+    document.querySelectorAll('.project-details').forEach(details => {
+      if (details.id !== projectId) {
+        details.classList.remove('active');
+      }
+    });
+    
+    // Basculer l'état actuel
+    detailsElement.classList.toggle('active');
+    
+    // Faire défiler jusqu'aux détails si on les ouvre
+    if (detailsElement.classList.contains('active')) {
+      detailsElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+}
 
   // Scroll animations
   const animateOnScroll = () => {
