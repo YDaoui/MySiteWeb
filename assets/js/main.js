@@ -81,6 +81,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Project image carousel - Version corrigée
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Project image carousel - Version complètement révisée
 document.querySelectorAll('.project-card').forEach(card => {
   // Initialisation du carrousel d'images
