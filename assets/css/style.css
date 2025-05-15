@@ -1,4 +1,4 @@
-:root {
+ :root {
     --primary: #3a86ff;
     --primary-dark: #2667cc;
     --secondary: #8338ec;
@@ -808,44 +808,48 @@ footer a:hover {
 }
 
 /* Responsive adjustments */
-/* Modifications pour le menu hamburger mobile */
 @media (max-width: 768px) {
     .header .container {
-        padding: 1rem;
+        flex-direction: row;
+        align-items: center;
     }
 
-    /* Assurer que le menu hamburger est cliquable */
+    /* Mobile menu toggle visible */
     .mobile-menu-toggle {
         display: flex;
-        z-index: 1002;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    /* Corriger l'affichage du menu mobile */
+    /* Navbar styles for mobile */
     .navbar {
         position: fixed;
-        top: 0;
+        top: 70px;
         left: 0;
         width: 100%;
-        height: 100vh;
+        height: calc(100vh - 70px);
         background-color: var(--darker);
-        display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 1001;
-        padding-top: 80px;
+        justify-content: center;
+        padding: 2rem 0;
+        display: none;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
     .navbar.active {
-        transform: translateX(0);
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .navbar ul {
         flex-direction: column;
         width: 100%;
-        padding: 0 2rem;
+        padding: 0;
     }
 
     .navbar ul li {
@@ -854,11 +858,21 @@ footer a:hover {
         text-align: center;
         padding: 1rem 0;
         opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.3s ease;
     }
 
     .navbar.active ul li {
-        animation: fadeIn 0.5s ease forwards;
+        opacity: 1;
+        transform: translateX(0);
     }
+
+    /* Animation delay for each menu item */
+    .navbar.active ul li:nth-child(1) { transition-delay: 0.1s; }
+    .navbar.active ul li:nth-child(2) { transition-delay: 0.2s; }
+    .navbar.active ul li:nth-child(3) { transition-delay: 0.3s; }
+    .navbar.active ul li:nth-child(4) { transition-delay: 0.4s; }
+    .navbar.active ul li:nth-child(5) { transition-delay: 0.5s; }
 
     .navbar ul li a {
         padding: 1rem;
@@ -866,19 +880,9 @@ footer a:hover {
         font-size: 1.2rem;
     }
 
-    /* Animation pour les éléments du menu */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateX(-20px); }
-        to { opacity: 1; transform: translateX(0); }
+    .navbar ul li a::after {
+        content: none;
     }
-
-    /* Délais d'animation pour chaque élément */
-    .navbar.active ul li:nth-child(1) { animation-delay: 0.1s; }
-    .navbar.active ul li:nth-child(2) { animation-delay: 0.2s; }
-    .navbar.active ul li:nth-child(3) { animation-delay: 0.3s; }
-    .navbar.active ul li:nth-child(4) { animation-delay: 0.4s; }
-    .navbar.active ul li:nth-child(5) { animation-delay: 0.5s; }
-}
 
     .about .container {
         grid-template-columns: 1fr;
