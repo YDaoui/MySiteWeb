@@ -322,4 +322,17 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    // Correction for About section technology icons hover animation
+    const techItemsAbout = document.querySelectorAll('.about-text .tech-item i');
+    techItemsAbout.forEach(icon => {
+        icon.addEventListener('mouseenter', () => {
+            icon.style.transform = 'scale(1.1)';
+            icon.style.transition = 'transform 0.3s ease-in-out';
+        });
+        icon.addEventListener('mouseleave', () => {
+            icon.style.transform = 'scale(1)';
+            icon.style.transition = 'transform 0.3s ease-in-out';
+        });
+    });
 });
