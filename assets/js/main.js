@@ -3,12 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-
-            if (!targetId || targetId === '#' || !targetElement) return;
+            if (targetId === '#' || !document.querySelector(targetId)) return;
 
             e.preventDefault();
-
+            const targetElement = document.querySelector(targetId);
             const header = document.querySelector('.header');
             const headerHeight = header ? header.offsetHeight : 0;
             const targetPosition = targetElement.offsetTop - headerHeight;
@@ -68,8 +66,6 @@ document.addEventListener('DOMContentLoaded', function () {
     serviceHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
-            if (!card) return;
-
             const isActive = card.classList.contains('active');
 
             document.querySelectorAll('.service-card').forEach(otherCard => {
@@ -82,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const arrow = header.querySelector('.service-arrow');
             if (arrow) {
-                arrow.style.transform = card.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+                arrow.style.transform = card.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
             }
         });
     });
@@ -96,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
 
-        if (!container || !slides?.length || !prevBtn || !nextBtn || !counter) return;
+        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
         const totalSlides = slides.length;
@@ -146,7 +142,6 @@ document.addEventListener('DOMContentLoaded', function () {
         slides.forEach(slide => {
             slide.style.width = `${100 / totalSlides}%`;
         });
-
         updateCarousel();
     });
 
@@ -193,7 +188,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
 
-    // Back to top button
     const backToTopButton = document.querySelector('.back-to-top');
     if (backToTopButton) {
         backToTopButton.addEventListener('click', () => {
@@ -209,22 +203,18 @@ document.addEventListener('DOMContentLoaded', function () {
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-
-            const name = this.querySelector('input[type="text"]')?.value.trim();
-            const email = this.querySelector('input[type="email"]')?.value.trim();
-            const message = this.querySelector('textarea')?.value.trim();
+            const name = this.querySelector('input[type="text"]').value.trim();
+            const email = this.querySelector('input[type="email"]').value.trim();
+            const message = this.querySelector('textarea').value.trim();
 
             if (!name || !email || !message) {
                 showAlert('Veuillez remplir tous les champs du formulaire.', 'error');
                 return;
             }
-
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(email)) {
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 showAlert('Veuillez entrer une adresse email valide.', 'error');
                 return;
             }
-
             showAlert('Message envoyé avec succès! Je vous répondrai dès que possible.', 'success');
             this.reset();
         });
@@ -243,14 +233,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 5000);
     }
 
-    // Floating animation delay
+    // Floating animation
     document.querySelectorAll('.floating').forEach(el => {
         el.style.animationDelay = `${Math.random() * 2}s`;
     });
 
     // IntersectionObserver for data-animate
     const animatedElements = document.querySelectorAll('[data-animate]');
-    const observer = new IntersectionObserver(entries => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
@@ -261,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     animatedElements.forEach(el => observer.observe(el));
 
-    // GSAP ScrollTrigger
+    // GSAP ScrollTrigger Animation
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -287,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     ease: "power2.out",
                     onComplete: () => {
                         gsap.to(this, { y: 0, duration: 0.3 });
-                        const offset = document.querySelector('.header')?.offsetHeight || 0;
+                        const offset = document.querySelector('.header').offsetHeight;
                         window.scrollTo({
                             top: targetElement.offsetTop - offset,
                             behavior: 'smooth'
@@ -301,7 +291,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Mobile menu toggle
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
-
     if (mobileToggle && navbar) {
         mobileToggle.addEventListener('click', () => {
             navbar.classList.toggle('active');
@@ -309,11 +298,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Close mobile menu on link click
+    // Close mobile menu on nav link click
     document.querySelectorAll('.navbar a').forEach(link => {
         link.addEventListener('click', () => {
             if (navbar && navbar.classList.contains('open')) {
-                navbar.classList.remove('active', 'open');
+                navbar.classList.remove('active');
+                navbar.classList.remove('open');
             }
         });
     });
