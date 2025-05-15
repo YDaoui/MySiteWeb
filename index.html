@@ -314,7 +314,7 @@
         </div>
     </section>
 
-    <section id="projects" class="projects">
+   <section id="projects" class="projects">
     <div class="container">
         <h2>Projets Récents</h2>
         <div class="projects-filter">
@@ -322,6 +322,7 @@
             <button class="filter-btn" data-filter="data">Data</button>
             <button class="filter-btn" data-filter="automation">Automatisation</button>
             <button class="filter-btn" data-filter="telecom">Télécom</button>
+            <button class="filter-btn" data-filter="logistics">Logistique</button> <!-- Nouveau filtre ajouté -->
         </div>
         <div class="projects-grid">
             <div class="project-card" data-category="data">
@@ -383,6 +384,28 @@
                     <button class="btn view-details" data-project="3">Voir le cas d'étude</button>
                 </div>
             </div>
+
+            <!-- Nouveau projet ajouté -->
+            <div class="project-card" data-category="logistics">
+                <div class="project-carousel">
+                    <div class="carousel-container">
+                        <img src="assets/img/Glovo1.png" alt="Projet Glovo - Interface" class="active">
+                        <img src="assets/img/Glovo2.png" alt="Projet Glovo - Livraison">
+                        <img src="assets/img/Glovo3.png" alt="Projet Glovo - Statistiques">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="carousel-prev" aria-label="Image précédente">‹</button>
+                        <span class="slide-counter">1/3</span>
+                        <button class="carousel-next" aria-label="Image suivante">›</button>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>Application logistique Glovo</h3>
+                    <p>Optimisation du suivi des livraisons et amélioration des statistiques d'activité.</p>
+                    <button class="btn view-details" data-project="4">Détails</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -390,7 +413,7 @@
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <div id="modal-content">
-                </div>
+            </div>
         </div>
     </div>
 </section>
