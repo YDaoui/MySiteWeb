@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             navbar.classList.toggle('active');
             // Correction: Only toggle 'open' class for menu visibility
             navbar.classList.toggle('open');
+            mobileToggle.classList.toggle('active'); // Ajout pour l'animation du hamburger
         });
     }
 
@@ -17,6 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
             if (navbar && navbar.classList.contains('open')) {
                 navbar.classList.remove('active');
                 navbar.classList.remove('open');
+                const mobileToggleBtn = document.querySelector('.mobile-menu-toggle');
+                if (mobileToggleBtn) {
+                    mobileToggleBtn.classList.remove('active'); // Retirer l'état actif du hamburger
+                }
             }
         });
     });
@@ -42,6 +47,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 history.pushState(null, null, targetId);
             } else {
                 location.hash = targetId;
+            }
+
+            // Fermer le menu mobile après avoir cliqué sur un lien
+            if (navbar && navbar.classList.contains('open')) {
+                navbar.classList.remove('active');
+                navbar.classList.remove('open');
+                const mobileToggleBtn = document.querySelector('.mobile-menu-toggle');
+                if (mobileToggleBtn) {
+                    mobileToggleBtn.classList.remove('active');
+                }
             }
         });
     });
@@ -126,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const prevBtn = gallery?.querySelector('.project-nav.prev');
         const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
+        const projectLinks = card.querySelector('.project-links'); // Sélectionner les liens du projet
 
         if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
@@ -178,6 +194,21 @@ document.addEventListener('DOMContentLoaded', function () {
             slide.style.width = `${100 / totalSlides}%`;
         });
         updateCarousel();
+
+        // Empêcher la propagation du clic sur les liens pour ne pas déclencher le "détail"
+        if (projectLinks) {
+            projectLinks.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+        }
+
+        // Gestion du clic sur la carte projet pour afficher potentiellement plus de détails (si vous implémentez un modal)
+        card.addEventListener('click', () => {
+            // Ici, vous pouvez ajouter la logique pour afficher plus de détails sur le projet,
+            // par exemple, en ouvrant un modal. Pour l'instant, cela ne fait rien de spécifique
+            // en dehors du défilement des images géré ci-dessus.
+            console.log('Projet cliqué'); // Pour le débogage
+        });
     });
 
     // Scroll animations (no changes needed)
@@ -323,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Correction for About section technology icons hover animation
+    // Correction pour About section technology icons hover animation
     const techItemsAbout = document.querySelectorAll('.about-text .tech-item i');
     techItemsAbout.forEach(icon => {
         icon.addEventListener('mouseenter', () => {
