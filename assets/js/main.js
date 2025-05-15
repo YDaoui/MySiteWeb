@@ -71,8 +71,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.service-card').forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.classList.remove('active');
-                    const otherArrow = otherCard.querySelector('.service-arrow');
-                    if (otherArrow) otherArrow.style.transform = 'rotate(0)';
                 }
             });
 
@@ -88,15 +86,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Project image carousel
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
-        if (!gallery) return;
-
-        const container = gallery.querySelector('.gallery-container');
-        const slides = gallery.querySelectorAll('.gallery-slide');
-        const prevBtn = gallery.querySelector('.project-nav.prev');
-        const nextBtn = gallery.querySelector('.project-nav.next');
+        const container = gallery?.querySelector('.gallery-container');
+        const slides = gallery?.querySelectorAll('.gallery-slide');
+        const prevBtn = gallery?.querySelector('.project-nav.prev');
+        const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
 
-        if (!container || slides.length === 0 || !prevBtn || !nextBtn || !counter) return;
+        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
         const totalSlides = slides.length;
