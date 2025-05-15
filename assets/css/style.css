@@ -738,6 +738,13 @@ section {
 .tech-icon:hover {
     transform: scale(1.1);
 }
+.about .container,
+.services .container,
+.technos-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
 
 
 /* Section Contact */
