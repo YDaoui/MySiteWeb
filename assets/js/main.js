@@ -444,6 +444,12 @@ function initProjectModals() {
         }
     });
 }
+const toggle = document.querySelector(".mobile-menu-toggle");
+const navbar = document.querySelector(".navbar");
+
+toggle.addEventListener("click", () => {
+    navbar.classList.toggle("open");
+});
 
 // Appel des fonctions d'initialisation
 document.addEventListener('DOMContentLoaded', function() {
