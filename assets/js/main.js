@@ -81,89 +81,126 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Project image carousel - Version corrigée
+// Project image carousel - Version complètement révisée
 document.querySelectorAll('.project-card').forEach(card => {
-  const gallery = card.querySelector('.project-gallery');
-  if (!gallery) return;
+  // Initialisation du carrousel d'images
+  const initCarousel = (gallery) => {
+    const container = gallery.querySelector('.gallery-container');
+    const slides = gallery.querySelectorAll('.gallery-slide');
+    const prevBtn = gallery.querySelector('.prev');
+    const nextBtn = gallery.querySelector('.next');
+    const counter = gallery.querySelector('.slide-counter');
 
-  const container = gallery.querySelector('.gallery-container');
-  const slides = gallery.querySelectorAll('.gallery-slide');
-  const prevBtn = gallery.querySelector('.project-nav.prev');
-  const nextBtn = gallery.querySelector('.project-nav.next');
-  const counter = card.querySelector('.slide-counter');
+    if (!container || !slides.length) return;
 
-  // Vérifier que tous les éléments nécessaires existent
-  if (!container || !slides.length || !prevBtn || !nextBtn) return;
+    let currentIndex = 0;
+    const totalSlides = slides.length;
 
-  let currentIndex = 0;
-  const totalSlides = slides.length;
+    const updateCarousel = () => {
+      container.style.transform = `translateX(-${currentIndex * 100}%)`;
+      
+      if (counter) {
+        counter.textContent = `${currentIndex + 1}/${totalSlides}`;
+      }
+      
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentIndex);
+      });
+    };
 
-  // Fonction pour mettre à jour le carrousel
-  const updateCarousel = () => {
-    container.style.transform = `translateX(-${currentIndex * 100}%)`;
-    
-    // Mettre à jour le compteur seulement s'il existe
-    if (counter) {
-      counter.textContent = `${currentIndex + 1}/${totalSlides}`;
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+      });
     }
-    
-    // Mettre à jour les slides actives
-    slides.forEach((slide, index) => {
-      slide.classList.toggle('active', index === currentIndex);
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel();
+      });
+    }
+
+    // Gestion du swipe tactile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    const handleSwipe = () => {
+      if (Math.abs(touchEndX - touchStartX) > 50) {
+        if (touchEndX < touchStartX) {
+          currentIndex = (currentIndex + 1) % totalSlides;
+        } else {
+          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        }
+        updateCarousel();
+      }
+    };
+
+    // Configuration initiale
+    container.style.width = `${totalSlides * 100}%`;
+    slides.forEach(slide => {
+      slide.style.width = `${100 / totalSlides}%`;
+    });
+
+    updateCarousel();
+  };
+
+  // Initialisation de la modal des détails
+  const initDetailsModal = (card) => {
+    const detailsBtn = card.querySelector('.details-btn');
+    const modal = card.querySelector('.project-modal');
+    const closeBtn = modal?.querySelector('.close-modal');
+
+    if (!detailsBtn || !modal) return;
+
+    detailsBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Fermer toutes les autres modales ouvertes
+      document.querySelectorAll('.project-modal').forEach(m => {
+        if (m !== modal) m.classList.remove('active');
+      });
+      
+      // Ouvrir la modale actuelle
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    }
+
+    // Fermer la modale en cliquant à l'extérieur
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
     });
   };
 
-  // Gestion des boutons précédent/suivant
-  prevBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-  });
-
-  nextBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateCarousel();
-  });
-
-  // Gestion du swipe tactile
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  container.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-
-  container.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  }, { passive: true });
-
-  const handleSwipe = () => {
-    if (Math.abs(touchEndX - touchStartX) > 50) {
-      if (touchEndX < touchStartX) {
-        // Swipe gauche
-        currentIndex = (currentIndex + 1) % totalSlides;
-      } else {
-        // Swipe droit
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-      }
-      updateCarousel();
-    }
-  };
-
-  // Initialisation du carrousel
-  container.style.width = `${totalSlides * 100}%`;
-  slides.forEach(slide => {
-    slide.style.width = `${100 / totalSlides}%`;
-  });
-
-  // Empêcher la propagation des événements pour éviter les conflits
-  [prevBtn, nextBtn, container].forEach(el => {
-    el.addEventListener('click', (e) => e.stopPropagation());
-  });
-
-  // Initialiser l'affichage
-  updateCarousel();
+  // Initialiser les composants pour chaque carte
+  const gallery = card.querySelector('.project-gallery');
+  if (gallery) initCarousel(gallery);
+  
+  initDetailsModal(card);
 });
 
 // Fonction pour afficher les détails du projet
