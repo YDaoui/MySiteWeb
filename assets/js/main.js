@@ -1,32 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Mobile menu toggle correction
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const navbar = document.querySelector('.navbar');
-    if (mobileToggle && navbar) {
-        mobileToggle.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-            // Correction: Only toggle 'open' class for menu visibility
-            navbar.classList.toggle('open');
-            mobileToggle.classList.toggle('active'); // Ajout pour l'animation du hamburger
-        });
-    }
-
-    // Close mobile menu on nav link click correction
-    document.querySelectorAll('.navbar a').forEach(link => {
-        link.addEventListener('click', () => {
-            // Correction: Check if navbar exists and has the 'open' class
-            if (navbar && navbar.classList.contains('open')) {
-                navbar.classList.remove('active');
-                navbar.classList.remove('open');
-                const mobileToggleBtn = document.querySelector('.mobile-menu-toggle');
-                if (mobileToggleBtn) {
-                    mobileToggleBtn.classList.remove('active'); // Retirer l'état actif du hamburger
-                }
-            }
-        });
-    });
-
-    // Smooth scrolling for navigation (no changes needed)
+    // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -48,20 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 location.hash = targetId;
             }
-
-            // Fermer le menu mobile après avoir cliqué sur un lien
-            if (navbar && navbar.classList.contains('open')) {
-                navbar.classList.remove('active');
-                navbar.classList.remove('open');
-                const mobileToggleBtn = document.querySelector('.mobile-menu-toggle');
-                if (mobileToggleBtn) {
-                    mobileToggleBtn.classList.remove('active');
-                }
-            }
         });
     });
 
-    // Project filtering (no changes needed)
+    // Project filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
@@ -98,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Service cards toggle correction
+    // Service cards toggle
     const serviceHeaders = document.querySelectorAll('.service-header');
     serviceHeaders.forEach(header => {
         header.addEventListener('click', () => {
@@ -108,32 +71,19 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.service-card').forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.classList.remove('active');
-                    // Correction: Ensure details are hidden when another card is opened
-                    const otherDetails = otherCard.querySelector('.service-details');
-                    if (otherDetails) {
-                        otherDetails.style.maxHeight = null;
-                    }
-                    const otherArrow = otherCard.querySelector('.service-arrow');
-                    if (otherArrow) {
-                        otherArrow.style.transform = 'rotate(0)';
-                    }
                 }
             });
 
             card.classList.toggle('active', !isActive);
-            const details = card.querySelector('.service-details');
-            const arrow = header.querySelector('.service-arrow');
 
-            if (details) {
-                details.style.maxHeight = isActive ? null : details.scrollHeight + 'px';
-            }
+            const arrow = header.querySelector('.service-arrow');
             if (arrow) {
-                arrow.style.transform = !isActive ? 'rotate(180deg)' : 'rotate(0)';
+                arrow.style.transform = card.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
             }
         });
     });
 
-    // Project image carousel correction
+    // Project image carousel
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
         const container = gallery?.querySelector('.gallery-container');
@@ -141,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const prevBtn = gallery?.querySelector('.project-nav.prev');
         const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
-        const projectLinks = card.querySelector('.project-links'); // Sélectionner les liens du projet
 
         if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
@@ -194,24 +143,9 @@ document.addEventListener('DOMContentLoaded', function () {
             slide.style.width = `${100 / totalSlides}%`;
         });
         updateCarousel();
-
-        // Empêcher la propagation du clic sur les liens pour ne pas déclencher le "détail"
-        if (projectLinks) {
-            projectLinks.addEventListener('click', (event) => {
-                event.stopPropagation();
-            });
-        }
-
-        // Gestion du clic sur la carte projet pour afficher potentiellement plus de détails (si vous implémentez un modal)
-        card.addEventListener('click', () => {
-            // Ici, vous pouvez ajouter la logique pour afficher plus de détails sur le projet,
-            // par exemple, en ouvrant un modal. Pour l'instant, cela ne fait rien de spécifique
-            // en dehors du défilement des images géré ci-dessus.
-            console.log('Projet cliqué'); // Pour le débogage
-        });
     });
 
-    // Scroll animations (no changes needed)
+    // Scroll animations
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
         const windowHeight = window.innerHeight;
@@ -264,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Contact form validation (no changes needed)
+    // Contact form validation
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
@@ -299,12 +233,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 5000);
     }
 
-    // Floating animation (no changes needed)
+    // Floating animation
     document.querySelectorAll('.floating').forEach(el => {
         el.style.animationDelay = `${Math.random() * 2}s`;
     });
 
-    // IntersectionObserver for data-animate (no changes needed)
+    // IntersectionObserver for data-animate
     const animatedElements = document.querySelectorAll('[data-animate]');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -317,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     animatedElements.forEach(el => observer.observe(el));
 
-    // GSAP ScrollTrigger Animation (no changes needed)
+    // GSAP ScrollTrigger Animation
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -354,16 +288,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Correction pour About section technology icons hover animation
-    const techItemsAbout = document.querySelectorAll('.about-text .tech-item i');
-    techItemsAbout.forEach(icon => {
-        icon.addEventListener('mouseenter', () => {
-            icon.style.transform = 'scale(1.1)';
-            icon.style.transition = 'transform 0.3s ease-in-out';
+    // Mobile menu toggle
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    if (mobileToggle && navbar) {
+        mobileToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            navbar.classList.toggle('open');
         });
-        icon.addEventListener('mouseleave', () => {
-            icon.style.transform = 'scale(1)';
-            icon.style.transition = 'transform 0.3s ease-in-out';
+    }
+
+    // Close mobile menu on nav link click
+    document.querySelectorAll('.navbar a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbar && navbar.classList.contains('open')) {
+                navbar.classList.remove('active');
+                navbar.classList.remove('open');
+            }
         });
     });
 });
