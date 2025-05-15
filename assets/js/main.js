@@ -304,3 +304,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+ const toggleButton = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+
+    toggleButton.addEventListener('click', () => {
+        navbar.classList.toggle('active');
+    });
