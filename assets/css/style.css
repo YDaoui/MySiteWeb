@@ -843,23 +843,41 @@ footer a:hover {
 
 /* Responsive adjustments */
 /* Correction pour le menu mobile */
+/* Responsive adjustments - Menu Mobile */
 @media (max-width: 768px) {
+    .header .container {
+        flex-direction: row;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+        z-index: 1001; /* Au-dessus du header */
+    }
+
     .navbar {
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 0;
         left: 0;
         width: 100%;
+        height: 100vh;
         background-color: var(--darker);
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        padding: 1rem 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem;
         display: none;
-        transition: all 0.3s ease-in-out;
+        z-index: 1000;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        opacity: 0;
     }
 
     .navbar.active {
         display: flex;
+        transform: translateY(0);
+        opacity: 1;
     }
 
     .navbar ul {
@@ -872,19 +890,26 @@ footer a:hover {
         margin: 0;
         width: 100%;
         text-align: center;
-        padding: 0.5rem 0;
+        padding: 1rem 0;
     }
 
     .navbar ul li a {
-        padding: 0.5rem 1rem;
+        padding: 1rem;
         display: block;
+        font-size: 1.2rem;
     }
 
     .navbar ul li a::after {
         content: none;
     }
-}
 
+    /* Le reste de vos styles responsive existants... */
+    .about .container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    /* ... conservez tous vos autres styles responsive ... */
+}
     .about .container {
         grid-template-columns: 1fr;
         gap: 2rem;
