@@ -91,7 +91,7 @@ section {
 }
 
 .header.scrolled {
-    background-color: rgba(26, 26, 46, 0.6); /* même couleur que `.header` mais plus transparent */
+    background-color: rgba(26, 26, 46, 0.6);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -116,7 +116,6 @@ section {
     transition: background-color 0.3s ease;
 }
 
-/* Cette règle semble redondante avec la précédente, je la laisse car vous avez demandé de ne rien enlever */
 .navbar.scrolled {
     background-color: rgba(0, 0, 0, 0.8);
 }
@@ -158,22 +157,61 @@ section {
     color: var(--primary);
 }
 
-/* Mobile menu toggle (caché par défaut sur desktop/tablet) */
+/* Mobile menu toggle - Version améliorée avec animation */
 .mobile-menu-toggle {
-    display: none; /* Hide on larger screens */
+    display: none;
     background: none;
     border: none;
-    font-size: 1.8rem;
-    color: var(--light);
     cursor: pointer;
-    padding: 0.5rem;
-    transition: color 0.3s ease;
+    padding: 10px;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
-.mobile-menu-toggle:hover {
-    color: var(--primary);
+.mobile-menu-toggle .hamburger-line {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: var(--light);
+    position: absolute;
+    left: 0;
+    transition: all 0.3s ease;
+    border-radius: 3px;
 }
 
+.mobile-menu-toggle .hamburger-line:nth-child(1) {
+    top: 10px;
+}
+
+.mobile-menu-toggle .hamburger-line:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.mobile-menu-toggle .hamburger-line:nth-child(3) {
+    bottom: 10px;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+    top: 50%;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+    top: 50%;
+}
+
+.mobile-menu-toggle:hover .hamburger-line {
+    background: var(--primary);
+}
 
 /* Hero Section */
 .hero {
@@ -326,7 +364,7 @@ section {
     transition: width 1s ease;
 }
 
-/* Section Services - Version harmonisée */
+/* Section Services */
 .services {
     background-color: var(--darker);
     position: relative;
@@ -378,7 +416,7 @@ section {
     display: flex;
     align-items: center;
     margin-bottom: 1.5rem;
-    cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+    cursor: pointer;
 }
 
 .service-header ion-icon {
@@ -403,7 +441,6 @@ section {
     transition: all 0.3s ease;
 }
 
-/* Corrected selector to target arrow within active card */
 .service-card.active .service-arrow {
     transform: rotate(180deg);
     color: var(--secondary);
@@ -423,7 +460,7 @@ section {
 }
 
 .service-card.active .service-details {
-    max-height: 1000px; /* Sufficiently large value to allow content to show */
+    max-height: 1000px;
     padding-top: 1.5rem;
 }
 
@@ -462,7 +499,7 @@ section {
     font-weight: 600;
 }
 
-/* Section Projets - Version harmonisée */
+/* Section Projets */
 .projects {
     background-color: var(--dark);
     position: relative;
@@ -553,15 +590,14 @@ section {
 .gallery-slide {
     min-width: 100%;
     height: 100%;
-    display: none; /* Hide all slides by default */
+    display: none;
 }
 
 .gallery-slide.active {
-    display: block; /* Show only the active slide */
+    display: block;
 }
 
-
-.project-image img { /* Corrected selector */
+.project-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -666,7 +702,7 @@ section {
 /* Section Technologies */
 .technologies {
     background-color: var(--dark);
-    padding: 6rem 0; /* Ensure consistent padding */
+    padding: 6rem 0;
 }
 
 .technologies h2 {
@@ -696,10 +732,10 @@ section {
     transform: translateY(-5px);
 }
 
-.tech-item i { /* Style for Font Awesome icons */
+.tech-item i {
     font-size: 2rem;
     margin-bottom: 0.5rem;
-    color: var(--primary); /* Example color */
+    color: var(--primary);
 }
 
 .tech-item span {
@@ -739,26 +775,25 @@ section {
 }
 
 /* Footer */
-footer { /* Changed from .footer to footer tag */
+footer {
     background-color: var(--darker);
     padding: 3rem 0;
     text-align: center;
 }
 
-footer p { /* Changed from .footer p to footer p */
+footer p {
     color: rgba(255, 255, 255, 0.7);
 }
 
-footer a { /* Changed from .footer a to footer a */
+footer a {
     color: var(--primary);
     text-decoration: none;
     font-weight: 600;
 }
 
-footer a:hover { /* Changed from .footer a:hover to footer a:hover */
+footer a:hover {
     text-decoration: underline;
 }
-
 
 /* Animations */
 @keyframes fadeInUp {
@@ -772,55 +807,32 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
     }
 }
 
-/* Applied this animation to sections */
-/* section {
-    opacity: 0;
-    animation: fadeInUp 1s ease forwards;
-} */
-
-
 /* Responsive adjustments */
-/* Modifications pour le menu mobile */
 @media (max-width: 768px) {
-    /* ... (conservez tout ce qui existe déjà dans cette media query) ... */
+    .header .container {
+        flex-direction: row;
+        align-items: center;
+    }
 
-    /* Amélioration de l'animation du menu hamburger */
+    /* Mobile menu toggle visible */
     .mobile-menu-toggle {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        width: 30px;
-        height: 24px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        z-index: 1001;
+        justify-content: space-between;
     }
 
-    .mobile-menu-toggle span {
-        width: 100%;
-        height: 2px;
-        background-color: var(--light);
-        transition: all 0.3s ease;
-        transform-origin: center;
-    }
-
-    /* Animation lorsque le menu est actif */
-    .mobile-menu-toggle.active span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    .mobile-menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .mobile-menu-toggle.active span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
-    /* Animation pour le menu déroulant */
+    /* Navbar styles for mobile */
     .navbar {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--darker);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
         display: none;
         opacity: 0;
         transform: translateY(-20px);
@@ -834,8 +846,17 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
         transform: translateY(0);
     }
 
-    /* Animation pour les liens du menu */
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+    }
+
     .navbar ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
         opacity: 0;
         transform: translateX(-20px);
         transition: all 0.3s ease;
@@ -846,85 +867,55 @@ footer a:hover { /* Changed from .footer a:hover to footer a:hover */
         transform: translateX(0);
     }
 
-    /* Délai d'animation pour chaque lien */
+    /* Animation delay for each menu item */
     .navbar.active ul li:nth-child(1) { transition-delay: 0.1s; }
     .navbar.active ul li:nth-child(2) { transition-delay: 0.2s; }
     .navbar.active ul li:nth-child(3) { transition-delay: 0.3s; }
     .navbar.active ul li:nth-child(4) { transition-delay: 0.4s; }
     .navbar.active ul li:nth-child(5) { transition-delay: 0.5s; }
-}
 
-    /* Hide the navbar by default on small screens */
-    .navbar {
-        position: absolute;
-        top: 100%; /* Position below the header */
-        left: 0;
-        width: 100%;
-        background-color: var(--darker); /* Background for the dropdown menu */
-        flex-direction: column; /* Stack menu items vertically */
-        align-items: center; /* Center menu items */
-        padding: 1rem 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        display: none; /* Hidden by default */
-        transition: all 0.3s ease-in-out;
+    .navbar ul li a {
+        padding: 1rem;
+        display: block;
+        font-size: 1.2rem;
     }
 
-    /* Display the navbar when the 'active' class is added by JS */
-  
-
-    .navbar ul {
-        flex-direction: column; /* Ensure list items are stacked */
-        width: 100%; /* Make list take full width */
-        padding: 0; /* Remove default padding */
+    .navbar ul li a::after {
+        content: none;
     }
-
-    .navbar ul li {
-        margin: 0; /* Remove horizontal margin */
-        width: 100%; /* Make list items take full width */
-        text-align: center; /* Center text */
-        padding: 0.5rem 0; /* Add some vertical padding */
-    }
-
-     .navbar ul li a {
-        padding: 0.5rem 1rem; /* Add padding to links */
-        display: block; /* Make links block level for padding */
-     }
-
-     .navbar ul li a::after {
-          content: none; /* Remove the underline animation on mobile */
-     }
 
     .about .container {
         grid-template-columns: 1fr;
-        gap: 2rem; /* Adjust gap for smaller screens */
+        gap: 2rem;
     }
 
     .about-img {
-        order: -1; /* Place image above text on mobile */
+        order: -1;
     }
 
     h1 {
-        font-size: 2.5rem; /* Adjust font size for smaller screens */
+        font-size: 2.5rem;
     }
 
     h2 {
-        font-size: 2rem; /* Adjust font size for smaller screens */
+        font-size: 2rem;
     }
 
     .hero p {
-        font-size: 1rem; /* Adjust font size for smaller screens */
+        font-size: 1rem;
     }
 
     .services-grid,
     .projects-grid {
-        grid-template-columns: 1fr; /* Stack cards vertically on mobile */
+        grid-template-columns: 1fr;
     }
 
     .service-card,
     .project-card {
-        padding: 1.5rem; /* Adjust padding */
+        padding: 1.5rem;
     }
 }
+
 /* Carousel styles */
 .project-carousel {
     position: relative;
