@@ -842,16 +842,8 @@ footer a:hover {
 }
 
 /* Responsive adjustments */
+/* Correction pour le menu mobile */
 @media (max-width: 768px) {
-    .header .container {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .mobile-menu-toggle {
-        display: block;
-    }
-
     .navbar {
         position: absolute;
         top: 100%;
@@ -883,14 +875,15 @@ footer a:hover {
         padding: 0.5rem 0;
     }
 
-     .navbar ul li a {
+    .navbar ul li a {
         padding: 0.5rem 1rem;
         display: block;
-     }
+    }
 
-     .navbar ul li a::after {
-          content: none;
-     }
+    .navbar ul li a::after {
+        content: none;
+    }
+}
 
     .about .container {
         grid-template-columns: 1fr;
