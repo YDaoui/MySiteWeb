@@ -364,6 +364,54 @@ section {
     transition: width 1s ease;
 }
 
+/* Technologies dans la section About */
+.tech-scroll-container {
+    margin-top: 2rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tech-scroll-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.tech-scroll-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.tech-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+.tech-icons {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    width: max-content;
+}
+
+.tech-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+}
+
+.tech-icon i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.tech-icon span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
 /* Section Services */
 .services {
     background-color: var(--darker);
@@ -378,7 +426,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnz4PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
 }
 
 .services h2 {
@@ -711,10 +759,9 @@ section {
 }
 
 .tech-grid {
-    display: flex;
-    overflow-x: auto; /* Ajout pour le défilement horizontal */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 1.5rem;
-    padding-bottom: 1rem; /* Pour éviter que le contenu ne soit coupé par la barre de défilement */
 }
 
 .tech-item {
@@ -727,7 +774,6 @@ section {
     transition: transform 0.3s ease;
     color: var(--light);
     text-align: center;
-    min-width: 100px; /* Empêche les éléments de devenir trop petits */
 }
 
 .tech-item:hover {
@@ -738,11 +784,6 @@ section {
     font-size: 2rem;
     margin-bottom: 0.5rem;
     color: var(--primary);
-    transition: color 0.3s ease; /* Ajout de la transition pour la couleur */
-}
-
-.tech-item:hover i {
-    color: var(--secondary); /* Changement de couleur au survol */
 }
 
 .tech-item span {
@@ -828,7 +869,7 @@ footer a:hover {
         justify-content: space-between;
     }
 
-    /* Navbar styles for mobile */
+    /* Navbar styles for mobile - version améliorée */
     .navbar {
         position: fixed;
         top: 70px;
@@ -838,13 +879,14 @@ footer a:hover {
         background-color: var(--darker);
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         padding: 2rem 0;
         display: none;
         opacity: 0;
         transform: translateY(-20px);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        overflow-y: auto;
     }
 
     .navbar.active {
@@ -855,8 +897,9 @@ footer a:hover {
 
     .navbar ul {
         flex-direction: column;
-        width: 100%;
+        width: 90%;
         padding: 0;
+        margin-top: 2rem;
     }
 
     .navbar ul li {
@@ -865,13 +908,18 @@ footer a:hover {
         text-align: center;
         padding: 1rem 0;
         opacity: 0;
-        transform: translateX(-20px);
+        transform: translateY(20px);
         transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar ul li:last-child {
+        border-bottom: none;
     }
 
     .navbar.active ul li {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
     }
 
     /* Animation delay for each menu item */
@@ -885,6 +933,12 @@ footer a:hover {
         padding: 1rem;
         display: block;
         font-size: 1.2rem;
+        transition: all 0.3s ease;
+    }
+
+    .navbar ul li a:hover {
+        color: var(--primary);
+        transform: translateX(5px);
     }
 
     .navbar ul li a::after {
@@ -898,18 +952,6 @@ footer a:hover {
 
     .about-img {
         order: -1;
-    }
-
-    .about-text {
-        text-align: left; /* Réaligner le texte à gauche sur mobile */
-    }
-
-    .about-text .skills {
-        margin-top: 1rem; /* Réduire la marge pour les compétences sur mobile */
-    }
-
-    .skill-item {
-        margin-bottom: 1rem; /* Réduire la marge entre les compétences sur mobile */
     }
 
     h1 {
@@ -934,70 +976,15 @@ footer a:hover {
         padding: 1.5rem;
     }
 
-    .tech-grid {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Ajuster la largeur minimale des icônes */
-    }
-
-    .tech-item {
-        padding: 1rem 0.5rem; /* Réduire le padding des éléments de technologie */
-    }
-
-    .tech-item i {
-        font-size: 1.5rem; /* Réduire la taille des icônes sur mobile */
-        margin-bottom: 0.3rem;
-    }
-
-    .tech-item span {
-        font-size: 0.8rem; /* Réduire la taille du texte sur mobile */
+    /* Technologies scroll en mobile */
+    .tech-scroll-container {
+        margin-left: -5%;
+        margin-right: -5%;
+        width: 110%;
+        padding-left: 5%;
     }
 }
 
-/* Styles spécifiques pour la section About - Icônes de technologie */
-.about-text .tech-grid {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding-bottom: 0.5rem;
-    margin-top: 1rem; /* Ajouter une marge au-dessus des icônes */
-}
-
-.about-text .tech-item {
-    min-width: 80px;
-    padding: 0.5rem;
-    background: transparent;
-    border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: none;
-}
-
-.about-text .tech-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.about-text .tech-item i {
-    font-size: 1.8rem;
-    margin-bottom: 0.3rem;
-}
-
-.about-text .tech-item span {
-    display: none; /* Cacher le texte sous les icônes dans cette mise en page */
-}
-
-/* Ajustement du texte à côté de l'image About */
-.about-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centrer le contenu verticalement */
-}
-
-.about-text > *:not(.tech-grid) {
-    margin-right: 0; /* Supprimer la marge à droite pour les éléments autres que la grille de technologies */
-}
-
-.about-text p {
-    text-align: left; /* Aligner le texte à gauche */
-}
 /* Carousel styles */
 .project-carousel {
     position: relative;
@@ -1132,108 +1119,4 @@ footer a:hover {
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
-}
-/* Back to top button */
-.back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(58, 134, 255, 0.5);
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 999;
-}
-
-.back-to-top:hover {
-    background: var(--primary);
-    transform: translateY(-3px);
-}
-
-.back-to-top.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.back-to-top ion-icon {
-    font-size: 1.5rem;
-}
-
-/* Alert messages */
-.alert {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 1rem 2rem;
-    border-radius: 5px;
-    z-index: 1002;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.alert.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(10px);
-}
-
-.alert.success {
-    background-color: var(--success);
-    color: white;
-}
-
-.alert.error {
-    background-color: var(--danger);
-    color: white;
-}
-
-/* Floating elements */
-.floating {
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-/* Data animate elements */
-[data-animate] {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s ease-out;
-}
-
-[data-animate].visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* GSAP Animations (if gsap is used) */
-/* Example: */
-/* .navbar ul li a { */
-/* will-change: transform; */
-/* } */
-
-/* Ensure smooth transitions and animations on mobile */
-@media (prefers-reduced-motion: no-preference) {
-    html {
-        scroll-behavior: smooth;
-    }
 }
