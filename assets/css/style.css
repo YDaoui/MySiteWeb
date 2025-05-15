@@ -705,6 +705,40 @@ section {
 .tech-item span {
     font-size: 0.9rem;
 }
+.technos-scroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scrollbar-width: thin;
+}
+
+.technos-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+.technos-scroll::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+.tech-icon {
+    flex: 0 0 auto;
+    width: 60px;
+    height: 60px;
+    background-color: var(--gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.tech-icon:hover {
+    transform: scale(1.1);
+}
+
 
 /* Section Contact */
 .contact {
