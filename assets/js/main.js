@@ -66,6 +66,8 @@ document.addEventListener('DOMContentLoaded', function () {
     serviceHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
+            if (!card) return;
+
             const isActive = card.classList.contains('active');
 
             document.querySelectorAll('.service-card').forEach(otherCard => {
@@ -92,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
 
-        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
+        if (!container || !slides || slides.length === 0 || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
         const totalSlides = slides.length;
@@ -167,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    // Initial animation styles
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -277,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     ease: "power2.out",
                     onComplete: () => {
                         gsap.to(this, { y: 0, duration: 0.3 });
-                        const offset = document.querySelector('.header').offsetHeight;
+                        const offset = document.querySelector('.header')?.offsetHeight || 0;
                         window.scrollTo({
                             top: targetElement.offsetTop - offset,
                             behavior: 'smooth'
