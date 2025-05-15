@@ -159,7 +159,7 @@ section {
 
 /* Mobile menu toggle - Version améliorée avec animation */
 .mobile-menu-toggle {
-    display: none;
+    display: flex; /* Correction: Rendre le toggle visible par défaut */
     background: none;
     border: none;
     cursor: pointer;
@@ -326,13 +326,21 @@ section {
     transform: scale(1.05);
 }
 
+.about-text {
+    display: flex; /* Correction: Utiliser flexbox pour aligner le contenu */
+    flex-direction: column; /* Aligner les éléments verticalement par défaut */
+    justify-content: center; /* Centrer le contenu verticalement */
+}
+
 .about-text h2 {
     margin-bottom: 1.5rem;
+    text-align: left; /* Aligner le titre à gauche */
 }
 
 .about-text p {
     margin-bottom: 2rem;
     color: rgba(255, 255, 255, 0.7);
+    text-align: left; /* Aligner le paragraphe à gauche */
 }
 
 .skills {
@@ -893,26 +901,8 @@ footer a:hover {
         order: -1;
     }
 
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .services-grid,
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .service-card,
-    .project-card {
-        padding: 1.5rem;
+    .about-text {
+        text-align: left; /* Réaligner le texte à gauche sur mobile */
     }
 }
 
@@ -1012,7 +1002,8 @@ footer a:hover {
     width: 80%;
     max-width: 800px;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0,
+    0.5);
 }
 
 .modal-close {
@@ -1050,4 +1041,33 @@ footer a:hover {
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
+}
+
+/* Styles spécifiques pour la section "À Propos" */
+.about-text .skills {
+    display: flex; /* Afficher les compétences horizontalement */
+    flex-wrap: wrap; /* Permettre aux compétences de passer à la ligne si nécessaire */
+    gap: 1rem; /* Espacement entre les éléments de compétence */
+    margin-top: 1.5rem; /* Réduire la marge supérieure */
+}
+
+.about-text .skill-item {
+    flex: 0 0 auto; /* Empêcher les éléments de compétence de s'étirer */
+    margin-bottom: 0; /* Supprimer la marge inférieure des éléments de compétence */
+}
+
+.about-text .skill-name {
+    display: flex;
+    align-items: center; /* Aligner l'icône et le texte verticalement */
+    margin-bottom: 0.3rem; /* Réduire la marge inférieure du nom de la compétence */
+}
+
+.about-text .skill-name i {
+    font-size: 1.5rem; /* Taille des icônes */
+    margin-right: 0.8rem; /* Espacement à droite de l'icône */
+    color: var(--primary); /* Couleur des icônes */
+}
+
+.about-text .skill-bar {
+    display: none; /* Cacher la barre de progression */
 }
