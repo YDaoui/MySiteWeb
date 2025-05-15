@@ -325,3 +325,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+// Gestion du menu mobile
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleButton = document.querySelector(".mobile-menu-toggle");
+  const navbar = document.querySelector(".navbar");
+
+  if (toggleButton && navbar) {
+    toggleButton.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+    });
+  }
+
+  // Ajout pour gérer les toggle de services
+  window.toggleServiceDetails = function (id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.toggle("open");
+    }
+  };
+});
+
