@@ -24,16 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Mobile menu toggle (fusionné avec autre déclaration plus bas)
-    const toggleBtn = document.querySelector(".mobile-menu-toggle");
-    const navList = document.querySelector(".navbar ul");
-    if (toggleBtn && navList) {
-        toggleBtn.addEventListener("click", function () {
-            toggleBtn.classList.toggle("active");
-            navList.classList.toggle("open");
-        });
-    }
-
     // Project filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
@@ -102,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
 
-        if (!container || !slides?.length || !prevBtn || !nextBtn || !counter) return;
+        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
         const totalSlides = slides.length;
@@ -139,9 +129,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const handleSwipe = () => {
             if (Math.abs(touchEndX - touchStartX) > 50) {
-                currentIndex = touchEndX < touchStartX
-                    ? (currentIndex + 1) % totalSlides
-                    : (currentIndex - 1 + totalSlides) % totalSlides;
+                if (touchEndX < touchStartX) {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                } else {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                }
                 updateCarousel();
             }
         };
@@ -196,7 +188,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
 
-    // Back to top button
     const backToTopButton = document.querySelector('.back-to-top');
     if (backToTopButton) {
         backToTopButton.addEventListener('click', () => {
@@ -286,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     ease: "power2.out",
                     onComplete: () => {
                         gsap.to(this, { y: 0, duration: 0.3 });
-                        const offset = document.querySelector('.header')?.offsetHeight || 0;
+                        const offset = document.querySelector('.header').offsetHeight;
                         window.scrollTo({
                             top: targetElement.offsetTop - offset,
                             behavior: 'smooth'
@@ -297,8 +288,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Close mobile menu on nav link click
+    // Mobile menu toggle
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
+    if (mobileToggle && navbar) {
+        mobileToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            navbar.classList.toggle('open');
+        });
+    }
+
+    // Close mobile menu on nav link click
     document.querySelectorAll('.navbar a').forEach(link => {
         link.addEventListener('click', () => {
             if (navbar && navbar.classList.contains('open')) {
