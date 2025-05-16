@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Service cards toggle
+    // Service cards toggle with icons
     const serviceHeaders = document.querySelectorAll('.service-header');
     serviceHeaders.forEach(header => {
         header.addEventListener('click', () => {
@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                     if (otherArrow) {
                         otherArrow.classList.remove('active');
+                        otherArrow.innerHTML = '<ion-icon name="chevron-down-outline"></ion-icon>'; // Reset arrow
                     }
                 }
             });
@@ -95,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             if (arrow) {
                 arrow.classList.toggle('active', !isActive);
+                arrow.innerHTML = !isActive ? '<ion-icon name="chevron-up-outline"></ion-icon>' : '<ion-icon name="chevron-down-outline"></ion-icon>';
             }
         });
     });
@@ -108,28 +110,29 @@ document.addEventListener('DOMContentLoaded', function () {
         const prevBtn = gallery?.querySelector('.project-nav.prev');
         const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
-        const projectId = card.getAttribute('data-project-id'); // Assuming you add this to each project card
+        const projectId = card.getAttribute('data-project-id'); // Ensure this attribute exists in your HTML
 
         if (container && slides?.length && prevBtn && nextBtn && counter) {
             let currentIndex = 0;
             const totalSlides = slides.length;
 
-            const updateCarousel = () => {
+            const updateCarousel = (index) => {
+                currentIndex = index;
                 container.style.transform = `translateX(-${currentIndex * 100}%)`;
                 counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-                slides.forEach((slide, index) => {
-                    slide.classList.toggle('active', index === currentIndex);
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === currentIndex);
                 });
             };
 
             prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                updateCarousel();
+                const newIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateCarousel(newIndex);
             });
 
             nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                updateCarousel();
+                const newIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel(newIndex);
             });
 
             let touchStartX = 0;
@@ -146,8 +149,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const handleSwipe = () => {
                 if (Math.abs(touchEndX - touchStartX) > 50) {
-                    currentIndex = touchEndX < touchStartX ? (currentIndex + 1) % totalSlides : (currentIndex - 1 + totalSlides) % totalSlides;
-                    updateCarousel();
+                    const newIndex = touchEndX < touchStartX ? (currentIndex + 1) % totalSlides : (currentIndex - 1 + totalSlides) % totalSlides;
+                    updateCarousel(newIndex);
                 }
             };
 
@@ -155,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
             slides.forEach(slide => {
                 slide.style.width = `${100 / totalSlides}%`;
             });
-            updateCarousel();
+            updateCarousel(0); // Initialize to the first slide
         }
 
         // Modal for project details
@@ -166,8 +169,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const modalDetailsContent = modal?.querySelector('.modal-details-content');
         const modalClose = modal?.querySelector('.modal-close');
 
-        detailsLink?.addEventListener('click', (e) => {
+        detailsLink?.addEventListener('click', function (e) {
             e.preventDefault();
+            const projectId = card.getAttribute('data-project-id'); // Get project ID from the card
             if (modal && modalTitle && modalDescription && modalDetailsContent && projectId) {
                 const projectData = getProjectDetails(projectId); // Implement this function
 
