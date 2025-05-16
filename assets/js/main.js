@@ -84,59 +84,87 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Project image carousel
-    document.querySelectorAll('.project-card').forEach(card => {
-        const gallery = card.querySelector('.project-gallery');
-        const container = gallery?.querySelector('.gallery-container');
-        const slides = gallery?.querySelectorAll('.gallery-slide');
-        const prevBtn = gallery?.querySelector('.project-nav.prev');
-        const nextBtn = gallery?.querySelector('.project-nav.next');
-        const counter = card.querySelector('.slide-counter');
+   // Project image carousel
+document.querySelectorAll('.project-card').forEach(card => {
+    const gallery = card.querySelector('.project-gallery');
+    if (!gallery) return;
 
-        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
+    const container = gallery.querySelector('.gallery-container');
+    const slides = gallery.querySelectorAll('.gallery-slide');
+    const prevBtn = gallery.querySelector('.project-nav.prev');
+    const nextBtn = gallery.querySelector('.project-nav.next');
+    const counter = card.querySelector('.slide-counter');
 
-        let currentIndex = 0;
-        const totalSlides = slides.length;
+    if (!container || !slides.length) return;
 
-        const updateCarousel = () => {
-            container.style.transform = `translateX(-${currentIndex * 100}%)`;
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    // Initialisation
+    container.style.width = `${totalSlides * 100}%`;
+    slides.forEach(slide => {
+        slide.style.width = `${100 / totalSlides}%`;
+    });
+
+    const updateCarousel = () => {
+        container.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // Mettre à jour le compteur si il existe
+        if (counter) {
             counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-            slides.forEach((slide, index) => {
-                slide.classList.toggle('active', index === currentIndex);
-            });
-        };
+        }
+        
+        // Mettre à jour la classe active
+        slides.forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentIndex);
+        });
+    };
 
+    // Bouton précédent
+    if (prevBtn) {
         prevBtn.addEventListener('click', () => {
             currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updateCarousel();
         });
+    }
 
+    // Bouton suivant
+    if (nextBtn) {
         nextBtn.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % totalSlides;
             updateCarousel();
         });
+    }
 
-        let touchStartX = 0;
-        let touchEndX = 0;
+    // Gestion du swipe tactile
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-        container.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
+    gallery.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
 
-        container.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
+    gallery.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
 
-        const handleSwipe = () => {
-            if (Math.abs(touchEndX - touchStartX) > 50) {
-                if (touchEndX < touchStartX) {
-                    currentIndex = (currentIndex + 1) % totalSlides;
-                } else {
-                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                }
-                updateCarousel();
+    const handleSwipe = () => {
+        if (Math.abs(touchEndX - touchStartX) > 50) {
+            if (touchEndX < touchStartX) {
+                // Swipe gauche
+                currentIndex = (currentIndex + 1) % totalSlides;
+            } else {
+                // Swipe droit
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             }
-        };
+            updateCarousel();
+        }
+    };
+
+    // Initialisation
+    updateCarousel();
+});
 
         container.style.width = `${totalSlides * 100}%`;
         slides.forEach(slide => {
@@ -289,22 +317,41 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Mobile menu toggle
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const navbar = document.querySelector('.navbar');
-    if (mobileToggle && navbar) {
-        mobileToggle.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-            navbar.classList.toggle('open');
-        });
-    }
+   // Mobile menu toggle
+const mobileToggle = document.querySelector('.mobile-menu-toggle');
+const navbar = document.querySelector('.navbar');
+if (mobileToggle && navbar) {
+    mobileToggle.addEventListener('click', () => {
+        mobileToggle.classList.toggle('active');
+        navbar.classList.toggle('active');
+        
+        // Animation des éléments du menu
+        const navItems = document.querySelectorAll('.navbar ul li');
+        if (navbar.classList.contains('active')) {
+            navItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.1}s`;
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            });
+        } else {
+            navItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(-20px)';
+            });
+        }
+    });
+}
 
-    // Close mobile menu on nav link click
-    document.querySelectorAll('.navbar a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (navbar && navbar.classList.contains('open')) {
-                navbar.classList.remove('active');
-                navbar.classList.remove('open');
-            }
-        });
+// Fermer le menu mobile quand on clique sur un lien
+document.querySelectorAll('.navbar a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (navbar && navbar.classList.contains('active')) {
+            mobileToggle.classList.remove('active');
+            navbar.classList.remove('active');
+            document.querySelectorAll('.navbar ul li').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(-20px)';
+            });
+        }
     });
 });
