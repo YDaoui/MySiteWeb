@@ -1364,5 +1364,25 @@ footer a:hover {
 html {
     scroll-behavior: smooth;
 }
+/* Animation d'intro */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    z-index: 2000;
+    opacity: 1;
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+/* Disparition de l’animation */
+.intro-overlay.hide {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease, visibility 1s ease;
+}
 
 
