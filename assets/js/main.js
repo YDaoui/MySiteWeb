@@ -80,73 +80,74 @@ document.addEventListener('DOMContentLoaded', function () {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
             const isActive = card.classList.contains('active');
+            const details = card.querySelector('.service-details');
+            const arrow = header.querySelector('.service-arrow');
 
             document.querySelectorAll('.service-card').forEach(otherCard => {
+                const otherDetails = otherCard.querySelector('.service-details');
+                const otherArrow = otherCard.querySelector('.service-header .service-arrow');
                 if (otherCard !== card) {
                     otherCard.classList.remove('active');
+                    if (otherDetails) {
+                        otherDetails.style.maxHeight = null;
+                    }
+                    if (otherArrow) {
+                        otherArrow.classList.remove('active');
+                    }
                 }
             });
 
             card.classList.toggle('active', !isActive);
 
-            const arrow = header.querySelector('.service-arrow');
+            if (details) {
+                details.style.maxHeight = !isActive ? details.scrollHeight + 'px' : null;
+            }
             if (arrow) {
-                arrow.style.transform = card.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
+                arrow.classList.toggle('active', !isActive);
             }
         });
     });
 
-    // Project image carousel and details modal
+    // Project image carousel
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
-        if (!gallery) return;
-
-        const container = gallery.querySelector('.gallery-container');
-        const slides = gallery.querySelectorAll('.gallery-slide');
-        const prevBtn = gallery.querySelector('.project-nav.prev');
-        const nextBtn = gallery.querySelector('.project-nav.next');
+        const container = gallery?.querySelector('.gallery-container');
+        const slides = gallery?.querySelectorAll('.gallery-slide');
+        const prevBtn = gallery?.querySelector('.project-nav.prev');
+        const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
-        const detailsBtn = card.querySelector('.project-links .view-details');
-        const projectId = card.getAttribute('data-project-id');
 
-        if (!container || !slides.length) return;
+        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
         const totalSlides = slides.length;
 
         const updateCarousel = () => {
             container.style.transform = `translateX(-${currentIndex * 100}%)`;
+            counter.textContent = `${currentIndex + 1}/${totalSlides}`;
             slides.forEach((slide, index) => {
                 slide.classList.toggle('active', index === currentIndex);
             });
-            if (counter) {
-                counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-            }
         };
 
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                updateCarousel();
-            });
-        }
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        });
 
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                updateCarousel();
-            });
-        }
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        });
 
-        // Touch swipe for carousel
         let touchStartX = 0;
         let touchEndX = 0;
 
-        gallery.addEventListener('touchstart', (e) => {
+        container.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
 
-        gallery.addEventListener('touchend', (e) => {
+        container.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         }, { passive: true });
@@ -162,80 +163,12 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         };
 
-        updateCarousel();
-
-        // Modal for project details
-        const modal = document.querySelector('.modal');
-        const modalContent = document.querySelector('#modal-content');
-        const modalClose = document.querySelector('.modal-close');
-
-        if (detailsBtn && modal && modalContent && modalClose) {
-            detailsBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openProjectModal(projectId);
-            });
-
-            modalClose.addEventListener('click', () => {
-                modal.style.display = 'none';
-                modalContent.innerHTML = ''; // Clear previous content
-            });
-
-            window.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                    modalContent.innerHTML = ''; // Clear previous content
-                }
-            });
-        }
-    });
-
-    // Function to open project details modal
-    function openProjectModal(projectId) {
-        const projectCard = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
-        if (projectCard) {
-            const title = projectCard.querySelector('.project-info h3').textContent;
-            const description = projectCard.querySelector('.project-info p').textContent;
-            const modalTitle = `<h3>${title}</h3>`;
-            const modalDescription = `<p class="modal-description">${description}</p>`;
-
-            const modalContentDiv = document.querySelector('#modal-content');
-            if (modalContentDiv) {
-                modalContentDiv.innerHTML = modalTitle + modalDescription;
-            }
-
-            const modal = document.querySelector('.modal');
-            if (modal) {
-                modal.style.display = 'block';
-            }
-        } else {
-            console.error(`Project with ID "${projectId}" not found.`);
-        }
-    }
-
-    // Mobile menu toggle
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const navbar = document.querySelector('.navbar');
-    if (mobileToggle && navbar) {
-        mobileToggle.addEventListener('click', () => {
-            mobileToggle.classList.toggle('active');
-            navbar.classList.toggle('active');
-
-            const navItems = document.querySelectorAll('.navbar ul li');
-            if (navbar.classList.contains('active')) {
-                navItems.forEach((item, index) => {
-                    item.style.transitionDelay = `${index * 0.1}s`;
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                });
-            } else {
-                navItems.forEach(item => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(-20px)';
-                    item.style.transitionDelay = '0s'; // Reset delay when closing
-                });
-            }
+        container.style.width = `${totalSlides * 100}%`;
+        slides.forEach(slide => {
+            slide.style.width = `${100 / totalSlides}%`;
         });
-    }
+        updateCarousel();
+    });
 
     // Scroll animations
     const animateOnScroll = () => {
@@ -343,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     animatedElements.forEach(el => observer.observe(el));
 
-    // GSAP ScrollTrigger Animation (keep if you are using GSAP)
+    // GSAP ScrollTrigger Animation
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -379,4 +312,24 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    // Mobile menu toggle
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    if (mobileToggle && navbar) {
+        mobileToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+        });
+    }
+
+    // Close mobile menu on nav link click
+    document.querySelectorAll('.navbar a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbar && navbar.classList.contains('active')) {
+                navbar.classList.remove('active');
+                mobileToggle.classList.remove('active');
+            }
+        });
+    });
 });
