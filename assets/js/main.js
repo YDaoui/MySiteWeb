@@ -334,23 +334,27 @@ document.addEventListener('DOMContentLoaded', function () {
 // Lancement de l'animation au chargement de la page
 window.addEventListener('DOMContentLoaded', () => {
   const intro = document.getElementById('intro-animation');
-  intro.classList.remove('replay-animation'); // Réinitialise si besoin
+
+  // Masquer après 2 secondes
+  setTimeout(() => {
+    intro.classList.add('hide');
+  }, 2000);
 });
 
-// Fonction pour rejouer l'animation
+// Fonction de relecture
 function replayIntroAnimation() {
   const intro = document.getElementById('intro-animation');
-  intro.classList.remove('replay-animation'); // Reset
-  void intro.offsetWidth; // Forcer le repaint
-  intro.classList.add('replay-animation');
+  intro.classList.remove('hide');
+  void intro.offsetWidth; // force le repaint
   setTimeout(() => {
-    intro.classList.remove('replay-animation');
-  }, 2000); // Doit correspondre à la durée de l'animation
+    intro.classList.add('hide');
+  }, 2000);
 }
 
-// Cible ton logo et ton titre
+// Clic sur logo ou titre
 document.querySelectorAll('.logo, .main-title').forEach(el => {
-  el.addEventListener('click', () => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
     replayIntroAnimation();
   });
 });
