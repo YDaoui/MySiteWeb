@@ -12,7 +12,10 @@
     --danger: #ef476f;
 }
 
-* {
+/* Reset de base pour éviter les marges et paddings par défaut */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,11 +26,14 @@ body {
     line-height: 1.7;
     color: var(--light);
     background-color: var(--dark);
-    overflow-x: hidden;
+    overflow-x: hidden; /* Empêche le défilement horizontal indésirable */
 }
 
 /* Typographie */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1rem;
@@ -159,7 +165,7 @@ section {
 
 /* Mobile menu toggle - Version améliorée avec animation */
 .mobile-menu-toggle {
-    display: none;
+    display: none; /* Masqué par défaut sur les écrans plus grands */
     background: none;
     border: none;
     cursor: pointer;
@@ -438,7 +444,7 @@ section {
 .service-arrow {
     color: var(--primary);
     font-size: 1.5rem;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease; /* Correction: transition sur la propriété transform */
 }
 
 .service-card.active .service-arrow {
@@ -459,7 +465,7 @@ section {
     transition: max-height 0.5s ease, padding 0.3s ease;
 }
 
-.service-card.active .service-details {
+.service-service-card.active .service-details {
     max-height: 1000px;
     padding-top: 1.5rem;
 }
@@ -551,7 +557,7 @@ section {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2.5rem;
     position: relative;
     z-index: 1;
@@ -808,7 +814,6 @@ footer a:hover {
 }
 
 /* Responsive adjustments */
-/* Ajoutez ceci dans la section responsive */
 @media (max-width: 768px) {
     .navbar {
         position: fixed;
@@ -821,7 +826,7 @@ footer a:hover {
         align-items: center;
         justify-content: flex-start;
         padding: 2rem 0;
-        display: none;
+        display: none; /* Correction: Le menu est masqué par défaut sur mobile */
         opacity: 0;
         transform: translateY(-20px);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -829,7 +834,7 @@ footer a:hover {
     }
 
     .navbar.active {
-        display: flex;
+        display: flex; /* Correction: Affiche le menu quand la classe 'active' est ajoutée */
         opacity: 1;
         transform: translateY(0);
     }
@@ -907,6 +912,14 @@ footer a:hover {
     .project-gallery {
         height: 200px; /* Adjust height for smaller screens */
     }
+
+    .mobile-menu-toggle {
+        display: block; /* Affiche le toggle sur les écrans plus petits */
+    }
+
+    .navbar ul {
+        margin-top: 2rem; /* Ajoute un peu d'espace entre le toggle et le menu */
+    }
 }
 
 /* Carousel styles */
@@ -960,7 +973,8 @@ footer a:hover {
     margin: 0 auto;
 }
 
-.carousel-prev, .carousel-next {
+.carousel-prev,
+.carousel-next {
     background: rgba(255, 255, 255, 0.2);
     border: none;
     color: white;
@@ -972,7 +986,8 @@ footer a:hover {
     transition: all 0.3s ease;
 }
 
-.carousel-prev:hover, .carousel-next:hover {
+.carousel-prev:hover,
+.carousel-next:hover {
     background: var(--primary);
 }
 
@@ -996,8 +1011,7 @@ footer a:hover {
     overflow-y: auto;
 }
 
-.modal-content {
-    background-color: var(--dark);
+.modal-content {background-color: var(--dark);
     margin: 5% auto;
     padding: 2rem;
     border: 1px solid rgba(58, 134, 255, 0.3);
@@ -1011,7 +1025,7 @@ footer a:hover {
 .modal-close {
     position: absolute;
     right: 20px;
-    top:20px;
+    top: 20px;
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
