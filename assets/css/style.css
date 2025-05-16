@@ -11,6 +11,7 @@
     --warning: #ffbe0b;
     --danger: #ef476f;
 }
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 /* Reset de base pour éviter les marges et paddings par défaut */
 *,
