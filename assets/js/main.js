@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Smooth scrolling for navigation
+  // Smooth scrolling
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
       const targetId = anchor.getAttribute('href');
-      if (targetId === '#' || !document.querySelector(targetId)) return;
+      const targetElement = document.querySelector(targetId);
+      if (targetId === '#' || !targetElement) return;
 
       e.preventDefault();
-      const targetElement = document.querySelector(targetId);
       const header = document.querySelector('.header');
       const headerHeight = header ? header.offsetHeight : 0;
       const targetPosition = targetElement.offsetTop - headerHeight;
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Project filtering (fusion des deux versions)
+  // Filtering projects
   const filterButtons = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
 
@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       button.classList.add('active');
       button.setAttribute('aria-pressed', 'true');
-
       const filterValue = button.getAttribute('data-filter');
 
       projectCards.forEach(card => {
@@ -58,9 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Service cards toggle
-  const serviceHeaders = document.querySelectorAll('.service-header');
-  serviceHeaders.forEach(header => {
+  // Toggle service cards
+  document.querySelectorAll('.service-header').forEach(header => {
     header.addEventListener('click', () => {
       const card = header.closest('.service-card');
       if (!card) return;
@@ -80,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Project image carousel & modal
+  // Carousel & modals for projects
   document.querySelectorAll('.project-card').forEach(card => {
     const gallery = card.querySelector('.project-gallery');
     const slides = card.querySelectorAll('.gallery-slide');
@@ -106,37 +104,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
 
-      if (prevBtn) {
-        prevBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-          updateCarousel();
-        });
-      }
+      prevBtn?.addEventListener('click', e => {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateCarousel();
+      });
 
-      if (nextBtn) {
-        nextBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          currentIndex = (currentIndex + 1) % totalSlides;
-          updateCarousel();
-        });
-      }
+      nextBtn?.addEventListener('click', e => {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel();
+      });
 
       let touchStartX = 0;
       let touchEndX = 0;
 
-      container.addEventListener('touchstart', (e) => {
+      container.addEventListener('touchstart', e => {
         touchStartX = e.changedTouches[0].screenX;
       }, { passive: true });
 
-      container.addEventListener('touchend', (e) => {
+      container.addEventListener('touchend', e => {
         touchEndX = e.changedTouches[0].screenX;
         if (Math.abs(touchEndX - touchStartX) > 50) {
-          if (touchEndX < touchStartX) {
-            currentIndex = (currentIndex + 1) % totalSlides;
-          } else {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-          }
+          currentIndex = touchEndX < touchStartX
+            ? (currentIndex + 1) % totalSlides
+            : (currentIndex - 1 + totalSlides) % totalSlides;
           updateCarousel();
         }
       }, { passive: true });
@@ -150,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (detailsBtn && modal) {
-      detailsBtn.addEventListener('click', (e) => {
+      detailsBtn.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
         document.querySelectorAll('.project-modal.active').forEach(m => {
@@ -160,15 +152,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'hidden';
       });
 
-      if (closeBtn) {
-        closeBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
-        });
-      }
+      closeBtn?.addEventListener('click', e => {
+        e.stopPropagation();
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      });
 
-      modal.addEventListener('click', (e) => {
+      modal.addEventListener('click', e => {
         if (e.target === modal) {
           modal.classList.remove('active');
           document.body.style.overflow = '';
@@ -177,33 +167,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Show project details by ID
-  function showProjectDetails(projectId) {
-    const detailsElement = document.getElementById(projectId);
-    if (detailsElement) {
-      document.querySelectorAll('.project-details').forEach(details => {
-        if (details.id !== projectId) {
-          details.classList.remove('active');
-        }
-      });
-
-      detailsElement.classList.toggle('active');
-
-      if (detailsElement.classList.contains('active')) {
-        detailsElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    }
-  }
-
   // Scroll animations
   const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
     const windowHeight = window.innerHeight;
 
-    elements.forEach(el => {
+    document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group').forEach(el => {
       const elementTop = el.getBoundingClientRect().top;
-      const triggerPoint = windowHeight * 0.85;
-      if (elementTop < triggerPoint) {
+      if (elementTop < windowHeight * 0.85) {
         el.classList.add('animated');
         el.style.opacity = '1';
         el.style.transform = 'translateY(0)';
@@ -216,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Init animation states
   document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
@@ -238,19 +209,15 @@ document.addEventListener('DOMContentLoaded', () => {
   animateOnScroll();
 
   // Back to top button
-  const backToTopButton = document.querySelector('.back-to-top');
-  if (backToTopButton) {
-    backToTopButton.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
+  document.querySelector('.back-to-top')?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   // Contact form validation
   const contactForm = document.querySelector('.contact-form');
   if (contactForm) {
     contactForm.addEventListener('submit', e => {
       e.preventDefault();
-
       const name = contactForm.querySelector('input[type="text"]').value.trim();
       const email = contactForm.querySelector('input[type="email"]').value.trim();
       const message = contactForm.querySelector('textarea').value.trim();
@@ -259,7 +226,9 @@ document.addEventListener('DOMContentLoaded', () => {
         showAlert('Veuillez remplir tous les champs du formulaire.', 'error');
         return;
       }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
         showAlert('Veuillez entrer une adresse email valide.', 'error');
         return;
       }
@@ -282,14 +251,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 5000);
   }
 
-    const toggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.navbar ul');
+  // Responsive menu
+  const toggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.navbar ul');
+  toggle?.addEventListener('click', () => {
+    navMenu?.classList.toggle('show');
+  });
 
-    toggle.addEventListener('click', () => {
-        navMenu.classList.toggle('show');
-    });
-
-  // Floating animation delay randomization
+  // Floating elements animation delay
   document.querySelectorAll('.floating').forEach(el => {
     el.style.animationDelay = `${Math.random() * 2}s`;
   });
