@@ -21,6 +21,19 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 location.hash = targetId;
             }
+
+            // Close mobile menu after clicking a link
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navbar = document.querySelector('.navbar');
+            if (navbar && navbar.classList.contains('active')) {
+                mobileToggle.classList.remove('active');
+                navbar.classList.remove('active');
+                document.querySelectorAll('.navbar ul li').forEach(item => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(-20px)';
+                    item.style.transitionDelay = '0s'; // Reset delay when closing
+                });
+            }
         });
     });
 
@@ -83,97 +96,165 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Project image carousel
-   // Project image carousel
-document.querySelectorAll('.project-card').forEach(card => {
-    const gallery = card.querySelector('.project-gallery');
-    if (!gallery) return;
+    // Project image carousel and details modal
+    document.querySelectorAll('.project-card').forEach(card => {
+        const gallery = card.querySelector('.project-gallery');
+        if (!gallery) return;
 
-    const container = gallery.querySelector('.gallery-container');
-    const slides = gallery.querySelectorAll('.gallery-slide');
-    const prevBtn = gallery.querySelector('.project-nav.prev');
-    const nextBtn = gallery.querySelector('.project-nav.next');
-    const counter = card.querySelector('.slide-counter');
+        const container = gallery.querySelector('.gallery-container');
+        const slides = gallery.querySelectorAll('.gallery-slide');
+        const prevBtn = gallery.querySelector('.project-nav.prev');
+        const nextBtn = gallery.querySelector('.project-nav.next');
+        const counter = card.querySelector('.slide-counter');
+        const detailsBtn = card.querySelector('.project-links a:last-child'); // Assuming "Details" is the last link
+        const projectId = card.getAttribute('data-project-id'); // Add data-project-id to your HTML
 
-    if (!container || !slides.length) return;
+        if (!container || !slides.length) return;
 
-    let currentIndex = 0;
-    const totalSlides = slides.length;
+        let currentIndex = 0;
+        const totalSlides = slides.length;
 
-    // Initialisation
-    container.style.width = `${totalSlides * 100}%`;
-    slides.forEach(slide => {
-        slide.style.width = `${100 / totalSlides}%`;
-    });
-
-    const updateCarousel = () => {
-        container.style.transform = `translateX(-${currentIndex * 100}%)`;
-        
-        // Mettre à jour le compteur si il existe
-        if (counter) {
-            counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-        }
-        
-        // Mettre à jour la classe active
-        slides.forEach((slide, index) => {
-            slide.classList.toggle('active', index === currentIndex);
-        });
-    };
-
-    // Bouton précédent
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        });
-    }
-
-    // Bouton suivant
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            updateCarousel();
-        });
-    }
-
-    // Gestion du swipe tactile
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    gallery.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    gallery.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, { passive: true });
-
-    const handleSwipe = () => {
-        if (Math.abs(touchEndX - touchStartX) > 50) {
-            if (touchEndX < touchStartX) {
-                // Swipe gauche
-                currentIndex = (currentIndex + 1) % totalSlides;
-            } else {
-                // Swipe droit
-                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            }
-            updateCarousel();
-        }
-    };
-
-    // Initialisation
-    updateCarousel();
-});
-
+        // Initialize carousel
         container.style.width = `${totalSlides * 100}%`;
         slides.forEach(slide => {
             slide.style.width = `${100 / totalSlides}%`;
         });
+
+        const updateCarousel = () => {
+            container.style.transform = `translateX(-${currentIndex * 100}%)`;
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentIndex);
+            });
+            if (counter) {
+                counter.textContent = `${currentIndex + 1}/${totalSlides}`;
+            }
+        };
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            });
+        }
+
+        // Touch swipe for carousel
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        gallery.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        gallery.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        const handleSwipe = () => {
+            if (Math.abs(touchEndX - touchStartX) > 50) {
+                if (touchEndX < touchStartX) {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                } else {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                }
+                updateCarousel();
+            }
+        };
+
         updateCarousel();
+
+        // Modal for project details
+        const modal = document.querySelector('.modal');
+        const modalContent = document.querySelector('.modal-content');
+        const modalClose = document.querySelector('.modal-close');
+
+        if (detailsBtn && modal && modalContent && modalClose) {
+            detailsBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openProjectModal(projectId);
+            });
+
+            modalClose.addEventListener('click', () => {
+                modal.style.display = 'none';
+                modalContent.innerHTML = ''; // Clear previous content
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    modalContent.innerHTML = ''; // Clear previous content
+                }
+            });
+        }
     });
 
-    // Scroll animations
+    // Function to open project details modal
+    function openProjectModal(projectId) {
+        const projectCard = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
+        if (projectCard) {
+            const title = projectCard.querySelector('.project-info h3').textContent;
+            const description = projectCard.querySelector('.project-info p').textContent;
+            const tags = Array.from(projectCard.querySelectorAll('.project-tag')).map(tag => tag.textContent).join(', ');
+            const liveLink = projectCard.querySelector('.project-links a:first-child').getAttribute('href');
+            const repoLink = projectCard.querySelector('.project-links a:nth-child(2)').getAttribute('href'); // Assuming repo is the second link
+
+            const modalTitle = `<h3>${title}</h3>`;
+            const modalDescription = `<p class="modal-description">${description}</p>`;
+            const modalDetails = `<div class="modal-details">
+                                    <p><strong>Technologies:</strong> ${tags}</p>
+                                    <p><a href="${liveLink}" target="_blank">Voir le projet en direct</a></p>
+                                    <p><a href="${repoLink}" target="_blank">Voir le code source</a></p>
+                                  </div>`;
+
+            const modalContent = document.querySelector('.modal-content');
+            if (modalContent) {
+                modalContent.innerHTML = modalTitle + modalDescription + modalDetails;
+            }
+
+            const modal = document.querySelector('.modal');
+            if (modal) {
+                modal.style.display = 'block';
+            }
+        } else {
+            console.error(`Project with ID "${projectId}" not found.`);
+        }
+    }
+
+    // Mobile menu toggle
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    if (mobileToggle && navbar) {
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            navbar.classList.toggle('active');
+
+            const navItems = document.querySelectorAll('.navbar ul li');
+            if (navbar.classList.contains('active')) {
+                navItems.forEach((item, index) => {
+                    item.style.transitionDelay = `${index * 0.1}s`;
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                });
+            } else {
+                navItems.forEach(item => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(-20px)';
+                    item.style.transitionDelay = '0s'; // Reset delay when closing
+                });
+            }
+        });
+    }
+
+    // Close mobile menu when clicking a link (handled in smooth scroll)
+
+    // Scroll animations (rest of your code)
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.service-card, .project-card, .tech-item, .contact-item, .form-group');
         const windowHeight = window.innerHeight;
@@ -279,7 +360,7 @@ document.querySelectorAll('.project-card').forEach(card => {
 
     animatedElements.forEach(el => observer.observe(el));
 
-    // GSAP ScrollTrigger Animation
+    // GSAP ScrollTrigger Animation (keep if you are using GSAP)
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -315,43 +396,4 @@ document.querySelectorAll('.project-card').forEach(card => {
             });
         });
     }
-
-    // Mobile menu toggle
-   // Mobile menu toggle
-const mobileToggle = document.querySelector('.mobile-menu-toggle');
-const navbar = document.querySelector('.navbar');
-if (mobileToggle && navbar) {
-    mobileToggle.addEventListener('click', () => {
-        mobileToggle.classList.toggle('active');
-        navbar.classList.toggle('active');
-        
-        // Animation des éléments du menu
-        const navItems = document.querySelectorAll('.navbar ul li');
-        if (navbar.classList.contains('active')) {
-            navItems.forEach((item, index) => {
-                item.style.transitionDelay = `${index * 0.1}s`;
-                item.style.opacity = '1';
-                item.style.transform = 'translateY(0)';
-            });
-        } else {
-            navItems.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(-20px)';
-            });
-        }
-    });
-}
-
-// Fermer le menu mobile quand on clique sur un lien
-document.querySelectorAll('.navbar a').forEach(link => {
-    link.addEventListener('click', () => {
-        if (navbar && navbar.classList.contains('active')) {
-            mobileToggle.classList.remove('active');
-            navbar.classList.remove('active');
-            document.querySelectorAll('.navbar ul li').forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(-20px)';
-            });
-        }
-    });
 });
