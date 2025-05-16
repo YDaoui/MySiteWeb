@@ -397,3 +397,130 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    const navbarLinks = document.querySelectorAll('.navbar ul li a');
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function() {
+            navbar.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    }
+
+    // Fermer le menu lorsqu'un lien est cliqué (sur mobile)
+    navbarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                navbar.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            }
+        });
+    });
+
+    // Gestion du scroll pour masquer/afficher le header
+    let lastScrollTop = 0;
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.scrollY || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop && scrollTop > header.offsetHeight) {
+            header.classList.add('scrolled');
+        } else if (scrollTop < lastScrollTop) {
+            header.classList.remove('scrolled');
+        }
+        lastScrollTop = scrollTop;
+    });
+
+    // Gestion de l'expansion des détails des services
+    const serviceHeaders = document.querySelectorAll('.service-header');
+    serviceHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            const serviceCard = this.parentElement;
+            const serviceDetails = this.nextElementSibling.nextElementSibling; // Sélectionne le div service-details
+            const arrow = this.querySelector('.service-arrow');
+
+            serviceCard.classList.toggle('active');
+            if (serviceDetails) {
+                serviceDetails.style.maxHeight = serviceCard.classList.contains('active') ? serviceDetails.scrollHeight + 'px' : '0';
+            }
+            if (arrow) {
+                arrow.classList.toggle('active');
+            }
+        });
+    });
+
+    // Carrousel de projets
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+        const prevButton = card.querySelector('.project-nav.prev');
+        const nextButton = card.querySelector('.project-nav.next');
+        const slides = card.querySelectorAll('.gallery-slide');
+        const slideCounter = card.querySelector('.slide-counter');
+        let currentIndex = 0;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentIndex);
+            });
+            slideCounter.textContent = `${currentIndex + 1}/${slides.length}`;
+        }
+
+        if (prevButton && nextButton) {
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateSlide();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlide();
+            });
+
+            updateSlide(); // Initialise l'affichage du premier slide
+        }
+    });
+
+    // Modal des projets
+    const viewDetailsButtons = document.querySelectorAll('.project-links .view-details');
+    const modal = document.getElementById('project-modal');
+    const modalContentDiv = document.getElementById('modal-content');
+    const closeModalSpan = document.querySelector('.modal-close');
+
+    viewDetailsButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const projectCard = this.closest('.project-card');
+            const projectId = projectCard.dataset.projectId;
+
+            // Simuler la récupération de détails du projet (à remplacer par votre logique réelle)
+            let projectDetails = '';
+            if (projectId === '1') {
+                projectDetails = `<h3>Dashboard de ventes</h3><p>Ce dashboard interactif a été développé avec Power BI pour visualiser les performances commerciales. Il permet de suivre les ventes par région, par produit et dans le temps.</p><p><strong>Technologies utilisées:</strong> Power BI, DAX.</p>`;
+            } else if (projectId === '2') {
+                projectDetails = `<h3>Bot de collecte de données</h3><p>Un bot RPA développé en Python avec Selenium pour automatiser la collecte de données à partir de sites web spécifiques. Il extrait et structure les informations pour une analyse ultérieure.</p><p><strong>Technologies utilisées:</strong> Python, Selenium, RPA.</p>`;
+            } else if (projectId === '3') {
+                projectDetails = `<h3>Optimisation réseau Bouygues Telecom</h3><p>Analyse approfondie des données de performance réseau de Bouygues Telecom. Identification des goulots d'étranglement et proposition de solutions pour améliorer la qualité de service.</p><p><strong>Technologies utilisées:</strong> Python, SQL, Analyse statistique.</p>`;
+            } else if (projectId === '4') {
+                projectDetails = `<h3>Application logistique Glovo</h3><p>Conception et développement d'une application pour optimiser le suivi des livraisons pour Glovo, améliorant l'efficacité et fournissant des statistiques clés sur l'activité.</p><p><strong>Technologies utilisées:</strong> .NET Core, C#, Azure, SQL Server.</p>`;
+            }
+
+            modalContentDiv.innerHTML = projectDetails;
+            modal.style.display = 'block';
+        });
+    });
+
+    if (closeModalSpan) {
+        closeModalSpan.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    }
+
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
