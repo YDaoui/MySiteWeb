@@ -377,3 +377,16 @@ window.addEventListener("load", () => {
         mainContent.style.opacity = "1";
     }, 200); // Déclenche la transition
 });
+// Correction écran bleu persistant
+const blueScreen = document.querySelector('.loading-screen, .blue-screen, .overlay');
+if (blueScreen) {
+    // Attendre un petit délai pour laisser le reste charger
+    setTimeout(() => {
+        blueScreen.style.opacity = '0';
+        blueScreen.style.pointerEvents = 'none';
+        blueScreen.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => {
+            blueScreen.style.display = 'none';
+        }, 500); // attendre la fin de la transition
+    }, 1000); // attendre 1 seconde après le chargement DOM
+}
