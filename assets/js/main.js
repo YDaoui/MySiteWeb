@@ -1,8 +1,3 @@
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
     // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -336,57 +331,3 @@ document.addEventListener('DOMContentLoaded', function () {
         return projects[projectId] || null;
     }
 });
-// Lancement de l'animation au chargement de la page
-window.addEventListener('DOMContentLoaded', () => {
-  const intro = document.getElementById('intro-animation');
-
-  // Masquer après 2 secondes
-  setTimeout(() => {
-    intro.classList.add('hide');
-  }, 2000);
-});
-
-// Fonction de relecture
-function replayIntroAnimation() {
-  const intro = document.getElementById('intro-animation');
-  intro.classList.remove('hide');
-  void intro.offsetWidth; // force le repaint
-  setTimeout(() => {
-    intro.classList.add('hide');
-  }, 2000);
-}
-
-// Clic sur logo ou titre
-document.querySelectorAll('.logo, .main-title').forEach(el => {
-  el.addEventListener('click', (e) => {
-    e.preventDefault();
-    replayIntroAnimation();
-  });
-});
-
-window.addEventListener("load", () => {
-    // Empêche l'écran bleu si le CSS cache le body par défaut
-    document.body.classList.add("loaded");
-
-    // Ajout d'une animation d'entrée générale si nécessaire
-    const mainContent = document.querySelector("main") || document.body;
-    mainContent.style.opacity = "0";
-    mainContent.style.transition = "opacity 1s ease";
-
-    setTimeout(() => {
-        mainContent.style.opacity = "1";
-    }, 200); // Déclenche la transition
-});
-// Correction écran bleu persistant
-const blueScreen = document.querySelector('.loading-screen, .blue-screen, .overlay');
-if (blueScreen) {
-    // Attendre un petit délai pour laisser le reste charger
-    setTimeout(() => {
-        blueScreen.style.opacity = '0';
-        blueScreen.style.pointerEvents = 'none';
-        blueScreen.style.transition = 'opacity 0.5s ease';
-        setTimeout(() => {
-            blueScreen.style.display = 'none';
-        }, 500); // attendre la fin de la transition
-    }, 1000); // attendre 1 seconde après le chargement DOM
-}
