@@ -282,6 +282,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 5000);
   }
 
+    const toggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.navbar ul');
+
+    toggle.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+    });
+
   // Floating animation delay randomization
   document.querySelectorAll('.floating').forEach(el => {
     el.style.animationDelay = `${Math.random() * 2}s`;
