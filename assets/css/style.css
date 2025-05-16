@@ -340,6 +340,27 @@ section {
     margin-bottom: 2rem;
     color: rgba(255, 255, 255, 0.7);
 }
+.tech-items-wrapper {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+}
+.tech-item {
+  flex: 0 0 auto;
+  text-align: center;
+  scroll-snap-align: start;
+}
+.tech-item i {
+  font-size: 2rem;
+  color: var(--accent-color);
+}
+.tech-item span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
 
 .skills {
     margin-top: 2rem;
