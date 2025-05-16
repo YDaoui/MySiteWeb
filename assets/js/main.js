@@ -1,3 +1,20 @@
+
+window.addEventListener("load", () => {
+    // Empêche l'écran bleu si le CSS cache le body par défaut
+    document.body.classList.add("loaded");
+
+    // Ajout d'une animation d'entrée générale si nécessaire
+    const mainContent = document.querySelector("main") || document.body;
+    mainContent.style.opacity = "0";
+    mainContent.style.transition = "opacity 1s ease";
+
+    setTimeout(() => {
+        mainContent.style.opacity = "1";
+    }, 200); // Déclenche la transition
+});
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
