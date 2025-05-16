@@ -1385,4 +1385,10 @@ html {
     transition: opacity 1s ease, visibility 1s ease;
 }
 
+.services-grid .card:hover,
+.projects-grid .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
 
