@@ -80,171 +80,120 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Project image carousel - Version corrigée
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Project image carousel - Version complètement révisée
-document.querySelectorAll('.project-card').forEach(card => {
-  // Initialisation du carrousel d'images
-  const initCarousel = (gallery) => {
-    const container = gallery.querySelector('.gallery-container');
-    const slides = gallery.querySelectorAll('.gallery-slide');
-    const prevBtn = gallery.querySelector('.prev');
-    const nextBtn = gallery.querySelector('.next');
-    const counter = gallery.querySelector('.slide-counter');
-
-    if (!container || !slides.length) return;
-
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-
-    const updateCarousel = () => {
-      container.style.transform = `translateX(-${currentIndex * 100}%)`;
-      
-      if (counter) {
-        counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-      }
-      
-      slides.forEach((slide, index) => {
-        slide.classList.toggle('active', index === currentIndex);
-      });
-    };
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        updateCarousel();
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateCarousel();
-      });
-    }
-
-    // Gestion du swipe tactile
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    container.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    container.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-
-    const handleSwipe = () => {
-      if (Math.abs(touchEndX - touchStartX) > 50) {
-        if (touchEndX < touchStartX) {
-          currentIndex = (currentIndex + 1) % totalSlides;
-        } else {
-          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        }
-        updateCarousel();
-      }
-    };
-
-    // Configuration initiale
-    container.style.width = `${totalSlides * 100}%`;
-    slides.forEach(slide => {
-      slide.style.width = `${100 / totalSlides}%`;
-    });
-
-    updateCarousel();
-  };
-
-  // Initialisation de la modal des détails
-  const initDetailsModal = (card) => {
-    const detailsBtn = card.querySelector('.details-btn');
+  // Project image carousel & modal
+  document.querySelectorAll('.project-card').forEach(card => {
+    const gallery = card.querySelector('.project-gallery');
+    const slides = card.querySelectorAll('.gallery-slide');
+    const container = card.querySelector('.gallery-container');
+    const prevBtn = card.querySelector('.prev');
+    const nextBtn = card.querySelector('.next');
+    const counter = card.querySelector('.slide-counter');
     const modal = card.querySelector('.project-modal');
+    const detailsBtn = card.querySelector('.details-btn');
     const closeBtn = modal?.querySelector('.close-modal');
 
-    if (!detailsBtn || !modal) return;
+    if (gallery && container && slides.length) {
+      let currentIndex = 0;
+      const totalSlides = slides.length;
 
-    detailsBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      // Fermer toutes les autres modales ouvertes
-      document.querySelectorAll('.project-modal').forEach(m => {
-        if (m !== modal) m.classList.remove('active');
-      });
-      
-      // Ouvrir la modale actuelle
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
+      const updateCarousel = () => {
+        container.style.transform = `translateX(-${currentIndex * 100}%)`;
+        slides.forEach((slide, index) => {
+          slide.classList.toggle('active', index === currentIndex);
+        });
+        if (counter) {
+          counter.textContent = `${currentIndex + 1}/${totalSlides}`;
+        }
+      };
 
-    if (closeBtn) {
-      closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
+      if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+          updateCarousel();
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentIndex = (currentIndex + 1) % totalSlides;
+          updateCarousel();
+        });
+      }
+
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      container.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (Math.abs(touchEndX - touchStartX) > 50) {
+          if (touchEndX < touchStartX) {
+            currentIndex = (currentIndex + 1) % totalSlides;
+          } else {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+          }
+          updateCarousel();
+        }
+      }, { passive: true });
+
+      container.style.width = `${totalSlides * 100}%`;
+      slides.forEach(slide => {
+        slide.style.width = `${100 / totalSlides}%`;
       });
+
+      updateCarousel();
     }
 
-    // Fermer la modale en cliquant à l'extérieur
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  };
+    if (detailsBtn && modal) {
+      detailsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        document.querySelectorAll('.project-modal.active').forEach(m => {
+          if (m !== modal) m.classList.remove('active');
+        });
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
 
-  // Initialiser les composants pour chaque carte
-  const gallery = card.querySelector('.project-gallery');
-  if (gallery) initCarousel(gallery);
-  
-  initDetailsModal(card);
-});
-
-// Fonction pour afficher les détails du projet
-function showProjectDetails(projectId) {
-  const detailsElement = document.getElementById(projectId);
-  if (detailsElement) {
-    // Fermer tous les autres détails ouverts
-    document.querySelectorAll('.project-details').forEach(details => {
-      if (details.id !== projectId) {
-        details.classList.remove('active');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        });
       }
-    });
-    
-    // Basculer l'état actuel
-    detailsElement.classList.toggle('active');
-    
-    // Faire défiler jusqu'aux détails si on les ouvre
-    if (detailsElement.classList.contains('active')) {
-      detailsElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  });
+
+  // Show project details by ID
+  function showProjectDetails(projectId) {
+    const detailsElement = document.getElementById(projectId);
+    if (detailsElement) {
+      document.querySelectorAll('.project-details').forEach(details => {
+        if (details.id !== projectId) {
+          details.classList.remove('active');
+        }
+      });
+
+      detailsElement.classList.toggle('active');
+
+      if (detailsElement.classList.contains('active')) {
+        detailsElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     }
   }
-}
 
   // Scroll animations
   const animateOnScroll = () => {
@@ -267,7 +216,6 @@ function showProjectDetails(projectId) {
     }
   };
 
-  // Initial styles for animated elements
   document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
@@ -338,137 +286,4 @@ function showProjectDetails(projectId) {
   document.querySelectorAll('.floating').forEach(el => {
     el.style.animationDelay = `${Math.random() * 2}s`;
   });
-
-  // IntersectionObserver for data-animate
-  const animatedElements = document.querySelectorAll('[data-animate]');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  animatedElements.forEach(el => observer.observe(el));
-
-  // GSAP ScrollTrigger Animation
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const navLinks = document.querySelectorAll('.navbar ul li a');
-    navLinks.forEach(link => {
-      link.addEventListener('mouseenter', () => {
-        gsap.to(link, { y: -3, duration: 0.3, ease: "power2.out" });
-      });
-
-      link.addEventListener('mouseleave', () => {
-        gsap.to(link, { y: 0, duration: 0.3, ease: "power2.out" });
-      });
-
-      link.addEventListener('click', e => {
-        const href = link.getAttribute('href');
-        const targetElement = document.querySelector(href);
-        if (!targetElement) return;
-
-        e.preventDefault();
-        gsap.to(link, {
-          y: 3,
-          duration: 0.1,
-          ease: "power2.out",
-          onComplete: () => {
-            gsap.to(link, { y: 0, duration: 0.3 });
-            const offset = document.querySelector('.header').offsetHeight || 0;
-            window.scrollTo({
-              top: targetElement.offsetTop - offset,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-    });
-  }
-
-  // Mobile menu toggle
-  const mobileToggle = document.querySelector('.mobile-menu-toggle');
-  const navbar = document.querySelector('.navbar');
-  if (mobileToggle && navbar) {
-    mobileToggle.addEventListener('click', () => {
-      navbar.classList.toggle('active');
-      navbar.classList.toggle('open');
-    });
-  }
-
-  // Close mobile menu on nav link click
-  document.querySelectorAll('.navbar a').forEach(link => {
-    link.addEventListener('click', () => {
-      if (navbar && navbar.classList.contains('open')) {
-        navbar.classList.remove('active');
-        navbar.classList.remove('open');
-      }
-    });
-  });
-});
-
-const toggleButton = document.querySelector('.mobile-menu-toggle');
-const navbar = document.querySelector('.navbar');
-
-if (toggleButton && navbar) {
-  toggleButton.addEventListener('click', () => {
-    navbar.classList.toggle('active');
-  });
-}
-
-window.addEventListener('scroll', function () {
-  const header = document.querySelector('.header');
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-});
-
-function toggleServiceDetails(id) {
-  const details = document.getElementById(id);
-  if (details) {
-    details.classList.toggle('active');
-    const arrow = details.previousElementSibling?.querySelector('.service-arrow');
-    arrow?.classList.toggle('rotate');
-  }
-}
-
-// Script pour le défilement horizontal des technologies
-document.addEventListener('DOMContentLoaded', function () {
-  const techScrollContainer = document.querySelector('.tech-scroll-container');
-  const techItemsWrapper = document.querySelector('.tech-items-wrapper');
-  const leftScrollBtn = document.querySelector('.left-scroll-btn');
-  const rightScrollBtn = document.querySelector('.right-scroll-btn');
-
-  if (techScrollContainer && techItemsWrapper && leftScrollBtn && rightScrollBtn) {
-    leftScrollBtn.addEventListener('click', () => {
-      techScrollContainer.scrollLeft -= 100; // Ajustez la valeur du défilement selon vos besoins
-    });
-
-    rightScrollBtn.addEventListener('click', () => {
-      techScrollContainer.scrollLeft += 100; // Ajustez la valeur du défilement selon vos besoins
-    });
-
-    // Gestion de l'affichage des boutons de défilement en fonction de la position
-    const updateScrollButtons = () => {
-      if (techScrollContainer.scrollLeft === 0) {
-        leftScrollBtn.style.visibility = 'hidden';
-      } else {
-        leftScrollBtn.style.visibility = 'visible';
-      }
-
-      if (techScrollContainer.scrollLeft + techScrollContainer.offsetWidth >= techItemsWrapper.offsetWidth) {
-        rightScrollBtn.style.visibility = 'hidden';
-      } else {
-        rightScrollBtn.style.visibility = 'visible';
-      }
-    };
-
-    techScrollContainer.addEventListener('scroll', updateScrollButtons);
-    updateScrollButtons(); // Appel initial pour configurer l'état des boutons
-  }
 });
