@@ -99,62 +99,103 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Project image carousel
+    // Project image carousel and details modal
     document.querySelectorAll('.project-card').forEach(card => {
+        // Image carousel logic
         const gallery = card.querySelector('.project-gallery');
         const container = gallery?.querySelector('.gallery-container');
         const slides = gallery?.querySelectorAll('.gallery-slide');
         const prevBtn = gallery?.querySelector('.project-nav.prev');
         const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
+        const projectId = card.getAttribute('data-project-id'); // Assuming you add this to each project card
 
-        if (!container || !slides?.length || !prevBtn || !nextBtn || !counter) return;
+        if (container && slides?.length && prevBtn && nextBtn && counter) {
+            let currentIndex = 0;
+            const totalSlides = slides.length;
 
-        let currentIndex = 0;
-        const totalSlides = slides.length;
+            const updateCarousel = () => {
+                container.style.transform = `translateX(-${currentIndex * 100}%)`;
+                counter.textContent = `${currentIndex + 1}/${totalSlides}`;
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentIndex);
+                });
+            };
 
-        const updateCarousel = () => {
-            container.style.transform = `translateX(-${currentIndex * 100}%)`;
-            counter.textContent = `${currentIndex + 1}/${totalSlides}`;
-            slides.forEach((slide, index) => {
-                slide.classList.toggle('active', index === currentIndex);
-            });
-        };
-
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            updateCarousel();
-        });
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        container.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        container.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-
-        const handleSwipe = () => {
-            if (Math.abs(touchEndX - touchStartX) > 50) {
-                currentIndex = touchEndX < touchStartX ? (currentIndex + 1) % totalSlides : (currentIndex - 1 + totalSlides) % totalSlides;
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 updateCarousel();
-            }
-        };
+            });
 
-        container.style.width = `${totalSlides * 100}%`;
-        slides.forEach(slide => {
-            slide.style.width = `${100 / totalSlides}%`;
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            container.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            container.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            const handleSwipe = () => {
+                if (Math.abs(touchEndX - touchStartX) > 50) {
+                    currentIndex = touchEndX < touchStartX ? (currentIndex + 1) % totalSlides : (currentIndex - 1 + totalSlides) % totalSlides;
+                    updateCarousel();
+                }
+            };
+
+            container.style.width = `${totalSlides * 100}%`;
+            slides.forEach(slide => {
+                slide.style.width = `${100 / totalSlides}%`;
+            });
+            updateCarousel();
+        }
+
+        // Modal for project details
+        const detailsLink = card.querySelector('.project-links .project-details-btn');
+        const modal = document.getElementById('projectModal');
+        const modalTitle = modal?.querySelector('.modal-title');
+        const modalDescription = modal?.querySelector('.modal-description');
+        const modalDetailsContent = modal?.querySelector('.modal-details-content');
+        const modalClose = modal?.querySelector('.modal-close');
+
+        detailsLink?.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (modal && modalTitle && modalDescription && modalDetailsContent && projectId) {
+                const projectData = getProjectDetails(projectId); // Implement this function
+
+                if (projectData) {
+                    modalTitle.textContent = projectData.name;
+                    modalDescription.textContent = projectData.description;
+                    modalDetailsContent.innerHTML = projectData.detailsHTML || '<p>Plus de détails disponibles prochainement.</p>';
+                    modal.style.display = 'block';
+                } else {
+                    console.error(`Project details not found for ID: ${projectId}`);
+                    // Optionally display a message to the user
+                }
+            }
         });
-        updateCarousel();
+
+        if (modalClose && modal) {
+            modalClose.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        }
+
+        if (modal) {
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
     });
 
     // Scroll animations
@@ -319,4 +360,23 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Function to fetch project details (you need to implement this)
+    function getProjectDetails(id) {
+        // Replace this with your actual data fetching logic
+        const projectsDetails = {
+            "1": {
+                name: "Projet Alpha",
+                description: "Description courte du projet Alpha.",
+                detailsHTML: "<p>Détails complets du projet Alpha...</p><ul><li>Technologie A</li><li>Technologie B</li></ul>"
+            },
+            "2": {
+                name: "Projet Beta",
+                description: "Description courte du projet Beta.",
+                detailsHTML: "<p>Détails complets du projet Beta...</p><ol><li>Étape 1</li><li>Étape 2</li></ol>"
+            },
+            // Add details for other projects based on their 'data-project-id'
+        };
+        return projectsDetails[id];
+    }
 });
