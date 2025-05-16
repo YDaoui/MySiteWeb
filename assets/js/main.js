@@ -331,3 +331,27 @@ document.addEventListener('DOMContentLoaded', function () {
         return projects[projectId] || null;
     }
 });
+// Lancement de l'animation au chargement de la page
+window.addEventListener('DOMContentLoaded', () => {
+  const intro = document.getElementById('intro-animation');
+  intro.classList.remove('replay-animation'); // Réinitialise si besoin
+});
+
+// Fonction pour rejouer l'animation
+function replayIntroAnimation() {
+  const intro = document.getElementById('intro-animation');
+  intro.classList.remove('replay-animation'); // Reset
+  void intro.offsetWidth; // Forcer le repaint
+  intro.classList.add('replay-animation');
+  setTimeout(() => {
+    intro.classList.remove('replay-animation');
+  }, 2000); // Doit correspondre à la durée de l'animation
+}
+
+// Cible ton logo et ton titre
+document.querySelectorAll('.logo, .main-title').forEach(el => {
+  el.addEventListener('click', () => {
+    replayIntroAnimation();
+  });
+});
+
