@@ -287,3 +287,28 @@ document.addEventListener('DOMContentLoaded', () => {
     el.style.animationDelay = `${Math.random() * 2}s`;
   });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".project-card");
+
+    filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const filter = button.getAttribute("data-filter");
+
+            // Supprimer la classe active de tous les boutons
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            // Filtrer les cartes
+            projectCards.forEach(card => {
+                const category = card.getAttribute("data-category");
+                if (filter === "all" || category === filter) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    });
+});
+
