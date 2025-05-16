@@ -712,7 +712,7 @@ section {
 
 .tech-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Adjusted minmax for better responsiveness */
     gap: 1.5rem;
 }
 
@@ -871,7 +871,6 @@ footer a:hover {
     .navbar ul li a::after {
         content: none;
     }
-}
 
     .about .container {
         grid-template-columns: 1fr;
@@ -895,13 +894,18 @@ footer a:hover {
     }
 
     .services-grid,
-    .projects-grid {
+    .projects-grid,
+    .tech-grid { /* Ajout de tech-grid pour la responsiveness mobile */
         grid-template-columns: 1fr;
     }
 
     .service-card,
     .project-card {
         padding: 1.5rem;
+    }
+
+    .project-gallery {
+        height: 200px; /* Adjust height for smaller screens */
     }
 }
 
@@ -1007,7 +1011,7 @@ footer a:hover {
 .modal-close {
     position: absolute;
     right: 20px;
-    top: 20px;
+    top:20px;
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
