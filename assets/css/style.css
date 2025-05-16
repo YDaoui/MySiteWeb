@@ -1100,6 +1100,27 @@ footer a:hover {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
 }
+.modal-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.modal-gallery img {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.modal-gallery img:hover {
+    transform: scale(1.05);
+}
+
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
