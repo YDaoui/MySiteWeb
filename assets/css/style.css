@@ -1053,7 +1053,32 @@ footer a:hover {
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
 }
+/* Dans votre fichier style.css */
+.service-header ion-icon {
+    font-size: 2rem;
+    color: #3a86ff; /* Couleur bleue - ajustez selon votre thème */
+    margin-right: 15px;
+    vertical-align: middle;
+}
 
+.service-arrow {
+    margin-left: auto; /* Pour pousser la flèche à droite */
+    transition: transform 0.3s ease;
+}
+
+.service-card.active .service-arrow {
+    transform: rotate(180deg);
+}
+
+/* Animation au survol */
+.service-header:hover ion-icon {
+    animation: bounce 0.5s;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
