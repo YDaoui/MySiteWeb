@@ -11,21 +11,6 @@
     --warning: #ffbe0b;
     --danger: #ef476f;
 }
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
-body {
-    background: #001f3f; /* ou ton bleu foncé */
-    overflow-x: hidden;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-body.loaded {
-    opacity: 1;
-}
-
-main {
-    transition: opacity 1s ease;
-}
 
 /* Reset de base pour éviter les marges et paddings par défaut */
 *,
