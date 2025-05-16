@@ -316,6 +316,105 @@ section {
   font-size: 2.5rem;
   color: var(--primary);
 }
+/* Correction des marges pour toutes les sections */
+.about .container,
+.services .container,
+.projects .container,
+.contact .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* Section About spécifique */
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.about-img {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.about-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Technologies scroll - Correction des marges */
+.tech-section {
+    width: 100%;
+    margin-top: 2rem;
+    overflow: hidden;
+}
+
+.tech-items-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+}
+
+/* Services Grid - Correction des marges */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+}
+
+/* Projects Grid - Correction des marges */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .about .container,
+    .services .container,
+    .projects .container {
+        width: 95%;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .about-img, 
+    .about-text {
+        width: 100%;
+    }
+    
+    .services-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tech-items-wrapper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
 
 .about-text p {
   margin-bottom: 2rem;
