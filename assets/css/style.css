@@ -322,9 +322,10 @@ section {
 }
 
 .about-img img {
-    width: 100%;
+    width: 70%;
     height: auto;
     display: block;
+    margin: 0 auto;
     transition: transform 0.5s ease;
 }
 
@@ -341,12 +342,28 @@ section {
     color: rgba(255, 255, 255, 0.7);
 }
 .tech-items-wrapper {
-  display: flex;
-  overflow-x: auto;
-  gap: 1rem;
-  scroll-behavior: smooth;
-  padding: 1rem 0;
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+    scrollbar-width: thin; /* pour Firefox */
+    scrollbar-color: var(--primary) transparent;
 }
+
+.tech-items-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.tech-items-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tech-items-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 10px;
+}
+
 .tech-item {
   flex: 0 0 auto;
   text-align: center;
