@@ -55,21 +55,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             projectCards.forEach(card => {
                 const match = filterValue === 'all' || card.getAttribute('data-category') === filterValue;
-                if (match) {
-                    card.style.display = 'block';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                        card.style.visibility = 'visible';
-                    }, 50);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                        card.style.visibility = 'hidden';
-                    }, 300);
-                }
+                card.style.display = match ? 'block' : 'none';
+                setTimeout(() => {
+                    card.style.opacity = match ? '1' : '0';
+                    card.style.transform = match ? 'translateY(0)' : 'translateY(20px)';
+                    card.style.visibility = match ? 'visible' : 'hidden';
+                }, match ? 50 : 0);
             });
         });
     });
@@ -117,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const nextBtn = gallery?.querySelector('.project-nav.next');
         const counter = card.querySelector('.slide-counter');
 
-        if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
+        if (!container || !slides?.length || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
         const totalSlides = slides.length;
@@ -154,11 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const handleSwipe = () => {
             if (Math.abs(touchEndX - touchStartX) > 50) {
-                if (touchEndX < touchStartX) {
-                    currentIndex = (currentIndex + 1) % totalSlides;
-                } else {
-                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                }
+                currentIndex = touchEndX < touchStartX ? (currentIndex + 1) % totalSlides : (currentIndex - 1 + totalSlides) % totalSlides;
                 updateCarousel();
             }
         };
