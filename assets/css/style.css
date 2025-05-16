@@ -371,7 +371,31 @@ section {
 .about-img .btn-about:hover {
   background-color: var(--accent-hover);
 }
+/* Style pour la section About réorganisée */
+.about-content.reversed {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 2rem;
+}
 
+.about-content.reversed .about-text {
+    flex: 1;
+}
+
+.about-content.reversed .about-img {
+    flex: 1;
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .about-content.reversed {
+        flex-direction: column;
+    }
+    .about-content.reversed .about-img {
+        text-align: center;
+    }
+}
 /* Scroll horizontal technologies */
 .tech-items-wrapper {
   display: flex;
