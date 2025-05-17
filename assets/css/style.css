@@ -12,7 +12,7 @@
     --danger: #ef476f;
 }
 
-/* Reset de base pour éviter les marges et paddings par défaut */
+/* Reset et styles de base inchangés */
 *,
 *::before,
 *::after {
@@ -26,8 +26,82 @@ body {
     line-height: 1.7;
     color: var(--light);
     background-color: var(--dark);
-    overflow-x: hidden; /* Empêche le défilement horizontal indésirable */
+    overflow-x: hidden;
 }
+
+/* Correction pour le scroll vers les ancres */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Compense la hauteur du header fixe */
+}
+
+section {
+  scroll-margin-top: 100px; /* Même valeur que scroll-padding-top */
+}
+
+/* Pattern de fond pour les sections spécifiées */
+.hero::before,
+.services::before,
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    z-index: 0;
+    opacity: 0.5;
+}
+
+/* Ajustements pour les sections avec fond */
+.hero,
+.services,
+.contact {
+    position: relative;
+    overflow: hidden;
+}
+
+/* S'assurer que le contenu est au-dessus du fond */
+.hero .container,
+.services .container,
+.contact .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Correction spécifique pour le bouton "Voir mes projets" */
+.hero .btn[href="#projects"] {
+    position: relative;
+    z-index: 2;
+}
+
+/* Styles existants inchangés à partir d'ici... */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+section {
+    padding: 6rem 0;
+}
+
+.header {
+    background-color: rgba(26, 26, 46, 0.9);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    height: 80px; /* Hauteur explicite pour le header */
+}
+
+/* ... (tous vos autres styles existants restent inchangés) ... */
+
+/* Responsive adjustments */
+
 
 /* Typographie */
 h1,
@@ -1474,4 +1548,19 @@ section {
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
+}
+@media (max-width: 768px) {
+    html {
+        scroll-padding-top: 70px; /* Ajustement pour mobile */
+    }
+    
+    section {
+        scroll-margin-top: 70px; /* Ajustement pour mobile */
+    }
+    
+    .header {
+        height: 70px; /* Hauteur réduite sur mobile */
+    }
+    
+    /* ... (autres styles responsive existants) ... */
 }
