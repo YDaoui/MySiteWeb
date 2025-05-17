@@ -309,14 +309,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             "3": {
-                title: "Bot de collecte de données",
-                description: "Automatisation de la récupération de données via Selenium (Python).",
+                title: "Managment AccorHotels",
+                description: "Automatisation de demandes de congés planification via Selenium (Python).",
                 fullDetails: "Développement d'un robot RPA pour automatiser la collecte quotidienne de données sur plusieurs sites web. Le bot navigue de manière autonome, remplit des formulaires, extrait des données structurées et les enregistre dans une base de données SQL. Une interface de monitoring permet de suivre l'exécution des tâches.",
                 technologies: ["Python", "Selenium", "SQL", "Pandas"],
                 images: [
-                    { src: "assets/img/project2.jpg", alt: "Bot RPA" },
-                    { src: "assets/img/project2_detail1.jpg", alt: "Code du bot" },
-                    { src: "assets/img/project2_detail2.jpg", alt: "Résultats" }
+                    { src: "assets/img/AccorHotels1.PNG", alt: "Bot RPA" },
+			 { src: "assets/img/AccorHotels2.PNG", alt: "Bot RPA" },
+			 { src: "assets/img/AccorHotels3.PNG", alt: "Bot RPA" },
+			 { src: "assets/img/AccorHotels4.PNG", alt: "Bot RPA" },
+			 { src: "assets/img/AccorHotels5.PNG", alt: "Bot RPA" },
+			 { src: "assets/img/AccorHotels6.PNG", alt: "Bot RPA" },
+			 { src: "assets/img/AccorHotels7.PNG", alt: "Bot RPA" }
+		
                 ]
             },
             "4": {
