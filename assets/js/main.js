@@ -280,24 +280,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-    
     // Sample project data - replace with your actual project data
     function getProjectData(projectId) {
         const projects = {
@@ -314,10 +296,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             "2": {
-                title: "Bot de collecte de données",
-                description: "Automatisation de la récupération de données via Selenium (Python).",
-                fullDetails: "Développement d'un robot RPA pour automatiser la collecte quotidienne de données sur plusieurs sites web. Le bot navigue de manière autonome, remplit des formulaires, extrait des données structurées et les enregistre dans une base de données SQL. Une interface de monitoring permet de suivre l'exécution des tâches.",
-                technologies: ["Python", "Selenium", "SQL", "Pandas"],
+                title: "Plannification des ressources",
+                description: "Automatisation du process de la planification .",
+                fullDetails: "Développement d'un outils de planification à l aide de VBScript , Python avant de starnséfrer les données vers des bases SQL grace au robot RPA pour automatiser la collecte quotidienne de données sur plusieurs sites web. Le bot navigue de manière autonome, remplit des formulaires, extrait des données structurées et les enregistre dans une base de données SQL. Une interface de monitoring permet de suivre l'exécution des tâches.",
+                technologies: [ "VBScript","Python" ,"Pandas", "SQL"],
                 images: [
 		    { src: "assets/img/Planning_VBA4.PNG", alt: "Sheduler Manager" },
                     { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
