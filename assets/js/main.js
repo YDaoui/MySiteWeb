@@ -281,8 +281,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Sample project data - replace with your actual project data
     function getProjectData(projectId) {
-    const projects = {
-        "1": {
+        const projects = {
+            "1": {
             title: "Dashboard de ventes",
             description: "Visualisation interactive des performances commerciales avec Power BI.",
             fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente. J'ai utilisé Power BI pour connecter plusieurs sources de données, créer des mesures DAX complexes et développer des visualisations interactives qui permettent aux utilisateurs de filtrer et explorer les données selon différents axes.",
@@ -298,7 +298,6 @@ document.addEventListener('DOMContentLoaded', function () {
             fullDetails: "Ce projet VBA permet une gestion dynamique des plannings avec différents niveaux d’accès. Il offre une vision détaillée des équipes et des agents, permettant une réorganisation fluide et automatisée du personnel selon les contraintes de chaque équipe.",
             technologies: ["Excel", "VBA", "WinForms", "Access"],
             images: [
-                { src: "assets/img/Planning_VBA4.PNG", alt: "Vision Manager" }
                 { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
                 { src: "assets/img/Planning_VBA1.PNG", alt: "Code Planning" },
                 { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Agent" },
@@ -340,8 +339,7 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         }
     };
-
-    return projects[projectId] || null;
-}
-
+        
+        return projects[projectId] || null;
+    }
 });
