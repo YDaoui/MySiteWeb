@@ -123,7 +123,7 @@ section {
 }
 
 .navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(26, 26, 46, 0.85);
 }
 
 .navbar ul {
@@ -142,6 +142,7 @@ section {
     transition: all 0.3s ease;
     position: relative;
     padding: 0.5rem 0;
+    transition: color 0.3s ease;
 }
 
 .navbar ul li a::after {
@@ -179,7 +180,7 @@ section {
 
 .mobile-menu-toggle .hamburger-line {
     display: block;
-    width: 100%;
+    width: 30px;
     height: 3px;
     background: var(--light);
     position: absolute;
