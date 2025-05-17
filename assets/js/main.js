@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 fullDetails: "Développement d'un robot RPA pour automatiser la collecte quotidienne de données sur plusieurs sites web. Le bot navigue de manière autonome, remplit des formulaires, extrait des données structurées et les enregistre dans une base de données SQL. Une interface de monitoring permet de suivre l'exécution des tâches.",
                 technologies: ["Python", "Selenium", "SQL", "Pandas"],
                 images: [
-				    { src: "assets/img/Planning_VBA3.PNG", alt: "Sheduler Manager" },
+		    { src: "assets/img/Planning_VBA4.PNG", alt: "Sheduler Manager" },
                     { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
                     { src: "assets/img/Planning_VBA1.PNG", alt: "Code Planning" },
                     { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Agent" },
