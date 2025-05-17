@@ -295,72 +295,87 @@ section {
     }
 }
 
-/* Hero Section */
-:root {
-  --hero-bg: linear-gradient(135deg, var(--darker), var(--dark));
-  --glass-bg: rgba(26, 26, 46, 0.3);
-  --glass-border: rgba(58, 134, 255, 0.1);
-  --glass-shadow: rgba(0, 0, 0, 0.2);
-  --text-gradient: linear-gradient(90deg, var(--primary), var(--secondary));
-  --text-color: rgba(230, 241, 255, 0.9);
-}
-
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 5%;
-  position: relative;
-  overflow: hidden;
-  background: var(--hero-bg);
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('data:image/svg+xml;base64,...') no-repeat center/cover;
-  opacity: 0.3;
-  z-index: 0;
-}
-
+/* Animation pour la section hero */
 .hero .container {
-  max-width: 1200px;
-  width: 100%;
-  padding: 2rem;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 10px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 10px 30px var(--glass-shadow);
-  position: relative;
-  z-index: 2;
-}
-
-.hero-content {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: heroEntrance 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 0.3s;
 }
 
 .hero h1 {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-  background: var(--text-gradient);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: gradientFlow 8s ease-in-out infinite;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% auto;
+    animation: gradientFlow 8s ease-in-out infinite;
 }
 
 .hero p {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  margin-bottom: 2.5rem;
-  color: var(--text-color);
-  animation: fadeIn 0.8s ease-out forwards 0.4s;
-  opacity: 0;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+
+
+/* Définitions des keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes shine {
+    to {
+        transform: translateY(-100%) rotate(15deg);
+    }
+}
+
+/* Effet de fond animé optionnel */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(58, 134, 255, 0.1) 0%, transparent 70%);
+    animation: pulse 12s infinite alternate;
+    z-index: 0;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.5; }
+    100% { transform: scale(1.05); opacity: 0.8; }
 }
 
 .hero .btn {
