@@ -1461,6 +1461,15 @@ footer a:hover {
 .modal-gallery img:hover {
     transform: scale(1.05);
 }
+/* Correction pour le scroll vers les ancres */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Compense la hauteur du header fixe */
+}
+
+section {
+  scroll-margin-top: 100px; /* Même valeur que scroll-padding-top */
+}
 
 /* Smooth scrolling */
 html {
