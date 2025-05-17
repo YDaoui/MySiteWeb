@@ -365,3 +365,28 @@ document.addEventListener('DOMContentLoaded', function () {
         return projects[projectId] || null;
     }
 });
+
+function createParticles() {
+  const container = document.querySelector('.hero-particles');
+  const count = 20;
+
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    
+    const size = 2 + Math.random() * 4;
+    Object.assign(p.style, {
+      width: `${size}px`,
+      height: `${size}px`,
+      left: `${Math.random() * 100}%`,
+      bottom: `-10px`,
+      animationDuration: `${10 + Math.random() * 10}s`,
+      animationDelay: `${Math.random() * 5}s`,
+    });
+
+    container.appendChild(p);
+  }
+}
+
+window.addEventListener('load', createParticles);
+
