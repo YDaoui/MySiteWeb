@@ -6,6 +6,7 @@
     --darker: #16213e;
     --light: #e6f1ff;
     --gray: #4a4e69;
+    --white-color: #ffffff;
     --light-gray: #f8f9fa;
     --success: #06d6a0;
     --warning: #ffbe0b;
@@ -250,7 +251,7 @@ section {
 
 .navbar ul li a {
     text-decoration: none;
-    color: var(--light);
+    color: --white-color;
     font-weight: 600;
     transition: all 0.3s ease;
     position: relative;
