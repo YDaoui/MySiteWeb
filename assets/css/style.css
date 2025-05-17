@@ -123,7 +123,7 @@ section {
 }
 
 .navbar.scrolled {
-    background-color: rgba(26, 26, 46, 0.85);
+    background-color: rgba(26, 26, 46, 0.85); /* ou rgba(0, 0, 0, 0.85) */
 }
 
 .navbar ul {
@@ -137,7 +137,7 @@ section {
 
 .navbar ul li a {
     text-decoration: none;
-    color: var(--light);
+    color: #3a86ff!important;
     font-weight: 600;
     transition: all 0.3s ease;
     position: relative;
@@ -159,9 +159,12 @@ section {
 .navbar ul li a:hover::after {
     width: 100%;
 }
+.navbar ul li a {
+    transition: color 0.3s ease;
+}
 
 .navbar ul li a:hover {
-    color: var(--primary);
+    color: var(--light)
 }
 
 /* Mobile menu toggle - Version améliorée avec animation */
