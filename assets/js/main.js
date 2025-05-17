@@ -315,12 +315,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 technologies: ["Python", "Selenium", "SQL", "Pandas"],
                 images: [
                     { src: "assets/img/AccorHotels1.PNG", alt: "Bot RPA" },
-			 { src: "assets/img/AccorHotels2.PNG", alt: "Bot RPA" },
-			 { src: "assets/img/AccorHotels3.PNG", alt: "Bot RPA" },
-			 { src: "assets/img/AccorHotels4.PNG", alt: "Bot RPA" },
-			 { src: "assets/img/AccorHotels5.PNG", alt: "Bot RPA" },
-			 { src: "assets/img/AccorHotels6.PNG", alt: "Bot RPA" },
-			 { src: "assets/img/AccorHotels7.PNG", alt: "Bot RPA" }
+			 { src: "assets/img/AccorHotels2.PNG", alt: "Bot-" },
+			 { src: "assets/img/AccorHotels3.PNG", alt: "Bot- RPA" },
+			 { src: "assets/img/AccorHotels4.PNG", alt: "Bot? RPA" },
+			 { src: "assets/img/AccorHotels5.PNG", alt: "Bot. RPA" },
+			 { src: "assets/img/AccorHotels6.PNG", alt: "Bot , RPA" },
+			 { src: "assets/img/AccorHotels7.PNG", alt: "Bot _RPA" }
 		
                 ]
             },
