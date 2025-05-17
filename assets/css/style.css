@@ -528,7 +528,8 @@ section {
 
 /* Section À propos */
 .about {
-  background-color: var(--darker);
+  background-color: linear-gradient(135deg, rgba(58, 134, 255, 0.3), rgba(131, 56, 236, 0.3));
+    
   padding: 100px 0;
   position: relative;
 }
