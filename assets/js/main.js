@@ -281,53 +281,67 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Sample project data - replace with your actual project data
     function getProjectData(projectId) {
-        const projects = {
-            "1": {
-                title: "Dashboard de ventes",
-                description: "Visualisation interactive des performances commerciales avec Power BI.",
-                fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente. J'ai utilisé Power BI pour connecter plusieurs sources de données, créer des mesures DAX complexes et développer des visualisations interactives qui permettent aux utilisateurs de filtrer et explorer les données selon différents axes.",
-                technologies: ["Power BI", "DAX", "SQL", "Python"],
-                images: [
-                    { src: "assets/img/Dentale_Capture_screen_siteweb.jpg", alt: "Dashboard principal" },
-                    { src: "assets/img/Dentale_detail1.jpg", alt: "Détails du dashboard" }
-                ]
-            },
-            "2": {
-                title: "Bot de collecte de données",
-                description: "Automatisation de la récupération de données via Selenium (Python).",
-                fullDetails: "Développement d'un robot RPA pour automatiser la collecte quotidienne de données sur plusieurs sites web. Le bot navigue de manière autonome, remplit des formulaires, extrait des données structurées et les enregistre dans une base de données SQL. Une interface de monitoring permet de suivre l'exécution des tâches.",
-                technologies: ["Python", "Selenium", "SQL", "Pandas"],
-                images: [
-                    { src: "assets/img/project2.jpg", alt: "Interface du bot" },
-                    { src: "assets/img/project2_detail1.jpg", alt: "Code source" },
-                    { src: "assets/img/project2_detail2.jpg", alt: "Résultats" }
-                ]
-            },
-            "3": {
-                title: "Optimisation réseau Bouygues Telecom",
-                description: "Analyse des performances réseau et recommandations pour l'amélioration.",
-                fullDetails: "Projet complexe d'analyse des données réseau pour identifier les points faibles de couverture et proposer des solutions d'optimisation. J'ai développé des algorithmes de clustering pour catégoriser les zones problématiques et créé des visualisations géographiques interactives pour présenter les résultats.",
-                technologies: ["Python", "GeoPandas", "Tableau", "Spark"],
-                images: [
-                    { src: "assets/img/Byg_1.jpg", alt: "Dashboard principal" },
-                    { src: "assets/img/Byg_2.jpg", alt: "Architecture technique" },
-                    { src: "assets/img/Byg_3.jpg", alt: "Analyse des données" },
-                    { src: "assets/img/Byg_4.jpg", alt: "Résultats" }
-                ]
-            },
-            "4": {
-                title: "Application logistique Glovo",
-                description: "Optimisation du suivi des livraisons et amélioration des statistiques.",
-                fullDetails: "Développement d'une application interne pour optimiser la logistique des livraisons. L'outil permet de suivre en temps réel les performances des livreurs, d'optimiser les tournées et de générer des rapports analytiques pour identifier les opportunités d'amélioration.",
-                technologies: ["React", "Node.js", "MongoDB", "D3.js"],
-                images: [
-                    { src: "assets/img/Glovo1.PNG", alt: "Interface principale" },
-                    { src: "assets/img/Glovo2.PNG", alt: "Suivi des livraisons" },
-                    { src: "assets/img/Glovo3.PNG", alt: "Statistiques" }
-                ]
-            }
-        };
-        
-        return projects[projectId] || null;
-    }
+    const projects = {
+        "1": {
+            title: "Dashboard de ventes",
+            description: "Visualisation interactive des performances commerciales avec Power BI.",
+            fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente. J'ai utilisé Power BI pour connecter plusieurs sources de données, créer des mesures DAX complexes et développer des visualisations interactives qui permettent aux utilisateurs de filtrer et explorer les données selon différents axes.",
+            technologies: ["Power BI", "DAX", "SQL", "Python"],
+            images: [
+                { src: "assets/img/Dentale_Capture_screen_siteweb.jpg", alt: "Dashboard principal" },
+                { src: "assets/img/Dentale_detail1.jpg", alt: "Détails du dashboard" }
+            ]
+        },
+        "2": {
+            title: "Planning VBA",
+            description: "Outil de planification des équipes avec interfaces Manager/Agent.",
+            fullDetails: "Ce projet VBA permet une gestion dynamique des plannings avec différents niveaux d’accès. Il offre une vision détaillée des équipes et des agents, permettant une réorganisation fluide et automatisée du personnel selon les contraintes de chaque équipe.",
+            technologies: ["Excel", "VBA", "WinForms", "Access"],
+            images: [
+                { src: "assets/img/Planning_VBA4.PNG", alt: "Vision Manager" }
+                { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
+                { src: "assets/img/Planning_VBA1.PNG", alt: "Code Planning" },
+                { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Agent" },
+                { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
+            ]
+        },
+        "3": {
+            title: "Bot de collecte de données",
+            description: "Automatisation de la récupération de données via Selenium (Python).",
+            fullDetails: "Développement d'un robot RPA pour automatiser la collecte quotidienne de données sur plusieurs sites web. Le bot navigue de manière autonome, remplit des formulaires, extrait des données structurées et les enregistre dans une base de données SQL. Une interface de monitoring permet de suivre l'exécution des tâches.",
+            technologies: ["Python", "Selenium", "SQL", "Pandas"],
+            images: [
+                { src: "assets/img/project2.jpg", alt: "Interface du bot" },
+                { src: "assets/img/project2_detail1.jpg", alt: "Code source" },
+                { src: "assets/img/project2_detail2.jpg", alt: "Résultats" }
+            ]
+        },
+        "4": {
+            title: "Optimisation réseau Bouygues Telecom",
+            description: "Analyse des performances réseau et recommandations pour l'amélioration.",
+            fullDetails: "Projet complexe d'analyse des données réseau pour identifier les points faibles de couverture et proposer des solutions d'optimisation. J'ai développé des algorithmes de clustering pour catégoriser les zones problématiques et créé des visualisations géographiques interactives pour présenter les résultats.",
+            technologies: ["Python", "GeoPandas", "Tableau", "Spark"],
+            images: [
+                { src: "assets/img/Byg_1.jpg", alt: "Dashboard principal" },
+                { src: "assets/img/Byg_2.jpg", alt: "Architecture technique" },
+                { src: "assets/img/Byg_3.jpg", alt: "Analyse des données" },
+                { src: "assets/img/Byg_4.jpg", alt: "Résultats" }
+            ]
+        },
+        "5": {
+            title: "Application logistique Glovo",
+            description: "Optimisation du suivi des livraisons et amélioration des statistiques.",
+            fullDetails: "Développement d'une application interne pour optimiser la logistique des livraisons. L'outil permet de suivre en temps réel les performances des livreurs, d'optimiser les tournées et de générer des rapports analytiques pour identifier les opportunités d'amélioration.",
+            technologies: ["React", "Node.js", "MongoDB", "D3.js"],
+            images: [
+                { src: "assets/img/Glovo1.PNG", alt: "Interface principale" },
+                { src: "assets/img/Glovo2.PNG", alt: "Suivi des livraisons" },
+                { src: "assets/img/Glovo3.PNG", alt: "Statistiques" }
+            ]
+        }
+    };
+
+    return projects[projectId] || null;
+}
+
 });
