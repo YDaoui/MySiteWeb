@@ -289,10 +289,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente. J'ai utilisé Power BI pour connecter plusieurs sources de données, créer des mesures DAX complexes et développer des visualisations interactives qui permettent aux utilisateurs de filtrer et explorer les données selon différents axes.",
                 technologies: ["Power BI", "DAX", "SQL", "Python"],
                 images: [
-                    { src: "assets/img/Dentale_Capture_screen_siteweb.jpg", alt: "Dashboard principal" },
-                    { src: "assets/img/Dentale_Capture_screen_siteweb1.jpg", alt: "Dashboard Power BI " },
-                    { src: "assets/img/Dentale_Capture_screen_siteweb12.jpg", alt: "Dashboard Python" },
-                    { src: "assets/img/Dentale_Capture_screen_siteweb13.jpg", alt: "Dashboard Power BI - Python" }
+                    { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
+                    { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
+                    { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Python" },
+                    { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Power BI - Python" },
+		    { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
+	            { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" }
+			
                 ]
             },
             "2": {
