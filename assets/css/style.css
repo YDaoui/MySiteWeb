@@ -216,6 +216,7 @@ section {
 }
 
 /* Modifications pour le logo */
+/* Styles existants pour le logo */
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
@@ -223,12 +224,72 @@ section {
     text-decoration: none;
     display: flex;
     align-items: center;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Ajout de transitions douces */
+}
+
+.logo:hover {
+    opacity: 0.9; /* Légère atténuation au survol */
+    transform: scale(1.05); /* Léger agrandissement au survol */
 }
 
 .logo span {
     color: #3a86ff; /* Bleu ciel pour la partie droite */
     margin-left: 0.5rem;
+    transition: color 0.3s ease-in-out; /* Transition de couleur pour le span */
 }
+
+.logo:hover span {
+    color: var(--secondary); /* Changement de couleur du span au survol */
+}
+
+/* Animation subtile à l'arrivée (facultatif) */
+@keyframes logoEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header .container .logo { /* Cibler le logo dans le header */
+    animation: logoEntrance 0.5s ease-out; /* Appliquer l'animation à l'arrivée */
+}
+
+/* Animation de pulsation (facultatif) */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Appliquer l'animation de pulsation au logo (commenter/décommenter selon votre choix) */
+/* .logo {
+    animation: pulse 2s infinite alternate;
+} */
+
+/* Animation de rotation légère (facultatif) */
+@keyframes rotateLogo {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Appliquer l'animation de rotation au logo au survol (commenter/décommenter selon votre choix) */
+/* .logo:hover {
+    animation: rotateLogo 1s linear;
+} */
 
 /* Modification pour le menu de navigation */
 .navbar ul li a {
