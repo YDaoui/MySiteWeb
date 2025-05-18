@@ -215,20 +215,43 @@ section {
     color: white;
 }
 
+/* Modifications pour le logo */
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: --white-color;
+    color: var(--white-color); /* Texte principal en blanc */
     text-decoration: none;
     display: flex;
     align-items: center;
 }
 
 .logo span {
-    color: var(--primary);
+    color: #87CEEB; /* Bleu ciel pour la partie droite */
     margin-left: 0.5rem;
 }
 
+/* Modification pour le menu de navigation */
+.navbar ul li a {
+    text-decoration: none;
+    color: var(--white-color) !important; /* Force le texte en blanc */
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+/* Pour s'assurer que la couleur reste blanche au survol */
+.navbar ul li a:hover {
+    color: var(--white-color) !important;
+    opacity: 0.8; /* Légère transparence au survol pour l'effet */
+}
+
+/* Pour le menu mobile si nécessaire */
+@media (max-width: 768px) {
+    .navbar ul li a {
+        color: var(--white-color) !important;
+    }
+}
 /* Navbar */
 .navbar {
     position: relative;
