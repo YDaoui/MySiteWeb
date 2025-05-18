@@ -218,7 +218,7 @@ section {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: white;
+    color: --white-color;
     text-decoration: none;
     display: flex;
     align-items: center;
