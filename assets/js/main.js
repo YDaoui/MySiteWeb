@@ -286,15 +286,15 @@ document.addEventListener('DOMContentLoaded', function () {
              "1": {
                 title: "Dashboard de ventes",
                 description: "Visualisation interactive des performances commerciales avec Power BI.",
-                fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente. J'ai utilisé Power BI pour connecter plusieurs sources de données, créer des mesures DAX complexes et développer des visualisations interactives qui permettent aux utilisateurs de filtrer et explorer les données selon différents axes.",
-                technologies: ["Power BI", "DAX", "SQL", "Python"],
+                fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente. J'ai utilisé le Python avec Streamlit et pandas  pour connecter plusieurs sources de données, créer des mesures  complexes et développer des visualisations interactives qui permettent aux utilisateurs de filtrer et explorer les données selon différents axes.",
+                technologies: ["VBA", "Azzure", "SQL", "Python"],
                 images: [
-                    { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
-                    { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
+                    { src: "assets/img/Dentale_1.PNG", alt: "Authenrification principale" },
+                    { src: "assets/img/Dentale_H.PNG", alt: "Historique Excel " },
                     { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Python" },
-                    { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Power BI - Python" },
-		    { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
-	            { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" }
+                    { src: "assets/img/Dentale_123.PNG", alt: "Dashboard  - Python" },
+		    { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard - Python" },
+	            { src: "assets/img/Dentale_12345.PNG", alt: "Gestion des Accés" }
 			
                 ]
             },
