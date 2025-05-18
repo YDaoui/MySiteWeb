@@ -320,7 +320,7 @@ section {
     display: block;
     width: 100%;
     height: 4px; /* Épaississement des lignes */
-    background: var(--light) !important; /* Utilisation de la couleur claire */
+    background: var(--white-color) !important; /* Utilisation de la couleur claire */
     position: absolute;
     left: 0;
     transition: all 0.3s ease;
@@ -328,7 +328,7 @@ section {
 }
 
 .mobile-menu-toggle .hamburger-line:nth-child(1) {
-    top: 12px; /* Ajustement de la position */
+    top: 16px; /* Ajustement de la position */
 }
 
 .mobile-menu-toggle .hamburger-line:nth-child(2) {
@@ -337,7 +337,7 @@ section {
 }
 
 .mobile-menu-toggle .hamburger-line:nth-child(3) {
-    bottom: 12px; /* Ajustement de la position */
+    bottom: 16px; /* Ajustement de la position */
 }
 
 /* Animation lorsqu'actif */
@@ -370,6 +370,7 @@ section {
     .mobile-menu-toggle {
         width: 44px;
         height: 44px;
+        padding: 12px;
     }
 }
 
