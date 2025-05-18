@@ -216,71 +216,71 @@ section {
 }
 
 /* Modifications pour le logo */
+/* Animation du logo */
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--white-color); /* Texte principal en blanc */
+    color: var(--white-color);
     text-decoration: none;
     display: flex;
     align-items: center;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-origin: left center;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .logo span {
-    color: #3a86ff; /* Bleu ciel pour la partie droite */
+    color: #3a86ff;
     margin-left: 0.5rem;
-}
-
-/* Modification pour le menu de navigation */
-.navbar ul li a {
-    text-decoration: none;
-    color: var(--white-color) !important; /* Force le texte en blanc */
-    font-weight: 600;
-    transition: all 0.3s ease;
     position: relative;
-    padding: 0.5rem 0;
+    display: inline-block;
 }
 
-/* Pour s'assurer que la couleur reste blanche au survol */
-.navbar ul li a:hover {
-    color: var(--white-color) !important;
-    opacity: 0.8; /* Légère transparence au survol pour l'effet */
+/* Animation de la partie bleue du logo */
+.logo span::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #3a86ff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
 }
 
-/* Pour le menu mobile si nécessaire */
-@media (max-width: 768px) {
-    .navbar ul li a {
-        color: var(--white-color) !important;
-    }
-}
-/* Navbar */
-.navbar {
-    position: relative;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
+.logo:hover span::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
-.navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.navbar ul {
-    display: flex;
-    list-style: none;
-}
-
+/* Animation des éléments du menu */
 .navbar ul li {
     margin-left: 2rem;
+    position: relative;
 }
 
 .navbar ul li a {
     text-decoration: none;
-    color: --white-color;
+    color: var(--white-color) !important;
     font-weight: 600;
     transition: all 0.3s ease;
     position: relative;
     padding: 0.5rem 0;
+    display: inline-block;
 }
 
+/* Effet "flottant" au survol */
+.navbar ul li a:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
+
+/* Animation de la ligne de soulignement */
 .navbar ul li a::after {
     content: '';
     position: absolute;
@@ -288,16 +288,61 @@ section {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--primary);
-    transition: width 0.3s ease;
+    background: #3a86ff;
+    transition: width 0.4s ease, background-color 0.3s ease;
 }
 
 .navbar ul li a:hover::after {
     width: 100%;
+    background: #87CEEB; /* Bleu ciel plus clair pour le survol */
 }
 
-.navbar ul li a:hover {
-    color: var(--primary);
+/* Animation du menu mobile */
+@media (max-width: 768px) {
+    .navbar {
+        transition: transform 0.4s ease-out, opacity 0.3s ease;
+    }
+    
+    .navbar ul li {
+        margin-left: 0;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.4s ease;
+    }
+    
+    .navbar.active ul li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    /* Délais d'animation pour chaque élément */
+    .navbar.active ul li:nth-child(1) { transition-delay: 0.1s; }
+    .navbar.active ul li:nth-child(2) { transition-delay: 0.15s; }
+    .navbar.active ul li:nth-child(3) { transition-delay: 0.2s; }
+    .navbar.active ul li:nth-child(4) { transition-delay: 0.25s; }
+}
+
+/* Animation du bouton hamburger */
+.mobile-menu-toggle .hamburger-line {
+    transition: all 0.3s ease, background-color 0.2s ease;
+}
+
+.mobile-menu-toggle:hover .hamburger-line {
+    background: #87CEEB !important; /* Bleu ciel au survol */
+}
+
+/* Effet "pulse" sur le header au scroll */
+.header.scrolled {
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+        box-shadow: 0 2px 20px rgba(58, 134, 255, 0.4);
+    }
 }
 
 /* Mobile menu toggle - Version améliorée avec animation */
