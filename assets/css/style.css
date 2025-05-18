@@ -534,6 +534,56 @@ section {
 .hero h1 {
     animation-delay: 0.2s; /* Décalage pour l'apparition */
 }
+/* Animation de données homogène */
+.hero-data-animation {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0; /* En arrière-plan */
+    overflow: hidden; /* Empêche les points de déborder */
+}
+
+.data-point {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(58, 134, 255, 0.7); /* Couleur primaire lumineuse */
+    border-radius: 50%;
+    opacity: 0;
+    animation: moveDataPoints 3s ease-in-out infinite alternate; /* Animation principale */
+}
+
+/* Positionnement aléatoire initial des points */
+.hero-data-animation .data-point:nth-child(1) {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0.5s;
+}
+
+.hero-data-animation .data-point:nth-child(2) {
+    top: 50%;
+    left: 40%;
+    animation-delay: 1.2s;
+}
+
+.hero-data-animation .data-point:nth-child(3) {
+    top: 80%;
+    left: 70%;
+    animation-delay: 0.8s;
+}
+
+/* Ajoutez des règles nth-child pour plus de points, en variant leur position et délai */
+
+@keyframes moveDataPoints {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(calc(50px * (Math.random() - 0.5)), calc(50px * (Math.random() - 0.5))) scale(1.2);
+        opacity: 0;
+    }
+}
 
 .hero p {
     font-size: 1.2rem;
