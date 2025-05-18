@@ -501,6 +501,8 @@ section {
 
 /* Section Hero - Corrigée */
 /* Section Hero - Centrée */
+/* Section Hero - Corrigée */
+/* Section Hero - Centrée */
 .hero {
     position: relative;
     display: flex;
@@ -508,6 +510,7 @@ section {
     justify-content: center;
     min-height: 100vh;
     text-align: center;
+    overflow: hidden; /* Important pour contenir les particules si on les ajoute */
 }
 
 .hero .container {
@@ -523,6 +526,21 @@ section {
     margin-left: auto;
     margin-right: auto;
     max-width: 800px;
+    opacity: 0; /* Initialement transparents */
+    transform: translateY(20px); /* Initialement déplacés vers le bas */
+    animation: fadeInUp 1s ease-out forwards; /* Animation de base */
+}
+
+.hero h1 {
+    animation-delay: 0.2s; /* Décalage pour l'apparition */
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    animation-delay: 0.5s; /* Décalage supplémentaire */
+    color: rgba(230, 241, 255, 0.9);
 }
 
 .hero .btn-container {
@@ -530,16 +548,30 @@ section {
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
+    animation-delay: 0.8s; /* Décalage pour les boutons */
 }
 
-.hero p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeIn 1s ease-out forwards;
-    animation-delay: 0.8s;
-    color: rgba(230, 241, 255, 0.9);
+.hero .btn {
+    /* Styles de bouton existants */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 30%, rgba(58, 134, 255, 0.1) 0%, transparent 70%);
+    z-index: 1;
+}
+
+/* Keyframes pour l'animation Fade In Up */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero .btn {
