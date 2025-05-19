@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             if (history.pushState) {
-                history.pushState(null, null, targetId);
+                history.pushState(null, '', targetId);
             } else {
                 location.hash = targetId;
             }
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
             const navbar = document.querySelector('.navbar');
             if (navbar && navbar.classList.contains('active')) {
-                mobileToggle.classList.remove('active');
+                mobileToggle?.classList.remove('active');
                 navbar.classList.remove('active');
                 document.querySelectorAll('.navbar ul li').forEach(item => {
                     item.style.opacity = '0';
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         mobileToggle.addEventListener('click', () => {
             navbar.classList.toggle('active');
             mobileToggle.classList.toggle('active');
-            
+
             // Animate menu items when opening
             if (navbar.classList.contains('active')) {
                 document.querySelectorAll('.navbar ul li').forEach((item, index) => {
@@ -113,34 +113,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalSlides = slides.length;
 
         function updateGallery() {
-            // Hide all slides
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-            });
-            
-            // Show current slide
+            slides.forEach(slide => slide.classList.remove('active'));
             slides[currentIndex].classList.add('active');
             counter.textContent = `${currentIndex + 1}/${totalSlides}`;
         }
 
-        // Previous button
         prevBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updateGallery();
         });
 
-        // Next button
         nextBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             currentIndex = (currentIndex + 1) % totalSlides;
             updateGallery();
         });
 
-        // Initialize
         updateGallery();
 
-        // Touch support for mobile
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -154,12 +145,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }, { passive: true });
 
         function handleSwipe() {
-            if (Math.abs(touchEndX - touchStartX) > 50) { // Minimum swipe distance
+            if (Math.abs(touchEndX - touchStartX) > 50) {
                 if (touchEndX < touchStartX) {
-                    // Swipe left - next
                     currentIndex = (currentIndex + 1) % totalSlides;
                 } else {
-                    // Swipe right - previous
                     currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 }
                 updateGallery();
@@ -173,29 +162,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const modalClose = modal.querySelector('.modal-close');
         const modalContent = modal.querySelector('#modal-content');
 
-        // Close modal
-        modalClose.addEventListener('click', () => {
+        modalClose?.addEventListener('click', () => {
             modal.style.display = 'none';
         });
 
-        // Close when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
             }
         });
 
-        // Handle project detail clicks
         document.querySelectorAll('.view-details').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const projectCard = btn.closest('.project-card');
-                const projectId = projectCard.dataset.projectId;
+                const projectId = projectCard?.dataset.projectId;
+
+                const projectData = getProjectData?.(projectId);
                 
-                // Get project data (you would replace this with your actual data)
-                const projectData = getProjectData(projectId);
-                
-                if (projectData) {
+                if (projectData && modalContent) {
                     modalContent.innerHTML = `
                         <h3>${projectData.title}</h3>
                         <div class="modal-gallery">
@@ -215,8 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <ul>
                                     ${projectData.technologies.map(tech => `<li>${tech}</li>`).join('')}
                                 </ul>
-                            </div>
-                            ` : ''}
+                            </div>` : ''}
                         </div>
                     `;
                     modal.style.display = 'block';
@@ -242,7 +226,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Initialize elements for animation
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -250,149 +233,31 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Run once on load
+    animateOnScroll();
 
     // Contact form validation
     const contactForm = document.querySelector('.contact form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const name = this.querySelector('input[name="name"]').value.trim();
-            const email = this.querySelector('input[name="email"]').value.trim();
-            const message = this.querySelector('textarea[name="message"]').value.trim();
-            
-            // Simple validation
+
+            const name = this.querySelector('input[name="name"]')?.value.trim();
+            const email = this.querySelector('input[name="email"]')?.value.trim();
+            const message = this.querySelector('textarea[name="message"]')?.value.trim();
+
             if (!name || !email || !message) {
                 alert('Veuillez remplir tous les champs.');
                 return;
             }
-            
+
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 alert('Veuillez entrer une adresse email valide.');
                 return;
             }
-            
-            // Here you would typically send the form data to a server
-            alert('Message envoyé avec succès! Je vous répondrai dès que possible.');
+
+            // Ici vous pouvez envoyer les données à un backend ou utiliser EmailJS, etc.
+            alert('Message envoyé avec succès.');
             this.reset();
         });
     }
-
-
-    // Sample project data - replace with your actual project data
-    function getProjectData(projectId) {
-        const projects = {
-             "1": {
-                title: "Dashboard de ventes",
-                description: "Visualisation interactive des performances commerciales avec Power BI.",
-                fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente. J'ai utilisé le Python avec Streamlit et pandas  pour connecter plusieurs sources de données, créer des mesures  complexes et développer des visualisations interactives qui permettent aux utilisateurs de filtrer et explorer les données selon différents axes.",
-                technologies: ["VBA", "Azzure", "SQL", "Python"],
-                images: [
-                    { src: "assets/img/Dentale_1.PNG", alt: "Authenrification principale" },
-                    { src: "assets/img/Dentale_H.PNG", alt: "Historique Excel " },
-                    { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Python" },
-                    { src: "assets/img/Dentale_123.PNG", alt: "Dashboard  - Python" },
-		    { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard - Python" },
-	            { src: "assets/img/Dentale_12345.PNG", alt: "Gestion des Accés" }
-			
-                ]
-            },
-            "2": {
-                title: "Plannification des ressources",
-                description: "Automatisation du process de la planification .",
-                fullDetails: "Développement d'un outils de planification à l aide de VBScript , Python avant de starnséfrer les données vers des bases SQL grace au robot RPA pour automatiser la collecte quotidienne de données sur plusieurs sites web. Le bot navigue de manière autonome, remplit des formulaires, extrait des données structurées et les enregistre dans une base de données SQL. Une interface de monitoring permet de suivre l'exécution des tâches.",
-                technologies: [ "VBScript","Python" ,"Pandas", "SQL"],
-                images: [
-		    { src: "assets/img/Planning_VBA4.PNG", alt: "Sheduler Manager" },
-                    { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
-                    { src: "assets/img/Planning_VBA1.PNG", alt: "Code Planning" },
-                    { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Agent" },
-                    { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
-                ]
-            },
-            "3": {
-                title: "Managment AccorHotels",
-                description: "Automatisation de demandes de congés planification via Selenium (Python).",
-                fullDetails: "Développement d'un robot RPA pour automatiser la collecte quotidienne de données sur plusieurs sites web. Le bot navigue de manière autonome, remplit des formulaires, extrait des données structurées et les enregistre dans une base de données SQL. Une interface de monitoring permet de suivre l'exécution des tâches.",
-                technologies: ["Python", "Selenium", "SQL", "Pandas"],
-                images: [
-                    { src: "assets/img/AccorHotels1.PNG", alt: "Bot RPA" },
-			 { src: "assets/img/AccorHotels2.PNG", alt: "Bot-" },
-			 { src: "assets/img/AccorHotels3.PNG", alt: "Bot- RPA" },
-			 { src: "assets/img/AccorHotels4.PNG", alt: "Bot? RPA" },
-			 { src: "assets/img/AccorHotels5.PNG", alt: "Bot. RPA" },
-			 { src: "assets/img/AccorHotels6.PNG", alt: "Bot , RPA" },
-			 { src: "assets/img/AccorHotels7.PNG", alt: "Bot _RPA" }
-		
-                ]
-            },
-            "4": {
-                title: "Optimisation réseau Bouygues Telecom",
-                description: "Analyse des performances réseau et recommandations pour l'amélioration de la qualité de service afin d'améliorer la qualité et la rentabilité.",
-                fullDetails: "Projet complexe d'analyse des données réseau pour identifier les points faibles de couverture et proposer des solutions d'optimisation. J'ai développé des algorithmes de clustering pour catégoriser les zones problématiques et créé des visualisations géographiques interactives pour présenter les résultats.",
-                technologies: ["Python", "GeoPandas", "Tableau", "Spark"],
-                images: [
-                    { src: "assets/img/Byg_1.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
-                    { src: "assets/img/Byg_2.jpg", alt: "Projet Bouygues Telecom - Architecture" },
-                    { src: "assets/img/Byg_3.jpg", alt: "Projet Bouygues Telecom - Analyse" },
-                    { src: "assets/img/Byg_4.jpg", alt: "Résultats" }
-                ]
-            },
-            "5": {
-                title: "Application logistique Glovo",
-                description: "Optimisation du suivi des livraisons et amélioration des statistiques d'activité de rentabilité et d'administration financiére et humaine en capitalisant les ressources.",
-                fullDetails: "Développement d'une application interne pour optimiser la logistique des livraisons. L'outil permet de suivre en temps réel les performances des livreurs, d'optimiser les tournées et de générer des rapports analytiques pour identifier les opportunités d'amélioration.",
-                technologies: ["React", "Node.js", "MongoDB", "D3.js"],
-                images: [
-                    { src: "assets/img/Glovo1.PNG", alt: "Projet Glovo - Interface" },
-                    { src: "assets/img/Glovo2.PNG", alt: "Projet Glovo - Livraison" },
-                    { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
-                ]
-            }
-        };
-        
-        return projects[projectId] || null;
-    }
 });
-if (typeof gsap !== 'undefined') {
-        // 1. ANIMATION DES OVERLAYS
-        const overlays = gsap.timeline();
-        overlays
-            .to(".first", {duration: 1.5, top: "-100%", ease: "expo.inOut"})
-            .to(".second", {duration: 1.5, top: "-100%", ease: "expo.inOut"}, "-=1.2")
-            .to(".third", {duration: 1.5, top: "-100%", ease: "expo.inOut"}, "-=1.2");
-
-        // 2. ANIMATION DE L'IMAGE
-        gsap.from(".home__img", {
-            duration: 2,
-            x: 100,
-            opacity: 0,
-            ease: "power3.out",
-            delay: 1.5
-        });
-
-function createParticles() {
-  const container = document.querySelector('.hero-particles');
-  const count = 20;
-
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    
-    const size = 2 + Math.random() * 4;
-    Object.assign(p.style, {
-      width: `${size}px`,
-      height: `${size}px`,
-      left: `${Math.random() * 100}%`,
-      bottom: `-10px`,
-      animationDuration: `${10 + Math.random() * 10}s`,
-      animationDelay: `${Math.random() * 5}s`,
-    });
-
-    container.appendChild(p);
-  }
-}
-
-window.addEventListener('load', createParticles);
-
