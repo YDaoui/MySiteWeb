@@ -292,172 +292,150 @@ section {
 } */
 
 /* Modification pour le menu de navigation */
-.navbar ul li a {
-    text-decoration: none;
-    color: var(--white-color) !important; /* Force le texte en blanc */
-    font-weight: 600;
-    transition: all 0.3s ease;
-    position: relative;
-    padding: 0.5rem 0;
+.nav {
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
 }
 
-/* Pour s'assurer que la couleur reste blanche au survol */
-.navbar ul li a:hover {
-    color: var(--white-color) !important;
-    opacity: 0.8; /* Légère transparence au survol pour l'effet */
+.nav__logo {
+  font-size: 1.25rem;
+  color: var(--white-color);
 }
 
-/* Pour le menu mobile si nécessaire */
-@media (max-width: 768px) {
-    .navbar ul li a {
-        color: var(--white-color) !important;
-    }
-}
-/* Navbar */
-.navbar {
-    position: relative;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
+.nav__logo .logo-part1 {
+  color: var(--first-color);
 }
 
-.navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.8);
+.nav__logo .logo-part2 {
+  color: var(--white-color);
 }
 
-.navbar ul {
+.nav__menu {
+  position: fixed;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 0 1rem;
+  background-color: var(--black-color-light);
+  transition: .4s;
+  z-index: 99;
+  border-bottom: 2px solid var(--first-color);
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.5rem;
+}
+
+.nav__link {
+  color: var(--white-color);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav__link:hover {
+  color: var(--first-color);
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: var(--first-color);
+  bottom: -5px;
+  left: 0;
+  transition: width 0.3s;
+}
+
+.nav__link:hover::after {
+  width: 100%;
+}
+
+.nav__toggle {
+  color: var(--white-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: inline-flex;
+}
+
+/* Style de base pour l'icône hamburger */
+#nav-toggle {
     display: flex;
-    list-style: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 100;
 }
 
-.navbar ul li {
-    margin-left: 2rem;
-}
-
-.navbar ul li a {
-    text-decoration: none;
-    color: --white-color;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    position: relative;
-    padding: 0.5rem 0;
-}
-
-.navbar ul li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
+#nav-toggle span {
+    display: block;
+    width: 100%;
     height: 2px;
-    background: var(--primary);
-    transition: width 0.3s ease;
-}
-
-.navbar ul li a:hover::after {
-    width: 100%;
-}
-
-.navbar ul li a:hover {
-    color: var(--primary);
-}
-
-/* Mobile menu toggle - Version améliorée avec animation */
-.mobile-menu-toggle {
-    display: none; /* Masqué par défaut sur les écrans plus grands */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1001;
-    width: 40px;
-    height: 40px;
-    position: relative;
+    background: var(--white-color);
     transition: all 0.3s ease;
 }
 
-.mobile-menu-toggle .hamburger-line {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background: --white-color;/* Force la couleur blanche */
-    position: absolute;
-    left: 0;
-    transition: all 0.3s ease;
-    border-radius: 3px;
+#nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    background: var(--first-color);
 }
 
-/* Modification du bouton hamburger */
-.mobile-menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 12px; /* Augmentation du padding */
-    z-index: 1001;
-    width: 50px; /* Augmentation de la largeur */
-    height: 50px; /* Augmentation de la hauteur */
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.mobile-menu-toggle .hamburger-line {
-    display: block;
-    width: 100%;
-    height: 4px; /* Épaississement des lignes */
-    background: var(--white-color) !important; /* Utilisation de la couleur claire */
-    position: absolute;
-    left: 0;
-    transition: all 0.3s ease;
-    border-radius: 3px;
-}
-
-.mobile-menu-toggle .hamburger-line:nth-child(1) {
-    top: 16px; /* Ajustement de la position */
-}
-
-.mobile-menu-toggle .hamburger-line:nth-child(2) {
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.mobile-menu-toggle .hamburger-line:nth-child(3) {
-    bottom: 16px; /* Ajustement de la position */
-}
-
-/* Animation lorsqu'actif */
-.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
-    transform: translateY(12px) rotate(45deg);
-    top: 50%;
-}
-
-.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+#nav-toggle.active span:nth-child(2) {
     opacity: 0;
 }
 
-.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
-    transform: translateY(-12px) rotate(-45deg);
-    top: 50%;
+#nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    background: var(--first-color);
 }
 
-/* Effet au survol */
-.mobile-menu-toggle:hover .hamburger-line {
-    background: var(--primary) !important;
+/* Show menu */
+.show-menu {
+  top: 3rem;
 }
 
-/* Pour les écrans mobiles */
-@media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: block; /* Toujours afficher sur mobile */
+/* Menu mobile */
+@media screen and (max-width: 767px) {
+    .nav__menu {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem 0;
+        background-color: rgba(17, 17, 17, 0);
+        backdrop-filter: blur(10px);
+        transition: all 0.4s;
+        z-index: 99;
+        border-bottom: 2px solid transparent;
     }
     
-    /* Optionnel : ajuster la taille sur mobile si nécessaire */
-    .mobile-menu-toggle {
-        width: 44px;
-        height: 44px;
-        padding: 12px;
+    .nav__menu.show {
+        top: 3rem;
+        background-color: rgba(17, 17, 17, 0.98);
+        border-bottom-color: var(--first-color);
     }
 }
 
+/* Active link */
+.active-link {
+  color: var(--first-color);
+}
+
+/* Home sectio
 /* Animation pour la section hero */
 .btn {
     display: inline-block;
