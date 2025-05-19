@@ -351,10 +351,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 fullDetails: "Projet complexe d'analyse des données réseau pour identifier les points faibles de couverture et proposer des solutions d'optimisation. J'ai développé des algorithmes de clustering pour catégoriser les zones problématiques et créé des visualisations géographiques interactives pour présenter les résultats.",
                 technologies: ["Python", "GeoPandas", "Tableau", "Spark"],
                 images: [
-                    { src: "assets/img/Byg_1.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
+                    { src: "assets/img/Byg_4.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
                     { src: "assets/img/Byg_2.jpg", alt: "Projet Bouygues Telecom - Architecture" },
                     { src: "assets/img/Byg_3.jpg", alt: "Projet Bouygues Telecom - Analyse" },
-                    { src: "assets/img/Byg_4.jpg", alt: "Résultats" }
+                    { src: "assets/img/Byg_1.jpg", alt: "Résultats" }
                 ]
             },
             "5": {
