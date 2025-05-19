@@ -12,6 +12,45 @@
     --warning: #ffbe0b;
     --danger: #ef476f;
 }
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.first {
+  background-color: var(--primary);
+  animation: overlayAnimation 1s ease forwards;
+}
+
+.second {
+  background-color: var(--first-color);
+  left: 33.3%;
+  animation: overlayAnimation 1s ease 0.2s forwards;
+}
+
+.third {
+  background-color: var(--first-color);
+  left: 66.6%;
+  animation: overlayAnimation 1s ease 0.4s forwards;
+}
+
+@keyframes overlayAnimation {
+  0% {
+    transform: scaleY(0);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(0);
+  }
+}
 
 /* Reset et styles de base inchangés */
 *,
