@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 location.hash = targetId;
             }
 
-            // Close mobile menu after clicking a link
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
             const navbar = document.querySelector('.navbar');
             if (navbar && navbar.classList.contains('active')) {
@@ -45,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
             navbar.classList.toggle('active');
             mobileToggle.classList.toggle('active');
 
-            // Animate menu items when opening
             if (navbar.classList.contains('active')) {
                 document.querySelectorAll('.navbar ul li').forEach((item, index) => {
                     item.style.opacity = '0';
@@ -60,20 +58,21 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Service cards toggle with icons
+    // Service cards toggle
     document.querySelectorAll('.service-header').forEach(header => {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
-            const isActive = card.classList.contains('active');
+            if (!card) return;
+
             const details = card.querySelector('.service-details');
             const arrow = header.querySelector('.service-arrow');
+            const isActive = card.classList.contains('active');
 
-            // Close other open service cards
             document.querySelectorAll('.service-card').forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.classList.remove('active');
                     const otherDetails = otherCard.querySelector('.service-details');
-                    const otherArrow = otherCard.querySelector('.service-header .service-arrow');
+                    const otherArrow = otherCard.querySelector('.service-arrow');
                     if (otherDetails) otherDetails.style.maxHeight = null;
                     if (otherArrow) {
                         otherArrow.classList.remove('active');
@@ -82,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            // Toggle current card
             card.classList.toggle('active', !isActive);
             if (details) {
                 details.style.maxHeight = !isActive ? details.scrollHeight + 'px' : null;
@@ -156,6 +154,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Function fictive de récupération des données d’un projet
+    window.getProjectData = function (projectId) {
+        // À adapter à ton vrai backend ou base de données
+        const fakeProjects = {
+            "1": {
+                title: "Projet Alpha",
+                images: [{ src: "img1.jpg", alt: "Image 1" }],
+                description: "Un super projet.",
+                fullDetails: "Détails complets du projet Alpha...",
+                technologies: ["HTML", "CSS", "JS"]
+            }
+        };
+        return fakeProjects[projectId];
+    };
+
     // Project details modal
     const modal = document.getElementById('project-modal');
     if (modal) {
@@ -178,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const projectCard = btn.closest('.project-card');
                 const projectId = projectCard?.dataset.projectId;
 
-                const projectData = getProjectData?.(projectId);
+                const projectData = window.getProjectData?.(projectId);
                 
                 if (projectData && modalContent) {
                     modalContent.innerHTML = `
@@ -204,6 +217,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     `;
                     modal.style.display = 'block';
+                } else {
+                    console.warn("Données manquantes pour le projet : " + projectId);
                 }
             });
         });
@@ -255,7 +270,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            // Ici vous pouvez envoyer les données à un backend ou utiliser EmailJS, etc.
             alert('Message envoyé avec succès.');
             this.reset();
         });
