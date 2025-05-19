@@ -1308,7 +1308,129 @@ footer a:hover {
 .modal-gallery img:hover {
     transform: scale(1.05);
 }
+/* Boutons principaux - Style uniformisé */
+.btn, 
+.filter-btn,
+.project-links a,
+.modal-content .btn,
+.service-tech,
+.about-img .btn-about {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.5;
+}
 
+/* États des boutons */
+.btn:hover,
+.filter-btn:hover,
+.project-links a:hover,
+.modal-content .btn:hover,
+.service-tech:hover,
+.about-img .btn-about:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
+}
+
+.btn:active,
+.filter-btn:active,
+.project-links a:active,
+.modal-content .btn:active {
+    transform: translateY(1px);
+}
+
+/* Bouton actif (pour les filtres) */
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
+}
+
+/* Boutons secondaires */
+.btn-outline,
+.project-links a:last-child {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    box-shadow: none;
+}
+
+.btn-outline:hover,
+.project-links a:last-child:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Boutons spécifiques aux projets */
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.project-links a {
+    flex: 1;
+    min-width: 120px;
+}
+
+/* Boutons de filtres */
+.projects-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    gap: 1rem;
+}
+
+.filter-btn {
+    padding: 0.7rem 1.5rem;
+    margin: 0.5rem;
+}
+
+/* Boutons dans les modals */
+.modal-content .btn {
+    margin-top: 1rem;
+}
+
+/* Boutons technos */
+.service-tech {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btn,
+    .filter-btn,
+    .project-links a,
+    .modal-content .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .project-links {
+        flex-direction: column;
+    }
+    
+    .projects-filter {
+        flex-direction: column;
+        align-items: center;
+    }
+}
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
