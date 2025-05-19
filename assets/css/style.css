@@ -12,6 +12,7 @@
     --warning: #ffbe0b;
     --danger: #ef476f;
 }
+
 .overlay {
   position: fixed;
   top: 0;
@@ -29,13 +30,13 @@
 }
 
 .second {
-  background-color: var(--first-color);
+  background-color: var(--primary-dark); /* Corrigé ici */
   left: 33.3%;
   animation: overlayAnimation 1s ease 0.2s forwards;
 }
 
 .third {
-  background-color: var(--first-color);
+  background-color: var(--primary-dark); /* Corrigé ici */
   left: 66.6%;
   animation: overlayAnimation 1s ease 0.4s forwards;
 }
@@ -51,6 +52,9 @@
     transform: scaleY(0);
   }
 }
+
+/* ... Tout le reste reste inchangé (identique à ce que tu m'as envoyé) ... */
+
 
 /* Reset et styles de base inchangés */
 *,
