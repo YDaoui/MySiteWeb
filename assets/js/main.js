@@ -363,6 +363,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 fullDetails: "Développement d'une application interne pour optimiser la logistique des livraisons. L'outil permet de suivre en temps réel les performances des livreurs, d'optimiser les tournées et de générer des rapports analytiques pour identifier les opportunités d'amélioration.",
                 technologies: ["React", "Node.js", "MongoDB", "D3.js"],
                 images: [
+
+			
+		    { src: "assets/img/Login_Glovo.PNG", alt: "Projet Glovo - Interface" },
+		    { src: "assets/img/Dash_Sales_Glovo1.PNG", alt: "Projet Glovo - Interface" },
                     { src: "assets/img/Glovo1.PNG", alt: "Projet Glovo - Interface" },
                     { src: "assets/img/Glovo2.PNG", alt: "Projet Glovo - Livraison" },
                     { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
