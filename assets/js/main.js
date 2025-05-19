@@ -355,6 +355,22 @@ document.addEventListener('DOMContentLoaded', function () {
         return projects[projectId] || null;
     }
 });
+if (typeof gsap !== 'undefined') {
+        // 1. ANIMATION DES OVERLAYS
+        const overlays = gsap.timeline();
+        overlays
+            .to(".first", {duration: 1.5, top: "-100%", ease: "expo.inOut"})
+            .to(".second", {duration: 1.5, top: "-100%", ease: "expo.inOut"}, "-=1.2")
+            .to(".third", {duration: 1.5, top: "-100%", ease: "expo.inOut"}, "-=1.2");
+
+        // 2. ANIMATION DE L'IMAGE
+        gsap.from(".home__img", {
+            duration: 2,
+            x: 100,
+            opacity: 0,
+            ease: "power3.out",
+            delay: 1.5
+        });
 
 function createParticles() {
   const container = document.querySelector('.hero-particles');
