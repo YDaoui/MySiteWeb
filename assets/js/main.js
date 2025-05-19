@@ -75,10 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // --- (Le reste de ton code reste inchangé) ---
-    // service cards, galleries, modal, scroll animations, contact form, etc.
 
-});
 
 
     // Service cards toggle with icons
