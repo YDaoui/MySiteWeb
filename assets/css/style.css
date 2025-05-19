@@ -182,7 +182,7 @@ section {
 .mobile-menu-toggle .hamburger-line {
     display: block;
     width: 100%;
-    height: 4px; /* Épaisseur augmentée */
+    height: 8px; /* Épaisseur augmentée */
     background: white;
     position: absolute;
     left: 0;
