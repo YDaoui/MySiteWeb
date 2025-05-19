@@ -298,24 +298,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-    
     // Sample project data - replace with your actual project data
     function getProjectData(projectId) {
         const projects = {
@@ -325,10 +307,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente. J'ai utilisé Power BI pour connecter plusieurs sources de données, créer des mesures DAX complexes et développer des visualisations interactives qui permettent aux utilisateurs de filtrer et explorer les données selon différents axes.",
                 technologies: ["Power BI", "DAX", "SQL", "Python"],
                 images: [
-                    { src: "assets/img/Dentale_Capture_screen_siteweb.jpg", alt: "Dashboard principal" },
-                    { src: "assets/img/Dentale_Capture_screen_siteweb1.jpg", alt: "Dashboard Power BI " },
-                    { src: "assets/img/Dentale_Capture_screen_siteweb12.jpg", alt: "Dashboard Python" },
-                    { src: "assets/img/Dentale_Capture_screen_siteweb13.jpg", alt: "Dashboard Power BI - Python" }
+                    { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
+                    { src: "assets/img/Dentale_H.PNG", alt: "Dashboard principal" },
+			{ src: "assets/img/Dentale_12.PNG", alt: "Dashboard principal" },
+			{ src: "assets/img/Dentale_123.PNG", alt: "Dashboard principal" },
+			{ src: "assets/img/Dentale_1234.PNG", alt: "Dashboard principal" },
+			{ src: "assets/img/Dentale_12345.PNG", alt: "Dashboard principal" }
+			
                 ]
             },
             "2": {
@@ -337,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 fullDetails: "Développement d'un robot RPA pour automatiser la collecte quotidienne de données sur plusieurs sites web. Le bot navigue de manière autonome, remplit des formulaires, extrait des données structurées et les enregistre dans une base de données SQL. Une interface de monitoring permet de suivre l'exécution des tâches.",
                 technologies: ["Python", "Selenium", "SQL", "Pandas"],
                 images: [
-				    { src: "assets/img/Planning_VBA3.PNG", alt: "Sheduler Manager" },
+		    { src: "assets/img/Planning_VBA4.PNG", alt: "Sheduler Manager" },
                     { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
                     { src: "assets/img/Planning_VBA1.PNG", alt: "Code Planning" },
                     { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Agent" },
@@ -350,9 +335,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 fullDetails: "Développement d'un robot RPA pour automatiser la collecte quotidienne de données sur plusieurs sites web. Le bot navigue de manière autonome, remplit des formulaires, extrait des données structurées et les enregistre dans une base de données SQL. Une interface de monitoring permet de suivre l'exécution des tâches.",
                 technologies: ["Python", "Selenium", "SQL", "Pandas"],
                 images: [
-                    { src: "assets/img/project2.jpg", alt: "Bot RPA" },
-                    { src: "assets/img/project2_detail1.jpg", alt: "Code du bot" },
-                    { src: "assets/img/project2_detail2.jpg", alt: "Résultats" }
+                    { src: "assets/img/AccorHotels1.PNG", alt: "Bot RPA" },
+                     { src: "assets/img/AccorHotels2.PNG", alt: "Bot RPA" },
+			 { src: "assets/img/AccorHotels3.PNG", alt: "Bot RPA" },
+			 { src: "assets/img/AccorHotels4.PNG", alt: "Bot RPA" },
+			 { src: "assets/img/AccorHotels5.PNG", alt: "Bot RPA" },
+			 { src: "assets/img/AccorHotels6.PNG", alt: "Bot RPA" },
+			 { src: "assets/img/AccorHotels7.PNG", alt: "Bot RPA" }
+			
                 ]
             },
             "4": {
