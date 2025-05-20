@@ -378,3 +378,21 @@ document.addEventListener('DOMContentLoaded', function () {
         return projects[projectId] || null;
     }
 });
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Empêche l'envoi PHP
+    
+    // Récupération des valeurs du formulaire
+    const name = this.name.value;
+    const email = this.email.value;
+    const message = this.message.value;
+    
+    // Encodage pour URL (gère les accents et espaces)
+    const subject = "Message depuis votre site";
+    const body = `Nom: ${encodeURIComponent(name)}\nEmail: ${encodeURIComponent(email)}\nMessage: ${encodeURIComponent(message)}`;
+    
+    // Redirection vers le client mail
+    window.location.href = `mailto:daoui00yasine@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    
+    // Optionnel : Confirmation visuelle
+    alert("Votre client mail va s'ouvrir. Merci d'envoyer le message généré !");
+});
