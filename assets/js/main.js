@@ -378,21 +378,38 @@ document.addEventListener('DOMContentLoaded', function () {
         return projects[projectId] || null;
     }
 });
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Empêche l'envoi PHP
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
     
-    // Récupération des valeurs du formulaire
-    const name = this.name.value;
-    const email = this.email.value;
-    const message = this.message.value;
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
     
-    // Encodage pour URL (gère les accents et espaces)
-    const subject = "Message depuis votre site";
-    const body = `Nom: ${encodeURIComponent(name)}\nEmail: ${encodeURIComponent(email)}\nMessage: ${encodeURIComponent(message)}`;
-    
-    // Redirection vers le client mail
-    window.location.href = `mailto:daoui00yasine@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-    
-    // Optionnel : Confirmation visuelle
-    alert("Votre client mail va s'ouvrir. Merci d'envoyer le message généré !");
+    try {
+        // Feedback visuel
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Envoi en cours...';
+        
+        // Envoi du formulaire
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            alert('Message envoyé avec succès ! Je vous répondrai rapidement.');
+            form.reset();
+        } else {
+            throw new Error('Erreur lors de l\'envoi');
+        }
+    } catch (error) {
+        alert('Erreur: Veuillez me contacter directement à daoui00yasine@gmail.com');
+        console.error(error);
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+    }
 });
