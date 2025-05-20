@@ -378,6 +378,11 @@ document.addEventListener('DOMContentLoaded', function () {
         return projects[projectId] || null;
     }
 });
+// Initialisation d'EmailJS
+(function() {
+    emailjs.init('YOUR_USER_ID'); // Remplacez par votre vrai User ID
+})();
+
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = e.target;
@@ -389,24 +394,15 @@ document.getElementById('contactForm').addEventListener('submit', async function
     submitBtn.disabled = true;
 
     try {
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: new FormData(form),
-            headers: {
-                'Accept': 'application/json'
-            }
-        });
-
-        if (response.ok) {
-            // Redirection vers la page de remerciement
-            window.location.href = form.querySelector('[name="_next"]').value;
-        } else {
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Erreur serveur');
-        }
+        // Envoi via EmailJS - REMPLACEZ LES ID PAR LES VOTRES
+        await emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form);
+        
+        // Message de succès
+        alert('Message envoyé avec succès !');
+        form.reset();
     } catch (error) {
         console.error('Erreur:', error);
-        // Solution de repli automatique
+        // Solution de repli
         const name = encodeURIComponent(form.name.value);
         const email = encodeURIComponent(form.email.value);
         const message = encodeURIComponent(form.message.value);
