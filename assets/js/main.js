@@ -383,32 +383,3 @@ document.addEventListener('DOMContentLoaded', function () {
     emailjs.init('YOUR_USER_ID'); // Remplacez par votre vrai User ID
 })();
 
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-
-    // Ajout d'un spinner pendant l'envoi
-    submitBtn.innerHTML = '<span class="spinner"></span> Envoi en cours...';
-    submitBtn.disabled = true;
-
-    try {
-        // Envoi via EmailJS - REMPLACEZ LES ID PAR LES VOTRES
-        await emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form);
-        
-        // Message de succès
-        alert('Message envoyé avec succès !');
-        form.reset();
-    } catch (error) {
-        console.error('Erreur:', error);
-        // Solution de repli
-        const name = encodeURIComponent(form.name.value);
-        const email = encodeURIComponent(form.email.value);
-        const message = encodeURIComponent(form.message.value);
-        window.location.href = `mailto:daoui00yasine@gmail.com?subject=Message du site&body=Nom: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
-    } finally {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }
-});
