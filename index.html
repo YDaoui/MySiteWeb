@@ -392,133 +392,21 @@
  
 
 
-
-
- 
-  
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contactez-moi</h2>
+ <section id="contact" class="contact">
+    <div class="container">
+        <h2>Contactez-moi</h2>
+        <form id="contactForm" action="https://formsubmit.co/daoui00yasine@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nouveau message depuis votre portfolio">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
             
-            <script>window.enableEventObserver=true</script>
-            <script src="https://cdn.jotfor.ms/static/prototype.forms.js?v=3.3.63119" type="text/javascript"></script>
-            <script src="https://cdn.jotfor.ms/static/jotform.forms.js?v=3.3.63119" type="text/javascript"></script>
-            <script src="https://cdn.jotfor.ms/js/punycode-1.4.1.min.js?v=3.3.63119" type="text/javascript" defer></script>
-            <script src="https://cdn.jotfor.ms/s/umd/c3273d76b98/for-appointment-field.js?v=3.3.63119" type="text/javascript"></script>
-            <script src="https://cdn.jotfor.ms/s/umd/c3273d76b98/for-form-branding-footer.js?v=3.3.63119" type="text/javascript" defer></script>
-            <script src="https://cdn.jotfor.ms/js/vendor/smoothscroll.min.js?v=3.3.63119" type="text/javascript"></script>
-            <script src="https://cdn.jotfor.ms/js/errorNavigation.js?v=3.3.63119" type="text/javascript"></script>
-            <script type="text/javascript">	JotForm.newDefaultTheme = true;
-                JotForm.extendsNewTheme = false;
-                JotForm.singleProduct = false;
-                JotForm.newPaymentUIForNewCreatedForms = false;
-                JotForm.texts = {"confirmEmail":"E-mail does not match","pleaseWait":"Please wait...","validateEmail":"You need to validate this e-mail","confirmClearForm":"Are you sure you want to clear the form","lessThan":"Your score should be less than or equal to","incompleteFields":"There are incomplete required fields. Please complete them.","required":"This field is required.","requireOne":"At least one field required.","requireEveryRow":"Every row is required.","requireEveryCell":"Every cell is required.","email":"Enter a valid e-mail address","alphabetic":"This field can only contain letters","numeric":"This field can only contain numeric values","alphanumeric":"This field can only contain letters and numbers.","cyrillic":"This field can only contain cyrillic characters","url":"This field can only contain a valid URL","currency":"This field can only contain currency values.","fillMask":"Field value must fill mask.","uploadExtensions":"You can only upload following files:","noUploadExtensions":"File has no extension file type (e.g. .txt, .png, .jpeg)","uploadFilesize":"File size cannot be bigger than:","uploadFilesizemin":"File size cannot be smaller than:","gradingScoreError":"Score total should only be less than or equal to","inputCarretErrorA":"Input should not be less than the minimum value:","inputCarretErrorB":"Input should not be greater than the maximum value:","maxDigitsError":"The maximum digits allowed is","minCharactersError":"The number of characters should not be less than the minimum value:","maxCharactersError":"The number of characters should not be more than the maximum value:","freeEmailError":"Free email accounts are not allowed","minSelectionsError":"The minimum required number of selections is ","maxSelectionsError":"The maximum number of selections allowed is ","pastDatesDisallowed":"Date must not be in the past.","dateLimited":"This date is unavailable.","dateInvalid":"This date is not valid. The date format is {format}","dateInvalidSeparate":"This date is not valid. Enter a valid {element}.","ageVerificationError":"You must be older than {minAge} years old to submit this form.","multipleFileUploads_typeError":"{file} has invalid extension. Only {extensions} are allowed.","multipleFileUploads_sizeError":"{file} is too large, maximum file size is {sizeLimit}.","multipleFileUploads_minSizeError":"{file} is too small, minimum file size is {minSizeLimit}.","multipleFileUploads_emptyError":"{file} is empty, please select files again without it.","multipleFileUploads_uploadFailed":"File upload failed, please remove it and upload the file again.","multipleFileUploads_onLeave":"The files are being uploaded, if you leave now the upload will be cancelled.","multipleFileUploads_fileLimitError":"Only {fileLimit} file uploads allowed.","dragAndDropFilesHere_infoMessage":"Drag and drop files here","chooseAFile_infoMessage":"Choose a file","maxFileSize_infoMessage":"Max. file size","generalError":"There are errors on the form. Please fix them before continuing.","generalPageError":"There are errors on this page. Please fix them before continuing.","wordLimitError":"Too many words. The limit is","wordMinLimitError":"Too few words.  The minimum is","characterLimitError":"Too many Characters.  The limit is","characterMinLimitError":"Too few characters. The minimum is","ccInvalidNumber":"Credit Card Number is invalid.","ccInvalidCVC":"CVC number is invalid.","ccInvalidExpireDate":"Expire date is invalid.","ccInvalidExpireMonth":"Expiration month is invalid.","ccInvalidExpireYear":"Expiration year is invalid.","ccMissingDetails":"Please fill up the credit card details.","ccMissingProduct":"Please select at least one product.","ccMissingDonation":"Please enter numeric values for donation amount.","disallowDecimals":"Please enter a whole number.","restrictedDomain":"This domain is not allowed","ccDonationMinLimitError":"Minimum amount is {minAmount} {currency}","requiredLegend":"All fields marked with * are required and must be filled.","geoPermissionTitle":"Permission Denied","geoPermissionDesc":"Check your browser's privacy settings.","geoNotAvailableTitle":"Position Unavailable","geoNotAvailableDesc":"Location provider not available. Please enter the address manually.","geoTimeoutTitle":"Timeout","geoTimeoutDesc":"Please check your internet connection and try again.","selectedTime":"Selected Time","formerSelectedTime":"Former Time","cancelAppointment":"Cancel Appointment","cancelSelection":"Cancel Selection","noSlotsAvailable":"No slots available","slotUnavailable":"{time} on {date} has been selected is unavailable. Please select another slot.","multipleError":"There are {count} errors on this page. Please correct them before moving on.","oneError":"There is {count} error on this page. Please correct it before moving on.","doneMessage":"Well done! All errors are fixed.","invalidTime":"Enter a valid time","doneButton":"Done","reviewSubmitText":"Review and Submit","nextButtonText":"Next","prevButtonText":"Previous","seeErrorsButton":"See Errors","notEnoughStock":"Not enough stock for the current selection","notEnoughStock_remainedItems":"Not enough stock for the current selection ({count} items left)","soldOut":"Sold Out","justSoldOut":"Just Sold Out","selectionSoldOut":"Selection SoldOut","subProductItemsLeft":"({count} items left)","startButtonText":"START","submitButtonText":"Submit","submissionLimit":"Sorry! Only one entry is allowed. <br> Multiple submissions are disabled for this form.","reviewBackText":"Back to Form","seeAllText":"See All","progressMiddleText":"of","fieldError":"field has an error.","error":"Error"};
-                JotForm.newPaymentUI = true;
-                JotForm.originalLanguage = "fr";
-                JotForm.isFormViewTrackingAllowed = true;
-                JotForm.highlightInputs = false;
-                JotForm.replaceTagTest = true;
-                JotForm.uploadServerURL = "https://upload.jotform.com/upload";
-                JotForm.submitError="jumpToFirstError";
-                window.addEventListener('DOMContentLoaded',function(){window.brandingFooter.init({"formID":251395653361561,"campaign":"powered_by_jotform_le","isCardForm":false,"isLegacyForm":true,"formLanguage":"fr"})});	JotForm.isFullSource = true;
-
-                JotForm.init(function(){
-                /*INIT-START*/
-            if (window.JotForm && JotForm.accessible) $('input_16').setAttribute('tabindex',0);
-
-                JotForm.calendarMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-                JotForm.appointmentCalendarMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-                JotForm.appointmentCalendarDays = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-                JotForm.calendarOther = "Today";
-                window.initializeAppointment({"text":{"text":"Question","value":"Please Select an Appointment Date and Time"},"labelAlign":{"text":"Label Align","value":"Top","dropdown":[["Auto","Auto"],["Left","Left"],["Right","Right"],["Top","Top"]]},"required":{"text":"Required","value":"No","dropdown":[["No","No"],["Yes","Yes"]]},"description":{"text":"Hover Text","value":"","textarea":true},"slotDuration":{"text":"Slot Duration","value":"60","dropdown":[[15,"15 min"],[30,"30 min"],[45,"45 min"],[60,"60 min"],["custom","Custom min"]],"hint":"Select how long each slot will be."},"startDate":{"text":"Start Date","value":""},"endDate":{"text":"End Date","value":""},"intervals":{"text":"Intervals","value":[{"from":"09:00","to":"17:00","days":["Mon","Tue","Wed","Thu","Fri"]}],"hint":"The hours will be applied to the selected days and repeated."},"useBlockout":{"text":"Blockout Custom Dates","value":"No","dropdown":[["No","No"],["Yes","Yes"]],"hint":"Disable certain date(s) in the calendar."},"blockoutDates":{"text":"Blockout dates","value":[{"startDate":"","endDate":""}]},"useLunchBreak":{"text":"Lunch Time","value":"Yes","dropdown":[["No","No"],["Yes","Yes"]],"hint":"Enable lunchtime in the calendar."},"lunchBreak":{"text":"Lunchtime hours","value":[{"from":"12:00","to":"14:00"}]},"timezone":{"text":"Timezone","value":"America\u002FNew_York (GMT-4:00)"},"timeFormat":{"text":"Time Format","value":"","dropdown":[["24 Hour","24 Hour"],["AM\u002FPM","AM\u002FPM"]],"icon":"images\u002Fblank.gif","iconClassName":"toolbar-time_format_24"},"months":{"value":["January","February","March","April","May","June","July","August","September","October","November","December"],"hidden":true},"days":{"value":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"hidden":true},"startWeekOn":{"text":"Start Week On","value":"","dropdown":[["Monday","Monday"],["Sunday","Sunday"]],"toolbar":false},"rollingDays":{"text":"Rolling Days","value":"","toolbar":false},"prevMonthButtonText":{"text":"Previous month","value":""},"nextMonthButtonText":{"text":"Next month","value":""},"prevYearButtonText":{"text":"Previous year","value":""},"nextYearButtonText":{"text":"Next year","value":""},"prevDayButtonText":{"text":"Previous day","value":""},"nextDayButtonText":{"text":"Next day","value":""},"appointmentType":{"hidden":true,"value":"single"},"dateFormat":{"hidden":true,"value":"mm\u002Fdd\u002Fyyyy"},"maxAttendee":{"hidden":true,"value":"5"},"minScheduleNotice":{"hidden":true,"value":"3"},"name":{"hidden":true,"value":"pleaseSelect22"},"order":{"hidden":true,"value":"7"},"qid":{"toolbar":false,"value":"input_22"},"type":{"hidden":true,"value":"control_appointment"},"id":{"toolbar":false,"value":"22"},"qname":{"toolbar":false,"value":"q22_pleaseSelect22"},"cdnconfig":{"CDN":"https:\u002F\u002Fcdn.jotfor.ms\u002F"},"passive":false,"formProperties":{"highlightLine":"Disabled","coupons":false,"useStripeCoupons":false,"taxes":false,"comparePaymentForm":"","paymentListSettings":false,"newPaymentUIForNewCreatedForms":false,"formBackground":"#fff","newAppointment":false,"isAutoCompleteEnabled":true},"formID":251395653361561,"isPaymentForm":false,"isOpenedInPortal":false,"isCheckoutForm":false,"isImportPDFForm":false,"isOfflineForms":false,"SSL_URL":"https:\u002F\u002Fwww.jotform.com\u002F","themeVersion":"v2","isEnterprise":false,"environment":"PRODUCTION"});
-            if (window.JotForm && JotForm.accessible) $('input_8').setAttribute('tabindex',0);
-                /*INIT-END*/
-                });
-
-                setTimeout(function() {
-            JotForm.paymentExtrasOnTheFly([null,null,{"name":"submitForm","qid":"2","text":"CONTACT US","type":"control_button"},null,null,null,null,null,{"mde":"No","name":"additionalInformationcomments","qid":"8","text":"Additional Information\u002FComments","type":"control_textarea","wysiwyg":"Disable"},null,null,null,null,null,{"name":"consultationInterest14","qid":"14","text":"Consultation Interest","type":"control_dropdown"},null,{"name":"companyOr","qid":"16","text":"Company or Organization name","type":"control_textbox"},null,{"name":"clickTo","qid":"18","text":"Free Consultation Form","type":"control_head"},{"name":"fullName19","qid":"19","text":"Full Name","type":"control_fullname"},{"name":"phoneNumber20","qid":"20","text":"Phone Number","type":"control_phone"},{"name":"email21","qid":"21","subLabel":"example@example.com","text":"E-mail","type":"control_email"},{"name":"pleaseSelect22","qid":"22","text":"Please Select an Appointment Date and Time","type":"control_appointment"}]);}, 20); 
-            </script>
-            <link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/stylebuilder/static/form-common.css?v=421d4e0
-            "/>
-            <style type="text/css">@media print{*{-webkit-print-color-adjust: exact !important;color-adjust: exact !important;}.form-section{display:inline!important}.form-pagebreak{display:none!important}.form-section-closed{height:auto!important}.page-section{position:initial!important}}</style>
-            <link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?v=3.3.63119&themeRevisionID=5f30e2a790832f3e96009402"/>
-            <link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/css/styles/payment/payment_styles.css?3.3.63119" />
-            <link type="text/css" rel="stylesheet" href="https://cdn.jotfor.ms/css/styles/payment/payment_feature.css?3.3.63119" />
-            <form class="jotform-form" onsubmit="return typeof testSubmitFunction !== 'undefined' && testSubmitFunction();" action="https://submit.jotform.com/submit/251395653361561" method="post" name="form_251395653361561" id="251395653361561" accept-charset="utf-8" autocomplete="on"><input type="hidden" name="formID" value="251395653361561" /><input type="hidden" id="JWTContainer" value="" /><input type="hidden" id="cardinalOrderNumber" value="" /><input type="hidden" id="jsExecutionTracker" name="jsExecutionTracker" value="build-date-1747766105491" /><input type="hidden" id="submitSource" name="submitSource" value="unknown" /><input type="hidden" id="buildDate" name="buildDate" value="1747766105491" /><input type="hidden" name="uploadServerUrl" value="https://upload.jotform.com/upload" /><input type="hidden" name="eventObserver" value="1" />
-              <div role="main" class="form-all">
-                <ul class="form-section page-section" role="presentation">
-                  <li id="cid_18" class="form-input-wide" data-type="control_head">
-                    <div class="form-header-group  header-large">
-                      <div class="header-text httal htvam">
-                        <h1 id="header_18" class="form-header" data-component="header">Free Consultation Form</h1>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="form-line jf-required" data-type="control_fullname" id="id_19"><label class="form-label form-label-top form-label-auto" id="label_19" for="first_19" aria-hidden="false"> Full Name<span class="form-required">*</span> </label>
-                    <div id="cid_19" class="form-input-wide jf-required" data-layout="full">
-                      <div data-wrapper-react="true"><span class="form-sub-label-container" style="vertical-align:top" data-input-type="first"><input type="text" id="first_19" name="q19_fullName19[first]" class="form-textbox validate[required]" data-defaultvalue="" autoComplete="section-input_19 given-name" size="10" data-component="first" aria-labelledby="label_19 sublabel_19_first" required="" value="" /><label class="form-sub-label" for="first_19" id="sublabel_19_first" style="min-height:13px">First Name</label></span><span class="form-sub-label-container" style="vertical-align:top" data-input-type="last"><input type="text" id="last_19" name="q19_fullName19[last]" class="form-textbox validate[required]" data-defaultvalue="" autoComplete="section-input_19 family-name" size="15" data-component="last" aria-labelledby="label_19 sublabel_19_last" required="" value="" /><label class="form-sub-label" for="last_19" id="sublabel_19_last" style="min-height:13px">Last Name</label></span></div>
-                    </div>
-                  </li>
-                  <li class="form-line form-line-column form-col-1 jf-required" data-type="control_phone" id="id_20"><label class="form-label form-label-top form-label-auto" id="label_20" for="input_20_area" aria-hidden="false"> Phone Number<span class="form-required">*</span> </label>
-                    <div id="cid_20" class="form-input-wide jf-required" data-layout="half">
-                      <div data-wrapper-react="true"><span class="form-sub-label-container" style="vertical-align:top" data-input-type="areaCode"><input type="tel" id="input_20_area" name="q20_phoneNumber20[area]" class="form-textbox validate[required]" data-defaultvalue="" autoComplete="section-input_20 tel-area-code" data-component="areaCode" aria-labelledby="label_20 sublabel_20_area" required="" value="" /><span class="phone-separate" aria-hidden="true"> -</span><label class="form-sub-label" for="input_20_area" id="sublabel_20_area" style="min-height:13px">Area Code</label></span><span class="form-sub-label-container" style="vertical-align:top" data-input-type="phone"><input type="tel" id="input_20_phone" name="q20_phoneNumber20[phone]" class="form-textbox validate[required]" data-defaultvalue="" autoComplete="section-input_20 tel-local" data-component="phone" aria-labelledby="label_20 sublabel_20_phone" required="" value="" /><label class="form-sub-label" for="input_20_phone" id="sublabel_20_phone" style="min-height:13px">Phone Number</label></span></div>
-                    </div>
-                  </li>
-                  <li class="form-line form-line-column form-col-2 jf-required" data-type="control_email" id="id_21"><label class="form-label form-label-top form-label-auto" id="label_21" for="input_21" aria-hidden="false"> E-mail<span class="form-required">*</span> </label>
-                    <div id="cid_21" class="form-input-wide jf-required" data-layout="half"> <span class="form-sub-label-container" style="vertical-align:top"><input type="email" id="input_21" name="q21_email21" class="form-textbox validate[required, Email]" data-defaultvalue="" autoComplete="section-input_21 email" style="width:310px" size="310" placeholder="Par ex : monnom@exemple.com" data-component="email" aria-labelledby="label_21 sublabel_input_21" required="" value="" /><label class="form-sub-label" for="input_21" id="sublabel_input_21" style="min-height:13px">example@example.com</label></span> </div>
-                  </li>
-                  <li class="form-line form-line-column form-col-3" data-type="control_textbox" id="id_16"><label class="form-label form-label-top" id="label_16" for="input_16" aria-hidden="false"> Company or Organization name </label>
-                    <div id="cid_16" class="form-input-wide" data-layout="half"> <input type="text" id="input_16" name="q16_companyOr" data-type="input-textbox" class="form-textbox validate[Email]" data-defaultvalue="" style="width:310px" size="310" placeholder=" " data-component="textbox" aria-labelledby="label_16" value="" /> </div>
-                  </li>
-                  <li class="form-line form-line-column form-col-4" data-type="control_dropdown" id="id_14"><label class="form-label form-label-top" id="label_14" for="input_14" aria-hidden="false"> Consultation Interest </label>
-                    <div id="cid_14" class="form-input-wide" data-layout="half"> <select class="form-dropdown" id="input_14" name="q14_consultationInterest14" style="width:310px" data-component="dropdown" aria-label="Consultation Interest">
-                        <option value="">Please Select</option>
-                        <option value="Network Solutions">Network Solutions</option>
-                        <option value="Hosting Solutions">Hosting Solutions</option>
-                        <option value="Business Development">Business Development</option>
-                        <option value="Procurement">Procurement</option>
-                        <option value="Telephony">Telephony</option>
-                        <option value="Web Design">Web Design</option>
-                        <option value="Support">Support</option>
-                        <option value="Other">Other</option>
-                      </select> </div>
-                  </li>
-                  <li class="form-line" data-type="control_appointment" id="id_22"><label class="form-label form-label-top" id="label_22" for="input_22" aria-hidden="false"> Please Select an Appointment Date and Time </label>
-                    <div id="cid_22" class="form-input-wide" data-layout="full">
-                      <div id="input_22" class="appointmentFieldWrapper jfQuestion-fields"><input class="appointmentFieldInput" name="q22_pleaseSelect22[implementation]" id="input_22implementation" aria-hidden="true" type="hidden" value="new" /><input class="appointmentFieldInput " name="q22_pleaseSelect22[date]" id="input_22_date" data-timeformat="" aria-hidden="true" type="hidden" /><input class="appointmentFieldInput" name="q22_pleaseSelect22[duration]" id="input_22_duration" aria-hidden="true" type="hidden" value="60" /><input class="appointmentFieldInput" name="q22_pleaseSelect22[timezone]" id="input_22_timezone" aria-hidden="true" type="hidden" value="America/New_York (GMT-4:00)" />
-                        <div class="appointmentField"></div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="form-line" data-type="control_textarea" id="id_8"><label class="form-label form-label-top" id="label_8" for="input_8" aria-hidden="false"> Additional Information/Comments </label>
-                    <div id="cid_8" class="form-input-wide" data-layout="full"> <textarea id="input_8" class="form-textarea" name="q8_additionalInformationcomments" style="width:648px;height:163px" data-component="textarea" aria-labelledby="label_8"></textarea> </div>
-                  </li>
-                  <li class="form-line" data-type="control_button" id="id_2">
-                    <div id="cid_2" class="form-input-wide" data-layout="full">
-                      <div data-align="center" class="form-buttons-wrapper form-buttons-center   jsTest-button-wrapperField"><button id="input_2" type="submit" class="form-submit-button form-submit-button-navy-700 submit-button jf-form-buttons jsTest-submitField legacy-submit" data-component="button" data-content="">CONTACT US</button></div>
-                    </div>
-                  </li>
-                  <li style="display:none">Should be Empty: <input type="text" name="website" value="" type="hidden" /></li>
-                </ul>
-              </div>
-              <script>
-                JotForm.showJotFormPowered = "new_footer";
-              </script>
-              <script>
-                JotForm.poweredByText = "Propulsé par Jotform";
-              </script><input type="hidden" class="simple_spc" id="simple_spc" name="simple_spc" value="251395653361561" />
-              <script type="text/javascript">
-                var all_spc = document.querySelectorAll("form[id='251395653361561'] .si" + "mple" + "_spc");
-                for (var i = 0; i < all_spc.length; i++)
-                {
-                  all_spc[i].value = "251395653361561-251395653361561";
-                }
-              </script>
-            </form>
-            </div>
-    </section>
-
+            <input type="text" name="name" placeholder="Votre nom" required>
+            <input type="email" name="email" placeholder="Votre email" required>
+            <textarea name="message" placeholder="Votre message" required></textarea>
+            <button type="submit" class="btn">Envoyer</button>
+        </form>
+    </div>
+</section>
 
 
 
