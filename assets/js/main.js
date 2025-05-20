@@ -380,17 +380,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    
     const form = e.target;
     const submitBtn = form.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.textContent;
-    
+    const originalText = submitBtn.innerHTML;
+
+    // Ajout d'un spinner pendant l'envoi
+    submitBtn.innerHTML = '<span class="spinner"></span> Envoi en cours...';
+    submitBtn.disabled = true;
+
     try {
-        // Feedback visuel
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Envoi en cours...';
-        
-        // Envoi du formulaire
         const response = await fetch(form.action, {
             method: 'POST',
             body: new FormData(form),
@@ -398,18 +396,23 @@ document.getElementById('contactForm').addEventListener('submit', async function
                 'Accept': 'application/json'
             }
         });
-        
+
         if (response.ok) {
-            alert('Message envoyé avec succès ! Je vous répondrai rapidement.');
-            form.reset();
+            // Redirection vers la page de remerciement
+            window.location.href = form.querySelector('[name="_next"]').value;
         } else {
-            throw new Error('Erreur lors de l\'envoi');
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Erreur serveur');
         }
     } catch (error) {
-        alert('Erreur: Veuillez me contacter directement à daoui00yasine@gmail.com');
-        console.error(error);
+        console.error('Erreur:', error);
+        // Solution de repli automatique
+        const name = encodeURIComponent(form.name.value);
+        const email = encodeURIComponent(form.email.value);
+        const message = encodeURIComponent(form.message.value);
+        window.location.href = `mailto:daoui00yasine@gmail.com?subject=Message du site&body=Nom: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
     } finally {
+        submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
-        submitBtn.textContent = originalBtnText;
     }
 });
