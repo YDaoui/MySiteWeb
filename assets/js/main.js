@@ -364,90 +364,41 @@ document.addEventListener('DOMContentLoaded', function () {
         return projects[projectId] || null;
     }
 });
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Animation au scroll améliorée
-    const animateOnScroll = () => {
-        document.querySelectorAll('[data-animate]').forEach(el => {
-            const rect = el.getBoundingClientRect();
-            const isVisible = (rect.top <= window.innerHeight * 0.75) && 
-                            (rect.bottom >= window.innerHeight * 0.25);
-            
-            if (isVisible) {
-                el.classList.add('animate');
-                // Ajout d'un délai basé sur la position pour un effet en cascade
-                const delay = Math.min(0.3, rect.top / window.innerHeight * 0.3);
-                el.style.transitionDelay = `${delay}s`;
-            }
-        });
-    };
+// 2. Animation du titre héro améliorée
+const animateHeroTitle = () => {
+    const heroTitle = document.querySelector('.hero h1');
+    if (!heroTitle) return;
 
-    // 2. Animation du titre héro améliorée
-    const animateHeroTitle = () => {
-        const heroTitle = document.querySelector('.hero h1');
-        if (!heroTitle) return;
-
-        const text = heroTitle.textContent;
-        heroTitle.innerHTML = ''; // Reset pour animation
-        
-        // Création des spans pour chaque caractère avec des délais progressifs
-        text.split('').forEach((char, i) => {
-            const span = document.createElement('span');
-            span.textContent = char;
-            span.style.opacity = '0';
-            span.style.transform = 'translateY(20px)';
-            span.style.display = 'inline-block';
-            span.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
-            heroTitle.appendChild(span);
-        });
-    };
-
-    // 3. Animation des boutons CTA
-    const animateButtons = () => {
-        const buttons = document.querySelectorAll('.hero .btn');
-        buttons.forEach((btn, i) => {
-            btn.style.opacity = '0';
-            btn.style.transform = 'translateY(20px)';
-            btn.style.animation = `fadeInUp 0.6s forwards ${i * 0.2 + 0.8}s`;
-            
-            // Effet au survol amélioré
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transform = 'translateY(-3px)';
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translateY(0)';
-            });
-        });
-    };
-
-    // 4. Initialisation de EmailJS (si nécessaire)
-    const initEmailJS = () => {
-        if (typeof emailjs !== 'undefined') {
-            emailjs.init('YOUR_USER_ID'); // Remplacez par votre ID
-        }
-    };
-
-    // 5. Animation des cartes de projet avec délais
-    const animateProjectCards = () => {
-        document.querySelectorAll('.project-card').forEach((card, i) => {
-            card.style.setProperty('--delay', `${i * 0.1}s`);
-            card.style.animation = `fadeInUp 0.5s forwards var(--delay)`;
-        });
-    };
-
-    // Lancement des fonctions
-    animateHeroTitle();
-    animateButtons();
-    initEmailJS();
-    animateProjectCards();
+    const text = heroTitle.textContent;
+    heroTitle.innerHTML = ''; // Reset pour animation
     
-    // Écouteurs d'événements
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Exécution initiale
-
-    // Recalcul des animations lors du redimensionnement
-    window.addEventListener('resize', () => {
-        animateOnScroll();
-        animateProjectCards();
+    // On divise par mots et espaces pour préserver l'espacement
+    const words = text.split(/(\s+)/); // On capture aussi les espaces
+    
+    words.forEach((word, wordIndex) => {
+        // Si c'est un espace, on le conserve tel quel
+        if (word.trim() === '' && word.length > 0) {
+            heroTitle.appendChild(document.createTextNode(word));
+            return;
+        }
+        
+        // Pour chaque mot, on crée un span qui contiendra les lettres
+        const wordSpan = document.createElement('span');
+        wordSpan.style.whiteSpace = 'nowrap'; // Empêche le word-wrap
+        wordSpan.style.display = 'inline-block'; // Maintient l'espacement
+        
+        // On ajoute chaque lettre dans le span du mot
+        word.split('').forEach((char, charIndex) => {
+            const charSpan = document.createElement('span');
+            charSpan.textContent = char;
+            charSpan.style.opacity = '0';
+            charSpan.style.transform = 'translateY(20px)';
+            charSpan.style.display = 'inline-block';
+            // Calcul du délai: 0.3s de base + 0.05s par lettre + 0.1s par mot
+            charSpan.style.animation = `fadeInUp 0.5s forwards ${wordIndex * 0.1 + charIndex * 0.05 + 0.3}s`;
+            wordSpan.appendChild(charSpan);
+        });
+        
+        heroTitle.appendChild(wordSpan);
     });
-});
+};
