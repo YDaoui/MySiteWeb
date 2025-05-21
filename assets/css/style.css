@@ -318,81 +318,74 @@ section {
 /* ========================================= */
 
 .hero {
-    /* Core Flexbox for Centering - DO NOT CHANGE THESE */
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* **CRITICAL: Centers content vertically in available space** */
-    align-items: center; /* **CRITICAL: Centers content horizontally** */
-    text-align: center; /* Ensures inline text within blocks (like p) is centered */
-
-    /* Sizing and Spacing */
-    min-height: 100vh; /* Takes full viewport height */
-    width: 100%; /* Takes full viewport width */
-    padding: 80px 20px; /* Increased top/bottom padding for more breathing room */
-    box-sizing: border-box; /* Ensures padding is included in element's total size */
-
-    /* Positioning and Layering */
-    position: relative; /* Essential for any absolute positioning or z-indexing later */
-    z-index: 1; /* Ensures this section is above any general background elements */
-
-    /* Background - Ensure it has enough contrast for your text */
-    background-color: var(--dark); /* Use your defined dark background variable */
-    /* If you have a background image, ensure it's not too busy or bright */
-    /* background: url('path/to/your/image.jpg') no-repeat center center/cover; */
-}
-
-/* --- H1 (Main Title) Styling - FOCUS on Readability with Gradient --- */
-/* --- H1 (Main Title) Styling - FOCUS on Readability with Gradient --- */
-.hero h1 {
-    /* ... (other properties like font-size, font-weight, line-height, margin-bottom) ... */
-
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-
-    /* **CRITICAL for visibility and homogeneity: Enhanced text-shadow** */
-    /* This creates a solid "ghost" behind the transparent gradient text, making it clearer and integrated. */
-    text-shadow:
-        0px 0px 12px rgba(0, 0, 0, 0.9),   /* Very strong dark shadow for contrast */
-        0px 0px 25px rgba(0, 0, 0, 0.7),   /* Larger dark shadow for depth */
-        0px 0px 40px rgba(255, 255, 255, 0.15); /* Subtle white glow at the edges */
-
-    /* ... (animation properties) ... */
-}
-
-/* --- H1 SPAN Styling (for individual letter animations - crucial if you have JS for this) --- */
-.hero h1 span {
-    display: inline-block; /* Allows individual animation/transformation */
-    color: transparent; /* Inherits transparent color from h1 */
-    -webkit-background-clip: text; /* Ensures each span also gets the background clip */
-    background-clip: text;
-    white-space: pre; /* Preserves spaces between animated letters */
-    /* Ensure no conflicting animations or transforms from JS are fighting this */
-}
-
-/* --- H2 (Subtitle) Styling --- */
-.hero h2 {
-    font-size: clamp(2rem, 5vw, 3rem); /* Adjusted for better hierarchy and readability */
-    color: var(--primary); /* Keeps your primary color */
-    margin-bottom: 30px; /* Consistent spacing */
+    align-items: center;
+    background: linear-gradient(135deg, var(--darker), var(--dark));
     position: relative;
-    display: inline-block; /* Essential for centering the ::after pseudo-element below it */
-    animation: fadeInUp 1.2s ease-out 0.4s both;
+    overflow: hidden;
 }
 
-.hero h2::after {
+.hero::before {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 50%; /* Center the underline */
-    transform: translateX(-50%); /* Adjust for perfect centering based on its own width */
-    width: 60%; /* Width of the underline relative to H2 */
-    height: 4px;
-    background: var(--secondary);
-    border-radius: 2px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
 }
 
+.hero .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Boutons */
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+}
 /* --- Paragraph in Hero Section --- */
 .hero p {
     font-size: 1.2rem; /* Good readable size */
