@@ -329,58 +329,17 @@ h1 {
     max-width: 1200px;
     padding: 0 2rem;
 }
-.hero h1 span {
-    background: inherit;
-    -webkit-background-clip: inherit;
-    background-clip: inherit;
-    color: inherit;
-    animation: inherit;
-}
 
-/* Assure que le texte reste lisible pendant l'animation */
-.hero h1 span {
-    opacity: 1 !important;
-    transform: none !important;
-}
-/* Styles pour la section Hero (page d'accueil) */
-/* Styles pour la section Hero (page d'accueil) */
 .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.5rem); /* Taille d'origine ou légèrement ajustée si vous le souhaitez */
-    background: linear-gradient(90deg,
-        var(--primary), /* Pas d'opacité ici, le dégradé est opaque par défaut */
-        var(--secondary)
-    );
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 8px rgba(58, 134, 255, 0.3); /* Conserver l'ombre de texte subtile */
+    text-shadow: 0 0 8px rgba(58, 134, 255, 0.5);
     margin: 0 auto 1.5rem;
     position: relative;
-    animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite; /* Les animations sont là */
-    opacity: 0.95; /* Légère réduction d'opacité si voulue, sinon mettez 1 */
-    
-    /* Ajout pour l'espacement SANS casser l'animation */
-    /* Ces propriétés sont généralement bien gérées même avec des animations complexes */
-    word-spacing: 0.1em; /* Ajoutez un léger espacement entre les mots */
-    letter-spacing: 0.02em; /* Ajoutez un très léger espacement entre les lettres pour aérer */
-    white-space: normal; /* Assurez-vous que le texte peut se sauter à la ligne */
-}
-
-/* Assure que le texte reste lisible pendant l'animation */
-/* Cette règle existait déjà et est importante */
-.hero h1 span {
-    opacity: 1 !important;
-    transform: none !important;
-}
-
-/* Réinitialisation de h1 span pour ne pas hériter des propriétés de fond */
-/* Si vous aviez un span à l'intérieur de h1, cette règle était problématique */
-.hero h1 span {
-    background: inherit;
-    -webkit-background-clip: inherit;
-    background-clip: inherit;
-    color: inherit;
-    animation: inherit;
+    animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
 }
 
 .hero h2 {
