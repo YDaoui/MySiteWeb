@@ -371,46 +371,90 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Initialisation d'EmailJS - Assurez-vous d'avoir EmailJS inclus dans votre HTML
-(function () {
-    emailjs.init('YOUR_USER_ID'); // Remplacez par votre vrai User ID de EmailJS
-})();
-
-// Animation au scroll et animation du titre (dans un bloc séparé pour la clarté)
 document.addEventListener('DOMContentLoaded', () => {
-    // Gestion du scroll pour les animations génériques
+    // 1. Animation au scroll améliorée
     const animateOnScroll = () => {
         document.querySelectorAll('[data-animate]').forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+            const rect = el.getBoundingClientRect();
+            const isVisible = (rect.top <= window.innerHeight * 0.75) && 
+                            (rect.bottom >= window.innerHeight * 0.25);
+            
+            if (isVisible) {
                 el.classList.add('animate');
+                // Ajout d'un délai basé sur la position pour un effet en cascade
+                const delay = Math.min(0.3, rect.top / window.innerHeight * 0.3);
+                el.style.transitionDelay = `${delay}s`;
             }
         });
     };
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Exécute au chargement pour les éléments déjà visibles
 
-    // Animation spécifique du titre 'animated-title'
-    const animateTitle = () => {
-        const title = document.getElementById('animated-title');
-        if (!title) return; // Assure que le titre existe
+    // 2. Animation du titre héro améliorée
+    const animateHeroTitle = () => {
+        const heroTitle = document.querySelector('.hero h1');
+        if (!heroTitle) return;
 
-        const text = title.textContent;
-        title.textContent = ''; // Vide le contenu pour recréer avec des spans
-
+        const text = heroTitle.textContent;
+        heroTitle.innerHTML = ''; // Reset pour animation
+        
+        // Création des spans pour chaque caractère avec des délais progressifs
         text.split('').forEach((char, i) => {
             const span = document.createElement('span');
             span.textContent = char;
-            span.style.animationDelay = `${i * 0.1}s`; // Délai pour l'effet de frappe
-            title.appendChild(span);
+            span.style.opacity = '0';
+            span.style.transform = 'translateY(20px)';
+            span.style.display = 'inline-block';
+            span.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
+            heroTitle.appendChild(span);
         });
-
-        title.setAttribute('data-text', text); // Conserve le texte original si besoin
     };
 
-    animateTitle(); // Lance l'animation du titre au chargement
+    // 3. Animation des boutons CTA
+    const animateButtons = () => {
+        const buttons = document.querySelectorAll('.hero .btn');
+        buttons.forEach((btn, i) => {
+            btn.style.opacity = '0';
+            btn.style.transform = 'translateY(20px)';
+            btn.style.animation = `fadeInUp 0.6s forwards ${i * 0.2 + 0.8}s`;
+            
+            // Effet au survol amélioré
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'translateY(-3px)';
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translateY(0)';
+            });
+        });
+    };
 
-    // Animation des cartes de projet (délais basés sur l'ordre)
-    document.querySelectorAll('.project-card').forEach((card, i) => {
-        card.style.setProperty('--order', i); // Définit une variable CSS custom pour le délai
+    // 4. Initialisation de EmailJS (si nécessaire)
+    const initEmailJS = () => {
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init('YOUR_USER_ID'); // Remplacez par votre ID
+        }
+    };
+
+    // 5. Animation des cartes de projet avec délais
+    const animateProjectCards = () => {
+        document.querySelectorAll('.project-card').forEach((card, i) => {
+            card.style.setProperty('--delay', `${i * 0.1}s`);
+            card.style.animation = `fadeInUp 0.5s forwards var(--delay)`;
+        });
+    };
+
+    // Lancement des fonctions
+    animateHeroTitle();
+    animateButtons();
+    initEmailJS();
+    animateProjectCards();
+    
+    // Écouteurs d'événements
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Exécution initiale
+
+    // Recalcul des animations lors du redimensionnement
+    window.addEventListener('resize', () => {
+        animateOnScroll();
+        animateProjectCards();
     });
 });
