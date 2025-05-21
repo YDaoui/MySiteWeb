@@ -390,69 +390,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// Animation au scroll
-document.addEventListener('DOMContentLoaded', () => {
-    const animateElements = document.querySelectorAll('[data-animate]');
-    
-    const animateOnScroll = () => {
-        animateElements.forEach(el => {
-            const elTop = el.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elTop < windowHeight - 100) {
-                el.classList.add('animate');
-            }
-        });
-    };
-    
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Pour animer les éléments déjà visibles
-});
+
+
+
+
+
+
 
 // Animation au scroll
 document.addEventListener('DOMContentLoaded', () => {
-    // Animation des éléments au scroll
-    const animateElements = document.querySelectorAll('[data-animate]');
-    
+    // Gestion du scroll
     const animateOnScroll = () => {
-        animateElements.forEach(el => {
-            const elTop = el.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elTop < windowHeight - 100) {
+        document.querySelectorAll('[data-animate]').forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 100) {
                 el.classList.add('animate');
             }
         });
     };
-    
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll();
 
-    // Animation du titre lettre par lettre
-    const title = document.getElementById('animated-title');
-    const originalText = title.textContent; // Récupère le texte existant
-    title.textContent = ''; // Vide le titre pour l'animation
-    
-    let index = 0;
-    
-    function typeWriter() {
-        if (index < originalText.length) {
+    // Animation du titre
+    const animateTitle = () => {
+        const title = document.getElementById('animated-title');
+        const text = title.textContent;
+        title.textContent = '';
+        
+        text.split('').forEach((char, i) => {
             const span = document.createElement('span');
-            span.textContent = originalText.charAt(index);
-            span.style.animationDelay = `${index * 0.1}s`;
+            span.textContent = char;
+            span.style.animationDelay = `${i * 0.1}s`;
             title.appendChild(span);
-            index++;
-            setTimeout(typeWriter, 100); // Vitesse d'écriture (100ms par lettre)
-        }
-        // Configure l'ombre portée
-        title.setAttribute('data-text', originalText);
-    }
-    
-    // Démarrer l'animation
-    typeWriter();
+        });
+        
+        title.setAttribute('data-text', text);
+    };
 
-    // Pour les projets avec délai
-    document.querySelectorAll('.project-card').forEach((card, index) => {
-        card.style.setProperty('--order', index);
+    animateTitle();
+
+    // Animation des projets
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+        card.style.setProperty('--order', i);
     });
 });
