@@ -415,43 +415,106 @@ h1 {
     }
 }
 /* Boutons */
+/* Styles de base des boutons - Thème principal */
 .btn {
     display: inline-block;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
-    padding: 0.8rem 2rem;
+    padding: 0.8rem 2.5rem;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+    font-size: 1.1rem;
     border: none;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    transform: translateY(0);
+    animation: fadeInUp 0.8s ease-out 0.8s both;
 }
 
+/* Animation au survol */
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
+    box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
 }
 
+/* Effet "press" */
 .btn:active {
     transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(58, 134, 255, 0.3);
 }
 
+/* Effet de vague lumineuse au survol */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0)
+    );
+    transform: translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+}
+
+.btn:hover::after {
+    transform: translateY(100%) rotate(45deg);
+}
+
+/* Version outline */
 .btn-outline {
     background: transparent;
     border: 2px solid var(--primary);
     color: var(--primary);
     box-shadow: none;
+    position: relative;
 }
 
 .btn-outline:hover {
     background: var(--primary);
     color: white;
+    border-color: transparent;
 }
 
+/* Animation spécifique pour le bouton CTA principal */
+.hero .btn {
+    animation: fadeInUp 0.8s ease-out 1s both, pulse 2s infinite 2s;
+}
+
+/* Animation pulsation pour le bouton principal */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(58, 134, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0); }
+}
+
+/* Délais d'animation pour les boutons secondaires */
+.hero .btn-outline {
+    animation: fadeInUp 0.8s ease-out 1.2s both;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btn {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+    }
+    
+    /* Réduire l'effet de pulse sur mobile */
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0.3); }
+        70% { box-shadow: 0 0 0 8px rgba(58, 134, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0); }
+    }
+}
 /* Section À propos */
 .about {
   background-color: var(--darker);
