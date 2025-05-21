@@ -331,23 +331,20 @@ h1 {
 }
 
 .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-size: clamp(2.5rem, 6vw, 4rem); /* un peu plus grand */
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    font-family: 'Poppins', sans-serif; /* ou remplace par une police plus lisible */
     background: linear-gradient(90deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 8px rgba(58, 134, 255, 0.5);
+    text-shadow: none; /* Supprimer le flou si gênant */
     margin: 0 auto 1.5rem;
-    position: relative;
     animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
-    /* Ajouts pour améliorer la lisibilité */
-    font-family: 'Open Sans', sans-serif; /* Assurez-vous que cette police est chargée */
-    font-weight: 700;
-    letter-spacing: normal; /* Évite les espacements bizarres */
-    white-space: normal; /* Permet le retour à la ligne naturel */
-    word-spacing: normal; /* Espacement normal entre les mots */
-    padding: 0 1rem; /* Ajoute un peu d'espace sur les côtés si nécessaire */
 }
+
 
 .hero h2 {
     font-size: clamp(1.8rem, 4vw, 2.5rem);
