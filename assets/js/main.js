@@ -281,22 +281,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
     
     // Sample project data - replace with your actual project data
     function getProjectData(projectId) {
@@ -319,6 +303,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 fullDetails: "Développement d'un robot RPA pour automatiser la collecte quotidienne de données sur plusieurs sites web. Le bot navigue de manière autonome, remplit des formulaires, extrait des données structurées et les enregistre dans une base de données SQL. Une interface de monitoring permet de suivre l'exécution des tâches.",
                 technologies: ["Python", "Selenium", "SQL", "Pandas"],
                 images: [
+                    { src: "assets/img/ Planning_VBA_Login.PNG", alt: "Planing" },
+                  
                     { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
                     { src: "assets/img/Planning_VBA1.PNG", alt: "Code Planning" },
                     { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Agent" },
@@ -365,6 +351,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 // 2. Animation du titre héro améliorée
+// 2. Animation du titre héro améliorée (version qui conserve l'anim originale)
 const animateHeroTitle = () => {
     const heroTitle = document.querySelector('.hero h1');
     if (!heroTitle) return;
@@ -372,33 +359,30 @@ const animateHeroTitle = () => {
     const text = heroTitle.textContent;
     heroTitle.innerHTML = ''; // Reset pour animation
     
-    // On divise par mots et espaces pour préserver l'espacement
-    const words = text.split(/(\s+)/); // On capture aussi les espaces
+    // On traite chaque caractère en gardant les espaces intacts
+    let isLastCharSpace = false;
     
-    words.forEach((word, wordIndex) => {
-        // Si c'est un espace, on le conserve tel quel
-        if (word.trim() === '' && word.length > 0) {
-            heroTitle.appendChild(document.createTextNode(word));
+    text.split('').forEach((char, i) => {
+        // Si c'est un espace, on l'ajoute directement sans animation
+        if (char === ' ') {
+            heroTitle.appendChild(document.createTextNode(' '));
+            isLastCharSpace = true;
             return;
         }
         
-        // Pour chaque mot, on crée un span qui contiendra les lettres
-        const wordSpan = document.createElement('span');
-        wordSpan.style.whiteSpace = 'nowrap'; // Empêche le word-wrap
-        wordSpan.style.display = 'inline-block'; // Maintient l'espacement
+        const span = document.createElement('span');
+        span.textContent = char;
         
-        // On ajoute chaque lettre dans le span du mot
-        word.split('').forEach((char, charIndex) => {
-            const charSpan = document.createElement('span');
-            charSpan.textContent = char;
-            charSpan.style.opacity = '0';
-            charSpan.style.transform = 'translateY(20px)';
-            charSpan.style.display = 'inline-block';
-            // Calcul du délai: 0.3s de base + 0.05s par lettre + 0.1s par mot
-            charSpan.style.animation = `fadeInUp 0.5s forwards ${wordIndex * 0.1 + charIndex * 0.05 + 0.3}s`;
-            wordSpan.appendChild(charSpan);
-        });
+        // Style pour l'animation
+        span.style.opacity = '0';
+        span.style.transform = 'translateY(20px)';
+        span.style.display = 'inline-block';
         
-        heroTitle.appendChild(wordSpan);
+        // On ajuste le délai pour compenser les espaces sautés
+        const adjustedIndex = isLastCharSpace ? i - 1 : i;
+        span.style.animation = `fadeInUp 0.5s forwards ${adjustedIndex * 0.05 + 0.3}s`;
+        
+        heroTitle.appendChild(span);
+        isLastCharSpace = false;
     });
 };
