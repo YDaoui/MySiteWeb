@@ -351,38 +351,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 // 2. Animation du titre héro améliorée
-// 2. Animation du titre héro améliorée (version qui conserve l'anim originale)
 const animateHeroTitle = () => {
     const heroTitle = document.querySelector('.hero h1');
     if (!heroTitle) return;
 
     const text = heroTitle.textContent;
-    heroTitle.innerHTML = ''; // Reset pour animation
+    heroTitle.innerHTML = ''; // Reset
     
-    // On traite chaque caractère en gardant les espaces intacts
-    let isLastCharSpace = false;
+    // Crée un conteneur pour le texte animé
+    const textContainer = document.createElement('div');
+    textContainer.className = 'typewriter-container';
+    heroTitle.appendChild(textContainer);
     
+    // Ajoute chaque caractère avec un délai
     text.split('').forEach((char, i) => {
-        // Si c'est un espace, on l'ajoute directement sans animation
-        if (char === ' ') {
-            heroTitle.appendChild(document.createTextNode(' '));
-            isLastCharSpace = true;
-            return;
-        }
-        
-        const span = document.createElement('span');
-        span.textContent = char;
-        
-        // Style pour l'animation
-        span.style.opacity = '0';
-        span.style.transform = 'translateY(20px)';
-        span.style.display = 'inline-block';
-        
-        // On ajuste le délai pour compenser les espaces sautés
-        const adjustedIndex = isLastCharSpace ? i - 1 : i;
-        span.style.animation = `fadeInUp 0.5s forwards ${adjustedIndex * 0.05 + 0.3}s`;
-        
-        heroTitle.appendChild(span);
-        isLastCharSpace = false;
+        const charSpan = document.createElement('span');
+        charSpan.className = 'typewriter-char';
+        charSpan.textContent = char === ' ' ? ' ' : char;
+        charSpan.style.animationDelay = `${i * 0.05}s`;
+        textContainer.appendChild(charSpan);
     });
+    
+    // Ajoute le curseur
+    const cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    textContainer.appendChild(cursor);
+    
+    // Supprime le curseur après l'animation
+    setTimeout(() => {
+        cursor.style.display = 'none';
+    }, text.length * 50 + 1000);
 };
