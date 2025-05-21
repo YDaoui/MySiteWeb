@@ -435,52 +435,27 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // 5. Animation des cartes de projet avec délais
-   document.addEventListener('DOMContentLoaded', () => {
-    const heroTitle = document.querySelector('.hero h1');
-    if (!heroTitle) return;
-
-    const text = heroTitle.textContent;
-    heroTitle.innerHTML = ''; // On vide le titre
-
-    // Création du conteneur d'animation
-    const typingContainer = document.createElement('div');
-    typingContainer.className = 'typing-container';
-    
-    // Ajout du texte qui sera animé
-    const typingText = document.createElement('div');
-    typingText.className = 'typing-text';
-    typingText.style.color = 'white'; // Couleur lisible pendant l'animation
-    
-    // Ajout du curseur
-    const cursor = document.createElement('span');
-    cursor.className = 'cursor';
-    
-    typingContainer.appendChild(typingText);
-    typingContainer.appendChild(cursor);
-    heroTitle.appendChild(typingContainer);
-
-    // Animation d'écriture
-    let i = 0;
-    const speed = 100; // Vitesse d'écriture (ms)
-    
-    const typeWriter = () => {
-        if (i < text.length) {
-            typingText.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, speed);
-        } else {
-            // Animation terminée - on applique le style final
-            cursor.remove();
-            heroTitle.classList.add('final-style');
-            
-            // On remplace par le texte complet pour une meilleure accessibilité
-            heroTitle.innerHTML = text;
-            heroTitle.classList.add('final-style');
-        }
+    const animateProjectCards = () => {
+        document.querySelectorAll('.project-card').forEach((card, i) => {
+            card.style.setProperty('--delay', `${i * 0.1}s`);
+            card.style.animation = `fadeInUp 0.5s forwards var(--delay)`;
+        });
     };
 
-    // Lancement de l'animation avec un léger délai
-    setTimeout(typeWriter, 500);
-});
+    // Lancement des fonctions
+    animateHeroTitle();
+    animateButtons();
+    initEmailJS();
+    animateProjectCards();
+    
+    // Écouteurs d'événements
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Exécution initiale
 
+    // Recalcul des animations lors du redimensionnement
+    window.addEventListener('resize', () => {
+        animateOnScroll();
+        animateProjectCards();
+    });
+});
 
