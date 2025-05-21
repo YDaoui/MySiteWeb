@@ -310,125 +310,125 @@ section {
 
 
 /* Styles pour la section Hero (page d'accueil) */
+/* Styles pour la section Hero (page d'accueil) */
 .hero {
     display: flex;
-    flex-direction: column; /* Stack children vertically */
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    text-align: center; /* Center text within its container */
-    min-height: 100vh; /* Make sure it takes full viewport height */
-    padding: 20px; /* Add some padding */
-    box-sizing: border-box; /* Include padding in element's total width and height */
-    /* Add a background if you have one, e.g.: */
-    /* background: url('your-hero-background.jpg') no-repeat center center/cover; */
-    /* color: #fff; /* If you have a dark background, set text color to white */
+    flex-direction: column; /* Empile les éléments verticalement */
+    justify-content: center; /* Centre verticalement les éléments enfants */
+    align-items: center; /* Centre horizontalement les éléments enfants */
+    text-align: center; /* Centre le texte à l'intérieur de ses conteneurs */
+    min-height: 100vh; /* S'assure que la section prend toute la hauteur de la fenêtre */
+    padding: 20px; /* Ajoute un peu d'espace */
+    box-sizing: border-box; /* Inclut le padding dans la taille totale de l'élément */
+    /* Assurez-vous que votre section .hero a une couleur de fond ou une image appropriée pour le contraste */
+    /* background-color: var(--darker);  <-- Exemple si vous voulez un fond solide pour le hero */
 }
 
 /* H1 (Main Title) Styling */
 .hero h1 {
-    font-size: 3.5em; /* Adjust font size for prominence */
-    font-weight: 700; /* Make it bold and clear */
-    color: #333; /* A strong, readable color. Adjust if you have a dark hero background. */
-    margin-bottom: 20px; /* Space below the title */
-    line-height: 1.2; /* Improve readability of multi-line titles */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for better contrast */
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Taille plus grande pour un impact visuel accru */
+    font-weight: 900; /* Plus gras pour une meilleure lisibilité */
+    line-height: 1.1; /* Réduit l'espacement des lignes pour les titres multi-lignes */
+    margin-bottom: 25px; /* Plus d'espace sous le titre */
+    
+    /* Votre dégradé et clip de texte existants */
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Conserve le texte transparent pour le dégradé */
+
+    /* Ajout d'une ombre portée pour améliorer la lisibilité sur un fond sombre */
+    text-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4), 
+                 0px 0px 5px rgba(255, 255, 255, 0.1); /* Ombre plus prononcée */
+
+    /* Animation pour un effet subtil de pulsation ou de mouvement */
+    animation: gradientText 8s ease infinite, fadeInUp 1s ease-out 0.2s both;
+    background-size: 200% auto; /* Prépare l'animation du dégradé */
 }
 
-/* Adjust span styling within H1 if you're animating individual letters */
+/* Votre style h1 de base est déjà présent dans le CSS général, assurez-vous qu'il ne se chevauche pas de manière indésirable.
+   Si votre h1 est "presque illisible", c'est probablement à cause du "color: transparent;" sans un "text-shadow" suffisant 
+   ou un contraste insuffisant avec le fond. L'ajout d'un "text-shadow" plus prononcé devrait aider. */
+
+/* Ajustement du style span dans H1 pour l'animation des lettres */
 .hero h1 span {
-    display: inline-block; /* Essential for animation */
-    /* If your h1 is hard to read, ensure the color here is also strong */
-    color: inherit; /* Inherit color from h1 for consistency */
-    white-space: pre; /* Preserve white space for correct letter spacing */
+    display: inline-block; /* Essentiel pour les animations par lettre */
+    color: transparent; /* Doit rester transparent pour le dégradé du parent */
+    -webkit-background-clip: text; /* Assure que le dégradé s'applique aux spans aussi */
+    background-clip: text;
+    white-space: pre; /* Préserve les espaces pour le bon espacement des lettres */
 }
 
-/* Button Styling (assuming .hero .btn targets your buttons) */
-.hero .btn {
-    display: inline-block; /* Necessary for proper padding and margin */
-    padding: 12px 25px; /* Comfortable padding */
-    margin: 10px; /* Space between buttons if multiple */
-    font-size: 1.1em;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
-    /* Example button colors, adjust to your theme */
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-}
-
+/* H2 (Sous-titre) Styling */
 .hero h2 {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    color: var(--primary);
-    margin-bottom: 2rem;
-    animation: fadeInUp 1s ease-out 0.2s both;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem); /* Taille ajustée pour le sous-titre */
+    color: var(--primary); /* Conserve votre couleur primaire */
+    margin-bottom: 20px; /* Espace sous le sous-titre */
+    position: relative;
+    display: inline-block;
+    animation: fadeInUp 1s ease-out 0.4s both; /* Décalage d'animation */
 }
 
+.hero h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* Ajusté pour un meilleur alignement */
+    left: 50%; /* Centre le soulignement */
+    transform: translateX(-50%); /* Ajustement pour un centrage parfait */
+    width: 60%;
+    height: 4px;
+    background: var(--secondary);
+    border-radius: 2px;
+}
+
+/* Paragraphe dans la section Hero */
 .hero p {
-    font-size: 1.25rem;
-    max-width: 700px;
-    margin: 0 auto 3rem;
-    color: rgba(255, 255, 255, 0.8);
-    animation: fadeInUp 1s ease-out 0.4s both;
+    font-size: 1.15rem; /* Taille légèrement ajustée pour la lisibilité */
+    max-width: 750px; /* Augmente la largeur maximale pour des phrases plus longues */
+    margin: 0 auto 3rem; /* Centre et ajoute un espace en dessous */
+    color: rgba(230, 241, 255, 0.9); /* Rend le texte un peu plus opaque pour la lisibilité */
+    line-height: 1.6;
+    animation: fadeInUp 1s ease-out 0.6s both; /* Décalage d'animation */
 }
 
-/* Animation pour le titre principal */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+/* Conteneur des boutons du Hero (ajoutez cette div dans votre HTML si ce n'est pas déjà fait) */
+.hero-buttons {
+    display: flex;
+    justify-content: center; /* Centre les boutons si plusieurs */
+    flex-wrap: wrap; /* Permet aux boutons de passer à la ligne sur les petits écrans */
+    gap: 1.5rem; /* Espace entre les boutons */
+    margin-top: 20px; /* Espace au-dessus des boutons */
+}
+
+/* Boutons du Hero (héritent des styles .btn globaux, mais on s'assure de l'animation) */
+.hero .btn {
+    font-size: 1.15rem; /* Légèrement plus grand pour le hero */
+    padding: 0.9rem 2.8rem; /* Plus de padding pour les boutons */
+    animation: fadeInUp 0.8s ease-out 0.8s both; /* Décalage d'animation */
+}
+
+.hero .btn-outline {
+    animation: fadeInUp 0.8s ease-out 1s both; /* Décalage d'animation pour le bouton secondaire */
+}
+
+/* Ajustements Responsive pour la section Hero */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: clamp(2rem, 8vw, 3.5rem); /* Ajustement pour les petits écrans */
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .hero h2 {
+        font-size: clamp(1.2rem, 5vw, 2rem);
     }
-}
 
-/* Animation du texte gradient */
-@keyframes gradientText {
-    0% { background-position: 0% center; }
-    50% { background-position: 100% center; }
-    100% { background-position: 0% center; }
-}
-
-.hero h1 {
-    background-size: 200% auto;
-}
-
-/* Animation des éléments enfants avec délais */
-.hero-content > * {
-    opacity: 0;
-    animation: fadeInUp 0.8s forwards;
-}
-
-.hero-content > *:nth-child(1) { animation-delay: 0.2s; }
-.hero-content > *:nth-child(2) { animation-delay: 0.4s; }
-.hero-content > *:nth-child(3) { animation-delay: 0.6s; }
-.hero-content > *:nth-child(4) { animation-delay: 0.8s; }
-
-/* Keyframes pour l'animation */
-@keyframes fadeInLetter {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
+    .hero p {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
     }
-}
 
-@keyframes glowPulse {
-    from {
-        text-shadow: 
-            0 0 10px var(--primary),
-            0 0 20px var(--primary),
-            0 0 30px var(--primary);
-    }
-    to {
-        text-shadow: 
-            0 0 15px var(--primary),
-            0 0 30px var(--primary),
-            0 0 45px var(--secondary);
+    .hero .btn {
+        font-size: 1rem;
+        padding: 0.8rem 2.2rem;
     }
 }
 /* Boutons */
