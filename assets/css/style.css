@@ -336,7 +336,11 @@ h1 {
     overflow: hidden; /* Cache les lettres avant l'animation */
     white-space: nowrap; /* Empêche le retour à la ligne */
     margin: 0 auto;
-    letter-spacing: 0.15em; /* Espacement entre les lettres */
+    letter-spacing: 0.15em; 
+     display: inline-block; /* Important pour l'animation */
+    position: relative;
+    text-align: center;
+    /* Espacement entre les lettres */
 }
 
 /* Animation typewriter */
