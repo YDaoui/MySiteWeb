@@ -383,3 +383,33 @@ document.addEventListener('DOMContentLoaded', function () {
     emailjs.init('YOUR_USER_ID'); // Remplacez par votre vrai User ID
 })();
 
+
+
+
+
+
+
+
+// Animation au scroll
+document.addEventListener('DOMContentLoaded', () => {
+    const animateElements = document.querySelectorAll('[data-animate]');
+    
+    const animateOnScroll = () => {
+        animateElements.forEach(el => {
+            const elTop = el.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elTop < windowHeight - 100) {
+                el.classList.add('animate');
+            }
+        });
+    };
+    
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Pour animer les éléments déjà visibles
+});
+
+// Pour les projets avec délai
+document.querySelectorAll('.project-card').forEach((card, index) => {
+    card.style.setProperty('--order', index);
+});
