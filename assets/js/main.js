@@ -362,16 +362,36 @@ const animateHeroTitle = () => {
 
     if (heroTitle.dataset.animated === 'true') return;
 
+    // Sauvegarde le HTML original avant de le modifier
+    const originalHTML = heroTitle.innerHTML;
     heroTitle.dataset.animated = 'true';
-    const text = heroTitle.textContent.trim(); // Nettoie les espaces excessifs
-    heroTitle.innerHTML = ''; // Efface l'ancien contenu
+    heroTitle.innerHTML = ''; // Réinitialise le contenu
 
-    text.split('').forEach((char, i) => {
-        const span = document.createElement('span');
-        span.textContent = char;
-        span.style.display = 'inline-block';
-        span.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
-        heroTitle.appendChild(span);
+    // Crée un tableau de noeuds (textes et balises) en conservant les espaces
+    const nodes = [];
+    const childNodes = Array.from(heroTitle.childNodes);
+    
+    childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+            // Pour les noeuds texte, on découpe caractère par caractère
+            node.textContent.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                nodes.push(span);
+            });
+        } else {
+            // Pour les autres éléments (comme les balises span existantes)
+            nodes.push(node.cloneNode(true));
+        }
+    });
+
+    // Ajoute les spans avec animation
+    nodes.forEach((node, i) => {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+            node.style.display = 'inline-block';
+            node.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
+        }
+        heroTitle.appendChild(node);
     });
 };
 
