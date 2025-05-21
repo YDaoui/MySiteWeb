@@ -283,80 +283,157 @@ document.addEventListener('DOMContentLoaded', function () {
 
     
     // Sample project data - replace with your actual project data
-   function getProjectData(projectId) {
-    const projects = {
-        "1": {
-            title: "Dashboard Coaching & Ventes",
-            description: "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
-            fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes, et l'intégration de Python a permis d'ajouter des fonctionnalités de gestion dynamique.",
-            technologies: ["Power BI", "DAX", "SQL", "Python", "Streamlit"],
-            images: [
-                { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
-                { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
-                { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Power BI - Python" },
-                { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Python" },
-                { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
-                { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" }
-            ]
-        },
-        "2": {
-            title: "Scheduler VBScript & Python",
-            description: "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
-            fullDetails: "Développement d'un système d'automatisation pour la planification quotidienne des ressources. J'ai utilisé VBScript pour les interactions avec les applications existantes et Python pour des traitements de données plus complexes et la génération de rapports. Ce projet a permis de réduire considérablement le temps passé sur les tâches répétitives de planification et d'assurer une meilleure allocation des ressources.",
-            technologies: ["VBScript", "Python", "Automatisation"],
-            images: [
-                { src: "assets/img/Planning_VBA_Login.PNG", alt: "Login Planing" },
-                { src: "assets/img/Planning_VBA4.PNG", alt: "Interface Planing" },
-                { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
-                { src: "assets/img/Planning_VBA1.PNG", alt: "Vision Agent" },
-                { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Manager" },
-                { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
-            ]
-        },
-        "3": {
-            title: "Management avec Python",
-            description: "Automatisation de la récupération des demandes de congés, de la planification et du suivi managérial avec Python.",
-            fullDetails: "Mise en place d'une solution complète en Python pour automatiser le cycle de gestion des congés et le suivi managérial. Le script récupère les demandes de congés, les intègre dans un planning, et génère des rapports pour les managers, améliorant ainsi l'efficacité administrative et le suivi des équipes.",
-            technologies: ["Python", "Automatisation", "Gestion RH"],
-            images: [
-                { src: "assets/img/AccorHotels1.PNG", alt: "Interface de gestion des congés" },
-                { src: "assets/img/AccorHotels2.PNG", alt: "Détail des demandes" },
-                { src: "assets/img/AccorHotels3.PNG", alt: "Planning des équipes" },
-                { src: "assets/img/AccorHotels4.PNG", alt: "Suivi des performances" },
-                { src: "assets/img/AccorHotels5.PNG", alt: "Rapports managériaux" },
-                { src: "assets/img/AccorHotels6.PNG", alt: "Tableau de bord" },
-                { src: "assets/img/AccorHotels7.PNG", alt: "Vue d'ensemble" }
-            ]
-        },
-        "4": {
-            title: "Optimisation des évaluations Bouygues Telecom",
-            description: "Automatisation du processus de récupération des écoutes et évaluation des performances réseau pour améliorer la qualité de service et optimiser la rentabilité.",
-            fullDetails: "Ce projet a visé à automatiser la collecte et l'analyse des données d'écoute et de performance réseau pour Bouygues Telecom. J'ai développé des scripts Python pour récupérer automatiquement les données, puis j'ai mis en place des outils d'analyse pour identifier les problèmes de qualité de service et proposer des améliorations. Le but était d'optimiser la rentabilité en améliorant l'efficacité opérationnelle.",
-            technologies: ["Python", "Analyse de données", "Optimisation réseau", "Automatisation"],
-            images: [
-                { src: "assets/img/Planning_VBA_Login_Byg.PNG", alt: "Projet Bouygues Telecom - Interface de login" },
-                { src: "assets/img/Byg_4.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
-                { src: "assets/img/Byg_2.jpg", alt: "Projet Bouygues Telecom - Architecture" },
-                { src: "assets/img/Byg_3.jpg", alt: "Projet Bouygues Telecom - Analyse" },
-                { src: "assets/img/Byg_1.jpg", alt: "Projet Bouygues Telecom - Résultats" }
-            ]
-        },
-        "5": {
-            title: "Application logistique Glovo",
-            description: "Optimisation du suivi des livraisons et amélioration des indicateurs de rentabilité, d’administration financière et RH, en capitalisant sur les ressources existantes.",
-            fullDetails: "Création d'une application logistique pour Glovo, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
-            technologies: ["React", "Node.js", "MongoDB", "D3.js", "Logistique", "Analyse de données"],
-            images: [
-                { src: "assets/img/Login_Glovo.PNG", alt: "Projet Glovo - Login" },
-                { src: "assets/img/Dash_Sales_Glovo1.PNG", alt: "Projet Glovo - Tableau de bord des ventes" },
-                { src: "assets/img/Glovo1.PNG", alt: "Projet Glovo - Interface principale" },
-                { src: "assets/img/Glovo2.PNG", alt: "Projet Glovo - Suivi des livraisons" },
-                { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
-            ]
+  
+
+
+
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const projectCards = document.querySelectorAll('.project-card');
+    const projectModal = document.getElementById('project-modal');
+    const modalClose = document.querySelector('.modal-close');
+    const modalContentDiv = document.getElementById('modal-content');
+
+    // Fonction pour récupérer les données du projet (celle que tu as ajustée)
+    function getProjectData(projectId) {
+        // ... (ton code getProjectData ajusté ici)
+        const projects = {
+            "1": {
+                title: "Dashboard Coaching & Ventes",
+                description: "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
+                fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes, et l'intégration de Python a permis d'ajouter des fonctionnalités de gestion dynamique.",
+                technologies: ["Power BI", "DAX", "SQL", "Python", "Streamlit"],
+                images: [
+                    { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
+                    { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
+                    { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Python" },
+                    { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" }
+                ]
+            },
+            "2": {
+                title: "Scheduler VBScript & Python",
+                description: "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
+                fullDetails: "Développement d'un système d'automatisation pour la planification quotidienne des ressources. J'ai utilisé VBScript pour les interactions avec les applications existantes et Python pour des traitements de données plus complexes et la génération de rapports. Ce projet a permis de réduire considérablement le temps passé sur les tâches répétitives de planification et d'assurer une meilleure allocation des ressources.",
+                technologies: ["VBScript", "Python", "Automatisation"],
+                images: [
+                    { src: "assets/img/Planning_VBA_Login.PNG", alt: "Login Planing" },
+                    { src: "assets/img/Planning_VBA4.PNG", alt: "Interface Planing" },
+                    { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
+                    { src: "assets/img/Planning_VBA1.PNG", alt: "Vision Agent" },
+                    { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Manager" },
+                    { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
+                ]
+            },
+            "3": {
+                title: "Management avec Python",
+                description: "Automatisation de la récupération des demandes de congés, de la planification et du suivi managérial avec Python.",
+                fullDetails: "Mise en place d'une solution complète en Python pour automatiser le cycle de gestion des congés et le suivi managérial. Le script récupère les demandes de congés, les intègre dans un planning, et génère des rapports pour les managers, améliorant ainsi l'efficacité administrative et le suivi des équipes.",
+                technologies: ["Python", "Automatisation", "Gestion RH"],
+                images: [
+                    { src: "assets/img/AccorHotels1.PNG", alt: "Interface de gestion des congés" },
+                    { src: "assets/img/AccorHotels2.PNG", alt: "Détail des demandes" },
+                    { src: "assets/img/AccorHotels3.PNG", alt: "Planning des équipes" },
+                    { src: "assets/img/AccorHotels4.PNG", alt: "Suivi des performances" },
+                    { src: "assets/img/AccorHotels5.PNG", alt: "Rapports managériaux" },
+                    { src: "assets/img/AccorHotels6.PNG", alt: "Tableau de bord" },
+                    { src: "assets/img/AccorHotels7.PNG", alt: "Vue d'ensemble" }
+                ]
+            },
+            "4": {
+                title: "Optimisation des évaluations Bouygues Telecom",
+                description: "Automatisation du processus de récupération des écoutes et évaluation des performances réseau pour améliorer la qualité de service et optimiser la rentabilité.",
+                fullDetails: "Ce projet a visé à automatiser la collecte et l'analyse des données d'écoute et de performance réseau pour Bouygues Telecom. J'ai développé des scripts Python pour récupérer automatiquement les données, puis j'ai mis en place des outils d'analyse pour identifier les problèmes de qualité de service et proposer des améliorations. Le but était d'optimiser la rentabilité en améliorant l'efficacité opérationnelle.",
+                technologies: ["Python", "Analyse de données", "Optimisation réseau", "Automatisation"],
+                images: [
+                    { src: "assets/img/Planning_VBA_Login_Byg.PNG", alt: "Projet Bouygues Telecom - Interface de login" },
+                    { src: "assets/img/Byg_4.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
+                    { src: "assets/img/Byg_2.jpg", alt: "Projet Bouygues Telecom - Architecture" },
+                    { src: "assets/img/Byg_3.jpg", alt: "Projet Bouygues Telecom - Analyse" },
+                    { src: "assets/img/Byg_1.jpg", alt: "Projet Bouygues Telecom - Résultats" }
+                ]
+            },
+            "5": {
+                title: "Application logistique Glovo",
+                description: "Optimisation du suivi des livraisons et amélioration des indicateurs de rentabilité, d’administration financière et RH, en capitalisant sur les ressources existantes.",
+                fullDetails: "Création d'une application logistique pour Glovo, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
+                technologies: ["React", "Node.js", "MongoDB", "D3.js", "Logistique", "Analyse de données"],
+                images: [
+                    { src: "assets/img/Login_Glovo.PNG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Dash_Sales_Glovo1.PNG", alt: "Projet Glovo - Tableau de bord des ventes" },
+                    { src: "assets/img/Glovo1.PNG", alt: "Projet Glovo - Interface principale" },
+                    { src: "assets/img/Glovo2.PNG", alt: "Projet Glovo - Suivi des livraisons" },
+                    { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
+                ]
+            }
+        };
+        return projects[projectId];
+    }
+
+    projectCards.forEach(card => {
+        const viewDetailsBtn = card.querySelector('.view-details');
+        viewDetailsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const projectId = card.dataset.projectId;
+            const project = getProjectData(projectId);
+
+            if (project) {
+                modalContentDiv.innerHTML = `
+                    <h3>${project.title}</h3>
+                    <p><strong>Description:</strong> ${project.description}</p>
+                    <p>${project.fullDetails}</p>
+                    <p><strong>Technologies:</strong> ${project.technologies.join(', ')}</p>
+                    <h4>Images du projet:</h4>
+                    <div class="project-modal-gallery"></div>
+                `;
+
+                const projectModalGallery = modalContentDiv.querySelector('.project-modal-gallery');
+                project.images.forEach(image => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = image.src;
+                    imgElement.alt = image.alt;
+                    imgElement.classList.add('modal-thumbnail'); // Ajoute une classe pour styliser
+                    projectModalGallery.appendChild(imgElement);
+
+                    // Ajoute l'écouteur de clic pour agrandir l'image
+                    imgElement.addEventListener('click', () => {
+                        const largeImageModal = document.createElement('div');
+                        largeImageModal.classList.add('large-image-modal');
+                        largeImageModal.innerHTML = `
+                            <span class="large-image-close">&times;</span>
+                            <img src="${image.src}" alt="${image.alt}">
+                        `;
+                        document.body.appendChild(largeImageModal);
+
+                        largeImageModal.querySelector('.large-image-close').addEventListener('click', () => {
+                            document.body.removeChild(largeImageModal);
+                        });
+
+                        largeImageModal.addEventListener('click', (e) => {
+                            if (e.target === largeImageModal) {
+                                document.body.removeChild(largeImageModal);
+                            }
+                        });
+                    });
+                });
+
+                projectModal.style.display = 'block';
+            }
+        });
+    });
+
+    modalClose.addEventListener('click', () => {
+        projectModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === projectModal) {
+            projectModal.style.display = 'none';
         }
-    };
-    return projects[projectId];
-}
+    });
+});
 // 2. Animation du titre héro améliorée
 const animateHeroTitle = () => {
     const heroTitle = document.querySelector('.hero h1');
