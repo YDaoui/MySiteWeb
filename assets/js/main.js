@@ -413,3 +413,44 @@ document.addEventListener('DOMContentLoaded', () => {
 document.querySelectorAll('.project-card').forEach((card, index) => {
     card.style.setProperty('--order', index);
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const title = document.getElementById('animated-title');
+    const text = "Bienvenue sur mon Portfolio"; // Remplacez par votre titre
+    let index = 0;
+    
+    // Fonction pour ajouter les lettres une par une
+    function typeWriter() {
+        if (index < text.length) {
+            const span = document.createElement('span');
+            span.textContent = text.charAt(index);
+            span.style.animationDelay = `${index * 0.1}s`;
+            title.appendChild(span);
+            index++;
+            setTimeout(typeWriter, 100); // Vitesse d'écriture (100ms par lettre)
+        }
+    }
+    
+    // Démarrer l'animation
+    typeWriter();
+    
+    // Pour le texte en arrière-plan (ombre)
+    title.setAttribute('data-text', text);
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const title = document.getElementById('animated-title');
+    const text = "Bienvenue sur mon Portfolio";
+    let index = 0;
+    
+    function typeWriter() {
+        if (index < text.length) {
+            title.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeWriter, 100);
+        } else {
+            // Ajouter l'ombre après que le texte soit complet
+            title.setAttribute('data-text', text);
+        }
+    }
+    
+    typeWriter();
+});
