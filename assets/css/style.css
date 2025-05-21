@@ -182,10 +182,7 @@ section {
         opacity: 1;
     }
 }/* Animation du texte gradient */
-h1 {
-    background-size: 200% auto;
-    animation: gradientText 5s ease infinite;
-}
+
 
 @keyframes gradientText {
     0% { background-position: 0% center; }
@@ -313,22 +310,53 @@ h1 {
 
 
 /* Styles pour la section Hero (page d'accueil) */
-.hero .container {
-    width: 100%;
-    max-width: 1200px;
-    padding: 0 2rem;
+.hero {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    text-align: center; /* Center text within its container */
+    min-height: 100vh; /* Make sure it takes full viewport height */
+    padding: 20px; /* Add some padding */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    /* Add a background if you have one, e.g.: */
+    /* background: url('your-hero-background.jpg') no-repeat center center/cover; */
+    /* color: #fff; /* If you have a dark background, set text color to white */
 }
 
+/* H1 (Main Title) Styling */
 .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 0 8px rgba(58, 134, 255, 0.5);
-    margin: 0 auto 1.5rem;
-    position: relative;
-    animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
+    font-size: 3.5em; /* Adjust font size for prominence */
+    font-weight: 700; /* Make it bold and clear */
+    color: #333; /* A strong, readable color. Adjust if you have a dark hero background. */
+    margin-bottom: 20px; /* Space below the title */
+    line-height: 1.2; /* Improve readability of multi-line titles */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for better contrast */
+}
+
+/* Adjust span styling within H1 if you're animating individual letters */
+.hero h1 span {
+    display: inline-block; /* Essential for animation */
+    /* If your h1 is hard to read, ensure the color here is also strong */
+    color: inherit; /* Inherit color from h1 for consistency */
+    white-space: pre; /* Preserve white space for correct letter spacing */
+}
+
+/* Button Styling (assuming .hero .btn targets your buttons) */
+.hero .btn {
+    display: inline-block; /* Necessary for proper padding and margin */
+    padding: 12px 25px; /* Comfortable padding */
+    margin: 10px; /* Space between buttons if multiple */
+    font-size: 1.1em;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    /* Example button colors, adjust to your theme */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
 }
 
 .hero h2 {
