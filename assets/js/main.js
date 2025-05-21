@@ -388,73 +388,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 2. Animation du titre héro améliorée
-    const animateHeroTitle = () => {
-        const heroTitle = document.querySelector('.hero h1');
-        if (!heroTitle) return;
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroTitle = document.querySelector('.hero h1');
+    if (!heroTitle) return;
 
-        const text = heroTitle.textContent;
-        heroTitle.innerHTML = ''; // Reset pour animation
-        
-        // Création des spans pour chaque caractère avec des délais progressifs
-        text.split('').forEach((char, i) => {
-            const span = document.createElement('span');
-            span.textContent = char;
-            span.style.opacity = '0';
-            span.style.transform = 'translateY(20px)';
-            span.style.display = 'inline-block';
-            span.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
-            heroTitle.appendChild(span);
-        });
-    };
-
-    // 3. Animation des boutons CTA
-    const animateButtons = () => {
-        const buttons = document.querySelectorAll('.hero .btn');
-        buttons.forEach((btn, i) => {
-            btn.style.opacity = '0';
-            btn.style.transform = 'translateY(20px)';
-            btn.style.animation = `fadeInUp 0.6s forwards ${i * 0.2 + 0.8}s`;
-            
-            // Effet au survol amélioré
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transform = 'translateY(-3px)';
-            });
-            
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translateY(0)';
-            });
-        });
-    };
-
-    // 4. Initialisation de EmailJS (si nécessaire)
-    const initEmailJS = () => {
-        if (typeof emailjs !== 'undefined') {
-            emailjs.init('YOUR_USER_ID'); // Remplacez par votre ID
-        }
-    };
-
-    // 5. Animation des cartes de projet avec délais
-    const animateProjectCards = () => {
-        document.querySelectorAll('.project-card').forEach((card, i) => {
-            card.style.setProperty('--delay', `${i * 0.1}s`);
-            card.style.animation = `fadeInUp 0.5s forwards var(--delay)`;
-        });
-    };
-
-    // Lancement des fonctions
-    animateHeroTitle();
-    animateButtons();
-    initEmailJS();
-    animateProjectCards();
+    const text = heroTitle.textContent;
+    heroTitle.textContent = '';
     
-    // Écouteurs d'événements
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Exécution initiale
-
-    // Recalcul des animations lors du redimensionnement
-    window.addEventListener('resize', () => {
-        animateOnScroll();
-        animateProjectCards();
+    // Création des spans pour chaque caractère
+    text.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.style.animationDelay = `${i * 0.1}s`;
+        heroTitle.appendChild(span);
     });
+
+    // Calcul de la durée totale de l'animation
+    const totalDuration = text.length * 0.1 + 1;
+    
+    // Suppression du curseur et application du style final
+    setTimeout(() => {
+        heroTitle.classList.add('animation-complete');
+        
+        // Effet d'ondulation finale sur les lettres
+        heroTitle.querySelectorAll('span').forEach((span, i) => {
+            span.style.transition = 'transform 0.3s ease';
+            setTimeout(() => {
+                span.style.transform = 'translateY(-5px)';
+                setTimeout(() => span.style.transform = 'translateY(0)', 300);
+            }, i * 50);
+        });
+    }, totalDuration * 1000);
 });
