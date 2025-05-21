@@ -243,7 +243,7 @@ h1 {
     top: 50%;
     width: 100%;
     left: 0;
-}
+}    
 
 .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
     opacity: 0;
@@ -307,9 +307,7 @@ h1 {
 }
 
 /* Délais différents */
-[data-animate-delay="100"] { transition-delay: 0.1s; }
-[data-animate-delay="200"] { transition-delay: 0.2s; }
-[data-animate-delay="300"] { transition-delay: 0.3s; }
+
 .hero {
     min-height: 100vh;
     display: flex;
