@@ -313,24 +313,12 @@ h1 {
 
 
 /* Styles pour la section Hero (page d'accueil) */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Ajout pour centrer verticalement et horizontalement */
-    text-align: center; /* Centre le texte */
-    background: linear-gradient(135deg, var(--darker), var(--dark));
-    position: relative;
-    overflow: hidden;
-}
-
 .hero .container {
     width: 100%;
     max-width: 1200px;
     padding: 0 2rem;
 }
 
-/* Animation Typing pour le titre principal */
 .hero h1 {
     font-size: clamp(2.2rem, 5vw, 3.5rem);
     background: linear-gradient(90deg, var(--primary), var(--secondary));
@@ -338,52 +326,9 @@ h1 {
     background-clip: text;
     color: transparent;
     text-shadow: 0 0 8px rgba(58, 134, 255, 0.5);
-    overflow: hidden;
-    white-space: nowrap;
-    margin: 0 auto;
+    margin: 0 auto 1.5rem;
     position: relative;
-    width: fit-content;
-}
-
-/* Curseur clignotant */
-.hero h1::after {
-    content: '|';
-    position: absolute;
-    right: 0;
-    color: var(--primary);
-    animation: blink 0.7s infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* Animation des lettres */
-.hero h1 span {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(20px);
-    filter: blur(4px);
-    animation: fadeInLetter 0.5s forwards;
-}
-
-@keyframes fadeInLetter {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
-}
-
-/* Effet final après l'animation */
-.hero h1.animation-complete {
-    background-size: 200% auto;
-    animation: gradientText 5s ease infinite;
-}
-
-.hero h1.animation-complete::after {
-    display: none;
+    animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
 }
 
 .hero h2 {
