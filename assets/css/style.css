@@ -340,8 +340,6 @@ h1 {
     margin: 0 auto 1.5rem;
     position: relative;
     animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
-     letter-spacing: -2px; /* Peut coller les caractères */
-    word-spacing: -5px;
 }
 
 .hero h2 {
