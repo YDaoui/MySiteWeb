@@ -3,27 +3,25 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            if (targetId === '#' || !document.querySelector(targetId)) return; // Vérifie si l'ID cible est valide
+            if (targetId === '#' || !document.querySelector(targetId)) return;
 
-            e.preventDefault(); // Empêche le comportement de défilement par défaut du navigateur
+            e.preventDefault();
             const targetElement = document.querySelector(targetId);
             const header = document.querySelector('.header');
-            const headerHeight = header ? header.offsetHeight : 0; // Obtient la hauteur de l'en-tête s'il existe
-            const targetPosition = targetElement.offsetTop - headerHeight; // Calcule la position de défilement
+            const headerHeight = header ? header.offsetHeight : 0;
+            const targetPosition = targetElement.offsetTop - headerHeight;
 
             window.scrollTo({
                 top: targetPosition,
-                behavior: 'smooth' // Défilement doux
+                behavior: 'smooth'
             });
 
-            // Met à jour l'URL sans recharger la page
             if (history.pushState) {
                 history.pushState(null, null, targetId);
             } else {
                 location.hash = targetId;
             }
 
-            // Ferme le menu mobile après avoir cliqué sur un lien
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
             const navbar = document.querySelector('.navbar');
             const overlay = document.querySelector('.overlay');
@@ -31,9 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (navbar && navbar.classList.contains('active')) {
                 mobileToggle.classList.remove('active');
                 navbar.classList.remove('active');
-                overlay?.classList.remove('show'); // Utilisation de l'opérateur de chaînage optionnel (?) pour la sécurité
+                overlay?.classList.remove('show');
 
-                // Réinitialise l'état des éléments de la barre de navigation
                 document.querySelectorAll('.navbar ul li').forEach(item => {
                     item.style.opacity = '0';
                     item.style.transform = 'translateY(-20px)';
@@ -47,9 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
 
-    // Crée et ajoute l'élément d'overlay s'il n'existe pas déjà
     let overlay = document.querySelector('.overlay');
-    if (!overlay) { // Vérifie si l'overlay n'a pas déjà été créé
+    if (!overlay) {
         overlay = document.createElement('div');
         overlay.className = 'overlay';
         document.body.appendChild(overlay);
@@ -62,11 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
             overlay.classList.toggle('show');
 
             if (navbar.classList.contains('active')) {
-                // Anime les éléments du menu lors de l'ouverture
                 document.querySelectorAll('.navbar ul li').forEach((item, index) => {
                     item.style.opacity = '0';
                     item.style.transform = 'translateY(-20px)';
-                    // Utilisation de setTimeout pour un léger délai avant d'appliquer l'animation
                     setTimeout(() => {
                         item.style.opacity = '1';
                         item.style.transform = 'translateY(0)';
@@ -76,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Ferme le menu si l'overlay est cliqué
         overlay.addEventListener('click', () => {
             mobileToggle.classList.remove('active');
             navbar.classList.remove('active');
@@ -92,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const details = card.querySelector('.service-details');
             const arrow = header.querySelector('.service-arrow');
 
-            // Ferme les autres cartes de service ouvertes
             document.querySelectorAll('.service-card').forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.classList.remove('active');
@@ -106,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            // Bascule la carte actuelle
             card.classList.toggle('active', !isActive);
             if (details) {
                 details.style.maxHeight = !isActive ? details.scrollHeight + 'px' : null;
@@ -145,26 +136,25 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         prevBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Empêche l'événement de se propager aux éléments parents
+            e.stopPropagation();
             currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updateGallery();
         });
 
         nextBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Empêche l'événement de se propager aux éléments parents
+            e.stopPropagation();
             currentIndex = (currentIndex + 1) % totalSlides;
             updateGallery();
         });
 
-        updateGallery(); // Initialise la galerie
+        updateGallery();
 
-        // Support tactile pour mobile
         let touchStartX = 0;
         let touchEndX = 0;
 
         container.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true }); // 'passive: true' pour améliorer les performances de défilement
+        }, { passive: true });
 
         container.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
@@ -172,11 +162,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }, { passive: true });
 
         function handleSwipe() {
-            if (Math.abs(touchEndX - touchStartX) > 50) { // Distance de balayage minimale
+            if (Math.abs(touchEndX - touchStartX) > 50) {
                 if (touchEndX < touchStartX) {
-                    currentIndex = (currentIndex + 1) % totalSlides; // Balayage vers la gauche - suivant
+                    currentIndex = (currentIndex + 1) % totalSlides;
                 } else {
-                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // Balayage vers la droite - précédent
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 }
                 updateGallery();
             }
@@ -205,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const projectCard = btn.closest('.project-card');
                 const projectId = projectCard.dataset.projectId;
 
-                const projectData = getProjectData(projectId); // Récupère les données du projet
+                const projectData = getProjectData(projectId);
 
                 if (projectData) {
                     modalContent.innerHTML = `
@@ -244,17 +234,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         elements.forEach(element => {
             const elementTop = element.getBoundingClientRect().top;
-            const elementVisible = 150; // Distance à laquelle l'élément doit être visible pour s'animer
+            const elementVisible = 150;
 
             if (elementTop < windowHeight - elementVisible) {
-                element.classList.add('animated'); // Ajoute la classe 'animated' (qui doit être définie en CSS)
+                element.classList.add('animated');
                 element.style.opacity = '1';
                 element.style.transform = 'translateY(0)';
             }
         });
     }
 
-    // Initialise les éléments pour l'animation en les cachant initialement
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -262,19 +251,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Exécute une fois au chargement pour animer les éléments déjà visibles
+    animateOnScroll();
 
     // --- Validation du formulaire de contact ---
     const contactForm = document.querySelector('.contact form');
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
-            e.preventDefault(); // Empêche l'envoi par défaut du formulaire
+            e.preventDefault();
 
             const name = this.querySelector('input[name="name"]').value.trim();
             const email = this.querySelector('input[name="email"]').value.trim();
             const message = this.querySelector('textarea[name="message"]').value.trim();
 
-            // Validation simple
             if (!name || !email || !message) {
                 alert('Veuillez remplir tous les champs.');
                 return;
@@ -285,10 +273,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            // Ici, vous enverriez normalement les données du formulaire à un serveur
-            // Exemple : via fetch() ou XMLHttpRequest
             alert('Message envoyé avec succès! Je vous répondrai dès que possible.');
-            this.reset(); // Réinitialise le formulaire
+            this.reset();
         });
     }
 
@@ -333,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/AccorHotels2.PNG", alt: "Bot RPA AccorHotels - Données extraites" },
                     { src: "assets/img/AccorHotels3.PNG", alt: "Bot RPA AccorHotels - Processus" },
                     { src: "assets/img/AccorHotels4.PNG", alt: "Bot RPA AccorHotels - Rapports" },
-                    { src: "assets/img/AccorHotels5.PNG", alt: "Bot RPA AccorHotels - Tableau de bord" },
+                    { src: "assets:img/AccorHotels5.PNG", alt: "Bot RPA AccorHotels - Tableau de bord" },
                     { src: "assets/img/AccorHotels6.PNG", alt: "Bot RPA AccorHotels - Graphe" },
                     { src: "assets/img/AccorHotels7.PNG", alt: "Bot RPA AccorHotels - Détails" }
                 ]
@@ -345,7 +331,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 technologies: ["Python", "GeoPandas", "Tableau", "Spark", "PostGIS"],
                 images: [
                     { src: "assets/img/Planning_VBA_Login_Byg.PNG", alt: "Projet Bouygues Telecom - Dashboard d'analyse" },
-                    
                     { src: "assets/img/Byg_4.jpg", alt: "Projet Bouygues Telecom - Dashboard d'analyse" },
                     { src: "assets/img/Byg_2.jpg", alt: "Projet Bouygues Telecom - Architecture de données" },
                     { src: "assets/img/Byg_3.jpg", alt: "Projet Bouygues Telecom - Cartographie d'analyse" },
@@ -366,37 +351,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             }
         };
-
         return projects[projectId] || null;
     }
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Animation au scroll améliorée
-    const animateOnScroll = () => {
-        document.querySelectorAll('[data-animate]').forEach(el => {
-            const rect = el.getBoundingClientRect();
-            const isVisible = (rect.top <= window.innerHeight * 0.75) && 
-                            (rect.bottom >= window.innerHeight * 0.25);
-            
-            if (isVisible) {
-                el.classList.add('animate');
-                // Ajout d'un délai basé sur la position pour un effet en cascade
-                const delay = Math.min(0.3, rect.top / window.innerHeight * 0.3);
-                el.style.transitionDelay = `${delay}s`;
-            }
-        });
-    };
-
-    // 2. Animation du titre héro améliorée
+    // --- Animation du titre héro améliorée ---
     const animateHeroTitle = () => {
         const heroTitle = document.querySelector('.hero h1');
         if (!heroTitle) return;
 
         const text = heroTitle.textContent;
         heroTitle.innerHTML = ''; // Reset pour animation
-        
-        // Création des spans pour chaque caractère avec des délais progressifs
+
         text.split('').forEach((char, i) => {
             const span = document.createElement('span');
             span.textContent = char;
@@ -408,33 +373,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 3. Animation des boutons CTA
+    // --- Animation des boutons CTA ---
     const animateButtons = () => {
         const buttons = document.querySelectorAll('.hero .btn');
         buttons.forEach((btn, i) => {
             btn.style.opacity = '0';
             btn.style.transform = 'translateY(20px)';
             btn.style.animation = `fadeInUp 0.6s forwards ${i * 0.2 + 0.8}s`;
-            
-            // Effet au survol amélioré
+
             btn.addEventListener('mouseenter', () => {
                 btn.style.transform = 'translateY(-3px)';
             });
-            
+
             btn.addEventListener('mouseleave', () => {
                 btn.style.transform = 'translateY(0)';
             });
         });
     };
 
-    // 4. Initialisation de EmailJS (si nécessaire)
+    // --- Initialisation de EmailJS (si nécessaire) ---
     const initEmailJS = () => {
         if (typeof emailjs !== 'undefined') {
             emailjs.init('YOUR_USER_ID'); // Remplacez par votre ID
         }
     };
 
-    // 5. Animation des cartes de projet avec délais
+    // --- Animation des cartes de projet avec délais ---
     const animateProjectCards = () => {
         document.querySelectorAll('.project-card').forEach((card, i) => {
             card.style.setProperty('--delay', `${i * 0.1}s`);
@@ -442,15 +406,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Lancement des fonctions
+    // Lancement des fonctions d'animation initiales
     animateHeroTitle();
     animateButtons();
     initEmailJS();
     animateProjectCards();
-    
-    // Écouteurs d'événements
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Exécution initiale
 
     // Recalcul des animations lors du redimensionnement
     window.addEventListener('resize', () => {
@@ -458,4 +418,3 @@ document.addEventListener('DOMContentLoaded', () => {
         animateProjectCards();
     });
 });
-
