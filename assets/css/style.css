@@ -332,15 +332,19 @@ h1 {
 
 
 /* Animation du Hero */
-/* Animation Hero - Version corrigée */
+/* Correction pour l'animation du titre */
 .hero h1 {
     text-align: center;
     display: block;
-    overflow: visible;
     white-space: normal;
+    overflow: visible;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-.typewriter-container {
+.typewriter-text {
     display: inline-block;
     position: relative;
 }
@@ -349,7 +353,7 @@ h1 {
     display: inline-block;
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeInUp 0.3s forwards;
+    animation: typewriter-fade 0.3s forwards;
     white-space: normal;
 }
 
@@ -358,9 +362,25 @@ h1 {
     width: 2px;
     height: 1em;
     background: var(--primary);
-    margin-left: 4px;
-    animation: blink-caret 0.75s step-end infinite;
+    animation: blink 0.7s infinite;
     vertical-align: middle;
+}
+
+@keyframes typewriter-fade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Désactive les autres animations en conflit */
+.hero h1 {
+    animation: none !important;
 }
 
 @keyframes fadeInUp {
