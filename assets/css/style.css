@@ -165,7 +165,33 @@ section {
     color: var(--primary);
 }
 
+/* Animation du header */
+.header {
+    transition: all 0.5s ease;
+}
 
+.header.scrolled {
+    transform: translateY(-10px);
+    opacity: 0.9;
+    animation: headerSlideDown 0.5s ease forwards;
+}
+
+@keyframes headerSlideDown {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}/* Animation du texte gradient */
+h1 {
+    background-size: 200% auto;
+    animation: gradientText 5s ease infinite;
+}
+
+@keyframes gradientText {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
 /* Agrandissement du menu hamburger (forme de bloc) */
 .mobile-menu-toggle {
     display: none;
