@@ -351,43 +351,38 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 // 2. Animation du titre héro améliorée
-
-
-
-
-
-
-
-
-
-
-
-
-// 2. Animation du titre héro (machine à écrire améliorée)
+// 2. Animation du titre héro améliorée (version qui conserve l'anim originale)
 const animateHeroTitle = () => {
     const heroTitle = document.querySelector('.hero h1');
     if (!heroTitle) return;
 
-    const text = heroTitle.textContent.trim();
-    heroTitle.innerHTML = ''; // Reset
+    const text = heroTitle.textContent;
+    heroTitle.innerHTML = ''; // Reset pour animation
     
-    // Crée un span pour chaque caractère avec un délai progressif
+    // On traite chaque caractère en gardant les espaces intacts
+    let isLastCharSpace = false;
+    
     text.split('').forEach((char, i) => {
-        const charSpan = document.createElement('span');
-        charSpan.className = 'hero-char';
-        charSpan.textContent = char === ' ' ? '&nbsp;' : char;
-        charSpan.style.animationDelay = `${i * 0.05}s`;
-        heroTitle.appendChild(charSpan);
+        // Si c'est un espace, on l'ajoute directement sans animation
+        if (char === ' ') {
+            heroTitle.appendChild(document.createTextNode(' '));
+            isLastCharSpace = true;
+            return;
+        }
+        
+        const span = document.createElement('span');
+        span.textContent = char;
+        
+        // Style pour l'animation
+        span.style.opacity = '0';
+        span.style.transform = 'translateY(20px)';
+        span.style.display = 'inline-block';
+        
+        // On ajuste le délai pour compenser les espaces sautés
+        const adjustedIndex = isLastCharSpace ? i - 1 : i;
+        span.style.animation = `fadeInUp 0.5s forwards ${adjustedIndex * 0.05 + 0.3}s`;
+        
+        heroTitle.appendChild(span);
+        isLastCharSpace = false;
     });
-    
-    // Ajoute le curseur clignotant
-    const cursor = document.createElement('span');
-    cursor.className = 'typewriter-cursor';
-    heroTitle.appendChild(cursor);
-    
-    // Supprime le curseur après l'animation
-    setTimeout(() => {
-        cursor.remove();
-    }, text.length * 0.05 * 1000 + 1000);
-};
 };
