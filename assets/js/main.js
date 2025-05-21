@@ -371,28 +371,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Animation au scroll améliorée
     const animateOnScroll = () => {
@@ -480,4 +458,6 @@ document.addEventListener('DOMContentLoaded', () => {
         animateProjectCards();
     });
 });
+
+
 
