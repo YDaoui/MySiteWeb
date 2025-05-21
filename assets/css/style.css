@@ -342,20 +342,24 @@ h1 {
     opacity: 1 !important;
     transform: none !important;
 }
+/* Styles pour la section Hero (page d'accueil) */
 .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    background: linear-gradient(90deg, 
-        rgba(58, 134, 255, 0.9),  /* Ajout d'opacité à la couleur primaire */
-        rgba(131, 56, 236, 0.9)  /* Ajout d'opacité à la couleur secondaire */
+    font-size: clamp(2.8rem, 6vw, 4.5rem); /* Augmente la taille pour une meilleure lisibilité, ajuste le clamp pour la réactivité */
+    background: linear-gradient(90deg,
+        rgba(58, 134, 255, 1),  /* Opacité à 1 pour une meilleure visibilité */
+        rgba(131, 56, 236, 1)    /* Opacité à 1 pour une meilleure visibilité */
     );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 8px rgba(58, 134, 255, 0.3); /* Réduction de l'intensité de l'ombre */
+    text-shadow: 0 0 12px rgba(58, 134, 255, 0.5); /* Augmente légèrement l'intensité de l'ombre pour plus de contraste */
     margin: 0 auto 1.5rem;
     position: relative;
     animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
-    opacity: 0.95; /* Légère réduction d'opacité */
+    opacity: 1; /* Assure une opacité complète */
+    word-spacing: 0.2em; /* Ajoute un espacement entre les mots */
+    letter-spacing: 0.05em; /* Ajoute un léger espacement entre les lettres pour aérer */
+    white-space: normal; /* Permet au texte de se sauter à la ligne normalement si nécessaire */
 }
 
 .hero h2 {
