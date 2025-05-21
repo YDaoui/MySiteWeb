@@ -351,28 +351,43 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 // 2. Animation du titre héro améliorée
+
+
+
+
+
+
+
+
+
+
+
+
+// 2. Animation du titre héro (machine à écrire améliorée)
 const animateHeroTitle = () => {
     const heroTitle = document.querySelector('.hero h1');
     if (!heroTitle) return;
 
-    const text = heroTitle.textContent.trim(); // Supprime les espaces inutiles
+    const text = heroTitle.textContent.trim();
     heroTitle.innerHTML = ''; // Reset
     
-    let i = 0;
-    const speed = 80; // Vitesse (ms)
+    // Crée un span pour chaque caractère avec un délai progressif
+    text.split('').forEach((char, i) => {
+        const charSpan = document.createElement('span');
+        charSpan.className = 'hero-char';
+        charSpan.textContent = char === ' ' ? '&nbsp;' : char;
+        charSpan.style.animationDelay = `${i * 0.05}s`;
+        heroTitle.appendChild(charSpan);
+    });
     
-    function typeWriter() {
-        if (i < text.length) {
-            const charSpan = document.createElement('span');
-            charSpan.textContent = text[i];
-            charSpan.style.opacity = '0';
-            charSpan.style.animation = 'fadeIn 0.1s forwards';
-            heroTitle.appendChild(charSpan);
-            
-            i++;
-            setTimeout(typeWriter, speed);
-        }
-    }
+    // Ajoute le curseur clignotant
+    const cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    heroTitle.appendChild(cursor);
     
-    typeWriter();
+    // Supprime le curseur après l'animation
+    setTimeout(() => {
+        cursor.remove();
+    }, text.length * 0.05 * 1000 + 1000);
+};
 };
