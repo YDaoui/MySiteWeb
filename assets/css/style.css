@@ -182,7 +182,10 @@ section {
         opacity: 1;
     }
 }/* Animation du texte gradient */
-
+h1 {
+    background-size: 200% auto;
+    animation: gradientText 5s ease infinite;
+}
 
 @keyframes gradientText {
     0% { background-position: 0% center; }
@@ -310,143 +313,105 @@ section {
 
 
 /* Styles pour la section Hero (page d'accueil) */
-
-
-
-/* ========================================= */
-/* === Hero Section Styling - The DEFINITIVE Fix === */
-/* ========================================= */
-
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center; /* Ajout pour centrer verticalement et horizontalement */
+    text-align: center; /* Centre le texte */
     background: linear-gradient(135deg, var(--darker), var(--dark));
     position: relative;
     overflow: hidden;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+.hero .container {
     width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    max-width: 1200px;
+    padding: 0 2rem;
 }
 
-.hero .container {
+.hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 8px rgba(58, 134, 255, 0.5);
+    margin: 0 auto 1.5rem;
     position: relative;
-    z-index: 1;
-    text-align: center;
+    animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
+}
+
+.hero h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease-out 0.2s both;
 }
 
 .hero p {
     font-size: 1.25rem;
     max-width: 700px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 3rem;
     color: rgba(255, 255, 255, 0.8);
+    animation: fadeInUp 1s ease-out 0.4s both;
 }
 
-/* Boutons */
-.btn {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
-    border: none;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
-}
-
-.btn:active {
-    transform: translateY(1px);
-}
-
-.btn-outline {
-    background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    box-shadow: none;
-}
-
-.btn-outline:hover {
-    background: var(--primary);
-    color: white;
-}
-/* --- Paragraph in Hero Section --- */
-.hero p {
-    font-size: 1.2rem; /* Good readable size */
-    max-width: 800px; /* Optimal reading width for text blocks */
-    margin: 0 auto 4rem; /* Centers the paragraph and adds more space below for buttons */
-    color: rgba(230, 241, 255, 0.98); /* Very close to white for maximum contrast */
-    line-height: 1.8; /* Improved line spacing for readability */
-    animation: fadeInUp 1.2s ease-out 0.6s both;
-}
-
-/* --- Hero Buttons Container --- */
-.hero-buttons {
-    display: flex;
-    justify-content: center; /* Centers buttons horizontally within their container */
-    flex-wrap: wrap; /* Allows buttons to wrap to the next line on smaller screens */
-    gap: 2rem; /* Increased space between buttons */
-    margin-top: 20px; /* Space from the paragraph above */
-    /* Ensure these buttons are direct children of .hero if you don't use .hero-buttons */
-}
-
-/* --- Hero Buttons Styling (leveraging your global .btn styles) --- */
-/* Your .btn class already has good base styles. Just ensure the animation applies. */
-.hero .btn {
-    font-size: 1.2rem; /* Slightly larger for main CTA */
-    padding: 1rem 3rem; /* More generous padding */
-    animation: fadeInUp 1s ease-out 0.8s both; /* Your specific animation for the main button */
-}
-
-.hero .btn-outline {
-    animation: fadeInUp 1s ease-out 1s both; /* Animation for the secondary button */
-}
-
-
-/* --- Responsive Adjustments for Hero Section (keep this part) --- */
-@media (max-width: 768px) {
-    .hero {
-        padding: 60px 15px; /* Adjust padding on smaller screens */
+/* Animation pour le titre principal */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-
-    .hero h1 {
-        font-size: clamp(2.5rem, 10vw, 4.5rem); /* More aggressive clamping for mobile */
-        margin-bottom: 20px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    .hero h2 {
-        font-size: clamp(1.6rem, 7vw, 2.5rem);
-        margin-bottom: 20px;
+/* Animation du texte gradient */
+@keyframes gradientText {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
+
+.hero h1 {
+    background-size: 200% auto;
+}
+
+/* Animation des éléments enfants avec délais */
+.hero-content > * {
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards;
+}
+
+.hero-content > *:nth-child(1) { animation-delay: 0.2s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.4s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.6s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.8s; }
+
+/* Keyframes pour l'animation */
+@keyframes fadeInLetter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
     }
+}
 
-    .hero p {
-        font-size: 1rem;
-        margin-bottom: 2.5rem;
+@keyframes glowPulse {
+    from {
+        text-shadow: 
+            0 0 10px var(--primary),
+            0 0 20px var(--primary),
+            0 0 30px var(--primary);
     }
-
-    .hero .btn {
-        font-size: 1rem;
-        padding: 0.9rem 2.5rem;
-    }
-
-    .hero-buttons {
-        gap: 1rem; /* Reduce gap between buttons on mobile */
+    to {
+        text-shadow: 
+            0 0 15px var(--primary),
+            0 0 30px var(--primary),
+            0 0 45px var(--secondary);
     }
 }
 /* Boutons */
@@ -1698,49 +1663,6 @@ footer a:hover {
 }
 
 
-
-
-
-
-
-
-
-.typing-container {
-    display: inline-block;
-    position: relative;
-}
-
-.typing-cursor {
-    position: absolute;
-    right: -10px;
-    animation: blink 0.7s infinite;
-    color: var(--primary);
-}
-
-.typing-letter {
-    opacity: 0;
-    transform: translateY(10px);
-}
-
-.hero h1.animated-complete {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: gradientText 5s ease infinite;
-    background-size: 200% auto;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-@keyframes gradientText {
-    0% { background-position: 0% center; }
-    50% { background-position: 100% center; }
-    100% { background-position: 0% center; }
-}
 
 
 
