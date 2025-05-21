@@ -330,41 +330,17 @@ h1 {
     padding: 0 2rem;
 }
 
-/* Modifications pour le h1 hero */
 .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
     background: linear-gradient(90deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    background-size: 200% auto;
-    animation: gradientText 5s ease infinite;
-    text-shadow: none;
-    letter-spacing: normal;
+    text-shadow: 0 0 8px rgba(58, 134, 255, 0.5);
+    margin: 0 auto 1.5rem;
+    position: relative;
+    animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
 }
-
-/* Suppression des styles redondants */
-@keyframes fadeInLetter {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
-}
-
-/* Conservation des animations existantes */
-.hero-content > * {
-    opacity: 0;
-    animation: fadeInUp 0.8s forwards;
-}
-
-.hero-content > *:nth-child(1) { animation-delay: 0.2s; }
-.hero-content > *:nth-child(2) { animation-delay: 0.4s; }
-.hero-content > *:nth-child(3) { animation-delay: 0.6s; }
-.hero-content > *:nth-child(4) { animation-delay: 0.8s; }
 
 .hero h2 {
     font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -400,7 +376,9 @@ h1 {
     100% { background-position: 0% center; }
 }
 
-
+.hero h1 {
+    background-size: 200% auto;
+}
 
 /* Animation des éléments enfants avec délais */
 .hero-content > * {
