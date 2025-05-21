@@ -342,28 +342,23 @@ section {
 }
 
 /* --- H1 (Main Title) Styling - FOCUS on Readability with Gradient --- */
+/* --- H1 (Main Title) Styling - FOCUS on Readability with Gradient --- */
 .hero h1 {
-    font-size: clamp(3.5rem, 9vw, 6rem); /* Even larger for impact, fluidly scales */
-    font-weight: 900; /* Extra bold for maximum clarity with transparent text */
-    line-height: 1.1; /* Tighter line spacing for multi-line titles */
-    margin-bottom: 30px; /* More space below the title */
+    /* ... (other properties like font-size, font-weight, line-height, margin-bottom) ... */
 
-    /* Your existing gradient and text clip - KEEP AS IS */
     background: linear-gradient(90deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent; /* Makes the text transparent, revealing the background-clip */
+    color: transparent;
 
-    /* **THE MOST CRITICAL PART FOR READABILITY: ENHANCED TEXT SHADOW** */
-    /* This creates a solid "ghost" behind the transparent gradient text */
+    /* **CRITICAL for visibility and homogeneity: Enhanced text-shadow** */
+    /* This creates a solid "ghost" behind the transparent gradient text, making it clearer and integrated. */
     text-shadow:
         0px 0px 12px rgba(0, 0, 0, 0.9),   /* Very strong dark shadow for contrast */
         0px 0px 25px rgba(0, 0, 0, 0.7),   /* Larger dark shadow for depth */
         0px 0px 40px rgba(255, 255, 255, 0.15); /* Subtle white glow at the edges */
 
-    /* For the gradient animation (as you already have it) */
-    background-size: 200% auto;
-    animation: gradientText 8s ease infinite, fadeInUp 1.2s ease-out 0.2s both; /* Longer fadeInUp for smoothness */
+    /* ... (animation properties) ... */
 }
 
 /* --- H1 SPAN Styling (for individual letter animations - crucial if you have JS for this) --- */
