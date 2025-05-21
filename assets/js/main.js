@@ -3,27 +3,27 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            if (targetId === '#' || !document.querySelector(targetId)) return;
+            if (targetId === '#' || !document.querySelector(targetId)) return; // Vérifie si l'ID cible est valide
 
-            e.preventDefault();
+            e.preventDefault(); // Empêche le comportement de défilement par défaut du navigateur
             const targetElement = document.querySelector(targetId);
             const header = document.querySelector('.header');
-            const headerHeight = header ? header.offsetHeight : 0;
-            const targetPosition = targetElement.offsetTop - headerHeight;
+            const headerHeight = header ? header.offsetHeight : 0; // Obtient la hauteur de l'en-tête s'il existe
+            const targetPosition = targetElement.offsetTop - headerHeight; // Calcule la position de défilement
 
             window.scrollTo({
                 top: targetPosition,
-                behavior: 'smooth'
+                behavior: 'smooth' // Défilement doux
             });
 
-            // Gère l'historique du navigateur pour les URLs avec ancres
+            // Met à jour l'URL sans recharger la page
             if (history.pushState) {
                 history.pushState(null, null, targetId);
             } else {
                 location.hash = targetId;
             }
 
-            // Ferme le menu mobile après le clic sur un lien
+            // Ferme le menu mobile après avoir cliqué sur un lien
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
             const navbar = document.querySelector('.navbar');
             const overlay = document.querySelector('.overlay');
@@ -31,13 +31,13 @@ document.addEventListener('DOMContentLoaded', function () {
             if (navbar && navbar.classList.contains('active')) {
                 mobileToggle.classList.remove('active');
                 navbar.classList.remove('active');
-                overlay?.classList.remove('show');
+                overlay?.classList.remove('show'); // Utilisation de l'opérateur de chaînage optionnel (?) pour la sécurité
 
-                // Réinitialise les styles d'animation des éléments du menu pour le prochain affichage
+                // Réinitialise l'état des éléments de la barre de navigation
                 document.querySelectorAll('.navbar ul li').forEach(item => {
-                    item.style.opacity = ''; // Supprime les styles inline pour que le CSS prenne le relais
-                    item.style.transform = '';
-                    item.style.transitionDelay = '';
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(-20px)';
+                    item.style.transitionDelay = '0s';
                 });
             }
         });
@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
 
+    // Crée et ajoute l'élément d'overlay s'il n'existe pas déjà
     let overlay = document.querySelector('.overlay');
-    // Crée l'overlay s'il n'existe pas
-    if (!overlay) {
+    if (!overlay) { // Vérifie si l'overlay n'a pas déjà été créé
         overlay = document.createElement('div');
         overlay.className = 'overlay';
         document.body.appendChild(overlay);
@@ -62,39 +62,25 @@ document.addEventListener('DOMContentLoaded', function () {
             overlay.classList.toggle('show');
 
             if (navbar.classList.contains('active')) {
-                // Applique les animations de délai aux éléments de liste du menu
+                // Anime les éléments du menu lors de l'ouverture
                 document.querySelectorAll('.navbar ul li').forEach((item, index) => {
                     item.style.opacity = '0';
                     item.style.transform = 'translateY(-20px)';
-                    // Utilisation de setTimeout pour déclencher la transition après un court délai
-                    // pour s'assurer que les propriétés initiales sont appliquées avant la transition
+                    // Utilisation de setTimeout pour un léger délai avant d'appliquer l'animation
                     setTimeout(() => {
                         item.style.opacity = '1';
                         item.style.transform = 'translateY(0)';
                         item.style.transition = `all 0.3s ease ${index * 0.1}s`;
                     }, 10);
                 });
-            } else {
-                // Réinitialise les styles d'animation lors de la fermeture
-                document.querySelectorAll('.navbar ul li').forEach(item => {
-                    item.style.opacity = '';
-                    item.style.transform = '';
-                    item.style.transition = ''; // Supprime la transition pour éviter des comportements inattendus lors de la fermeture
-                });
             }
         });
 
-        // Ferme le menu mobile lorsque l'overlay est cliqué
+        // Ferme le menu si l'overlay est cliqué
         overlay.addEventListener('click', () => {
             mobileToggle.classList.remove('active');
             navbar.classList.remove('active');
             overlay.classList.remove('show');
-            // Réinitialise les styles des éléments du menu
-            document.querySelectorAll('.navbar ul li').forEach(item => {
-                item.style.opacity = '';
-                item.style.transform = '';
-                item.style.transition = '';
-            });
         });
     }
 
@@ -106,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const details = card.querySelector('.service-details');
             const arrow = header.querySelector('.service-arrow');
 
-            // Ferme toutes les autres cartes de service
+            // Ferme les autres cartes de service ouvertes
             document.querySelectorAll('.service-card').forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.classList.remove('active');
@@ -120,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            // Bascule l'état de la carte cliquée
+            // Bascule la carte actuelle
             card.classList.toggle('active', !isActive);
             if (details) {
                 details.style.maxHeight = !isActive ? details.scrollHeight + 'px' : null;
@@ -139,13 +125,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const gallery = card.querySelector('.project-gallery');
         if (!gallery) return;
 
-        const container = gallery.querySelector('.carousel-container'); // Correction du sélecteur
-        const slides = gallery.querySelectorAll('.carousel-container img'); // Correction du sélecteur
-        const prevBtn = gallery.querySelector('.carousel-prev'); // Correction du sélecteur
-        const nextBtn = gallery.querySelector('.carousel-next'); // Correction du sélecteur
+        const container = gallery.querySelector('.gallery-container');
+        const slides = gallery.querySelectorAll('.gallery-slide');
+        const prevBtn = gallery.querySelector('.project-nav.prev');
+        const nextBtn = gallery.querySelector('.project-nav.next');
         const counter = gallery.querySelector('.slide-counter');
 
-        // Vérifie si tous les éléments nécessaires existent
         if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
@@ -160,26 +145,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         prevBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Empêche l'ouverture de la modale lors du clic sur le bouton de navigation
+            e.stopPropagation(); // Empêche l'événement de se propager aux éléments parents
             currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updateGallery();
         });
 
         nextBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Empêche l'ouverture de la modale lors du clic sur le bouton de navigation
+            e.stopPropagation(); // Empêche l'événement de se propager aux éléments parents
             currentIndex = (currentIndex + 1) % totalSlides;
             updateGallery();
         });
 
-        updateGallery(); // Affiche la première image au chargement
+        updateGallery(); // Initialise la galerie
 
-        // Gestes de balayage pour les mobiles
+        // Support tactile pour mobile
         let touchStartX = 0;
         let touchEndX = 0;
 
         container.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
+        }, { passive: true }); // 'passive: true' pour améliorer les performances de défilement
 
         container.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
@@ -187,11 +172,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }, { passive: true });
 
         function handleSwipe() {
-            if (Math.abs(touchEndX - touchStartX) > 50) { // Détection d'un balayage significatif
+            if (Math.abs(touchEndX - touchStartX) > 50) { // Distance de balayage minimale
                 if (touchEndX < touchStartX) {
-                    currentIndex = (currentIndex + 1) % totalSlides;
+                    currentIndex = (currentIndex + 1) % totalSlides; // Balayage vers la gauche - suivant
                 } else {
-                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // Balayage vers la droite - précédent
                 }
                 updateGallery();
             }
@@ -214,14 +199,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Ouvre la modale lors du clic sur le bouton "Voir détails"
         document.querySelectorAll('.view-details').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const projectCard = btn.closest('.project-card');
                 const projectId = projectCard.dataset.projectId;
 
-                const projectData = getProjectData(projectId);
+                const projectData = getProjectData(projectId); // Récupère les données du projet
 
                 if (projectData) {
                     modalContent.innerHTML = `
@@ -255,34 +239,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Animations au défilement (Scroll animations) ---
     function animateOnScroll() {
-        // Sélectionne les éléments qui doivent être animés au défilement
-        const elementsToAnimate = document.querySelectorAll('.service-card, .project-card, .tech-item, [data-animate]');
+        const elements = document.querySelectorAll('.service-card, .project-card, .tech-item');
         const windowHeight = window.innerHeight;
 
-        elementsToAnimate.forEach(element => {
+        elements.forEach(element => {
             const elementTop = element.getBoundingClientRect().top;
-            const elementVisible = 150; // Nombre de pixels avant l'entrée dans la vue
+            const elementVisible = 150; // Distance à laquelle l'élément doit être visible pour s'animer
 
-            // Ajoute la classe 'animate' si l'élément est dans la zone visible
             if (elementTop < windowHeight - elementVisible) {
-                element.classList.add('animate');
+                element.classList.add('animated'); // Ajoute la classe 'animated' (qui doit être définie en CSS)
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
             }
         });
     }
 
-    // Initialise les propriétés de transition pour les éléments animés par défilement
-    // Ces styles devraient idéalement être dans le CSS pour une meilleure séparation
-    // mais sont maintenus ici pour respecter la structure originale.
+    // Initialise les éléments pour l'animation en les cachant initialement
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     });
 
-    // Écouteur d'événement de défilement
     window.addEventListener('scroll', animateOnScroll);
-    // Exécute la fonction une fois au chargement pour animer les éléments déjà visibles
-    animateOnScroll();
+    animateOnScroll(); // Exécute une fois au chargement pour animer les éléments déjà visibles
 
     // --- Validation du formulaire de contact ---
     const contactForm = document.querySelector('.contact form');
@@ -294,27 +274,25 @@ document.addEventListener('DOMContentLoaded', function () {
             const email = this.querySelector('input[name="email"]').value.trim();
             const message = this.querySelector('textarea[name="message"]').value.trim();
 
-            // Validation simple des champs
+            // Validation simple
             if (!name || !email || !message) {
                 alert('Veuillez remplir tous les champs.');
                 return;
             }
 
-            // Validation du format de l'email
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 alert('Veuillez entrer une adresse email valide.');
                 return;
             }
 
-            // Simulation d'envoi de message (remplacez par votre logique d'envoi réelle, ex: EmailJS)
+            // Ici, vous enverriez normalement les données du formulaire à un serveur
+            // Exemple : via fetch() ou XMLHttpRequest
             alert('Message envoyé avec succès! Je vous répondrai dès que possible.');
             this.reset(); // Réinitialise le formulaire
         });
     }
 
     // --- Données de projet (exemple) ---
-    // Cette fonction simule la récupération des données de projet.
-    // En production, ces données pourraient venir d'une API ou d'un fichier JSON.
     function getProjectData(projectId) {
         const projects = {
             "1": {
@@ -367,6 +345,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 technologies: ["Python", "GeoPandas", "Tableau", "Spark", "PostGIS"],
                 images: [
                     { src: "assets/img/Planning_VBA_Login_Byg.PNG", alt: "Projet Bouygues Telecom - Dashboard d'analyse" },
+                    
                     { src: "assets/img/Byg_4.jpg", alt: "Projet Bouygues Telecom - Dashboard d'analyse" },
                     { src: "assets/img/Byg_2.jpg", alt: "Projet Bouygues Telecom - Architecture de données" },
                     { src: "assets/img/Byg_3.jpg", alt: "Projet Bouygues Telecom - Cartographie d'analyse" },
@@ -387,83 +366,95 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             }
         };
+
         return projects[projectId] || null;
     }
+});
 
-    // --- Animation du titre héro améliorée ---
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Animation au scroll améliorée
+    const animateOnScroll = () => {
+        document.querySelectorAll('[data-animate]').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const isVisible = (rect.top <= window.innerHeight * 0.75) && 
+                            (rect.bottom >= window.innerHeight * 0.25);
+            
+            if (isVisible) {
+                el.classList.add('animate');
+                // Ajout d'un délai basé sur la position pour un effet en cascade
+                const delay = Math.min(0.3, rect.top / window.innerHeight * 0.3);
+                el.style.transitionDelay = `${delay}s`;
+            }
+        });
+    };
+
+    // 2. Animation du titre héro améliorée
     const animateHeroTitle = () => {
         const heroTitle = document.querySelector('.hero h1');
         if (!heroTitle) return;
 
-        // Évite de ré-animer le titre si déjà fait
-        if (heroTitle.dataset.animated === 'true') return;
-
-        heroTitle.dataset.animated = 'true';
-        const text = heroTitle.textContent.trim(); // Nettoie les espaces excessifs
-        heroTitle.innerHTML = ''; // Efface l'ancien contenu
-
-        // Crée un span pour chaque caractère pour une animation individuelle
+        const text = heroTitle.textContent;
+        heroTitle.innerHTML = ''; // Reset pour animation
+        
+        // Création des spans pour chaque caractère avec des délais progressifs
         text.split('').forEach((char, i) => {
             const span = document.createElement('span');
             span.textContent = char;
-            span.style.display = 'inline-block'; // Important pour que les styles de transformation s'appliquent
+            span.style.opacity = '0';
+            span.style.transform = 'translateY(20px)';
+            span.style.display = 'inline-block';
             span.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
             heroTitle.appendChild(span);
         });
     };
 
-    // --- Animation des boutons CTA ---
+    // 3. Animation des boutons CTA
     const animateButtons = () => {
         const buttons = document.querySelectorAll('.hero .btn');
         buttons.forEach((btn, i) => {
-            // Applique les styles initiaux pour l'animation
             btn.style.opacity = '0';
             btn.style.transform = 'translateY(20px)';
             btn.style.animation = `fadeInUp 0.6s forwards ${i * 0.2 + 0.8}s`;
-
-            // Ajoute des effets au survol pour les boutons
+            
+            // Effet au survol amélioré
             btn.addEventListener('mouseenter', () => {
                 btn.style.transform = 'translateY(-3px)';
             });
-
+            
             btn.addEventListener('mouseleave', () => {
                 btn.style.transform = 'translateY(0)';
             });
         });
     };
 
-    // --- Initialisation de EmailJS (si nécessaire) ---
-    // Assurez-vous d'avoir la bibliothèque EmailJS chargée dans votre HTML avant main.js
+    // 4. Initialisation de EmailJS (si nécessaire)
     const initEmailJS = () => {
         if (typeof emailjs !== 'undefined') {
-            emailjs.init('YOUR_USER_ID'); // Remplacez par votre ID utilisateur EmailJS
+            emailjs.init('YOUR_USER_ID'); // Remplacez par votre ID
         }
     };
 
-    // --- Animation des cartes de projet avec délais ---
+    // 5. Animation des cartes de projet avec délais
     const animateProjectCards = () => {
         document.querySelectorAll('.project-card').forEach((card, i) => {
-            // Utilise une variable CSS custom pour le délai d'animation
             card.style.setProperty('--delay', `${i * 0.1}s`);
             card.style.animation = `fadeInUp 0.5s forwards var(--delay)`;
         });
     };
 
-    // Lancement des fonctions d'animation initiales
+    // Lancement des fonctions
     animateHeroTitle();
     animateButtons();
     initEmailJS();
     animateProjectCards();
+    
+    // Écouteurs d'événements
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Exécution initiale
 
-    // Recalcul des animations lors du redimensionnement de la fenêtre
-    // Ceci peut être utile pour réinitialiser ou ajuster certaines animations si la mise en page change drastiquement
+    // Recalcul des animations lors du redimensionnement
     window.addEventListener('resize', () => {
         animateOnScroll();
-        // Optionnel : réinitialiser et relancer animateHeroTitle si le titre doit ré-animer
-        // Si le titre ne doit animer qu'une fois, cette ligne n'est pas nécessaire
-        // const heroTitle = document.querySelector('.hero h1');
-        // if (heroTitle) heroTitle.dataset.animated = 'false'; // Pour permettre une ré-animation
-        // animateHeroTitle();
         animateProjectCards();
     });
 });
