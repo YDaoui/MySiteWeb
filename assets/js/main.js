@@ -352,37 +352,33 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // 2. Animation du titre héro améliorée
 // 2. Animation du titre héro améliorée (version qui conserve l'anim originale)
+// 2. Animation du titre héro (effet machine à écrire)
 const animateHeroTitle = () => {
     const heroTitle = document.querySelector('.hero h1');
     if (!heroTitle) return;
 
     const text = heroTitle.textContent;
-    heroTitle.innerHTML = ''; // Reset pour animation
+    heroTitle.innerHTML = ''; // On vide le contenu
     
-    // On traite chaque caractère en gardant les espaces intacts
-    let isLastCharSpace = false;
+    let i = 0;
+    const speed = 80; // Vitesse d'écriture (en ms)
     
-    text.split('').forEach((char, i) => {
-        // Si c'est un espace, on l'ajoute directement sans animation
-        if (char === ' ') {
-            heroTitle.appendChild(document.createTextNode(' '));
-            isLastCharSpace = true;
-            return;
+    function typeWriter() {
+        if (i < text.length) {
+            // On ajoute le caractère actuel
+            const charSpan = document.createElement('span');
+            charSpan.textContent = text.charAt(i);
+            heroTitle.appendChild(charSpan);
+            
+            // Effet "frappe clavier" (optionnel)
+            if (text.charAt(i) !== ' ') {
+                charSpan.classList.add('typewriter-char');
+            }
+            
+            i++;
+            setTimeout(typeWriter, speed);
         }
-        
-        const span = document.createElement('span');
-        span.textContent = char;
-        
-        // Style pour l'animation
-        span.style.opacity = '0';
-        span.style.transform = 'translateY(20px)';
-        span.style.display = 'inline-block';
-        
-        // On ajuste le délai pour compenser les espaces sautés
-        const adjustedIndex = isLastCharSpace ? i - 1 : i;
-        span.style.animation = `fadeInUp 0.5s forwards ${adjustedIndex * 0.05 + 0.3}s`;
-        
-        heroTitle.appendChild(span);
-        isLastCharSpace = false;
-    });
+    }
+    
+    typeWriter(); // Lancement de l'animation
 };
