@@ -1659,6 +1659,49 @@ footer a:hover {
 
 
 
+.typing-container {
+    display: inline-block;
+    position: relative;
+}
+
+.typing-cursor {
+    position: absolute;
+    right: -10px;
+    animation: blink 0.7s infinite;
+    color: var(--primary);
+}
+
+.typing-letter {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.hero h1.animated-complete {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientText 5s ease infinite;
+    background-size: 200% auto;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes gradientText {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
+
+
+
+
+
+
+
 
 
 
