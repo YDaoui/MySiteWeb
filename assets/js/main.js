@@ -409,48 +409,50 @@ document.addEventListener('DOMContentLoaded', () => {
     animateOnScroll(); // Pour animer les éléments déjà visibles
 });
 
-// Pour les projets avec délai
-document.querySelectorAll('.project-card').forEach((card, index) => {
-    card.style.setProperty('--order', index);
-});
+// Animation au scroll
 document.addEventListener('DOMContentLoaded', () => {
+    // Animation des éléments au scroll
+    const animateElements = document.querySelectorAll('[data-animate]');
+    
+    const animateOnScroll = () => {
+        animateElements.forEach(el => {
+            const elTop = el.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (elTop < windowHeight - 100) {
+                el.classList.add('animate');
+            }
+        });
+    };
+    
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll();
+
+    // Animation du titre lettre par lettre
     const title = document.getElementById('animated-title');
-    const text = "Bienvenue sur mon Portfolio"; // Remplacez par votre titre
+    const originalText = title.textContent; // Récupère le texte existant
+    title.textContent = ''; // Vide le titre pour l'animation
+    
     let index = 0;
     
-    // Fonction pour ajouter les lettres une par une
     function typeWriter() {
-        if (index < text.length) {
+        if (index < originalText.length) {
             const span = document.createElement('span');
-            span.textContent = text.charAt(index);
+            span.textContent = originalText.charAt(index);
             span.style.animationDelay = `${index * 0.1}s`;
             title.appendChild(span);
             index++;
             setTimeout(typeWriter, 100); // Vitesse d'écriture (100ms par lettre)
         }
+        // Configure l'ombre portée
+        title.setAttribute('data-text', originalText);
     }
     
     // Démarrer l'animation
     typeWriter();
-    
-    // Pour le texte en arrière-plan (ombre)
-    title.setAttribute('data-text', text);
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const title = document.getElementById('animated-title');
-    const text = "Bienvenue sur mon Portfolio";
-    let index = 0;
-    
-    function typeWriter() {
-        if (index < text.length) {
-            title.textContent += text.charAt(index);
-            index++;
-            setTimeout(typeWriter, 100);
-        } else {
-            // Ajouter l'ombre après que le texte soit complet
-            title.setAttribute('data-text', text);
-        }
-    }
-    
-    typeWriter();
+
+    // Pour les projets avec délai
+    document.querySelectorAll('.project-card').forEach((card, index) => {
+        card.style.setProperty('--order', index);
+    });
 });
