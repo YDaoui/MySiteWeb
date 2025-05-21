@@ -329,7 +329,19 @@ h1 {
     max-width: 1200px;
     padding: 0 2rem;
 }
+.hero h1 span {
+    background: inherit;
+    -webkit-background-clip: inherit;
+    background-clip: inherit;
+    color: inherit;
+    animation: inherit;
+}
 
+/* Assure que le texte reste lisible pendant l'animation */
+.hero h1 span {
+    opacity: 1 !important;
+    transform: none !important;
+}
 .hero h1 {
     font-size: clamp(2.2rem, 5vw, 3.5rem);
     background: linear-gradient(90deg, 
