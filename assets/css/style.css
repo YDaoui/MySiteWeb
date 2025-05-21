@@ -414,6 +414,27 @@ h1 {
             0 0 45px var(--secondary);
     }
 }
+/* Animation de curseur (optionnel) */
+.hero h1::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Effet "frappe" sur chaque lettre (optionnel) */
+.typewriter-char {
+    display: inline-block;
+    animation: hit 0.1s;
+}
+
+@keyframes hit {
+    from { transform: scale(1.2); }
+    to { transform: scale(1); }
+}
 /* Boutons */
 /* Styles de base des boutons - Thème principal */
 .btn {
