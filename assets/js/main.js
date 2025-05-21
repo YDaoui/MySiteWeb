@@ -351,34 +351,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 // 2. Animation du titre héro améliorée
-// 2. Animation du titre héro améliorée (version qui conserve l'anim originale)
-// 2. Animation du titre héro (effet machine à écrire)
 const animateHeroTitle = () => {
     const heroTitle = document.querySelector('.hero h1');
     if (!heroTitle) return;
 
-    const text = heroTitle.textContent;
-    heroTitle.innerHTML = ''; // On vide le contenu
+    const text = heroTitle.textContent.trim(); // Supprime les espaces inutiles
+    heroTitle.innerHTML = ''; // Reset
     
     let i = 0;
-    const speed = 80; // Vitesse d'écriture (en ms)
+    const speed = 80; // Vitesse (ms)
     
     function typeWriter() {
         if (i < text.length) {
-            // On ajoute le caractère actuel
             const charSpan = document.createElement('span');
-            charSpan.textContent = text.charAt(i);
+            charSpan.textContent = text[i];
+            charSpan.style.opacity = '0';
+            charSpan.style.animation = 'fadeIn 0.1s forwards';
             heroTitle.appendChild(charSpan);
-            
-            // Effet "frappe clavier" (optionnel)
-            if (text.charAt(i) !== ' ') {
-                charSpan.classList.add('typewriter-char');
-            }
             
             i++;
             setTimeout(typeWriter, speed);
         }
     }
     
-    typeWriter(); // Lancement de l'animation
+    typeWriter();
 };
