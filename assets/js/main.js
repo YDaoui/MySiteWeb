@@ -355,23 +355,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --- Animation du titre héro améliorée ---
-    const animateHeroTitle = () => {
+   // --- Animation du titre héro améliorée ---
+const animateHeroTitle = () => {
     const heroTitle = document.querySelector('.hero h1');
     if (!heroTitle) return;
 
     // Ne pas réinitialiser le contenu si l'animation a déjà été appliquée
     if (heroTitle.dataset.animated === 'true') return;
-    
+
     heroTitle.dataset.animated = 'true';
     const text = heroTitle.textContent;
-    heroTitle.innerHTML = '';
+    heroTitle.innerHTML = ''; // <-- C'est là que le contenu original est effacé !
 
     text.split('').forEach((char, i) => {
         const span = document.createElement('span');
-        span.textContent = char === ' ' ? '&nbsp;' : char;
+        span.textContent = char === ' ' ? '&nbsp;' : char; // <-- Ici, les espaces sont transformés en &nbsp;
         span.style.display = 'inline-block';
         span.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
-        heroTitle.appendChild(span);
+        heroTitle.appendChild(span); // <-- Les nouveaux spans sont insérés
     });
 };
 
