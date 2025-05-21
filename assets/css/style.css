@@ -12,6 +12,7 @@
     --danger: #ef476f;
 }
 
+
 /* Reset de base pour éviter les marges et paddings par défaut */
 *,
 *::before,
@@ -267,7 +268,22 @@ section {
     
     /* ... (conserve le reste de vos styles de menu mobile existants) ... */
 }
-/* Hero Section */
+
+[data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+[data-animate].animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Délais différents */
+[data-animate-delay="100"] { transition-delay: 0.1s; }
+[data-animate-delay="200"] { transition-delay: 0.2s; }
+[data-animate-delay="300"] { transition-delay: 0.3s; }
 .hero {
     min-height: 100vh;
     display: flex;
