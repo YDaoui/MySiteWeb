@@ -356,7 +356,28 @@ h1 {
     color: rgba(255, 255, 255, 0.8);
     animation: fadeInUp 1s ease-out 0.4s both;
 }
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
+/* Curseur clignotant (optionnel) */
+.hero h1::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Empêche les sauts de ligne bizarres */
+.hero h1 {
+    white-space: pre; /* Garde les espaces et sauts de ligne */
+}
 /* Animation pour le titre principal */
 @keyframes fadeInUp {
     from {
