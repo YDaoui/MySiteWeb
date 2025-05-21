@@ -340,6 +340,13 @@ h1 {
     margin: 0 auto 1.5rem;
     position: relative;
     animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
+    /* Ajouts pour améliorer la lisibilité */
+    font-family: 'Open Sans', sans-serif; /* Assurez-vous que cette police est chargée */
+    font-weight: 700;
+    letter-spacing: normal; /* Évite les espacements bizarres */
+    white-space: normal; /* Permet le retour à la ligne naturel */
+    word-spacing: normal; /* Espacement normal entre les mots */
+    padding: 0 1rem; /* Ajoute un peu d'espace sur les côtés si nécessaire */
 }
 
 .hero h2 {
