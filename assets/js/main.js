@@ -360,21 +360,21 @@ const animateHeroTitle = () => {
     const heroTitle = document.querySelector('.hero h1');
     if (!heroTitle) return;
 
-    // Ne pas réinitialiser le contenu si l'animation a déjà été appliquée
     if (heroTitle.dataset.animated === 'true') return;
 
     heroTitle.dataset.animated = 'true';
-    const text = heroTitle.textContent;
-    heroTitle.innerHTML = ''; // <-- C'est là que le contenu original est effacé !
+    const text = heroTitle.textContent.trim(); // Nettoie les espaces excessifs
+    heroTitle.innerHTML = ''; // Efface l'ancien contenu
 
     text.split('').forEach((char, i) => {
         const span = document.createElement('span');
-        span.textContent = char === ' ' ? '&nbsp;' : char; // <-- Ici, les espaces sont transformés en &nbsp;
+        span.textContent = char;
         span.style.display = 'inline-block';
         span.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
-        heroTitle.appendChild(span); // <-- Les nouveaux spans sont insérés
+        heroTitle.appendChild(span);
     });
 };
+
 
     // --- Animation des boutons CTA ---
     const animateButtons = () => {
