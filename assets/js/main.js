@@ -356,22 +356,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Animation du titre héro améliorée ---
     const animateHeroTitle = () => {
-        const heroTitle = document.querySelector('.hero h1');
-        if (!heroTitle) return;
+    const heroTitle = document.querySelector('.hero h1');
+    if (!heroTitle) return;
 
-        const text = heroTitle.textContent;
-        heroTitle.innerHTML = ''; // Reset pour animation
+    // Ne pas réinitialiser le contenu si l'animation a déjà été appliquée
+    if (heroTitle.dataset.animated === 'true') return;
+    
+    heroTitle.dataset.animated = 'true';
+    const text = heroTitle.textContent;
+    heroTitle.innerHTML = '';
 
-        text.split('').forEach((char, i) => {
-            const span = document.createElement('span');
-            span.textContent = char;
-            span.style.opacity = '0';
-            span.style.transform = 'translateY(20px)';
-            span.style.display = 'inline-block';
-            span.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
-            heroTitle.appendChild(span);
-        });
-    };
+    text.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '&nbsp;' : char;
+        span.style.display = 'inline-block';
+        span.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
+        heroTitle.appendChild(span);
+    });
+};
 
     // --- Animation des boutons CTA ---
     const animateButtons = () => {
