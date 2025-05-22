@@ -425,3 +425,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Délai avant démarrage
     setTimeout(typeWriter, 1000);
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileDropdown = document.querySelector('.mobile-dropdown');
+    
+    menuBtn.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mobileDropdown.classList.toggle('active');
+    });
+    
+    // Fermer le menu quand on clique sur un lien
+    mobileDropdown.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuBtn.classList.remove('active');
+            mobileDropdown.classList.remove('active');
+        });
+    });
+});
