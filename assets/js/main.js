@@ -361,92 +361,31 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // 2. Animation du titre héro améliorée
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Animation au scroll améliorée
-    const animateOnScroll = () => {
-        document.querySelectorAll('[data-animate]').forEach(el => {
-            const rect = el.getBoundingClientRect();
-            const isVisible = (rect.top <= window.innerHeight * 0.75) &&
-                               (rect.bottom >= window.innerHeight * 0.25);
-
-            if (isVisible) {
-                el.classList.add('animate');
-                // Ajout d'un délai basé sur la position pour un effet en cascade
-                const delay = Math.min(0.3, rect.top / window.innerHeight * 0.3);
-                el.style.transitionDelay = `${delay}s`; // Correction ici : utiliser les backticks
-            }
-        });
-    };
-
-    // 2. Animation du titre héro améliorée
-    const animateHeroTitle = () => {
+    const animateHeroTitleTyping = () => {
         const heroTitle = document.querySelector('.hero h1');
         if (!heroTitle) return;
 
-        const text = heroTitle.textContent;
-        heroTitle.innerHTML = ''; // Reset pour animation
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = ''; // Vider le titre initialement
 
-        // Création des spans pour chaque caractère avec des délais progressifs
-        text.split('').forEach((char, i) => {
-            const span = document.createElement('span');
-            span.textContent = char;
-            span.style.opacity = '0';
-            span.style.transform = 'translateY(20px)';
-            span.style.display = 'inline-block';
-            // Correction ici : utiliser les backticks pour l'animation
-            span.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
-            heroTitle.appendChild(span);
-        });
-    };
+        let charIndex = 0;
+        const typingSpeed = 70; // Vitesse de frappe en ms par caractère
 
-    // 3. Animation des boutons CTA
-    const animateButtons = () => {
-        const buttons = document.querySelectorAll('.hero .btn');
-        buttons.forEach((btn, i) => {
-            btn.style.opacity = '0';
-            btn.style.transform = 'translateY(20px)';
-            // Correction ici : utiliser les backticks pour l'animation
-            btn.style.animation = `fadeInUp 0.6s forwards ${i * 0.2 + 0.8}s`;
-
-            // Effet au survol amélioré
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transform = 'translateY(-3px)';
-            });
-
-            btn.addEventListener('mouseleave', () => {
-                btn.style.transform = 'translateY(0)';
-            });
-        });
-    };
-
-    // 4. Initialisation de EmailJS (si nécessaire)
-    const initEmailJS = () => {
-        if (typeof emailjs !== 'undefined') {
-            emailjs.init('YOUR_USER_ID'); // Remplacez par votre ID
+        function typeChar() {
+            if (charIndex < originalText.length) {
+                heroTitle.textContent += originalText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, typingSpeed);
+            }
         }
+        typeChar(); // Démarrer l'animation
     };
 
-    // 5. Animation des cartes de projet avec délais
-    const animateProjectCards = () => {
-        document.querySelectorAll('.project-card').forEach((card, i) => {
-            // Correction ici : utiliser les backticks pour la propriété personnalisée
-            card.style.setProperty('--delay', `${i * 0.1}s`);
-            card.style.animation = `fadeInUp 0.5s forwards var(--delay)`;
-        });
-    };
+    // Assurez-vous que cette fonction est appelée pour démarrer l'animation
+    animateHeroTitleTyping();
 
-    // Lancement des fonctions
-    animateHeroTitle();
-    animateButtons();
-    initEmailJS();
-    animateProjectCards();
-
-    // Écouteurs d'événements
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Exécution initiale
-
-    // Recalcul des animations lors du redimensionnement
-    window.addEventListener('resize', () => {
-        animateOnScroll();
-        animateProjectCards();
-    });
+    // Gardez vos autres fonctions d'animation (boutons, scroll, etc.) si vous en avez besoin
+    // animateButtons();
+    // animateOnScroll();
+    // animateProjectCards();
 });
