@@ -193,7 +193,6 @@ h1 {
     100% { background-position: 0% center; }
 }
 /* Agrandissement du menu hamburger (forme de bloc) */
-/* Menu Mobile - Version harmonisée */
 /* Version compacte du menu mobile */
 .mobile-menu-btn {
   display: none;
@@ -313,19 +312,7 @@ h1 {
     display: none;
   }
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-    
-    .mobile-menu {
-        display: none;
-    }
-}
-
-/* Animations */
+* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
