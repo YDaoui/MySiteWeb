@@ -389,3 +389,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // animateOnScroll();
     // animateProjectCards();
 });
+
+///////////////////////////////
+
+
+
+
+const text = "Spécialiste en analyse de données, développement et automatisation de processus";
+const element = document.getElementById('typewriter-text');
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        element.innerHTML = text.substring(0, i + 1) + '<span aria-hidden="true"></span>';
+        i++;
+        setTimeout(typeWriter, 50); // Vitesse d'écriture (en ms)
+    } else {
+        // Supprime le curseur à la fin
+        document.querySelector('#typewriter-text::after').style.display = 'none';
+    }
+}
+
+// Lance l'animation au chargement
+document.addEventListener('DOMContentLoaded', () => {
+    element.innerHTML = ''; // Efface le texte initial
+    typeWriter();
+});
