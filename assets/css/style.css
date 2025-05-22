@@ -345,21 +345,19 @@ h1 {
 .hero h2 {
     font-size: clamp(2.5rem, 6vw, 4rem); /* Une taille plus grande pour le compteur */
     font-weight: 800; /* Plus gras pour l'impact */
-    color: var(--primary); /* Utilisation de votre couleur primaire pour le nombre */
+    color: white; /* Texte en blanc pur */
     margin-bottom: 1rem; /* Ajustez la marge */
 
-    /* Animation d'apparition initiale du h2 lui-même (non liée au comptage) */
+    /* Animation d'apparition initiale du h2 lui-même */
     opacity: 0; /* Caché initialement */
     transform: translateY(20px); /* Léger décalage */
     animation: fadeInUp 1s ease-out forwards 0.8s; /* Délai pour apparaître après le h1 */
 
-    /* Retirez les styles du pseudo-élément ::after si vous ne voulez pas de soulignement */
-    /* Le soulignement général du h2 pourrait ne pas convenir à un compteur */
-    /* Assurez-vous d'ajouter ceci si vous voulez désactiver le soulignement par défaut du h2 */
-    &::after { 
-        content: none; 
+    /* Retire le soulignement général des h2 si vous n'en voulez pas pour le compteur */
+    &::after {
+        content: none;
     }
-
+}
     /* Optionnel: Si vous voulez un effet de "nuances" ou un glow subtil sur le nombre */
     text-shadow: 0 0 10px rgba(58, 134, 255, 0.5); /* Ombre douce initiale */
     /* Si vous voulez une pulsation constante sur le nombre, ajoutez ceci à la règle d'animation ci-dessus: */
