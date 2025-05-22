@@ -361,30 +361,33 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // 2. Animation du titre héro améliorée
 document.addEventListener('DOMContentLoaded', () => {
-    const animateHeroTitleTyping = () => {
+    const animateHeroTitleWordFade = () => {
         const heroTitle = document.querySelector('.hero h1');
         if (!heroTitle) return;
 
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = ''; // Vider le titre initialement
+        const text = heroTitle.textContent;
+        heroTitle.innerHTML = ''; // Vider le titre
 
-        let charIndex = 0;
-        const typingSpeed = 70; // Vitesse de frappe en ms par caractère
+        const words = text.split(' '); // Diviser le texte en mots
 
-        function typeChar() {
-            if (charIndex < originalText.length) {
-                heroTitle.textContent += originalText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeChar, typingSpeed);
-            }
-        }
-        typeChar(); // Démarrer l'animation
+        words.forEach((word, wordIndex) => {
+            const wordSpan = document.createElement('span');
+            wordSpan.textContent = word + ' '; // Ajouter un espace après chaque mot
+            wordSpan.classList.add('hero-word'); // Classe pour le CSS
+            wordSpan.style.opacity = '0';
+            wordSpan.style.transform = 'translateY(20px)'; // Léger décalage initial
+
+            // Appliquer l'animation avec un délai progressif
+            wordSpan.style.animation = `fadeInUp 0.6s forwards ${wordIndex * 0.15 + 0.3}s`;
+
+            heroTitle.appendChild(wordSpan);
+        });
     };
 
-    // Assurez-vous que cette fonction est appelée pour démarrer l'animation
-    animateHeroTitleTyping();
+    // Appelez cette fonction pour démarrer l'animation
+    animateHeroTitleWordFade();
 
-    // Gardez vos autres fonctions d'animation (boutons, scroll, etc.) si vous en avez besoin
+    // Gardez vos autres fonctions d'animation si vous en avez besoin
     // animateButtons();
     // animateOnScroll();
     // animateProjectCards();
