@@ -159,28 +159,30 @@ body {
     }
     
     .navbar {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background-color: var(--darker);
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 2rem 0;
-        display: none;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: var(--darker);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem 0;
+    display: flex; /* Changé à flex */
+    visibility: hidden; /* Utiliser visibility au lieu de display */
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
 
-    .navbar.active {
-        display: flex;
-        opacity: 1;
-        transform: translateY(0);
-    }
+.navbar.active {
+    visibility: visible; /* Changé à visible */
+    opacity: 1;
+    transform: translateY(0);
+}
     
     .navbar ul {
         flex-direction: column;
