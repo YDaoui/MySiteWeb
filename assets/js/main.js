@@ -395,23 +395,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-const text = "Spécialiste en analyse de données, développement et automatisation de processus";
-const element = document.getElementById('typewriter-text');
-let i = 0;
-
-function typeWriter() {
-    if (i < text.length) {
-        element.innerHTML = text.substring(0, i + 1) + '<span aria-hidden="true"></span>';
-        i++;
-        setTimeout(typeWriter, 50); // Vitesse d'écriture (en ms)
-    } else {
-        // Supprime le curseur à la fin
-        document.querySelector('#typewriter-text::after').style.display = 'none';
-    }
-}
-
-// Lance l'animation au chargement
 document.addEventListener('DOMContentLoaded', () => {
-    element.innerHTML = ''; // Efface le texte initial
-    typeWriter();
+    const text = "Spécialiste en analyse de données, développement et automatisation de processus";
+    const element = document.getElementById('typewriter-text');
+    element.innerHTML = ''; // Efface le contenu initial
+    let i = 0;
+    const speed = 50; // Vitesse en ms
+
+    function typeWriter() {
+        if (i < text.length) {
+            const charSpan = document.createElement('span');
+            charSpan.className = 'typewriter-char';
+            charSpan.textContent = text.charAt(i);
+            element.appendChild(charSpan);
+            
+            // Effet spécial sur le dernier caractère
+            if (i > 0) {
+                element.children[i-1].classList.remove('typewriter-char');
+            }
+            
+            i++;
+            setTimeout(typeWriter, speed);
+        } else {
+            // Supprime l'effet neon quand terminé
+            Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
+        }
+    }
+
+    // Délai avant démarrage
+    setTimeout(typeWriter, 1000);
 });
