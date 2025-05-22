@@ -390,3 +390,86 @@ document.addEventListener('DOMContentLoaded', () => {
     // animateOnScroll();
     // animateProjectCards();
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const counterElement = document.getElementById('counter-hero');
+
+    if (counterElement) {
+        const targetNumber = parseInt(counterElement.dataset.target); // Récupère la cible
+        let currentNumber = 0; // Commence à 0
+        const duration = 2000; // Durée de l'animation en millisecondes (2 secondes)
+        const increment = targetNumber / (duration / 10); // Calcul l'incrément pour une fluidité
+
+        const updateCounter = () => {
+            if (currentNumber < targetNumber) {
+                currentNumber += increment;
+                // Arrondit vers le bas pour éviter des nombres flottants longs
+                counterElement.textContent = Math.floor(currentNumber);
+                requestAnimationFrame(updateCounter); // Continue l'animation
+            } else {
+                counterElement.textContent = targetNumber; // S'assure que le nombre final est exact
+            }
+        };
+
+        // Optionnel: Déclenchez l'animation quand l'élément est visible
+        // (utile pour les sections plus bas dans la page)
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    updateCounter();
+                    observer.unobserve(counterElement); // Arrête d'observer une fois l'animation lancée
+                }
+            });
+        }, { threshold: 0.5 }); // Déclenche quand 50% de l'élément est visible
+
+        observer.observe(counterElement);
+    }
+
+    // --- Animation pour [data-animate] (déjà dans votre JS existant) ---
+    const animateElements = document.querySelectorAll('[data-animate]');
+
+    const observerAnimate = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                observerAnimate.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 }); // Déclenche quand 10% de l'élément est visible
+
+    animateElements.forEach(element => {
+        observerAnimate.observe(element);
+    });
+
+    // --- Gestion du menu mobile (si vous avez un JS pour ça) ---
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+
+    if (mobileMenuToggle && navbar) {
+        mobileMenuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+        });
+
+        // Fermer le menu si un lien est cliqué
+        navbar.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            });
+        });
+    }
+
+    // --- Effet de scroll pour le header ---
+    const header = document.querySelector('.header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { // Après 50px de scroll
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
+});
