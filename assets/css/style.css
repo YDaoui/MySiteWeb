@@ -1703,15 +1703,30 @@ footer a:hover {
 
 
 
+/* Style du sous-titre avec ombre */
+.hero-subtitle {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+/* Animation du curseur */
 #typewriter-text::after {
     content: '|';
-    animation: blink 0.7s infinite;
-    margin-left: 5px;
+    animation: blink 1s infinite;
+    color: var(--primary);
+    text-shadow: 0 0 8px rgba(58, 134, 255, 0.7); /* Ombre bleue pour le curseur */
 }
 
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
+}
+
+/* Effet neon pour le texte en cours de frappe */
+.typewriter-char {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 }
 
 
