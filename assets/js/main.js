@@ -392,25 +392,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ///////////////////////////////
 
-
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelectorAll('.navbar a');
     
+    // Gestion du clic sur le hamburger
     menuToggle.addEventListener('click', function() {
         this.classList.toggle('active');
         navbar.classList.toggle('active');
-        
-        // Empêche le défilement lorsque le menu est ouvert
         document.body.style.overflow = navbar.classList.contains('active') ? 'hidden' : '';
     });
     
-    // Ferme le menu lorsqu'un lien est cliqué
-    document.querySelectorAll('.navbar a').forEach(link => {
+    // Fermeture du menu au clic sur un lien
+    navLinks.forEach(link => {
         link.addEventListener('click', () => {
             menuToggle.classList.remove('active');
             navbar.classList.remove('active');
             document.body.style.overflow = '';
+        });
+    });
+    
+    // Synchronisation avec le défilement
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100 && !navbar.classList.contains('active')) {
+            menuToggle.classList.add('scrolled');
+        } else {
+            menuToggle.classList.remove('scrolled');
+        }
+    });
+    
+    // Animation fluide pour les ancres
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+                
+                // Fermeture du menu après un délai
+                setTimeout(() => {
+                    menuToggle.classList.remove('active');
+                    navbar.classList.remove('active');
+                    document.body.style.overflow = '';
+                }, 800);
+            }
         });
     });
 });
