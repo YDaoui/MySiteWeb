@@ -193,152 +193,79 @@ h1 {
     100% { background-position: 0% center; }
 }
 /* Agrandissement du menu hamburger (forme de bloc) */
-/* Menu Hamburger Mobile - Version harmonisée avec votre thème */
 .mobile-menu-toggle {
     display: none;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 12px;
+    padding: 15px; /* Augmentation du padding */
     z-index: 1001;
+    width: 60px; /* Largeur augmentée */
+    height: 50px; /* Hauteur augmentée */
     position: relative;
 }
 
-/* Style des barres du hamburger - Utilise vos variables */
+/* Style des barres du menu hamburger (forme de bloc) */
 .mobile-menu-toggle .hamburger-line {
     display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--light);
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.mobile-menu-toggle .hamburger-line:before,
-.mobile-menu-toggle .hamburger-line:after {
-    content: '';
-    position: absolute;
     width: 100%;
-    height: 100%;
-    background: var(--light);
+    height: 8px; /* Épaisseur augmentée */
+    background: white;
+    position: absolute;
+    left: 0;
     transition: all 0.3s ease;
+    border-radius: 4px; /* Bordures plus arrondies */
 }
 
-.mobile-menu-toggle .hamburger-line:before {
-    top: -6px;
+/* Positionnement des barres */
+.mobile-menu-toggle .hamburger-line:nth-child(1) {
+    top: 15px;
+    width: 80%; /* Largeur réduite pour effet de bloc */
+    left: 10%; /* Centrage */
 }
 
-.mobile-menu-toggle .hamburger-line:after {
-    bottom: -6px;
+.mobile-menu-toggle .hamburger-line:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60%; /* Largeur réduite pour effet de bloc */
+    left: 20%; /* Centrage */
 }
 
-/* Animation croix - Bleu ciel comme votre thème */
-.mobile-menu-toggle.active .hamburger-line {
-    background: transparent;
+.mobile-menu-toggle .hamburger-line:nth-child(3) {
+    bottom: 15px;
+    width: 40%; /* Largeur réduite pour effet de bloc */
+    left: 30%; /* Centrage */
 }
 
-.mobile-menu-toggle.active .hamburger-line:before {
-    top: 0;
-    transform: rotate(45deg);
+/* Animation lorsqu'actif */
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+    top: 50%;
+    width: 100%;
+    left: 0;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+    top: 50%;
+    width: 100%;
+    left: 0;
+}
+
+/* Effet au survol */
+.mobile-menu-toggle:hover .hamburger-line {
     background: var(--primary);
 }
 
-.mobile-menu-toggle.active .hamburger-line:after {
-    bottom: 0;
-    transform: rotate(-45deg);
-    background: var(--primary);
-}
-
-/* Menu mobile - Style existant avec améliorations */
+/* Ajustement pour mobile */
 @media (max-width: 768px) {
     .mobile-menu-toggle {
-        display: block;
+        display: block; /* Toujours afficher sur mobile */
     }
-    
-    .navbar {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background-color: var(--darker);
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 2rem 0;
-        display: none;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .navbar.active {
-        display: flex;
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    .navbar ul {
-        flex-direction: column;
-        width: 100%;
-        padding: 0;
-    }
-
-    .navbar ul li {
-        margin: 0;
-        width: 100%;
-        text-align: center;
-        padding: 1rem 0;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: all 0.3s ease;
-    }
-
-    .navbar.active ul li {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* Délais d'animation pour chaque élément */
-    .navbar.active ul li:nth-child(1) { transition-delay: 0.1s; }
-    .navbar.active ul li:nth-child(2) { transition-delay: 0.2s; }
-    .navbar.active ul li:nth-child(3) { transition-delay: 0.3s; }
-    .navbar.active ul li:nth-child(4) { transition-delay: 0.4s; }
-
-    .navbar ul li a {
-        padding: 1rem;
-        display: block;
-        font-size: 1.2rem;
-        color: var(--light);
-    }
-
-    .navbar ul li a:hover {
-        color: var(--primary);
-    }
-
-    /* Retire l'effet de soulignement sur mobile */
-    .navbar ul li a::after {
-        display: none;
-    }
-}
- 
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-    from { 
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to { 
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
     
     /* Conserve le style du menu déroulant existant */
     .navbar {
@@ -1803,7 +1730,130 @@ footer a:hover {
 }
 
 
+/* Style du bouton hamburger */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+    position: relative;
+}
 
+.mobile-menu-toggle .hamburger-line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--light);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle .hamburger-line:before,
+.mobile-menu-toggle .hamburger-line:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--light);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle .hamburger-line:before {
+    top: -8px;
+}
+
+.mobile-menu-toggle .hamburger-line:after {
+    bottom: -8px;
+}
+
+/* Animation lorsque le menu est actif */
+.mobile-menu-toggle.active .hamburger-line {
+    background: transparent;
+}
+
+.mobile-menu-toggle.active .hamburger-line:before {
+    top: 0;
+    transform: rotate(45deg);
+    background: var(--primary);
+}
+
+.mobile-menu-toggle.active .hamburger-line:after {
+    bottom: 0;
+    transform: rotate(-45deg);
+    background: var(--primary);
+}
+
+/* Styles spécifiques pour mobile */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .navbar {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--darker);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 2rem 0;
+        display: none;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.4s ease-out;
+        z-index: 1000;
+    }
+
+    .navbar.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+    }
+
+    .navbar ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+        opacity: 0;
+        transform: translateY(15px);
+        transition: all 0.3s ease;
+    }
+
+    .navbar.active ul li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Animation en cascade pour les éléments du menu */
+    .navbar.active ul li:nth-child(1) { transition-delay: 0.15s; }
+    .navbar.active ul li:nth-child(2) { transition-delay: 0.25s; }
+    .navbar.active ul li:nth-child(3) { transition-delay: 0.35s; }
+    .navbar.active ul li:nth-child(4) { transition-delay: 0.45s; }
+
+    .navbar ul li a {
+        padding: 1rem;
+        display: block;
+        font-size: 1.2rem;
+        color: var(--light);
+        transition: color 0.3s ease;
+    }
+
+    .navbar ul li a:hover {
+        color: var(--primary);
+    }
+}
 
 
 
