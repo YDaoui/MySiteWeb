@@ -360,14 +360,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 // 2. Animation du titre héro améliorée
-document.addEventListener('DOMContentLoaded', () => {
 
-    // Votre fonction d'animation du titre h1 (révélation en fondu)
-    const animateHeroTitleFadeIn = () => {
-        const heroTitle = document.querySelector('.hero h1');
-        if (!heroTitle) return;
-        heroTitle.classList.add('reveal-title-fade');
-    };
 
     // Nouvelle fonction pour l'animation des compteurs
     const animateCounters = () => {
