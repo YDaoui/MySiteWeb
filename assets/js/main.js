@@ -361,31 +361,53 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // 2. Animation du titre héro améliorée
 document.addEventListener('DOMContentLoaded', () => {
-    const animateHeroTitleTyping = () => {
+
+    // Votre fonction d'animation du titre h1 (révélation en fondu)
+    const animateHeroTitleFadeIn = () => {
         const heroTitle = document.querySelector('.hero h1');
         if (!heroTitle) return;
-
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = ''; // Vider le titre initialement
-
-        let charIndex = 0;
-        const typingSpeed = 70; // Vitesse de frappe en ms par caractère
-
-        function typeChar() {
-            if (charIndex < originalText.length) {
-                heroTitle.textContent += originalText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeChar, typingSpeed);
-            }
-        }
-        typeChar(); // Démarrer l'animation
+        heroTitle.classList.add('reveal-title-fade');
     };
 
-    // Assurez-vous que cette fonction est appelée pour démarrer l'animation
-    animateHeroTitleTyping();
+    // Nouvelle fonction pour l'animation des compteurs
+    const animateCounters = () => {
+        document.querySelectorAll('[data-counter-target]').forEach(counterElement => {
+            const target = +counterElement.dataset.counterTarget; // Convertir en nombre
+            let current = 0;
+            const duration = 2000; // Durée de l'animation en ms (2 secondes)
+            const increment = target / (duration / 10); // Calcul de l'incrément pour une mise à jour toutes les 10ms
 
-    // Gardez vos autres fonctions d'animation (boutons, scroll, etc.) si vous en avez besoin
-    // animateButtons();
-    // animateOnScroll();
-    // animateProjectCards();
+            // Optionnel: Seulement animer si l'élément est visible (utile si vous avez plusieurs compteurs sur la page)
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Démarre le compteur
+                        const updateCounter = () => {
+                            if (current < target) {
+                                current += increment;
+                                if (current > target) current = target; // S'assure de ne pas dépasser la cible
+                                counterElement.textContent = Math.ceil(current); // Arrondit à l'entier supérieur
+                                requestAnimationFrame(updateCounter); // Optimisation de l'animation
+                            } else {
+                                counterElement.textContent = target; // S'assure que le nombre final est exact
+                                observer.disconnect(); // Arrête d'observer une fois l'animation terminée
+                            }
+                        };
+                        updateCounter();
+                    }
+                });
+            }, { threshold: 0.5 }); // Déclenche quand 50% de l'élément est visible
+
+            observer.observe(counterElement); // Commence à observer l'élément
+        });
+    };
+
+    // Assurez-vous d'appeler les nouvelles fonctions ici
+    animateHeroTitleFadeIn(); // Votre animation du titre h1
+    // Supprimez animateButtons(); animateProjectCards(); si vous ne les avez plus ou les réactivez après avoir mis à jour leur JS.
+    animateCounters(); // La nouvelle animation de compteur
+
+    // Conservez votre écouteur d'événement de scroll pour animateOnScroll si vous l'utilisez toujours
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Exécution initiale
 });
