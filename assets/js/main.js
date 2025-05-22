@@ -393,55 +393,6 @@ document.addEventListener('DOMContentLoaded', () => {
 ///////////////////////////////
 
 
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const text = "Spécialiste en analyse de données, développement et automatisation de processus";
-    const element = document.getElementById('typewriter-text');
-    element.innerHTML = ''; // Efface le contenu initial
-    let i = 0;
-    const speed = 50; // Vitesse en ms
-
-    function typeWriter() {
-        if (i < text.length) {
-            const charSpan = document.createElement('span');
-            charSpan.className = 'typewriter-char';
-            charSpan.textContent = text.charAt(i);
-            element.appendChild(charSpan);
-            
-            // Effet spécial sur le dernier caractère
-            if (i > 0) {
-                element.children[i-1].classList.remove('typewriter-char');
-            }
-            
-            i++;
-            setTimeout(typeWriter, speed);
-        } else {
-            // Supprime l'effet neon quand terminé
-            Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
-        }
-    }
-
-    // Délai avant démarrage
-    setTimeout(typeWriter, 1000);
-});
-document.addEventListener('DOMContentLoaded', function() {
-    const menuBtn = document.querySelector('.mobile-menu-btn');
-    const mobileDropdown = document.querySelector('.mobile-dropdown');
-    
-    menuBtn.addEventListener('click', function() {
-        this.classList.toggle('active');
-        mobileDropdown.classList.toggle('active');
-    });
-    
-    // Fermer le menu quand on clique sur un lien
-    mobileDropdown.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            menuBtn.classList.remove('active');
-            mobileDropdown.classList.remove('active');
-        });
-    });
-});
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
@@ -449,13 +400,17 @@ document.addEventListener('DOMContentLoaded', function() {
     menuToggle.addEventListener('click', function() {
         this.classList.toggle('active');
         navbar.classList.toggle('active');
+        
+        // Empêche le défilement lorsque le menu est ouvert
+        document.body.style.overflow = navbar.classList.contains('active') ? 'hidden' : '';
     });
     
-    // Fermer le menu quand on clique sur un lien
-    navbar.querySelectorAll('a').forEach(link => {
+    // Ferme le menu lorsqu'un lien est cliqué
+    document.querySelectorAll('.navbar a').forEach(link => {
         link.addEventListener('click', () => {
             menuToggle.classList.remove('active');
             navbar.classList.remove('active');
+            document.body.style.overflow = '';
         });
     });
 });
