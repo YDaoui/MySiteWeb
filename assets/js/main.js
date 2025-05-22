@@ -442,3 +442,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    
+    menuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navbar.classList.toggle('active');
+    });
+    
+    // Fermer le menu quand on clique sur un lien
+    navbar.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navbar.classList.remove('active');
+        });
+    });
+});
