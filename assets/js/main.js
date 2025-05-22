@@ -365,14 +365,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const animateOnScroll = () => {
         document.querySelectorAll('[data-animate]').forEach(el => {
             const rect = el.getBoundingClientRect();
-            const isVisible = (rect.top <= window.innerHeight * 0.75) && 
-                            (rect.bottom >= window.innerHeight * 0.25);
-            
+            const isVisible = (rect.top <= window.innerHeight * 0.75) &&
+                               (rect.bottom >= window.innerHeight * 0.25);
+
             if (isVisible) {
                 el.classList.add('animate');
                 // Ajout d'un délai basé sur la position pour un effet en cascade
                 const delay = Math.min(0.3, rect.top / window.innerHeight * 0.3);
-                el.style.transitionDelay = ${delay}s;
+                el.style.transitionDelay = `${delay}s`; // Correction ici : utiliser les backticks
             }
         });
     };
@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const text = heroTitle.textContent;
         heroTitle.innerHTML = ''; // Reset pour animation
-        
+
         // Création des spans pour chaque caractère avec des délais progressifs
         text.split('').forEach((char, i) => {
             const span = document.createElement('span');
@@ -392,7 +392,8 @@ document.addEventListener('DOMContentLoaded', () => {
             span.style.opacity = '0';
             span.style.transform = 'translateY(20px)';
             span.style.display = 'inline-block';
-            span.style.animation = fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s;
+            // Correction ici : utiliser les backticks pour l'animation
+            span.style.animation = `fadeInUp 0.5s forwards ${i * 0.05 + 0.3}s`;
             heroTitle.appendChild(span);
         });
     };
@@ -403,13 +404,14 @@ document.addEventListener('DOMContentLoaded', () => {
         buttons.forEach((btn, i) => {
             btn.style.opacity = '0';
             btn.style.transform = 'translateY(20px)';
-            btn.style.animation = fadeInUp 0.6s forwards ${i * 0.2 + 0.8}s;
-            
+            // Correction ici : utiliser les backticks pour l'animation
+            btn.style.animation = `fadeInUp 0.6s forwards ${i * 0.2 + 0.8}s`;
+
             // Effet au survol amélioré
             btn.addEventListener('mouseenter', () => {
                 btn.style.transform = 'translateY(-3px)';
             });
-            
+
             btn.addEventListener('mouseleave', () => {
                 btn.style.transform = 'translateY(0)';
             });
@@ -426,8 +428,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Animation des cartes de projet avec délais
     const animateProjectCards = () => {
         document.querySelectorAll('.project-card').forEach((card, i) => {
-            card.style.setProperty('--delay', ${i * 0.1}s);
-            card.style.animation = fadeInUp 0.5s forwards var(--delay);
+            // Correction ici : utiliser les backticks pour la propriété personnalisée
+            card.style.setProperty('--delay', `${i * 0.1}s`);
+            card.style.animation = `fadeInUp 0.5s forwards var(--delay)`;
         });
     };
 
@@ -436,7 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
     animateButtons();
     initEmailJS();
     animateProjectCards();
-    
+
     // Écouteurs d'événements
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Exécution initiale
