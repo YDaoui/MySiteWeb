@@ -1,5 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Smooth scrolling for navigation
+    // Mobile menu toggle - Version corrigée
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    
+    if (mobileToggle && navbar) {
+        mobileToggle.addEventListener('click', function() {
+            // Toggle classes
+            this.classList.toggle('active');
+            navbar.classList.toggle('active');
+            
+            // Toggle body overflow
+            document.body.style.overflow = navbar.classList.contains('active') ? 'hidden' : '';
+            
+            // Animate menu items when opening
+            if (navbar.classList.contains('active')) {
+                document.querySelectorAll('.navbar ul li').forEach((item, index) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(-20px)';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                        item.style.transition = `all 0.3s ease ${index * 0.1}s`;
+                    }, 10);
+                });
+            }
+        });
+        
+        // Close menu when clicking on links
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navbar.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+    // Smooth scrolling for navigation (conservé)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -21,46 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 location.hash = targetId;
             }
-
-            // Close mobile menu after clicking a link
-            const mobileToggle = document.querySelector('.mobile-menu-toggle');
-            const navbar = document.querySelector('.navbar');
-            if (navbar && navbar.classList.contains('active')) {
-                mobileToggle.classList.remove('active');
-                navbar.classList.remove('active');
-                document.querySelectorAll('.navbar ul li').forEach(item => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(-20px)';
-                    item.style.transitionDelay = '0s';
-                });
-            }
         });
     });
 
-    // Mobile menu toggle
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const navbar = document.querySelector('.navbar');
-    if (mobileToggle && navbar) {
-        mobileToggle.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-            mobileToggle.classList.toggle('active');
-            
-            // Animate menu items when opening
-            if (navbar.classList.contains('active')) {
-                document.querySelectorAll('.navbar ul li').forEach((item, index) => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(-20px)';
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                        item.style.transition = `all 0.3s ease ${index * 0.1}s`;
-                    }, 10);
-                });
-            }
-        });
-    }
-
-    // Service cards toggle with icons
+    // Service cards toggle with icons (conservé)
     document.querySelectorAll('.service-header').forEach(header => {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Project image galleries
+    // Project image galleries (conservé)
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
         if (!gallery) return;
@@ -113,31 +114,26 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalSlides = slides.length;
 
         function updateGallery() {
-            // Hide all slides
             slides.forEach(slide => {
                 slide.classList.remove('active');
             });
             
-            // Show current slide
             slides[currentIndex].classList.add('active');
             counter.textContent = `${currentIndex + 1}/${totalSlides}`;
         }
 
-        // Previous button
         prevBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updateGallery();
         });
 
-        // Next button
         nextBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             currentIndex = (currentIndex + 1) % totalSlides;
             updateGallery();
         });
 
-        // Initialize
         updateGallery();
 
         // Touch support for mobile
@@ -154,12 +150,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }, { passive: true });
 
         function handleSwipe() {
-            if (Math.abs(touchEndX - touchStartX) > 50) { // Minimum swipe distance
+            if (Math.abs(touchEndX - touchStartX) > 50) {
                 if (touchEndX < touchStartX) {
-                    // Swipe left - next
                     currentIndex = (currentIndex + 1) % totalSlides;
                 } else {
-                    // Swipe right - previous
                     currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 }
                 updateGallery();
@@ -167,32 +161,28 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Project details modal
+    // Project details modal (conservé)
     const modal = document.getElementById('project-modal');
     if (modal) {
         const modalClose = modal.querySelector('.modal-close');
         const modalContent = modal.querySelector('#modal-content');
 
-        // Close modal
         modalClose.addEventListener('click', () => {
             modal.style.display = 'none';
         });
 
-        // Close when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
             }
         });
 
-        // Handle project detail clicks
         document.querySelectorAll('.view-details').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const projectCard = btn.closest('.project-card');
                 const projectId = projectCard.dataset.projectId;
                 
-                // Get project data (you would replace this with your actual data)
                 const projectData = getProjectData(projectId);
                 
                 if (projectData) {
@@ -225,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Scroll animations
+    // Scroll animations (conservé)
     function animateOnScroll() {
         const elements = document.querySelectorAll('.service-card, .project-card, .tech-item');
         const windowHeight = window.innerHeight;
@@ -242,7 +232,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Initialize elements for animation
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -250,9 +239,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Run once on load
+    animateOnScroll();
 
-    // Contact form validation
+    // Contact form validation (conservé)
     const contactForm = document.querySelector('.contact form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -262,7 +251,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const email = this.querySelector('input[name="email"]').value.trim();
             const message = this.querySelector('textarea[name="message"]').value.trim();
             
-            // Simple validation
             if (!name || !email || !message) {
                 alert('Veuillez remplir tous les champs.');
                 return;
@@ -273,31 +261,50 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
             
-            // Here you would typically send the form data to a server
             alert('Message envoyé avec succès! Je vous répondrai dès que possible.');
             this.reset();
         });
     }
 
+    // Typewriter effect (conservé)
+    const animateHeroTitleTyping = () => {
+        const heroTitle = document.querySelector('.hero h1');
+        if (!heroTitle) return;
 
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = '';
 
-    
-    // Sample project data - replace with your actual project data
+        let charIndex = 0;
+        const typingSpeed = 70;
+
+        function typeChar() {
+            if (charIndex < originalText.length) {
+                heroTitle.textContent += originalText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, typingSpeed);
+            }
+        }
+        typeChar();
+    };
+    animateHeroTitleTyping();
+
+    // Sample project data (conservé)
     function getProjectData(projectId) {
         const projects = {
             "1": {
-            title: "Dashboard Coaching & Ventes",
-            description: "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
-            fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes, et l'intégration de Python a permis d'ajouter des fonctionnalités de gestion dynamique.",
-            technologies: ["Power BI", "DAX", "SQL", "Python", "Streamlit"],
-            images: [
-                { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
-                { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
-                { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Power BI - Python" },
-                { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Python" },
-                { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
-                { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" }
-            ]
+                title: "Dashboard Coaching & Ventes",
+                description: "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
+                fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes, et l'intégration de Python a permis d'ajouter des fonctionnalités de gestion dynamique.",
+                technologies: ["Power BI", "DAX", "SQL", "Python", "Streamlit"],
+                images: [
+                    { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
+                    { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
+                    { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Python" },
+                    { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" }
+                ]
+      
         },
         "2": {
             title: "Scheduler VBScript & Python",
@@ -358,126 +365,4 @@ document.addEventListener('DOMContentLoaded', function () {
         
         return projects[projectId] || null;
     }
-});
-// 2. Animation du titre héro améliorée
-document.addEventListener('DOMContentLoaded', () => {
-    const animateHeroTitleTyping = () => {
-        const heroTitle = document.querySelector('.hero h1');
-        if (!heroTitle) return;
-
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = ''; // Vider le titre initialement
-
-        let charIndex = 0;
-        const typingSpeed = 70; // Vitesse de frappe en ms par caractère
-
-        function typeChar() {
-            if (charIndex < originalText.length) {
-                heroTitle.textContent += originalText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeChar, typingSpeed);
-            }
-        }
-        typeChar(); // Démarrer l'animation
-    };
-
-    // Assurez-vous que cette fonction est appelée pour démarrer l'animation
-    animateHeroTitleTyping();
-
-    // Gardez vos autres fonctions d'animation (boutons, scroll, etc.) si vous en avez besoin
-    // animateButtons();
-    // animateOnScroll();
-    // animateProjectCards();
-});
-
-///////////////////////////////
-
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const text = "Spécialiste en analyse de données, développement et automatisation de processus";
-    const element = document.getElementById('typewriter-text');
-    element.innerHTML = ''; // Efface le contenu initial
-    let i = 0;
-    const speed = 50; // Vitesse en ms
-
-    function typeWriter() {
-        if (i < text.length) {
-            const charSpan = document.createElement('span');
-            charSpan.className = 'typewriter-char';
-            charSpan.textContent = text.charAt(i);
-            element.appendChild(charSpan);
-            
-            // Effet spécial sur le dernier caractère
-            if (i > 0) {
-                element.children[i-1].classList.remove('typewriter-char');
-            }
-            
-            i++;
-            setTimeout(typeWriter, speed);
-        } else {
-            // Supprime l'effet neon quand terminé
-            Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
-        }
-    }
-
-    // Délai avant démarrage
-    setTimeout(typeWriter, 1000);
-});
-///////////////////////////////
-
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const navbar = document.querySelector('.navbar');
-    const navLinks = document.querySelectorAll('.navbar a');
-    
-    // Gestion du clic sur le hamburger
-    menuToggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navbar.classList.toggle('active');
-        document.body.style.overflow = navbar.classList.contains('active') ? 'hidden' : '';
-    });
-    
-    // Fermeture du menu au clic sur un lien
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menuToggle.classList.remove('active');
-            navbar.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    });
-    
-    // Synchronisation avec le défilement
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100 && !navbar.classList.contains('active')) {
-            menuToggle.classList.add('scrolled');
-        } else {
-            menuToggle.classList.remove('scrolled');
-        }
-    });
-    
-    // Animation fluide pour les ancres
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 70,
-                    behavior: 'smooth'
-                });
-                
-                // Fermeture du menu après un délai
-                setTimeout(() => {
-                    menuToggle.classList.remove('active');
-                    navbar.classList.remove('active');
-                    document.body.style.overflow = '';
-                }, 800);
-            }
-        });
-    });
 });
