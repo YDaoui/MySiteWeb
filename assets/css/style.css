@@ -331,27 +331,15 @@ h1 {
 }
 
 .hero h1 {
-    font-family: 'Roboto Mono', monospace; /* Police monospace pour un look tech */
-    white-space: nowrap; /* Empêche le texte de se casser sur plusieurs lignes pendant l'animation */
-    overflow: hidden; /* Cache le texte qui n'a pas encore été "tapé" */
-    border-right: .15em solid orange; /* Le curseur clignotant */
-    margin: 0 auto;
-    animation:
-        typing 3.5s steps(40, end), /* Ajustez 3.5s et 40 selon la longueur de votre titre */
-        blink-caret .75s step-end infinite;
-}
-
-/* Keyframes pour l'effet de frappe si vous voulez contrôler l'affichage du texte par le CSS */
-/* (Note: Le JS ci-dessus gère déjà l'apparition du texte. Ce CSS est pour le curseur uniquement ou une alternative) */
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-/* Keyframes pour le clignotement du curseur */
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orange; } /* La couleur de votre curseur */
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 8px rgba(58, 134, 255, 0.5);
+    margin: 0 auto 1.5rem;
+    position: relative;
+    animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
 }
 
 .hero h2 {
@@ -373,36 +361,14 @@ h1 {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-[data-animate] {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transition pour l'état "animate" */
-}
 
-/* Classe ajoutée par JavaScript pour déclencher l'animation au scroll */
-[data-animate].animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Styles pour les caractères du titre hero */
-.hero h1 span {
-    display: inline-block; /* Nécessaire pour appliquer des transformations */
-    opacity: 0; /* État initial avant l'animation */
-    transform: translateY(20px); /* État initial avant l'animation */
-}
-
-/* Styles pour les boutons CTA */
-.hero .btn {
-    transition: transform 0.3s ease-in-out; /* Transition pour l'effet de survol */
-}
 /* Animation du texte gradient */
 @keyframes gradientText {
     0% { background-position: 0% center; }
