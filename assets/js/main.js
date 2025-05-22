@@ -366,3 +366,68 @@ document.addEventListener('DOMContentLoaded', function () {
         return projects[projectId] || null;
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const animateHeroTitleTyping = () => {
+        const heroTitle = document.querySelector('.hero h1');
+        if (!heroTitle) return;
+
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = ''; // Vider le titre initialement
+
+        let charIndex = 0;
+        const typingSpeed = 70; // Vitesse de frappe en ms par caractère
+
+        function typeChar() {
+            if (charIndex < originalText.length) {
+                heroTitle.textContent += originalText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, typingSpeed);
+            }
+        }
+        typeChar(); // Démarrer l'animation
+    };
+
+    // Assurez-vous que cette fonction est appelée pour démarrer l'animation
+    animateHeroTitleTyping();
+
+    // Gardez vos autres fonctions d'animation (boutons, scroll, etc.) si vous en avez besoin
+    // animateButtons();
+    // animateOnScroll();
+    // animateProjectCards();
+});
+
+///////////////////////////////
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const text = "Spécialiste en analyse de données, développement et automatisation de processus";
+    const element = document.getElementById('typewriter-text');
+    element.innerHTML = ''; // Efface le contenu initial
+    let i = 0;
+    const speed = 50; // Vitesse en ms
+
+    function typeWriter() {
+        if (i < text.length) {
+            const charSpan = document.createElement('span');
+            charSpan.className = 'typewriter-char';
+            charSpan.textContent = text.charAt(i);
+            element.appendChild(charSpan);
+            
+            // Effet spécial sur le dernier caractère
+            if (i > 0) {
+                element.children[i-1].classList.remove('typewriter-char');
+            }
+            
+            i++;
+            setTimeout(typeWriter, speed);
+        } else {
+            // Supprime l'effet neon quand terminé
+            Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
+        }
+    }
+
+    // Délai avant démarrage
+    setTimeout(typeWriter, 1000);
+});
