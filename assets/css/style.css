@@ -12,6 +12,7 @@
     --danger: #ef476f;
 }
 
+
 /* Reset de base pour éviter les marges et paddings par défaut */
 *,
 *::before,
@@ -100,50 +101,15 @@ section {
     background-color: rgba(26, 26, 46, 0.6);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
-.btn {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
-    border: none;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
-}
-
-.btn:active {
-    transform: translateY(1px);
-}
-
-.btn-outline {
-    background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    box-shadow: none;
-}
-
-.btn-outline:hover {
-    background: var(--primary);
-    color: white;
-}
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* Réduit de 1.5rem à 1.2rem */
     font-weight: 700;
     color: white;
     text-decoration: none;
     display: flex;
     align-items: center;
+    transition: all 0.3s ease;
 }
 
 .logo span {
@@ -199,73 +165,84 @@ section {
     color: var(--primary);
 }
 
-/* Mobile menu toggle - Version améliorée avec animation */
-.mobile-menu-toggle {
-    display: none; /* Masqué par défaut sur les écrans plus grands */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1001;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    transition: all 0.3s ease;
+/* Animation du header */
+.header {
+    transition: all 0.5s ease;
 }
 
-.mobile-menu-toggle .hamburger-line {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background: white !important; /* Force la couleur blanche */
-    position: absolute;
-    left: 0;
-    transition: all 0.3s ease;
-    border-radius: 3px;
+.header.scrolled {
+    transform: translateY(-10px);
+    opacity: 0.9;
+    animation: headerSlideDown 0.5s ease forwards;
 }
 
-/* Modification du bouton hamburger */
+@keyframes headerSlideDown {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}/* Animation du texte gradient */
+h1 {
+    background-size: 200% auto;
+    animation: gradientText 5s ease infinite;
+}
+
+@keyframes gradientText {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
+/* Agrandissement du menu hamburger (forme de bloc) */
 .mobile-menu-toggle {
     display: none;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 12px; /* Augmentation du padding */
+    padding: 15px; /* Augmentation du padding */
     z-index: 1001;
-    width: 50px; /* Augmentation de la largeur */
-    height: 50px; /* Augmentation de la hauteur */
+    width: 60px; /* Largeur augmentée */
+    height: 50px; /* Hauteur augmentée */
     position: relative;
-    transition: all 0.3s ease;
 }
 
+/* Style des barres du menu hamburger (forme de bloc) */
 .mobile-menu-toggle .hamburger-line {
     display: block;
     width: 100%;
-    height: 4px; /* Épaississement des lignes */
-    background: var(--light) !important; /* Utilisation de la couleur claire */
+    height: 8px; /* Épaisseur augmentée */
+    background: white;
     position: absolute;
     left: 0;
     transition: all 0.3s ease;
-    border-radius: 3px;
+    border-radius: 4px; /* Bordures plus arrondies */
 }
 
+/* Positionnement des barres */
 .mobile-menu-toggle .hamburger-line:nth-child(1) {
-    top: 12px; /* Ajustement de la position */
+    top: 15px;
+    width: 80%; /* Largeur réduite pour effet de bloc */
+    left: 10%; /* Centrage */
 }
 
 .mobile-menu-toggle .hamburger-line:nth-child(2) {
     top: 50%;
     transform: translateY(-50%);
+    width: 60%; /* Largeur réduite pour effet de bloc */
+    left: 20%; /* Centrage */
 }
 
 .mobile-menu-toggle .hamburger-line:nth-child(3) {
-    bottom: 12px; /* Ajustement de la position */
+    bottom: 15px;
+    width: 40%; /* Largeur réduite pour effet de bloc */
+    left: 30%; /* Centrage */
 }
 
 /* Animation lorsqu'actif */
 .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
-    transform: translateY(12px) rotate(45deg);
+    transform: translateY(10px) rotate(45deg);
     top: 50%;
+    width: 100%;
+    left: 0;
 }
 
 .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
@@ -273,145 +250,114 @@ section {
 }
 
 .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
-    transform: translateY(-12px) rotate(-45deg);
+    transform: translateY(-10px) rotate(-45deg);
     top: 50%;
+    width: 100%;
+    left: 0;
 }
 
 /* Effet au survol */
 .mobile-menu-toggle:hover .hamburger-line {
-    background: var(--primary) !important;
+    background: var(--primary);
 }
 
-/* Pour les écrans mobiles */
+/* Ajustement pour mobile */
 @media (max-width: 768px) {
     .mobile-menu-toggle {
         display: block; /* Toujours afficher sur mobile */
     }
     
-    /* Optionnel : ajuster la taille sur mobile si nécessaire */
-    .mobile-menu-toggle {
-        width: 44px;
-        height: 44px;
+    /* Conserve le style du menu déroulant existant */
+    .navbar {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--darker);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 2rem 0;
+        display: none;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
+
+    .navbar.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* ... (conserve le reste de vos styles de menu mobile existants) ... */
 }
 
-/* Animation pour la section hero */
-.btn {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
-    border: none;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    font-size: 1rem;
-    text-align: center;
-    line-height: 1.5;
+[data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
 }
 
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
+[data-animate].animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.btn:active {
-    transform: translateY(1px);
-}
+/* Délais différents */
+[data-animate-delay="100"] { transition-delay: 0.1s; }
+[data-animate-delay="200"] { transition-delay: 0.2s; }
+[data-animate-delay="300"] { transition-delay: 0.3s; }
 
-.btn-outline {
-    background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    box-shadow: none;
-}
 
-.btn-outline:hover {
-    background: var(--primary);
-    color: white;
-}
-
-/* Section Hero - Corrigée */
-/* Section Hero - Centrée */
+/* Styles pour la section Hero (page d'accueil) */
 .hero {
-    position: relative;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    text-align: center;
+    justify-content: center; /* Ajout pour centrer verticalement et horizontalement */
+    text-align: center; /* Centre le texte */
+    background: linear-gradient(135deg, var(--darker), var(--dark));
+    position: relative;
+    overflow: hidden;
 }
 
 .hero .container {
     width: 100%;
     max-width: 1200px;
-    padding: 2rem;
-    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-.hero h1,
-.hero p,
-.hero .btn-container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 800px;
+.hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 8px rgba(58, 134, 255, 0.5);
+    margin: 0 auto 1.5rem;
+    position: relative;
+    animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
 }
 
-.hero .btn-container {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+.hero h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease-out 0.2s both;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeIn 1s ease-out forwards;
-    animation-delay: 0.8s;
-    color: rgba(230, 241, 255, 0.9);
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    color: rgba(255, 255, 255, 0.8);
+    animation: fadeInUp 1s ease-out 0.4s both;
 }
 
-.hero .btn {
-    opacity: 0;
-    animation: fadeIn 1s ease-out forwards;
-    animation-delay: 1s;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 70% 30%, rgba(58, 134, 255, 0.1) 0%, transparent 70%);
-    z-index: 1;
-}
-
-/* Particules */
-.hero-particles {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.particle {
-    position: absolute;
-    background: rgba(58, 134, 255, 0.4);
-    border-radius: 50%;
-    animation: float linear infinite;
-}
-
-/* Keyframes */
+/* Animation pour le titre principal */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -423,32 +369,152 @@ section {
     }
 }
 
-@keyframes fadeIn {
+/* Animation du texte gradient */
+@keyframes gradientText {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
+
+.hero h1 {
+    background-size: 200% auto;
+}
+
+/* Animation des éléments enfants avec délais */
+.hero-content > * {
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards;
+}
+
+.hero-content > *:nth-child(1) { animation-delay: 0.2s; }
+.hero-content > *:nth-child(2) { animation-delay: 0.4s; }
+.hero-content > *:nth-child(3) { animation-delay: 0.6s; }
+.hero-content > *:nth-child(4) { animation-delay: 0.8s; }
+
+/* Keyframes pour l'animation */
+@keyframes fadeInLetter {
     to {
         opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
     }
 }
 
-@keyframes gradientFlow {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0;
+@keyframes glowPulse {
+    from {
+        text-shadow: 
+            0 0 10px var(--primary),
+            0 0 20px var(--primary),
+            0 0 30px var(--primary);
     }
-    10%,
-    90% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh) translateX(50px);
-        opacity: 0;
+    to {
+        text-shadow: 
+            0 0 15px var(--primary),
+            0 0 30px var(--primary),
+            0 0 45px var(--secondary);
     }
 }
+/* Boutons */
+/* Styles de base des boutons - Thème principal */
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    transform: translateY(0);
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+}
 
+/* Animation au survol */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+}
+
+/* Effet "press" */
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(58, 134, 255, 0.3);
+}
+
+/* Effet de vague lumineuse au survol */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0)
+    );
+    transform: translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+}
+
+.btn:hover::after {
+    transform: translateY(100%) rotate(45deg);
+}
+
+/* Version outline */
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    box-shadow: none;
+    position: relative;
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: white;
+    border-color: transparent;
+}
+
+/* Animation spécifique pour le bouton CTA principal */
+.hero .btn {
+    animation: fadeInUp 0.8s ease-out 1s both, pulse 2s infinite 2s;
+}
+
+/* Animation pulsation pour le bouton principal */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(58, 134, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0); }
+}
+
+/* Délais d'animation pour les boutons secondaires */
+.hero .btn-outline {
+    animation: fadeInUp 0.8s ease-out 1.2s both;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btn {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+    }
+    
+    /* Réduire l'effet de pulse sur mobile */
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0.3); }
+        70% { box-shadow: 0 0 0 8px rgba(58, 134, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0); }
+    }
+}
 /* Section À propos */
 .about {
   background-color: var(--darker);
@@ -675,45 +741,20 @@ section {
     text-align: center;
   }
 
+  .about-text {
+    order: 2;
+  }
+
   .about-img {
-    order: -1;
+    order: 1;
   }
 
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .services-grid,
-  .projects-grid,
-  .tech-grid { /* Ajout de tech-grid pour la responsiveness mobile */
-    grid-template-columns: 1fr;
-  }
-
-  .service-card,
-  .project-card {
-    padding: 1.5rem;
-  }
-
-  .project-gallery {
-    height: 200px; /* Adjust height for smaller screens */
-  }
-
-  .mobile-menu-toggle {
-    display: block; /* Affiche le toggle sur les écrans plus petits */
-  }
-
-  .navbar ul {
-    margin-top: 2rem; /* Ajoute un peu d'espace entre le toggle et le menu */
+  .about-img img {
+    width: 80%;
+    margin: 0 auto;
   }
 }
+
 
 /* Section Services */
 .services {
@@ -1029,37 +1070,25 @@ section {
 .project-links a {
     flex: 1;
     text-align: center;
-    padding: 0.8rem 1.5rem;
-    border-radius: 50px;
+    padding: 0.7rem;
+    border-radius: 5px;
     font-weight: 600;
     transition: all 0.3s ease;
-    text-decoration: none;
 }
 
 .project-links a:first-child {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
-    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
 }
 
 .project-links a:last-child {
-    background: transparent;
-    color: var(--primary);
-    border: 2px solid var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--light);
 }
 
 .project-links a:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
-}
-
-.project-links a:first-child:hover {
-    background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
-}
-
-.project-links a:last-child:hover {
-    background: var(--primary);
-    color: white;
+    box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
 }
 
 /* Section Technologies */
@@ -1183,7 +1212,7 @@ footer a:hover {
         align-items: center;
         justify-content: flex-start;
         padding: 2rem 0;
-        display: none;
+        display: none; /* Correction: Le menu est masqué par défaut sur mobile */
         opacity: 0;
         transform: translateY(-20px);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -1191,7 +1220,7 @@ footer a:hover {
     }
 
     .navbar.active {
-        display: flex;
+        display: flex; /* Correction: Affiche le menu quand la classe 'active' est ajoutée */
         opacity: 1;
         transform: translateY(0);
     }
@@ -1228,11 +1257,6 @@ footer a:hover {
         padding: 1rem;
         display: block;
         font-size: 1.2rem;
-        color: var(--light);
-    }
-
-    .navbar ul li a:hover {
-        color: var(--primary);
     }
 
     .navbar ul li a::after {
@@ -1262,7 +1286,7 @@ footer a:hover {
 
     .services-grid,
     .projects-grid,
-    .tech-grid {
+    .tech-grid { /* Ajout de tech-grid pour la responsiveness mobile */
         grid-template-columns: 1fr;
     }
 
@@ -1272,15 +1296,15 @@ footer a:hover {
     }
 
     .project-gallery {
-        height: 200px;
+        height: 200px; /* Adjust height for smaller screens */
     }
 
     .mobile-menu-toggle {
-        display: block;
+        display: block; /* Affiche le toggle sur les écrans plus petits */
     }
 
     .navbar ul {
-        margin-top: 2rem;
+        margin-top: 2rem; /* Ajoute un peu d'espace entre le toggle et le menu */
     }
 }
 
@@ -1461,9 +1485,207 @@ footer a:hover {
 .modal-gallery img:hover {
     transform: scale(1.05);
 }
+/* Boutons principaux - Style uniformisé */
+.btn, 
+.filter-btn,
+.project-links a,
+.modal-content .btn,
+.service-tech,
+.about-img .btn-about {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* États des boutons */
+.btn:hover,
+.filter-btn:hover,
+.project-links a:hover,
+.modal-content .btn:hover,
+.service-tech:hover,
+.about-img .btn-about:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
+}
+
+.btn:active,
+.filter-btn:active,
+.project-links a:active,
+.modal-content .btn:active {
+    transform: translateY(1px);
+}
+
+/* Bouton actif (pour les filtres) */
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
+}
+
+/* Boutons secondaires */
+.btn-outline,
+.project-links a:last-child {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    box-shadow: none;
+}
+
+.btn-outline:hover,
+.project-links a:last-child:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Boutons spécifiques aux projets */
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.project-links a {
+    flex: 1;
+    min-width: 120px;
+}
+
+/* Boutons de filtres */
+.projects-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    gap: 1rem;
+}
+
+.filter-btn {
+    padding: 0.7rem 1.5rem;
+    margin: 0.5rem;
+}
+
+/* Boutons dans les modals */
+.modal-content .btn {
+    margin-top: 1rem;
+}
+
+/* Boutons technos */
+.service-tech {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btn,
+    .filter-btn,
+    .project-links a,
+    .modal-content .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .project-links {
+        flex-direction: column;
+    }
+    
+    .projects-filter {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Animation des boutons */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255,255,255,0.3),
+        rgba(255,255,255,0)
+    );
+    transform: translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+}
+
+.btn:hover::after {
+    transform: translateY(100%) rotate(45deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
-}
-
