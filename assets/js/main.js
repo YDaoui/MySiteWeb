@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Typewriter effect (conservé)
+    // Typewriter effects (conservés)
     const animateHeroTitleTyping = () => {
         const heroTitle = document.querySelector('.hero h1');
         if (!heroTitle) return;
@@ -288,6 +288,37 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     animateHeroTitleTyping();
 
+    const animateSubtitleTyping = () => {
+        const element = document.getElementById('typewriter-text');
+        if (!element) return;
+        
+        const text = "Spécialiste en analyse de données, développement et automatisation de processus";
+        element.innerHTML = '';
+        let i = 0;
+        const speed = 50;
+
+        function typeWriter() {
+            if (i < text.length) {
+                const charSpan = document.createElement('span');
+                charSpan.className = 'typewriter-char';
+                charSpan.textContent = text.charAt(i);
+                element.appendChild(charSpan);
+                
+                if (i > 0) {
+                    element.children[i-1].classList.remove('typewriter-char');
+                }
+                
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
+            }
+        }
+
+        setTimeout(typeWriter, 1000);
+    };
+    animateSubtitleTyping();
+
     // Sample project data (conservé)
     function getProjectData(projectId) {
         const projects = {
@@ -304,144 +335,73 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
                     { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" }
                 ]
-      
-        },
-        "2": {
-            title: "Scheduler VBScript & Python",
-            description: "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
-            fullDetails: "Développement d'un système d'automatisation pour la planification quotidienne des ressources. J'ai utilisé VBScript pour les interactions avec les applications existantes et Python pour des traitements de données plus complexes et la génération de rapports. Ce projet a permis de réduire considérablement le temps passé sur les tâches répétitives de planification et d'assurer une meilleure allocation des ressources.",
-            technologies: ["VBScript", "Python", "Automatisation"],
-            images: [
-                { src: "assets/img/Planning_VBA_Login.PNG", alt: "Login Planing" },
-                { src: "assets/img/Planning_VBA4.PNG", alt: "Interface Planing" },
-                { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
-                { src: "assets/img/Planning_VBA1.PNG", alt: "Vision Agent" },
-                { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Manager" },
-                { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
-            ]
-        },
-        "3": {
-            title: "Management avec Python",
-            description: "Automatisation de la récupération des demandes de congés, de la planification et du suivi managérial avec Python.",
-            fullDetails: "Mise en place d'une solution complète en Python pour automatiser le cycle de gestion des congés et le suivi managérial. Le script récupère les demandes de congés, les intègre dans un planning, et génère des rapports pour les managers, améliorant ainsi l'efficacité administrative et le suivi des équipes.",
-            technologies: ["Python", "Automatisation", "Gestion RH"],
-            images: [
-                { src: "assets/img/AccorHotels1.PNG", alt: "Interface de gestion des congés" },
-                { src: "assets/img/AccorHotels2.PNG", alt: "Détail des demandes" },
-                { src: "assets/img/AccorHotels3.PNG", alt: "Planning des équipes" },
-                { src: "assets/img/AccorHotels4.PNG", alt: "Suivi des performances" },
-                { src: "assets/img/AccorHotels5.PNG", alt: "Rapports managériaux" },
-                { src: "assets/img/AccorHotels6.PNG", alt: "Tableau de bord" },
-                { src: "assets/img/AccorHotels7.PNG", alt: "Vue d'ensemble" }
-            ]
-        },
-        "4": {
-            title: "Optimisation des évaluations Bouygues Telecom",
-            description: "Automatisation du processus de récupération des écoutes et évaluation des performances réseau pour améliorer la qualité de service et optimiser la rentabilité.",
-            fullDetails: "Ce projet a visé à automatiser la collecte et l'analyse des données d'écoute et de performance réseau pour Bouygues Telecom. J'ai développé des scripts Python pour récupérer automatiquement les données, puis j'ai mis en place des outils d'analyse pour identifier les problèmes de qualité de service et proposer des améliorations. Le but était d'optimiser la rentabilité en améliorant l'efficacité opérationnelle.",
-            technologies: ["Python", "Analyse de données", "Optimisation réseau", "Automatisation"],
-            images: [
-                { src: "assets/img/Planning_VBA_Login_Byg.PNG", alt: "Projet Bouygues Telecom - Interface de login" },
-                { src: "assets/img/Byg_4.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
-                { src: "assets/img/Byg_2.jpg", alt: "Projet Bouygues Telecom - Architecture" },
-                { src: "assets/img/Byg_3.jpg", alt: "Projet Bouygues Telecom - Analyse" },
-                { src: "assets/img/Byg_1.jpg", alt: "Projet Bouygues Telecom - Résultats" }
-            ]
-        },
-        "5": {
-            title: "Application logistique Glovo",
-            description: "Optimisation du suivi des livraisons et amélioration des indicateurs de rentabilité, d’administration financière et RH, en capitalisant sur les ressources existantes.",
-            fullDetails: "Création d'une application logistique pour Glovo, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
-            technologies: ["React", "Node.js", "MongoDB", "D3.js", "Logistique", "Analyse de données"],
-            images: [
-                { src: "assets/img/Login_Glovo.PNG", alt: "Projet Glovo - Login" },
-                { src: "assets/img/Dash_Sales_Glovo1.PNG", alt: "Projet Glovo - Tableau de bord des ventes" },
-                { src: "assets/img/Glovo1.PNG", alt: "Projet Glovo - Interface principale" },
-                { src: "assets/img/Glovo2.PNG", alt: "Projet Glovo - Suivi des livraisons" },
-                { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
-            ]
-        },
-        "6": {
-            title: "Dashbord Vente & Recolt",
-            description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d’administration financière et RH, en capitalisant sur les ressources existantes.",
-            fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
-            technologies: ["React", "Node.js", "MongoDB", "D3.js", "Logistique", "Analyse de données"],
-            images: [
-                { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
-                { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
-                
-            ]
-        }
+            },
+            "2": {
+                title: "Scheduler VBScript & Python",
+                description: "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
+                fullDetails: "Développement d'un système d'automatisation pour la planification quotidienne des ressources. J'ai utilisé VBScript pour les interactions avec les applications existantes et Python pour des traitements de données plus complexes et la génération de rapports. Ce projet a permis de réduire considérablement le temps passé sur les tâches répétitives de planification et d'assurer une meilleure allocation des ressources.",
+                technologies: ["VBScript", "Python", "Automatisation"],
+                images: [
+                    { src: "assets/img/Planning_VBA_Login.PNG", alt: "Login Planing" },
+                    { src: "assets/img/Planning_VBA4.PNG", alt: "Interface Planing" },
+                    { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
+                    { src: "assets/img/Planning_VBA1.PNG", alt: "Vision Agent" },
+                    { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Manager" },
+                    { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
+                ]
+            },
+            "3": {
+                title: "Management avec Python",
+                description: "Automatisation de la récupération des demandes de congés, de la planification et du suivi managérial avec Python.",
+                fullDetails: "Mise en place d'une solution complète en Python pour automatiser le cycle de gestion des congés et le suivi managérial. Le script récupère les demandes de congés, les intègre dans un planning, et génère des rapports pour les managers, améliorant ainsi l'efficacité administrative et le suivi des équipes.",
+                technologies: ["Python", "Automatisation", "Gestion RH"],
+                images: [
+                    { src: "assets/img/AccorHotels1.PNG", alt: "Interface de gestion des congés" },
+                    { src: "assets/img/AccorHotels2.PNG", alt: "Détail des demandes" },
+                    { src: "assets/img/AccorHotels3.PNG", alt: "Planning des équipes" },
+                    { src: "assets/img/AccorHotels4.PNG", alt: "Suivi des performances" },
+                    { src: "assets/img/AccorHotels5.PNG", alt: "Rapports managériaux" },
+                    { src: "assets/img/AccorHotels6.PNG", alt: "Tableau de bord" },
+                    { src: "assets/img/AccorHotels7.PNG", alt: "Vue d'ensemble" }
+                ]
+            },
+            "4": {
+                title: "Optimisation des évaluations Bouygues Telecom",
+                description: "Automatisation du processus de récupération des écoutes et évaluation des performances réseau pour améliorer la qualité de service et optimiser la rentabilité.",
+                fullDetails: "Ce projet a visé à automatiser la collecte et l'analyse des données d'écoute et de performance réseau pour Bouygues Telecom. J'ai développé des scripts Python pour récupérer automatiquement les données, puis j'ai mis en place des outils d'analyse pour identifier les problèmes de qualité de service et proposer des améliorations. Le but était d'optimiser la rentabilité en améliorant l'efficacité opérationnelle.",
+                technologies: ["Python", "Analyse de données", "Optimisation réseau", "Automatisation"],
+                images: [
+                    { src: "assets/img/Planning_VBA_Login_Byg.PNG", alt: "Projet Bouygues Telecom - Interface de login" },
+                    { src: "assets/img/Byg_4.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
+                    { src: "assets/img/Byg_2.jpg", alt: "Projet Bouygues Telecom - Architecture" },
+                    { src: "assets/img/Byg_3.jpg", alt: "Projet Bouygues Telecom - Analyse" },
+                    { src: "assets/img/Byg_1.jpg", alt: "Projet Bouygues Telecom - Résultats" }
+                ]
+            },
+            "5": {
+                title: "Application logistique Glovo",
+                description: "Optimisation du suivi des livraisons et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
+                fullDetails: "Création d'une application logistique pour Glovo, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
+                technologies: ["React", "Node.js", "MongoDB", "D3.js", "Logistique", "Analyse de données"],
+                images: [
+                    { src: "assets/img/Login_Glovo.PNG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Dash_Sales_Glovo1.PNG", alt: "Projet Glovo - Tableau de bord des ventes" },
+                    { src: "assets/img/Glovo1.PNG", alt: "Projet Glovo - Interface principale" },
+                    { src: "assets/img/Glovo2.PNG", alt: "Projet Glovo - Suivi des livraisons" },
+                    { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
+                ]
+            },
+            "6": {
+                title: "Dashbord Vente & Recolt",
+                description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
+                fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
+                technologies: ["React", "Node.js", "MongoDB", "D3.js", "Logistique", "Analyse de données"],
+                images: [
+                    { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" }
+                ]
+            }
         };
-       
-       
-        
         
         return projects[projectId] || null;
     }
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const animateHeroTitleTyping = () => {
-        const heroTitle = document.querySelector('.hero h1');
-        if (!heroTitle) return;
-
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = ''; // Vider le titre initialement
-
-        let charIndex = 0;
-        const typingSpeed = 70; // Vitesse de frappe en ms par caractère
-
-        function typeChar() {
-            if (charIndex < originalText.length) {
-                heroTitle.textContent += originalText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeChar, typingSpeed);
-            }
-        }
-        typeChar(); // Démarrer l'animation
-    };
-
-    // Assurez-vous que cette fonction est appelée pour démarrer l'animation
-    animateHeroTitleTyping();
-
-    // Gardez vos autres fonctions d'animation (boutons, scroll, etc.) si vous en avez besoin
-    // animateButtons();
-    // animateOnScroll();
-    // animateProjectCards();
-});
-
-///////////////////////////////
-
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const text = "Spécialiste en analyse de données, développement et automatisation de processus";
-    const element = document.getElementById('typewriter-text');
-    element.innerHTML = ''; // Efface le contenu initial
-    let i = 0;
-    const speed = 50; // Vitesse en ms
-
-    function typeWriter() {
-        if (i < text.length) {
-            const charSpan = document.createElement('span');
-            charSpan.className = 'typewriter-char';
-            charSpan.textContent = text.charAt(i);
-            element.appendChild(charSpan);
-            
-            // Effet spécial sur le dernier caractère
-            if (i > 0) {
-                element.children[i-1].classList.remove('typewriter-char');
-            }
-            
-            i++;
-            setTimeout(typeWriter, speed);
-        } else {
-            // Supprime l'effet neon quand terminé
-            Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
-        }
-    }
-
-    // Délai avant démarrage
-    setTimeout(typeWriter, 1000);
-});
