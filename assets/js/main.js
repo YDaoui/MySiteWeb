@@ -367,8 +367,8 @@ document.addEventListener('DOMContentLoaded', function () {
             fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
             technologies: ["React", "Node.js", "MongoDB", "D3.js", "Logistique", "Analyse de données"],
             images: [
-                { src: "assets/img/Total_Bi1.jpg", alt: "Projet Glovo - Login" },
-                { src: "assets/img/Total_Bi2.jpg", alt: "Projet Glovo - Login" },
+                { src: "assets/img/Total_Bi_1.jpg", alt: "Projet Glovo - Login" },
+                { src: "assets/img/Total_Bi_2.jpg", alt: "Projet Glovo - Login" },
                 
             ]
         }
