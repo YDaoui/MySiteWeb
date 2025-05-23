@@ -1,42 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Mobile menu toggle - Version corrigée
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const navbar = document.querySelector('.navbar');
-    
-    if (mobileToggle && navbar) {
-        mobileToggle.addEventListener('click', function() {
-            // Toggle classes
-            this.classList.toggle('active');
-            navbar.classList.toggle('active');
-            
-            // Toggle body overflow
-            document.body.style.overflow = navbar.classList.contains('active') ? 'hidden' : '';
-            
-            // Animate menu items when opening
-            if (navbar.classList.contains('active')) {
-                document.querySelectorAll('.navbar ul li').forEach((item, index) => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(-20px)';
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                        item.style.transition = `all 0.3s ease ${index * 0.1}s`;
-                    }, 10);
-                });
-            }
-        });
-        
-        // Close menu when clicking on links
-        document.querySelectorAll('.navbar a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileToggle.classList.remove('active');
-                navbar.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-    }
-
-    // Smooth scrolling for navigation (conservé)
+    // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -58,10 +21,46 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 location.hash = targetId;
             }
+
+            // Close mobile menu after clicking a link
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navbar = document.querySelector('.navbar');
+            if (navbar && navbar.classList.contains('active')) {
+                mobileToggle.classList.remove('active');
+                navbar.classList.remove('active');
+                document.querySelectorAll('.navbar ul li').forEach(item => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(-20px)';
+                    item.style.transitionDelay = '0s';
+                });
+            }
         });
     });
 
-    // Service cards toggle with icons (conservé)
+    // Mobile menu toggle
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    if (mobileToggle && navbar) {
+        mobileToggle.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+            
+            // Animate menu items when opening
+            if (navbar.classList.contains('active')) {
+                document.querySelectorAll('.navbar ul li').forEach((item, index) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(-20px)';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                        item.style.transition = `all 0.3s ease ${index * 0.1}s`;
+                    }, 10);
+                });
+            }
+        });
+    }
+
+    // Service cards toggle with icons
     document.querySelectorAll('.service-header').forEach(header => {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
@@ -97,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Project image galleries (conservé)
+    // Project image galleries
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
         if (!gallery) return;
@@ -114,26 +113,31 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalSlides = slides.length;
 
         function updateGallery() {
+            // Hide all slides
             slides.forEach(slide => {
                 slide.classList.remove('active');
             });
             
+            // Show current slide
             slides[currentIndex].classList.add('active');
             counter.textContent = `${currentIndex + 1}/${totalSlides}`;
         }
 
+        // Previous button
         prevBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updateGallery();
         });
 
+        // Next button
         nextBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             currentIndex = (currentIndex + 1) % totalSlides;
             updateGallery();
         });
 
+        // Initialize
         updateGallery();
 
         // Touch support for mobile
@@ -150,10 +154,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }, { passive: true });
 
         function handleSwipe() {
-            if (Math.abs(touchEndX - touchStartX) > 50) {
+            if (Math.abs(touchEndX - touchStartX) > 50) { // Minimum swipe distance
                 if (touchEndX < touchStartX) {
+                    // Swipe left - next
                     currentIndex = (currentIndex + 1) % totalSlides;
                 } else {
+                    // Swipe right - previous
                     currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 }
                 updateGallery();
@@ -161,28 +167,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Project details modal (conservé)
+    // Project details modal
     const modal = document.getElementById('project-modal');
     if (modal) {
         const modalClose = modal.querySelector('.modal-close');
         const modalContent = modal.querySelector('#modal-content');
 
+        // Close modal
         modalClose.addEventListener('click', () => {
             modal.style.display = 'none';
         });
 
+        // Close when clicking outside
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
             }
         });
 
+        // Handle project detail clicks
         document.querySelectorAll('.view-details').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const projectCard = btn.closest('.project-card');
                 const projectId = projectCard.dataset.projectId;
                 
+                // Get project data (you would replace this with your actual data)
                 const projectData = getProjectData(projectId);
                 
                 if (projectData) {
@@ -215,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Scroll animations (conservé)
+    // Scroll animations
     function animateOnScroll() {
         const elements = document.querySelectorAll('.service-card, .project-card, .tech-item');
         const windowHeight = window.innerHeight;
@@ -232,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Initialize elements for animation
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -239,9 +250,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll();
+    animateOnScroll(); // Run once on load
 
-    // Contact form validation (conservé)
+    // Contact form validation
     const contactForm = document.querySelector('.contact form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -251,6 +262,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const email = this.querySelector('input[name="email"]').value.trim();
             const message = this.querySelector('textarea[name="message"]').value.trim();
             
+            // Simple validation
             if (!name || !email || !message) {
                 alert('Veuillez remplir tous les champs.');
                 return;
@@ -261,62 +273,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
             
+            // Here you would typically send the form data to a server
             alert('Message envoyé avec succès! Je vous répondrai dès que possible.');
             this.reset();
         });
     }
 
-    // Typewriter effects (conservés)
-    const animateHeroTitleTyping = () => {
-        const heroTitle = document.querySelector('.hero h1');
-        if (!heroTitle) return;
 
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = '';
 
-        let charIndex = 0;
-        const typingSpeed = 70;
-
-        function typeChar() {
-            if (charIndex < originalText.length) {
-                heroTitle.textContent += originalText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeChar, typingSpeed);
-            }
-        }
-        typeChar();
-    };
-    animateHeroTitleTyping();
-
-    const animateSubtitleTyping = () => {
-        const element = document.getElementById('typewriter-text');
-        if (!element) return;
-        
-        const text = "Spécialiste en analyse de données, développement et automatisation de processus";
-        element.innerHTML = '';
-        let i = 0;
-        const speed = 50;
-
-        function typeWriter() {
-            if (i < text.length) {
-                const charSpan = document.createElement('span');
-                charSpan.className = 'typewriter-char';
-                charSpan.textContent = text.charAt(i);
-                element.appendChild(charSpan);
-                
-                if (i > 0) {
-                    element.children[i-1].classList.remove('typewriter-char');
-                }
-                
-                i++;
-                setTimeout(typeWriter, speed);
-            } else {
-                Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
-            }
-        }
-
-        setTimeout(typeWriter, 1000);
-    };
+    
+    // Sample project data - replace with your actual project data
     animateSubtitleTyping();
 
     // Sample project data (conservé)
@@ -405,3 +371,70 @@ document.addEventListener('DOMContentLoaded', function () {
         
         return projects[projectId] || null;
     }
+});
+// 2. Animation du titre héro améliorée
+document.addEventListener('DOMContentLoaded', () => {
+    const animateHeroTitleTyping = () => {
+        const heroTitle = document.querySelector('.hero h1');
+        if (!heroTitle) return;
+
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = ''; // Vider le titre initialement
+
+        let charIndex = 0;
+        const typingSpeed = 70; // Vitesse de frappe en ms par caractère
+
+        function typeChar() {
+            if (charIndex < originalText.length) {
+                heroTitle.textContent += originalText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, typingSpeed);
+            }
+        }
+        typeChar(); // Démarrer l'animation
+    };
+
+    // Assurez-vous que cette fonction est appelée pour démarrer l'animation
+    animateHeroTitleTyping();
+
+    // Gardez vos autres fonctions d'animation (boutons, scroll, etc.) si vous en avez besoin
+    // animateButtons();
+    // animateOnScroll();
+    // animateProjectCards();
+});
+
+///////////////////////////////
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const text = "Spécialiste en analyse de données, développement et automatisation de processus";
+    const element = document.getElementById('typewriter-text');
+    element.innerHTML = ''; // Efface le contenu initial
+    let i = 0;
+    const speed = 50; // Vitesse en ms
+
+    function typeWriter() {
+        if (i < text.length) {
+            const charSpan = document.createElement('span');
+            charSpan.className = 'typewriter-char';
+            charSpan.textContent = text.charAt(i);
+            element.appendChild(charSpan);
+            
+            // Effet spécial sur le dernier caractère
+            if (i > 0) {
+                element.children[i-1].classList.remove('typewriter-char');
+            }
+            
+            i++;
+            setTimeout(typeWriter, speed);
+        } else {
+            // Supprime l'effet neon quand terminé
+            Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
+        }
+    }
+
+    // Délai avant démarrage
+    setTimeout(typeWriter, 1000);
+});
