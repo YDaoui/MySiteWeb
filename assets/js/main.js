@@ -371,8 +371,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
                 
             ]
-        }
         };
+       
        
         
         
