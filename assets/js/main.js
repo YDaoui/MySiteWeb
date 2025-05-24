@@ -364,7 +364,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 technologies: ["React", "Node.js", "MongoDB", "D3.js", "Logistique", "Analyse de données"],
                 images: [
                     { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
-                    { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" }
+                    { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_3.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_4.JPG", alt: "Projet Glovo - Login" }
                 ]
             }
         };
