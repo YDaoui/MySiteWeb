@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 title: "Dashbord Vente & Recolt",
                 description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
                 fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
-                technologies: ["React", "Node.js", "MongoDB", "D3.js", "Logistique", "Analyse de données"],
+                technologies: ["Merise", "Analyse de données", "SQL Server", "Power Query", "Power Bi", "DAX","Logistique"],
                 images: [
                     { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
                     { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
