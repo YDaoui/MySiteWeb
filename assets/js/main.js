@@ -22,18 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 location.hash = targetId;
             }
 
-            // Close mobile menu after clicking a link
-            const mobileToggle = document.querySelector('.mobile-menu-toggle');
-            const navbar = document.querySelector('.navbar');
-            if (navbar && navbar.classList.contains('active')) {
-                mobileToggle.classList.remove('active');
-                navbar.classList.remove('active');
-                document.querySelectorAll('.navbar ul li').forEach(item => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(-20px)';
-                    item.style.transitionDelay = '0s';
-                });
-            }
+          
         });
     });
 
