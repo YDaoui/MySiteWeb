@@ -102,87 +102,93 @@ body {
 }
 
 /* Menu Mobile - Version améliorée */
+/* ==================== */
+/* CORRECTIONS DU MENU MOBILE */
+/* ==================== */
+
+/* Positionnement du bouton hamburger */
 .mobile-menu-toggle {
-    display: none;
+    display: none; /* Caché par défaut */
     background: none;
     border: none;
     cursor: pointer;
-    padding: 12px;
+    padding: 10px;
     z-index: 1001;
-    width: 50px;
-    height: 50px;
-    position: relative;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Styles des barres de l'icône hamburger */
 .mobile-menu-toggle span {
     display: block;
     width: 30px;
     height: 3px;
     background: var(--light);
-    position: absolute;
-    left: 10px;
+    position: relative;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .mobile-menu-toggle span:nth-child(1) {
-    top: 15px;
-}
-
-.mobile-menu-toggle span:nth-child(2) {
-    top: 23px;
+    transform: translateY(-8px);
 }
 
 .mobile-menu-toggle span:nth-child(3) {
-    top: 31px;
+    transform: translateY(8px);
 }
 
-/* Animation en croix */
+/* Animation lorsque le menu est actif */
 .mobile-menu-toggle.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(0) rotate(45deg);
     background: var(--primary);
 }
 
 .mobile-menu-toggle.active span:nth-child(2) {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: scale(0);
 }
 
 .mobile-menu-toggle.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(0) rotate(-45deg);
     background: var(--primary);
 }
 
-/* Styles mobiles */
+/* Styles du menu mobile */
 @media (max-width: 768px) {
     .mobile-menu-toggle {
-        display: block;
+        display: flex; /* Visible sur mobile */
     }
     
     .navbar {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 70px);
-    background-color: var(--darker);
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 2rem 0;
-    display: flex; /* Changé à flex */
-    visibility: hidden; /* Utiliser visibility au lieu de display */
-    opacity: 0;
-    transform: translateY(-20px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    z-index: 999;
-}
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--darker);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 1000;
+        pointer-events: none;
+    }
 
-.navbar.active {
-    visibility: visible; /* Changé à visible */
-    opacity: 1;
-    transform: translateY(0);
-}
+    .navbar.active {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+    }
     
     .navbar ul {
         flex-direction: column;
@@ -205,7 +211,7 @@ body {
         transform: translateY(0);
     }
 
-    /* Animation en cascade */
+    /* Animation en cascade pour les éléments du menu */
     .navbar.active ul li:nth-child(1) { transition-delay: 0.1s; }
     .navbar.active ul li:nth-child(2) { transition-delay: 0.2s; }
     .navbar.active ul li:nth-child(3) { transition-delay: 0.3s; }
@@ -216,12 +222,7 @@ body {
         display: block;
         font-size: 1.2rem;
     }
-
-    .navbar ul li a::after {
-        display: none;
-    }
 }
-
 /* Sections communes */
 section {
     padding: 6rem 0;
