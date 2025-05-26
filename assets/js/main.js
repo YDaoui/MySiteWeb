@@ -366,7 +366,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
                     { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
                     { src: "assets/img/Total_Bi_3.JPG", alt: "Projet Glovo - Login" },
-                    { src: "assets/img/Total_Bi_4.JPG", alt: "Projet Glovo - Login" }
+                    { src: "assets/img/Total_Bi_4.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_Mobile_5.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_Mobile_6.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_Mobile_7.JPG", alt: "Projet Glovo - Login" }
                 ]
             }
         };
