@@ -108,8 +108,8 @@ body {
 
 /* Positionnement du bouton hamburger */
 .mobile-menu-toggle {
-    display: none; /* Caché par défaut */
-    background: none;
+    display: flex; /* Caché par défaut */
+    background: transparent;
     border: none;
     cursor: pointer;
     padding: 10px;
@@ -122,6 +122,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.mobile-menu-toggle ion-icon {
+    font-size: 2rem;
+    color: #fff; /* ou la couleur de votre choix */
 }
 
 /* Styles des barres de l'icône hamburger */
