@@ -66,26 +66,15 @@ body {
 /* Menu Desktop par défaut */
 .navbar {
   display: flex;
-  /* Assurez-vous que le menu est visible par défaut sur desktop */
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
 }
 
 .navbar ul {
   display: flex;
   list-style: none;
-  /* Assurez-vous que les éléments sont en ligne sur desktop */
-  flex-direction: row;
 }
 
 .navbar ul li {
   margin-left: 2rem;
-  /* Réinitialise les marges mobiles si elles étaient appliquées globalement */
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: 0s; /* Annule les délais d'animation mobile */
 }
 
 .navbar ul li a {
@@ -116,7 +105,7 @@ body {
   color: var(--primary);
 }
 
-/* Menu hamburger (par défaut caché sur desktop) */
+/* Menu hamburger */
 .mobile-menu-toggle {
   display: none;
   background: transparent;
@@ -165,38 +154,32 @@ body {
   background: var(--primary);
 }
 
----
-
-## Styles spécifiques aux appareils mobiles
-
-```css
 /* Version Mobile */
 @media (max-width: 768px) {
   .navbar {
     position: fixed;
-    top: 70px; /* Ajustez cette valeur en fonction de la hauteur de votre en-tête */
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - 70px);
+    height: 100vh;
     background-color: var(--darker);
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* ou 'center' si vous préférez */
+    justify-content: center;
     padding: 2rem 0;
-    visibility: hidden; /* Masqué par défaut */
-    opacity: 0; /* Transparent par défaut */
+    visibility: hidden;
+    opacity: 0;
     transform: translateY(-20px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    pointer-events: none; /* Empêche les interactions lorsque masqué */
-    display: flex; /* Utilisez flex pour permettre la mise en colonne, mais masquez avec visibility/opacity */
+    transition: all 0.4s ease;
+    z-index: 1000;
+    pointer-events: none;
   }
 
   .navbar.active {
-    visibility: visible; /* Rendre visible lorsque actif */
-    opacity: 1; /* Rendre opaque lorsque actif */
+    visibility: visible;
+    opacity: 1;
     transform: translateY(0);
-    pointer-events: all; /* Autoriser les interactions lorsque actif */
+    pointer-events: all;
   }
 
   .navbar ul {
@@ -211,7 +194,7 @@ body {
     text-align: center;
     padding: 1rem 0;
     opacity: 0;
-    transform: translateY(15px); /* Modification pour l'animation d'apparition */
+    transform: translateY(15px);
     transition: all 0.3s ease;
   }
 
@@ -220,12 +203,10 @@ body {
     transform: translateY(0);
   }
 
-  /* Délai d'animation pour chaque élément du menu */
   .navbar.active ul li:nth-child(1) { transition-delay: 0.1s; }
   .navbar.active ul li:nth-child(2) { transition-delay: 0.2s; }
   .navbar.active ul li:nth-child(3) { transition-delay: 0.3s; }
   .navbar.active ul li:nth-child(4) { transition-delay: 0.4s; }
-  .navbar.active ul li:nth-child(5) { transition-delay: 0.5s; }
 
   .navbar ul li a {
     padding: 1rem;
@@ -233,168 +214,94 @@ body {
     font-size: 1.2rem;
   }
 
-  .navbar ul li a::after {
-    content: none; /* Supprimer l'animation du soulignement pour le mobile */
-  }
-
   .mobile-menu-toggle {
-    display: flex; /* Toujours afficher le bouton toggle sur mobile */
-    /* Ces styles sont déjà dans votre code, mais les laisser ici est correct */
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1001;
-    width: 40px;
-    height: 40px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto; /* Pousse le toggle vers la droite */
-  }
-
-  .navbar ul {
-    margin-top: 2rem; /* Ajoute un peu d'espace entre le toggle et le menu */
+    display: flex;
   }
 }
 
----
-
-## Styles spécifiques aux ordinateurs de bureau
-
-```css
-/* Nouvelle règle pour les écrans plus grands (desktop) */
-@media (min-width: 769px) {
-  .navbar {
-    /* Réinitialiser les styles du mobile pour le desktop */
-    position: static; /* Retire la position fixe */
-    height: auto; /* Retire la hauteur 100vh */
-    background-color: transparent; /* Retire le fond foncé */
-    flex-direction: row; /* Aligne les éléments horizontalement */
-    justify-content: flex-start; /* Aligne au début */
-    padding: 0; /* Retire le padding vertical */
-    visibility: visible; /* Assure que le menu est toujours visible */
-    opacity: 1; /* Assure qu'il est opaque */
-    transform: translateY(0); /* Retire toute transformation */
-    transition: none; /* Désactive les transitions du mobile */
-    box-shadow: none; /* Retire l'ombre */
-    pointer-events: all; /* Permet les interactions */
-    display: flex; /* S'assure qu'il est affiché en flex */
-  }
-
-  .navbar ul {
-    flex-direction: row; /* S'assure que les items sont en ligne */
-    margin: 0;
-    padding: 0;
-  }
-
-  .navbar ul li {
-    margin-left: 2rem; /* Réapplique la marge entre les items sur desktop */
-    padding: 0; /* Retire le padding vertical du mobile */
-    opacity: 1; /* Assure la visibilité */
-    transform: translateY(0); /* Retire toute transformation */
-    transition-delay: 0s !important; /* Important: Annule les délais d'animation individuels du mobile */
-  }
-
-  .navbar ul li a::after {
-    /* Réactive l'effet de soulignement au survol pour le desktop */
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: width 0.3s ease;
-  }
-
-  .mobile-menu-toggle {
-    display: none !important; /* Cache le bouton hamburger sur desktop */
-  }
-}
 /* Sections communes */
 section {
-  padding: 6rem 0;
+    padding: 6rem 0;
 }
 
 .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+   
 }
 
 h1, h2, h3, h4 {
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
 }
 
 h1 {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradientText 5s ease infinite;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientText 5s ease infinite;
 }
 
 h2 {
-  font-size: clamp(1.8rem, 4vw, 2.5rem);
-  color: var(--primary);
-  position: relative;
-  display: inline-block;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--primary);
+    position: relative;
+    display: inline-block;
 }
 
 h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 60%;
-  height: 4px;
-  background: var(--secondary);
-  border-radius: 2px;
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60%;
+    height: 4px;
+    background: var(--secondary);
+    border-radius: 2px;
 }
 
 /* Animations */
 @keyframes gradientText {
-  0% { background-position: 0% center; }
-  50% { background-position: 100% center; }
-  100% { background-position: 0% center; }
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Boutons */
 .btn {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: white;
-  padding: 0.8rem 2.5rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
 }
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
 }
 
 /* Styles spécifiques pour les autres sections... */
@@ -402,24 +309,24 @@ h2::after {
 
 /* Responsive général */
 @media (max-width: 768px) {
-  section {
-    padding: 4rem 0;
-  }
-  
-  .btn {
-    padding: 0.7rem 2rem;
-  }
+    section {
+        padding: 4rem 0;
+    }
+    
+    .btn {
+        padding: 0.7rem 2rem;
+    }
 }
 
 [data-animate] {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
 }
 
 [data-animate].animate {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Délais différents */
@@ -430,112 +337,112 @@ h2::after {
 
 /* Styles pour la section Hero (page d'accueil) */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Ajout pour centrer verticalement et horizontalement */
-  text-align: center; /* Centre le texte */
-  background: linear-gradient(135deg, var(--darker), var(--dark));
-  position: relative;
-  overflow: hidden;
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKCIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
-  background-size: cover; /* Assurez-vous que le motif couvre toute la section */
-  background-blend-mode: overlay; /* Pour mélanger avec le dégradé existant */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Ajout pour centrer verticalement et horizontalement */
+    text-align: center; /* Centre le texte */
+    background: linear-gradient(135deg, var(--darker), var(--dark));
+    position: relative;
+    overflow: hidden;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+    background-size: cover; /* Assurez-vous que le motif couvre toute la section */
+    background-blend-mode: overlay; /* Pour mélanger avec le dégradé existant */
 
 }
 
 .hero .container {
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 2rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 2rem;
 }
 
 .hero h1 {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 8px rgba(58, 134, 255, 0.5);
-  margin: 0 auto 1.5rem;
-  position: relative;
-  animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 8px rgba(58, 134, 255, 0.5);
+    margin: 0 auto 1.5rem;
+    position: relative;
+    animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
 }
 
 .hero h2 {
-  font-size: clamp(2.5rem, 6vw, 4rem); /* Une taille plus grande pour le compteur */
-  font-weight: 800; /* Plus gras pour l'impact */
-  color: white; /* Texte en blanc pur */
-  margin-bottom: 1rem; /* Ajustez la marge */
+    font-size: clamp(2.5rem, 6vw, 4rem); /* Une taille plus grande pour le compteur */
+    font-weight: 800; /* Plus gras pour l'impact */
+    color: white; /* Texte en blanc pur */
+    margin-bottom: 1rem; /* Ajustez la marge */
 
-  /* Animation d'apparition initiale du h2 lui-même */
-  opacity: 0; /* Caché initialement */
-  transform: translateY(20px); /* Léger décalage */
-  animation: fadeInUp 1s ease-out forwards 0.8s; /* Délai pour apparaître après le h1 */
+    /* Animation d'apparition initiale du h2 lui-même */
+    opacity: 0; /* Caché initialement */
+    transform: translateY(20px); /* Léger décalage */
+    animation: fadeInUp 1s ease-out forwards 0.8s; /* Délai pour apparaître après le h1 */
 
-  /* Retire le soulignement général des h2 si vous n'en voulez pas pour le compteur */
-  &::after {
-    content: none;
-  }
+    /* Retire le soulignement général des h2 si vous n'en voulez pas pour le compteur */
+    &::after {
+        content: none;
+    }
 }
-  /* Optionnel: Si vous voulez un effet de "nuances" ou un glow subtil sur le nombre */
-  text-shadow: 0 0 10px rgba(58, 134, 255, 0.5); /* Ombre douce initiale */
-  /* Si vous voulez une pulsation constante sur le nombre, ajoutez ceci à la règle d'animation ci-dessus: */
-  /* animation: fadeInUp 1s ease-out forwards 0.8s, glowPulse 3s infinite alternate ease-in-out 1.8s; */
+    /* Optionnel: Si vous voulez un effet de "nuances" ou un glow subtil sur le nombre */
+    text-shadow: 0 0 10px rgba(58, 134, 255, 0.5); /* Ombre douce initiale */
+    /* Si vous voulez une pulsation constante sur le nombre, ajoutez ceci à la règle d'animation ci-dessus: */
+    /* animation: fadeInUp 1s ease-out forwards 0.8s, glowPulse 3s infinite alternate ease-in-out 1.8s; */
 }
 
 /* Assurez-vous que glowPulse est définie quelque part dans votre CSS, elle l'est */
 @keyframes glowPulse {
-  from {
-    text-shadow:
-      0 0 10px var(--primary),
-      0 0 20px var(--primary),
-      0 0 30px var(--primary);
-  }
-  to {
-    text-shadow:
-      0 0 15px var(--primary),
-      0 0 30px var(--primary),
-      0 0 45px var(--secondary);
-  }
+    from {
+        text-shadow:
+            0 0 10px var(--primary),
+            0 0 20px var(--primary),
+            0 0 30px var(--primary);
+    }
+    to {
+        text-shadow:
+            0 0 15px var(--primary),
+            0 0 30px var(--primary),
+            0 0 45px var(--secondary);
+    }
 }
 
 .hero p {
-  font-size: 1.25rem;
-  max-width: 700px;
-  margin: 0 auto 3rem;
-  color: rgba(255, 255, 255, 0.8);
-  animation: fadeInUp 1s ease-out 0.4s both;
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    color: rgba(255, 255, 255, 0.8);
+    animation: fadeInUp 1s ease-out 0.4s both;
 }
 
 /* Animation pour le titre principal */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Animation du texte gradient */
 @keyframes gradientText {
-  0% { background-position: 0% center; }
-  50% { background-position: 100% center; }
-  100% { background-position: 0% center; }
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
 }
 
 .hero h1 {
-  background-size: 200% auto;
-  
+    background-size: 200% auto;
+     
 }
 
 /* Animation des éléments enfants avec délais */
 .hero-content > * {
-  opacity: 0;
-  animation: fadeInUp 0.8s forwards;
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards;
 }
 
 .hero-content > *:nth-child(1) { animation-delay: 0.2s; }
@@ -545,127 +452,127 @@ h2::after {
 
 /* Keyframes pour l'animation */
 @keyframes fadeInLetter {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
 }
 
 @keyframes glowPulse {
-  from {
-    text-shadow: 
-      0 0 10px var(--primary),
-      0 0 20px var(--primary),
-      0 0 30px var(--primary);
-  }
-  to {
-    text-shadow: 
-      0 0 15px var(--primary),
-      0 0 30px var(--primary),
-      0 0 45px var(--secondary);
-  }
+    from {
+        text-shadow: 
+            0 0 10px var(--primary),
+            0 0 20px var(--primary),
+            0 0 30px var(--primary);
+    }
+    to {
+        text-shadow: 
+            0 0 15px var(--primary),
+            0 0 30px var(--primary),
+            0 0 45px var(--secondary);
+    }
 }
 /* Boutons */
 /* Styles de base des boutons - Thème principal */
 .btn {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: white;
-  padding: 0.8rem 2.5rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-  transform: translateY(0);
-  animation: fadeInUp 0.8s ease-out 0.8s both;
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    transform: translateY(0);
+    animation: fadeInUp 0.8s ease-out 0.8s both;
 }
 
 /* Animation au survol */
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
-  background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
 }
 
 /* Effet "press" */
 .btn:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 10px rgba(58, 134, 255, 0.3);
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(58, 134, 255, 0.3);
 }
 
 /* Effet de vague lumineuse au survol */
 .btn::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    to bottom right,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0)
-  );
-  transform: translateY(-100%) rotate(45deg);
-  transition: transform 0.6s ease;
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0)
+    );
+    transform: translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
 }
 
 .btn:hover::after {
-  transform: translateY(100%) rotate(45deg);
+    transform: translateY(100%) rotate(45deg);
 }
 
 /* Version outline */
 .btn-outline {
-  background: transparent;
-  border: 2px solid var(--primary);
-  color: var(--primary);
-  box-shadow: none;
-  position: relative;
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    box-shadow: none;
+    position: relative;
 }
 
 .btn-outline:hover {
-  background: var(--primary);
-  color: white;
-  border-color: transparent;
+    background: var(--primary);
+    color: white;
+    border-color: transparent;
 }
 
 /* Animation spécifique pour le bouton CTA principal */
 .hero .btn {
-  animation: fadeInUp 0.8s ease-out 1s both, pulse 2s infinite 2s;
+    animation: fadeInUp 0.8s ease-out 1s both, pulse 2s infinite 2s;
 }
 
 /* Animation pulsation pour le bouton principal */
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0.4); }
-  70% { box-shadow: 0 0 0 15px rgba(58, 134, 255, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(58, 134, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0); }
 }
 
 /* Délais d'animation pour les boutons secondaires */
 .hero .btn-outline {
-  animation: fadeInUp 0.8s ease-out 1.2s both;
+    animation: fadeInUp 0.8s ease-out 1.2s both;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .btn {
-    padding: 0.7rem 2rem;
-    font-size: 1rem;
-  }
-  
-  /* Réduire l'effet de pulse sur mobile */
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0.3); }
-    70% { box-shadow: 0 0 0 8px rgba(58, 134, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0); }
-  }
+    .btn {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+    }
+    
+    /* Réduire l'effet de pulse sur mobile */
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0.3); }
+        70% { box-shadow: 0 0 0 8px rgba(58, 134, 255, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(58, 134, 255, 0); }
+    }
 }
 /* Section À propos */
 .about {
@@ -1339,7 +1246,7 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Animations (déjà définies dans votre code) */
+/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1351,9 +1258,69 @@ footer a:hover {
     }
 }
 
-/* Responsive adjustments (déjà présentes) */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    /* Le bloc .navbar mobile est déjà corrigé plus haut */
+    .navbar {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--darker);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 2rem 0;
+        display: none; /* Correction: Le menu est masqué par défaut sur mobile */
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar.active {
+        display: flex; /* Correction: Affiche le menu quand la classe 'active' est ajoutée */
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+    }
+
+    .navbar ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+    }
+
+    .navbar.active ul li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Animation delay pour chaque élément du menu */
+    .navbar.active ul li:nth-child(1) { transition-delay: 0.1s; }
+    .navbar.active ul li:nth-child(2) { transition-delay: 0.2s; }
+    .navbar.active ul li:nth-child(3) { transition-delay: 0.3s; }
+    .navbar.active ul li:nth-child(4) { transition-delay: 0.4s; }
+    .navbar.active ul li:nth-child(5) { transition-delay: 0.5s; }
+
+    .navbar ul li a {
+        padding: 1rem;
+        display: block;
+        font-size: 1.2rem;
+    }
+
+    .navbar ul li a::after {
+        content: none;
+    }
 
     .about .container {
         grid-template-columns: 1fr;
@@ -1391,189 +1358,25 @@ footer a:hover {
         height: 200px; /* Adjust height for smaller screens */
     }
 
-    /* Le mobile-menu-toggle est géré par la media query mobile */
     .mobile-menu-toggle {
-      display: flex; /* Doit être flex sur mobile pour être visible et centré */
-      /* Les autres styles sont déjà définis plus haut pour le toggle */
-    }
+        display: none; /* Caché par défaut */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+    width: 40px;
+    height: 40px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
     .navbar ul {
         margin-top: 2rem; /* Ajoute un peu d'espace entre le toggle et le menu */
     }
 }
 
-/* Carousel styles (déjà présents) */
-.project-carousel {
-    position: relative;
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.2);
-}
-
-.carousel-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.carousel-container img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    background: #fff;
-    padding: 10px;
-}
-
-.carousel-container img.active {
-    opacity: 1;
-    z-index: 1;
-}
-
-.carousel-nav {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 5px;
-    border-radius: 20px;
-    width: max-content;
-    margin: 0 auto;
-}
-
-.carousel-prev,
-.carousel-next {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 0 10px;
-    transition: all 0.3s ease;
-}
-
-.carousel-prev:hover,
-.carousel-next:hover {
-    background: var(--primary);
-}
-
-.slide-counter {
-    color: white;
-    font-size: 0.9rem;
-    min-width: 40px;
-    text-align: center;
-}
-
-/* Modal styles (déjà présents) */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    overflow-y: auto;
-}
-
-.modal-content {background-color: var(--dark);
-    margin: 5% auto;
-    padding: 2rem;
-    border: 1px solid rgba(58, 134, 255, 0.3);
-    border-radius: 10px;
-    width: 80%;
-    max-width: 800px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.modal-close {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.modal-close:hover {
-    color: var(--primary);
-    transform: scale(1.2);
-}
-
-.modal h3 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-}
-
-.modal-description {
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 1.5rem;
-}
-
-.modal-details {
-    margin-top: 2rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
-}
-/* Dans votre fichier style.css (déjà présents) */
-.service-header ion-icon {
-    font-size: 2rem;
-    color: #3a86ff; /* Couleur bleue - ajustez selon votre thème */
-    margin-right: 15px;
-    vertical-align: middle;
-}
-
-.service-arrow {
-    margin-left: auto; /* Pour pousser la flèche à droite */
-    transition: transform 0.3s ease;
-}
-
-.service-card.active .service-arrow {
-    transform: rotate(180deg);
-}
-
-/* Animation au survol */
-.service-header:hover ion-icon {
-    animation: bounce 0.5s;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-.modal-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 1em;
-}
-
-.modal-gallery img {
-    width: 120px;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    object-fit: cover;
-}
 /* Carousel styles */
 .project-carousel {
     position: relative;
@@ -1663,8 +1466,7 @@ footer a:hover {
     overflow-y: auto;
 }
 
-.modal-content {
-    background-color: var(--dark);
+.modal-content {background-color: var(--dark);
     margin: 5% auto;
     padding: 2rem;
     border: 1px solid rgba(58, 134, 255, 0.3);
@@ -1706,8 +1508,7 @@ footer a:hover {
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
 }
-
-/* Service icon and arrow styles */
+/* Dans votre fichier style.css */
 .service-header ion-icon {
     font-size: 2rem;
     color: #3a86ff; /* Couleur bleue - ajustez selon votre thème */
@@ -1733,7 +1534,6 @@ footer a:hover {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
 }
-
 .modal-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -1748,4 +1548,351 @@ footer a:hover {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     object-fit: cover;
+    transition: transform 0.3s ease;
 }
+
+.modal-gallery img:hover {
+    transform: scale(1.05);
+}
+/* Boutons principaux - Style uniformisé */
+.btn, 
+.filter-btn,
+.project-links a,
+.modal-content .btn,
+.service-tech,
+.about-img .btn-about {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* États des boutons */
+.btn:hover,
+.filter-btn:hover,
+.project-links a:hover,
+.modal-content .btn:hover,
+.service-tech:hover,
+.about-img .btn-about:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
+}
+
+.btn:active,
+.filter-btn:active,
+.project-links a:active,
+.modal-content .btn:active {
+    transform: translateY(1px);
+}
+
+/* Bouton actif (pour les filtres) */
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(58, 134, 255, 0.4);
+}
+
+/* Boutons secondaires */
+.btn-outline,
+.project-links a:last-child {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    box-shadow: none;
+}
+
+.btn-outline:hover,
+.project-links a:last-child:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Boutons spécifiques aux projets */
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.project-links a {
+    flex: 1;
+    min-width: 120px;
+}
+
+/* Boutons de filtres */
+.projects-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    gap: 1rem;
+}
+
+.filter-btn {
+    padding: 0.7rem 1.5rem;
+    margin: 0.5rem;
+}
+
+/* Boutons dans les modals */
+.modal-content .btn {
+    margin-top: 1rem;
+}
+
+/* Boutons technos */
+.service-tech {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .btn,
+    .filter-btn,
+    .project-links a,
+    .modal-content .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .project-links {
+        flex-direction: column;
+    }
+    
+    .projects-filter {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Animation des boutons */
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255,255,255,0.3),
+        rgba(255,255,255,0)
+    );
+    transform: translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+}
+
+.btn:hover::after {
+    transform: translateY(100%) rotate(45deg);
+}
+
+
+
+
+
+
+/* Style du sous-titre avec ombre */
+.hero-subtitle {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+/* Animation du curseur */
+#typewriter-text::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: var(--primary);
+    text-shadow: 0 0 8px rgba(58, 134, 255, 0.7); /* Ombre bleue pour le curseur */
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Effet neon pour le texte en cours de frappe */
+.typewriter-char {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+
+/* Style du bouton hamburger */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+    position: relative;
+}
+
+.mobile-menu-toggle .hamburger-line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--light);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle .hamburger-line:before,
+.mobile-menu-toggle .hamburger-line:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--light);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle .hamburger-line:before {
+    top: -8px;
+}
+
+.mobile-menu-toggle .hamburger-line:after {
+    bottom: -8px;
+}
+
+/* Animation lorsque le menu est actif */
+.mobile-menu-toggle.active .hamburger-line {
+    background: transparent;
+}
+
+.mobile-menu-toggle.active .hamburger-line:before {
+    top: 0;
+    transform: rotate(45deg);
+    background: var(--primary);
+}
+
+.mobile-menu-toggle.active .hamburger-line:after {
+    bottom: 0;
+    transform: rotate(-45deg);
+    background: var(--primary);
+}
+
+/* Styles spécifiques pour mobile */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .navbar {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--darker);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 2rem 0;
+        display: Flex;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.4s ease-out;
+        z-index: 1000;
+    }
+
+    .navbar.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+    }
+
+    .navbar ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+        opacity: 0;
+        transform: translateY(15px);
+        transition: all 0.3s ease;
+    }
+
+    .navbar.active ul li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Animation en cascade pour les éléments du menu */
+    .navbar.active ul li:nth-child(1) { transition-delay: 0.15s; }
+    .navbar.active ul li:nth-child(2) { transition-delay: 0.25s; }
+    .navbar.active ul li:nth-child(3) { transition-delay: 0.35s; }
+    .navbar.active ul li:nth-child(4) { transition-delay: 0.45s; }
+
+    .navbar ul li a {
+        padding: 1rem;
+        display: block;
+        font-size: 1.2rem;
+        color: var(--light);
+        transition: color 0.3s ease;
+    }
+
+    .navbar ul li a:hover {
+        color: var(--primary);
+    }
+}
+
+
+
+
+
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
