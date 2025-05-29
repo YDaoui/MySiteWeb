@@ -231,9 +231,7 @@ section {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    align-items: center;         /* aligne verticalement */
-    justify-content: space-between;
+   
 }
 
 h1, h2, h3, h4 {
