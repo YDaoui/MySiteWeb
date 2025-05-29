@@ -445,4 +445,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Délai avant démarrage
     setTimeout(typeWriter, 800);
+    <script>
+  const toggle = document.querySelector('.mobile-menu-toggle');
+  const navbar = document.querySelector('.navbar');
+
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    navbar.classList.toggle('active');
+  });
+</script>
+
 });
