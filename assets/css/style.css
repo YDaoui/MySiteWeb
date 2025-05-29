@@ -102,27 +102,22 @@ body {
 }
 
 /* Menu Mobile - Version améliorée */
-/* ==================== */
-/* CORRECTIONS DU MENU MOBILE */
-/* ==================== */
-
-/* Positionnement du bouton hamburger */
 .mobile-menu-toggle {
-    display: flex; /* Caché par défaut */
+    display: flex;
     background: transparent;
     border: none;
     cursor: pointer;
     padding: 10px;
     z-index: 1001;
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    /* Enlever position: fixed */
     width: 40px;
     height: 40px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-left: auto; /* pousse à droite dans .container */
 }
+
 .mobile-menu-toggle ion-icon {
     font-size: 2rem;
     color: #fff; /* ou la couleur de votre choix */
@@ -236,6 +231,9 @@ section {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;         /* aligne verticalement */
+    justify-content: space-between;
 }
 
 h1, h2, h3, h4 {
