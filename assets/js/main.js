@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
+            
+            // Si c'est un lien du menu mobile, fermer le menu après clic
+            if (navbar.classList.contains('active')) {
+                navbar.classList.remove('active');
+                mobileToggle.classList.remove('active');
+            }
+
             if (targetId === '#' || !document.querySelector(targetId)) return;
 
             e.preventDefault();
@@ -21,19 +28,25 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 location.hash = targetId;
             }
-
-          
         });
     });
 
-    // Mobile menu toggle
+    // Mobile menu toggle - Version corrigée
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
     if (mobileToggle && navbar) {
-        mobileToggle.addEventListener('click', () => {
+        mobileToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
             navbar.classList.toggle('active');
-            mobileToggle.classList.toggle('active');
             
+            // Changer l'icône entre hamburger et croix
+            const icon = this.querySelector('ion-icon');
+            if (this.classList.contains('active')) {
+                icon.setAttribute('name', 'close-outline');
+            } else {
+                icon.setAttribute('name', 'menu-outline');
+            }
+
             // Animate menu items when opening
             if (navbar.classList.contains('active')) {
                 document.querySelectorAll('.navbar ul li').forEach((item, index) => {
@@ -48,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
 
     // Service cards toggle with icons
     document.querySelectorAll('.service-header').forEach(header => {
@@ -430,5 +444,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Délai avant démarrage
-    setTimeout(typeWriter, 1000);
+    setTimeout(typeWriter, 800);
 });
