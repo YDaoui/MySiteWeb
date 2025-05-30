@@ -305,18 +305,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" }
                 ]
             },
-            "2": {
-                title: "Scheduler VBScript & Python",
-                description: "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
-                fullDetails: "Développement d'un système d'automatisation pour la planification quotidienne des ressources. J'ai utilisé VBScript pour les interactions avec les applications existantes et Python pour des traitements de données plus complexes et la génération de rapports. Ce projet a permis de réduire considérablement le temps passé sur les tâches répétitives de planification et d'assurer une meilleure allocation des ressources.",
-                technologies: ["VBScript", "Python", "Automatisation"],
+           "2": {
+                title: "Dashbord Vente & Recolt",
+                description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
+                fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
+                technologies: ["Merise", "Analyse de données", "SQL Server", "Power Query", "Power Bi", "DAX","Logistique"],
                 images: [
-                    { src: "assets/img/Planning_VBA_Login.PNG", alt: "Login Planing" },
-                    { src: "assets/img/Planning_VBA4.PNG", alt: "Interface Planing" },
-                    { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
-                    { src: "assets/img/Planning_VBA1.PNG", alt: "Vision Agent" },
-                    { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Manager" },
-                    { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
+                    { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_3.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_4.JPG", alt: "Projet Glovo - Login" },
+                   
+                    { src: "assets/img/Total_Bi_Mobile_6.JPG", alt: "Projet Glovo - Login" }
+                    
                 ]
             },
             "3": {
@@ -360,21 +361,20 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
                 ]
             },
-            "6": {
-                title: "Dashbord Vente & Recolt",
-                description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
-                fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
-                technologies: ["Merise", "Analyse de données", "SQL Server", "Power Query", "Power Bi", "DAX","Logistique"],
-                images: [
-                    { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
-                    { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
-                    { src: "assets/img/Total_Bi_3.JPG", alt: "Projet Glovo - Login" },
-                    { src: "assets/img/Total_Bi_4.JPG", alt: "Projet Glovo - Login" },
-                   
-                    { src: "assets/img/Total_Bi_Mobile_6.JPG", alt: "Projet Glovo - Login" }
-                    
-                ]
-            }
+             "6": {
+                            title: "Scheduler VBScript & Python",
+                            description: "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
+                            fullDetails: "Développement d'un système d'automatisation pour la planification quotidienne des ressources. J'ai utilisé VBScript pour les interactions avec les applications existantes et Python pour des traitements de données plus complexes et la génération de rapports. Ce projet a permis de réduire considérablement le temps passé sur les tâches répétitives de planification et d'assurer une meilleure allocation des ressources.",
+                            technologies: ["VBScript", "Python", "Automatisation"],
+                            images: [
+                                { src: "assets/img/Planning_VBA_Login.PNG", alt: "Login Planing" },
+                                { src: "assets/img/Planning_VBA4.PNG", alt: "Interface Planing" },
+                                { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
+                                { src: "assets/img/Planning_VBA1.PNG", alt: "Vision Agent" },
+                                { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Manager" },
+                                { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
+                            ]
+                        }
         };
         
         return projects[projectId] || null;
