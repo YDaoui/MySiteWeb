@@ -3,11 +3,19 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
+            const navbar = document.querySelector('.navbar');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
             
             // Si c'est un lien du menu mobile, fermer le menu après clic
-            if (navbar.classList.contains('active')) {
+            if (navbar && navbar.classList.contains('active') && mobileToggle) {
                 navbar.classList.remove('active');
                 mobileToggle.classList.remove('active');
+                
+                // Reset mobile menu icon
+                const icon = mobileToggle.querySelector('ion-icon');
+                if (icon) {
+                    icon.setAttribute('name', 'menu-outline');
+                }
             }
 
             if (targetId === '#' || !document.querySelector(targetId)) return;
@@ -31,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Mobile menu toggle - Version corrigée
+    // Mobile menu toggle
     const mobileToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
     if (mobileToggle && navbar) {
@@ -41,10 +49,12 @@ document.addEventListener('DOMContentLoaded', function () {
             
             // Changer l'icône entre hamburger et croix
             const icon = this.querySelector('ion-icon');
-            if (this.classList.contains('active')) {
-                icon.setAttribute('name', 'close-outline');
-            } else {
-                icon.setAttribute('name', 'menu-outline');
+            if (icon) {
+                if (this.classList.contains('active')) {
+                    icon.setAttribute('name', 'close-outline');
+                } else {
+                    icon.setAttribute('name', 'menu-outline');
+                }
             }
 
             // Animate menu items when opening
@@ -62,11 +72,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-
     // Service cards toggle with icons
     document.querySelectorAll('.service-header').forEach(header => {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
+            if (!card) return;
+            
             const isActive = card.classList.contains('active');
             const details = card.querySelector('.service-details');
             const arrow = header.querySelector('.service-arrow');
@@ -177,9 +188,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const modalContent = modal.querySelector('#modal-content');
 
         // Close modal
-        modalClose.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
+        if (modalClose) {
+            modalClose.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        }
 
         // Close when clicking outside
         window.addEventListener('click', (e) => {
@@ -193,12 +206,14 @@ document.addEventListener('DOMContentLoaded', function () {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const projectCard = btn.closest('.project-card');
+                if (!projectCard) return;
+                
                 const projectId = projectCard.dataset.projectId;
                 
-                // Get project data (you would replace this with your actual data)
+                // Get project data
                 const projectData = getProjectData(projectId);
                 
-                if (projectData) {
+                if (projectData && modalContent) {
                     modalContent.innerHTML = `
                         <h3>${projectData.title}</h3>
                         <div class="modal-gallery">
@@ -261,9 +276,9 @@ document.addEventListener('DOMContentLoaded', function () {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = this.querySelector('input[name="name"]').value.trim();
-            const email = this.querySelector('input[name="email"]').value.trim();
-            const message = this.querySelector('textarea[name="message"]').value.trim();
+            const name = this.querySelector('input[name="name"]')?.value.trim();
+            const email = this.querySelector('input[name="email"]')?.value.trim();
+            const message = this.querySelector('textarea[name="message"]')?.value.trim();
             
             // Simple validation
             if (!name || !email || !message) {
@@ -282,13 +297,91 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Hero title typing animation
+    const animateHeroTitleTyping = () => {
+        const heroTitle = document.querySelector('.hero h1');
+        if (!heroTitle) return;
 
+        const originalText = heroTitle.textContent || '';
+        heroTitle.textContent = ''; // Vider le titre initialement
 
-    
-    // Sample project data - replace with your actual project data
+        let charIndex = 0;
+        const typingSpeed = 70; // Vitesse de frappe en ms par caractère
+
+        function typeChar() {
+            if (charIndex < originalText.length) {
+                heroTitle.textContent += originalText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, typingSpeed);
+            }
+        }
+        typeChar(); // Démarrer l'animation
+    };
+
+    // Subtitle typing animation
+    const animateSubtitleTyping = () => {
+        const text = "Spécialiste en analyse de données, développement et automatisation de processus";
+        const element = document.getElementById('typewriter-text');
+        if (!element) return;
+        
+        element.innerHTML = ''; // Efface le contenu initial
+        let i = 0;
+        const speed = 50; // Vitesse en ms
+
+        function typeWriter() {
+            if (i < text.length) {
+                const charSpan = document.createElement('span');
+                charSpan.className = 'typewriter-char';
+                charSpan.textContent = text.charAt(i);
+                element.appendChild(charSpan);
+                
+                // Effet spécial sur le dernier caractère
+                if (i > 0) {
+                    element.children[i-1].classList.remove('typewriter-char');
+                }
+                
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                // Supprime l'effet neon quand terminé
+                Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
+            }
+        }
+
+        // Délai avant démarrage
+        setTimeout(typeWriter, 800);
+    };
+
+    // Start animations
+    animateHeroTitleTyping();
     animateSubtitleTyping();
 
-    // Sample project data (conservé)
+    // Image popup functionality
+    const popup = document.getElementById('image-popup');
+    const popupImg = document.getElementById('popup-image');
+    const popupClose = document.getElementById('popup-close');
+
+    if (popup && popupImg && popupClose) {
+        // Handle clicks on modal gallery images
+        document.addEventListener('click', function (e) {
+            if (e.target.matches('.modal-gallery img')) {
+                popupImg.src = e.target.src;
+                popup.style.display = 'block';
+            }
+        });
+
+        popupClose.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+    }
+
+    // Sample project data
     function getProjectData(projectId) {
         const projects = {
             "1": {
@@ -305,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" }
                 ]
             },
-           "2": {
+            "2": {
                 title: "Dashbord Vente & Recolt",
                 description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
                 fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
@@ -315,9 +408,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
                     { src: "assets/img/Total_Bi_3.JPG", alt: "Projet Glovo - Login" },
                     { src: "assets/img/Total_Bi_4.JPG", alt: "Projet Glovo - Login" },
-                   
                     { src: "assets/img/Total_Bi_Mobile_6.JPG", alt: "Projet Glovo - Login" }
-                    
                 ]
             },
             "3": {
@@ -361,114 +452,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
                 ]
             },
-             "6": {
-                            title: "Scheduler VBScript & Python",
-                            description: "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
-                            fullDetails: "Développement d'un système d'automatisation pour la planification quotidienne des ressources. J'ai utilisé VBScript pour les interactions avec les applications existantes et Python pour des traitements de données plus complexes et la génération de rapports. Ce projet a permis de réduire considérablement le temps passé sur les tâches répétitives de planification et d'assurer une meilleure allocation des ressources.",
-                            technologies: ["VBScript", "Python", "Automatisation"],
-                            images: [
-                                { src: "assets/img/Planning_VBA_Login.PNG", alt: "Login Planing" },
-                                { src: "assets/img/Planning_VBA4.PNG", alt: "Interface Planing" },
-                                { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
-                                { src: "assets/img/Planning_VBA1.PNG", alt: "Vision Agent" },
-                                { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Manager" },
-                                { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
-                            ]
-                        }
+            "6": {
+                title: "Scheduler VBScript & Python",
+                description: "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
+                fullDetails: "Développement d'un système d'automatisation pour la planification quotidienne des ressources. J'ai utilisé VBScript pour les interactions avec les applications existantes et Python pour des traitements de données plus complexes et la génération de rapports. Ce projet a permis de réduire considérablement le temps passé sur les tâches répétitives de planification et d'assurer une meilleure allocation des ressources.",
+                technologies: ["VBScript", "Python", "Automatisation"],
+                images: [
+                    { src: "assets/img/Planning_VBA_Login.PNG", alt: "Login Planing" },
+                    { src: "assets/img/Planning_VBA4.PNG", alt: "Interface Planing" },
+                    { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
+                    { src: "assets/img/Planning_VBA1.PNG", alt: "Vision Agent" },
+                    { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Manager" },
+                    { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
+                ]
+            }
         };
         
         return projects[projectId] || null;
     }
 });
-// 2. Animation du titre héro améliorée
-document.addEventListener('DOMContentLoaded', () => {
-    const animateHeroTitleTyping = () => {
-        const heroTitle = document.querySelector('.hero h1');
-        if (!heroTitle) return;
-
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = ''; // Vider le titre initialement
-
-        let charIndex = 0;
-        const typingSpeed = 70; // Vitesse de frappe en ms par caractère
-
-        function typeChar() {
-            if (charIndex < originalText.length) {
-                heroTitle.textContent += originalText.charAt(charIndex);
-                charIndex++;
-                setTimeout(typeChar, typingSpeed);
-            }
-        }
-        typeChar(); // Démarrer l'animation
-    };
-
-    // Assurez-vous que cette fonction est appelée pour démarrer l'animation
-    animateHeroTitleTyping();
-
-    // Gardez vos autres fonctions d'animation (boutons, scroll, etc.) si vous en avez besoin
-    // animateButtons();
-    // animateOnScroll();
-    // animateProjectCards();
-});
-
-///////////////////////////////
-
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const text = "Spécialiste en analyse de données, développement et automatisation de processus";
-    const element = document.getElementById('typewriter-text');
-    element.innerHTML = ''; // Efface le contenu initial
-    let i = 0;
-    const speed = 50; // Vitesse en ms
-
-    function typeWriter() {
-        if (i < text.length) {
-            const charSpan = document.createElement('span');
-            charSpan.className = 'typewriter-char';
-            charSpan.textContent = text.charAt(i);
-            element.appendChild(charSpan);
-            
-            // Effet spécial sur le dernier caractère
-            if (i > 0) {
-                element.children[i-1].classList.remove('typewriter-char');
-            }
-            
-            i++;
-            setTimeout(typeWriter, speed);
-        } else {
-            // Supprime l'effet neon quand terminé
-            Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
-        }
-    }
-
-    // Délai avant démarrage
-    setTimeout(typeWriter, 800);
-   
-  
-  });
-// Zoom sur image dans la fenêtre 20x15 cm
-const popup = document.getElementById('image-popup');
-const popupImg = document.getElementById('popup-image');
-const popupClose = document.getElementById('popup-close');
-
-document.addEventListener('click', function (e) {
-    if (e.target.matches('.modal-gallery img')) {
-        popupImg.src = e.target.src;
-        popup.style.display = 'block';
-    }
-});
-
-popupClose.addEventListener('click', () => {
-    popup.style.display = 'none';
-});
-
-window.addEventListener('click', (e) => {
-    if (e.target === popup) {
-        popup.style.display = 'none';
-    }
-});
-
-
-
