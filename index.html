@@ -21,32 +21,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-    <!-- Google Tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FGT1S9FH8R"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-FGT1S9FH8R');
-</script>
-
-
-
-
-
-    
 </head>
 
 <body>
-
-
-    <div id="image-popup">
-    <span id="popup-close">&times;</span>
-    <img id="popup-image" src="" alt="Image agrandie">
+    <div class="image-popup" id="image-popup">
+    <span class="image-popup-close" id="popup-close">&times;</span>
+    <img src="" alt="Zoom Image" id="popup-image">
 </div>
-    
-  
 
 <header class="header">
   <div class="container">
@@ -441,46 +422,12 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2>Contactez-moi</h2>
-            <form id="contactForm" class="contact__form contact-form" 
-      action="https://formsubmit.co/daoui00yassine@gmail.com" 
-      method="POST">
-    
-    <!-- Paramètres FormSubmit -->
-    <input type="hidden" name="_subject" value="Nouveau message portfolio">
-    <input type="hidden" name="_autoresponse" value="Merci pour votre message! Je vous répondrai sous 48h.">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_next" value="https://ydaoui.github.io/MySiteWeb/merci.html">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="text" name="_honey" style="display:none">
-
-    <!-- Champs du formulaire -->
-    <div class="form__group">
-        <input type="text" name="name" id="name" class="contact__input" required>
-        <label for="name" class="form__label">Votre nom complet</label>
-    </div>
-    
-    <div class="form__group">
-        <input type="email" name="email" id="email" class="contact__input" required>
-        <label for="email" class="form__label">Votre email professionnel</label>
-    </div>
-    
-    <div class="form__group">
-        <input type="text" name="subject" id="subject" class="contact__input" required>
-        <label for="subject" class="form__label">Objet du message</label>
-    </div>
-    
-    <div class="form__group">
-        <textarea name="message" id="message" rows="5" class="contact__input contact__textarea" required></textarea>
-        <label for="message" class="form__label">Décrivez votre projet ou demande</label>
-    </div>
-    
-    <div class="form__footer">
-        <button type="submit" class="contact__button">
-            <span>Envoyer le message</span>
-            <ion-icon name="send-outline" class="button__icon"></ion-icon>
-        </button>
-    </div>
-</form>
+            <form action="submit-form.php" method="POST">
+                <input type="text" name="name" placeholder="Votre nom" required>
+                <input type="email" name="email" placeholder="Votre email" required>
+                <textarea name="message" placeholder="Votre message" required></textarea>
+                <button type="submit" class="btn">Envoyer</button>
+            </form>
         </div>
     </section>
 
