@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Fermeture initiale de toutes les modales
+    // Initialisation des modales - cachées par défaut
     const modal = document.getElementById('project-modal');
     const popup = document.getElementById('image-popup');
     if (modal) modal.style.display = 'none';
@@ -217,7 +217,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.body.style.overflow = 'hidden';
 
                     // Add click handlers for gallery images
-                    modalContent.querySelectorAll('.modal-gallery-image').forEach(img => {
+                    const modalImages = modalContent.querySelectorAll('.modal-gallery-image');
+                    modalImages.forEach(img => {
                         img.addEventListener('click', function(e) {
                             e.stopPropagation();
                             if (popup && popupImg) {
