@@ -6,16 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const navbar = document.querySelector('.navbar');
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
 
-            // Si c'est un lien du menu mobile, fermer le menu après clic
             if (navbar && navbar.classList.contains('active') && mobileToggle) {
                 navbar.classList.remove('active');
                 mobileToggle.classList.remove('active');
-
-                // Reset mobile menu icon
                 const icon = mobileToggle.querySelector('ion-icon');
-                if (icon) {
-                    icon.setAttribute('name', 'menu-outline');
-                }
+                if (icon) icon.setAttribute('name', 'menu-outline');
             }
 
             if (targetId === '#' || !document.querySelector(targetId)) return;
@@ -46,18 +41,11 @@ document.addEventListener('DOMContentLoaded', function () {
         mobileToggle.addEventListener('click', function() {
             this.classList.toggle('active');
             navbar.classList.toggle('active');
-
-            // Changer l'icône entre hamburger et croix
             const icon = this.querySelector('ion-icon');
             if (icon) {
-                if (this.classList.contains('active')) {
-                    icon.setAttribute('name', 'close-outline');
-                } else {
-                    icon.setAttribute('name', 'menu-outline');
-                }
+                icon.setAttribute('name', this.classList.contains('active') ? 'close-outline' : 'menu-outline');
             }
 
-            // Animate menu items when opening
             if (navbar.classList.contains('active')) {
                 document.querySelectorAll('.navbar ul li').forEach((item, index) => {
                     item.style.opacity = '0';
@@ -72,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Service cards toggle with icons
+    // Service cards toggle
     document.querySelectorAll('.service-header').forEach(header => {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
@@ -82,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const details = card.querySelector('.service-details');
             const arrow = header.querySelector('.service-arrow');
 
-            // Close other open service cards
             document.querySelectorAll('.service-card').forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.classList.remove('active');
@@ -96,11 +83,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-            // Toggle current card
             card.classList.toggle('active', !isActive);
-            if (details) {
-                details.style.maxHeight = !isActive ? details.scrollHeight + 'px' : null;
-            }
+            if (details) details.style.maxHeight = !isActive ? details.scrollHeight + 'px' : null;
             if (arrow) {
                 arrow.classList.toggle('active', !isActive);
                 arrow.innerHTML = !isActive
@@ -110,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Project image galleries
+    // Project galleries
     document.querySelectorAll('.project-card').forEach(card => {
         const gallery = card.querySelector('.project-gallery');
         if (!gallery) return;
@@ -127,67 +111,46 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalSlides = slides.length;
 
         function updateGallery() {
-            // Hide all slides
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-            });
-
-            // Show current slide
+            slides.forEach(slide => slide.classList.remove('active'));
             slides[currentIndex].classList.add('active');
             counter.textContent = `${currentIndex + 1}/${totalSlides}`;
         }
 
-        // Previous button
         prevBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updateGallery();
         });
 
-        // Next button
         nextBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             currentIndex = (currentIndex + 1) % totalSlides;
             updateGallery();
         });
 
-        // Initialize
         updateGallery();
 
-        // Touch support for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-
+        // Touch support
+        let touchStartX = 0, touchEndX = 0;
         container.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
 
         container.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-
-        function handleSwipe() {
-            if (Math.abs(touchEndX - touchStartX) > 50) { // Minimum swipe distance
-                if (touchEndX < touchStartX) {
-                    // Swipe left - next
-                    currentIndex = (currentIndex + 1) % totalSlides;
-                } else {
-                    // Swipe right - previous
-                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                }
+            if (Math.abs(touchEndX - touchStartX) > 50) {
+                if (touchEndX < touchStartX) currentIndex = (currentIndex + 1) % totalSlides;
+                else currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 updateGallery();
             }
-        }
+        }, { passive: true });
     });
 
-    // Project details modal
+    // Project modal with enhanced image popup
     const modal = document.getElementById('project-modal');
     if (modal) {
         const modalClose = modal.querySelector('.modal-close');
         const modalContent = modal.querySelector('#modal-content');
-
-        // Image popup functionality (moved here)
         const popup = document.getElementById('image-popup');
         const popupImg = document.getElementById('popup-image');
         const popupClose = document.getElementById('popup-close');
@@ -196,10 +159,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (modalClose) {
             modalClose.addEventListener('click', () => {
                 modal.style.display = 'none';
-                // Ensure popup is also closed if open when main modal closes
                 if (popup && popup.style.display === 'flex') {
                     popup.style.display = 'none';
-                    document.body.style.overflow = 'auto'; // Reactivate scroll
+                    document.body.style.overflow = 'auto';
                 }
             });
         }
@@ -208,99 +170,105 @@ document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
-                // Ensure popup is also closed if open when main modal closes
                 if (popup && popup.style.display === 'flex') {
                     popup.style.display = 'none';
-                    document.body.style.overflow = 'auto'; // Reactivate scroll
+                    document.body.style.overflow = 'auto';
                 }
             }
-            // Only close popup if clicking outside the popup itself, when popup is active
             if (e.target === popup && popup.style.display === 'flex') {
                 popup.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
         });
 
+        // Project details click handler
+        document.querySelectorAll('.view-details').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const projectCard = btn.closest('.project-card');
+                if (!projectCard) return;
 
-        // Handle project detail clicks
-        // Handle project detail clicks
-document.querySelectorAll('.view-details').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const projectCard = btn.closest('.project-card');
-        if (!projectCard) return;
+                const projectId = projectCard.dataset.projectId;
+                const projectData = getProjectData(projectId);
 
-        const projectId = projectCard.dataset.projectId;
-        const projectData = getProjectData(projectId);
+                if (projectData && modalContent) {
+                    modalContent.innerHTML = `
+                        <h3>${projectData.title}</h3>
+                        <div class="modal-gallery">
+                            ${projectData.images.map((img, index) =>
+                                `<img src="${img.src}" alt="${img.alt}" 
+                                      class="modal-gallery-image" 
+                                      data-index="${index}">`
+                            ).join('')}
+                        </div>
+                        <div class="modal-description">
+                            <p>${projectData.description}</p>
+                        </div>
+                        <div class="modal-full-details">
+                            <h4>Détails du projet</h4>
+                            <p>${projectData.fullDetails || 'Plus de détails seront disponibles bientôt.'}</p>
+                            ${projectData.technologies ? `
+                            <div class="modal-technologies">
+                                <h4>Technologies utilisées</h4>
+                                <ul>
+                                    ${projectData.technologies.map(tech => `<li>${tech}</li>`).join('')}
+                                </ul>
+                            </div>
+                            ` : ''}
+                        </div>
+                    `;
+                    modal.style.display = 'block';
 
-        if (projectData && modalContent) {
-            modalContent.innerHTML = `
-                <h3>${projectData.title}</h3>
-                <div class="modal-gallery">
-                    ${projectData.images.map((img, index) =>
-                        `<img src="${img.src}" alt="${img.alt}" 
-                              class="gallery-image" 
-                              data-index="${index}">`
-                    ).join('')}
-                </div>
-                <div class="modal-description">
-                    <p>${projectData.description}</p>
-                </div>
-                <!-- Reste du contenu modal... -->
-            `;
-            modal.style.display = 'block';
-
-            // Ajouter les écouteurs d'événements pour les images
-            modalContent.querySelectorAll('.gallery-image').forEach(img => {
-                img.addEventListener('click', function() {
-                    if (popup && popupImg) {
-                        popupImg.src = this.src;
-                        popup.dataset.currentIndex = this.dataset.index;
-                        popup.style.display = 'flex';
-                        document.body.style.overflow = 'hidden';
-                    }
-                });
+                    // Add click handlers for gallery images
+                    modalContent.querySelectorAll('.modal-gallery-image').forEach(img => {
+                        img.addEventListener('click', function() {
+                            if (popup && popupImg) {
+                                popupImg.src = this.src;
+                                popup.dataset.currentIndex = this.dataset.index;
+                                popup.dataset.projectId = projectId;
+                                popup.style.display = 'flex';
+                                document.body.style.overflow = 'hidden';
+                            }
+                        });
+                    });
+                }
             });
-        }
-    });
-});
+        });
 
-// Navigation dans la popup d'image
-if (popup) {
-    // Fermeture
-    popupClose.addEventListener('click', () => {
-        popup.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    });
-
-    // Navigation avec les flèches du clavier
-    document.addEventListener('keydown', function(e) {
-        if (popup.style.display === 'flex') {
-            const currentIndex = parseInt(popup.dataset.currentIndex || 0);
-            const projectCard = document.querySelector('.project-card[data-project-id]');
-            const projectId = projectCard?.dataset.projectId;
-            const projectData = getProjectData(projectId);
-            
-            if (!projectData) return;
-
-            if (e.key === 'Escape') {
+        // Popup navigation
+        if (popup && popupClose) {
+            popupClose.addEventListener('click', () => {
                 popup.style.display = 'none';
                 document.body.style.overflow = 'auto';
-            } else if (e.key === 'ArrowLeft') {
-                // Image précédente
-                const newIndex = (currentIndex - 1 + projectData.images.length) % projectData.images.length;
-                popupImg.src = projectData.images[newIndex].src;
-                popup.dataset.currentIndex = newIndex;
-            } else if (e.key === 'ArrowRight') {
-                // Image suivante
-                const newIndex = (currentIndex + 1) % projectData.images.length;
-                popupImg.src = projectData.images[newIndex].src;
-                popup.dataset.currentIndex = newIndex;
-            }
-        }
-    });
-}
+            });
 
+            // Keyboard navigation for popup
+            document.addEventListener('keydown', function(e) {
+                if (popup.style.display === 'flex') {
+                    const currentIndex = parseInt(popup.dataset.currentIndex || 0);
+                    const projectId = popup.dataset.projectId;
+                    const projectData = getProjectData(projectId);
+                    
+                    if (!projectData) return;
+
+                    if (e.key === 'Escape') {
+                        popup.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    } else if (e.key === 'ArrowLeft') {
+                        // Previous image
+                        const newIndex = (currentIndex - 1 + projectData.images.length) % projectData.images.length;
+                        popupImg.src = projectData.images[newIndex].src;
+                        popup.dataset.currentIndex = newIndex;
+                    } else if (e.key === 'ArrowRight') {
+                        // Next image
+                        const newIndex = (currentIndex + 1) % projectData.images.length;
+                        popupImg.src = projectData.images[newIndex].src;
+                        popup.dataset.currentIndex = newIndex;
+                    }
+                }
+            });
+        }
+    }
 
     // Scroll animations
     function animateOnScroll() {
@@ -309,9 +277,7 @@ if (popup) {
 
         elements.forEach(element => {
             const elementTop = element.getBoundingClientRect().top;
-            const elementVisible = 150;
-
-            if (elementTop < windowHeight - elementVisible) {
+            if (elementTop < windowHeight - 150) {
                 element.classList.add('animated');
                 element.style.opacity = '1';
                 element.style.transform = 'translateY(0)';
@@ -319,27 +285,24 @@ if (popup) {
         });
     }
 
-    // Initialize elements for animation
+    // Initialize animations
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     });
-
     window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Run once on load
+    animateOnScroll();
 
-    // Contact form validation
+    // Contact form
     const contactForm = document.querySelector('.contact form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-
             const name = this.querySelector('input[name="name"]')?.value.trim();
             const email = this.querySelector('input[name="email"]')?.value.trim();
             const message = this.querySelector('textarea[name="message"]')?.value.trim();
 
-            // Simple validation
             if (!name || !email || !message) {
                 alert('Veuillez remplir tous les champs.');
                 return;
@@ -350,42 +313,37 @@ if (popup) {
                 return;
             }
 
-            // Here you would typically send the form data to a server
             alert('Message envoyé avec succès! Je vous répondrai dès que possible.');
             this.reset();
         });
     }
 
-    // Hero title typing animation
+    // Typing animations
     const animateHeroTitleTyping = () => {
         const heroTitle = document.querySelector('.hero h1');
         if (!heroTitle) return;
 
         const originalText = heroTitle.textContent || '';
-        heroTitle.textContent = ''; // Vider le titre initialement
-
+        heroTitle.textContent = '';
         let charIndex = 0;
-        const typingSpeed = 70; // Vitesse de frappe en ms par caractère
 
         function typeChar() {
             if (charIndex < originalText.length) {
                 heroTitle.textContent += originalText.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeChar, typingSpeed);
+                setTimeout(typeChar, 70);
             }
         }
-        typeChar(); // Démarrer l'animation
+        typeChar();
     };
 
-    // Subtitle typing animation
     const animateSubtitleTyping = () => {
         const text = "Spécialiste en analyse de données, développement et automatisation de processus";
         const element = document.getElementById('typewriter-text');
         if (!element) return;
 
-        element.innerHTML = ''; // Efface le contenu initial
+        element.innerHTML = '';
         let i = 0;
-        const speed = 50; // Vitesse en ms
 
         function typeWriter() {
             if (i < text.length) {
@@ -394,29 +352,20 @@ if (popup) {
                 charSpan.textContent = text.charAt(i);
                 element.appendChild(charSpan);
 
-                // Effet spécial sur le dernier caractère
-                if (i > 0) {
-                    element.children[i-1].classList.remove('typewriter-char');
-                }
-
+                if (i > 0) element.children[i-1].classList.remove('typewriter-char');
                 i++;
-                setTimeout(typeWriter, speed);
+                setTimeout(typeWriter, 50);
             } else {
-                // Supprime l'effet neon quand terminé
                 Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
             }
         }
-
-        // Délai avant démarrage
         setTimeout(typeWriter, 800);
     };
 
-    // Start animations
     animateHeroTitleTyping();
     animateSubtitleTyping();
 
-
-    // Sample project data
+    // Project data
     function getProjectData(projectId) {
         const projects = {
             "1": {
@@ -502,7 +451,6 @@ if (popup) {
                 ]
             }
         };
-
         return projects[projectId] || null;
     }
 });
