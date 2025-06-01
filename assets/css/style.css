@@ -1883,7 +1883,54 @@ footer a:hover {
     }
 }
 
+/* Style pour le popup d'image */
+#image-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
 
+#popup-image {
+    max-width: 80%;
+    max-height: 80%;
+    border: 3px solid white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+#popup-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#popup-close:hover {
+    color: #f1f1f1;
+}
+
+/* Style pour les images dans la galerie modale */
+.modal-gallery img {
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 10px;
+    max-width: 100%;
+    height: auto;
+}
+
+.modal-gallery img:hover {
+    opacity: 0.7;
+}
 
 
 
