@@ -148,36 +148,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Project modal with enhanced image popup
     const modal = document.getElementById('project-modal');
+    // Ensure popup and its elements exist in your HTML
+    const popup = document.getElementById('image-popup');
+    const popupImg = document.getElementById('popup-image');
+    const popupClose = document.getElementById('popup-close');
+    const popupPrev = document.getElementById('popup-prev'); // Add these in your HTML
+    const popupNext = document.getElementById('popup-next'); // Add these in your HTML
+
     if (modal) {
         const modalClose = modal.querySelector('.modal-close');
         const modalContent = modal.querySelector('#modal-content');
-        const popup = document.getElementById('image-popup');
-        const popupImg = document.getElementById('popup-image');
-        const popupClose = document.getElementById('popup-close');
-
+        
         // Close modal
         if (modalClose) {
             modalClose.addEventListener('click', () => {
                 modal.style.display = 'none';
-                if (popup && popup.style.display === 'flex') {
-                    popup.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
+                document.body.style.overflow = 'auto'; // Re-enable scroll when modal is closed
             });
         }
 
-        // Close when clicking outside
+        // Close modal when clicking outside of it
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
-                if (popup && popup.style.display === 'flex') {
-                    popup.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            }
-            if (e.target === popup && popup.style.display === 'flex') {
-                popup.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = 'auto'; // Re-enable scroll
             }
         });
 
@@ -196,9 +190,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         <h3>${projectData.title}</h3>
                         <div class="modal-gallery">
                             ${projectData.images.map((img, index) =>
-                                `<img src="${img.src}" alt="${img.alt}" 
-                                      class="modal-gallery-image" 
-                                      data-index="${index}">`
+                                `<img src="${img.src}" alt="${img.alt}"
+                                        class="modal-gallery-image"
+                                        data-index="${index}">`
                             ).join('')}
                         </div>
                         <div class="modal-description">
@@ -218,6 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     `;
                     modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
 
                     // Add click handlers for gallery images
                     modalContent.querySelectorAll('.modal-gallery-image').forEach(img => {
@@ -226,8 +221,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 popupImg.src = this.src;
                                 popup.dataset.currentIndex = this.dataset.index;
                                 popup.dataset.projectId = projectId;
-                                popup.style.display = 'flex';
-                                document.body.style.overflow = 'hidden';
+                                popup.style.display = 'flex'; // Show the image popup
+                                document.body.style.overflow = 'hidden'; // Keep body non-scrollable
                             }
                         });
                     });
@@ -235,36 +230,59 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        // Popup navigation
-        if (popup && popupClose) {
+        // Popup navigation and close (ONLY for the image popup)
+        if (popup && popupClose && popupImg) {
             popupClose.addEventListener('click', () => {
                 popup.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                // Do NOT set document.body.style.overflow = 'auto' here.
+                // It should only be set when the main project modal is closed.
+                // This ensures the project modal remains non-scrollable behind the popup.
             });
+
+            // Navigation for popup images
+            const navigatePopup = (direction) => {
+                const currentIndex = parseInt(popup.dataset.currentIndex || 0);
+                const projectId = popup.dataset.projectId;
+                const projectData = getProjectData(projectId);
+                
+                if (!projectData || !projectData.images.length) return;
+
+                let newIndex = currentIndex;
+                if (direction === 'prev') {
+                    newIndex = (currentIndex - 1 + projectData.images.length) % projectData.images.length;
+                } else if (direction === 'next') {
+                    newIndex = (currentIndex + 1) % projectData.images.length;
+                }
+                popupImg.src = projectData.images[newIndex].src;
+                popup.dataset.currentIndex = newIndex;
+            };
+
+            if (popupPrev) {
+                popupPrev.addEventListener('click', () => navigatePopup('prev'));
+            }
+            if (popupNext) {
+                popupNext.addEventListener('click', () => navigatePopup('next'));
+            }
 
             // Keyboard navigation for popup
             document.addEventListener('keydown', function(e) {
                 if (popup.style.display === 'flex') {
-                    const currentIndex = parseInt(popup.dataset.currentIndex || 0);
-                    const projectId = popup.dataset.projectId;
-                    const projectData = getProjectData(projectId);
-                    
-                    if (!projectData) return;
-
                     if (e.key === 'Escape') {
                         popup.style.display = 'none';
-                        document.body.style.overflow = 'auto';
+                        // Keep document.body.style.overflow as 'hidden' as the main modal is still open
                     } else if (e.key === 'ArrowLeft') {
-                        // Previous image
-                        const newIndex = (currentIndex - 1 + projectData.images.length) % projectData.images.length;
-                        popupImg.src = projectData.images[newIndex].src;
-                        popup.dataset.currentIndex = newIndex;
+                        navigatePopup('prev');
                     } else if (e.key === 'ArrowRight') {
-                        // Next image
-                        const newIndex = (currentIndex + 1) % projectData.images.length;
-                        popupImg.src = projectData.images[newIndex].src;
-                        popup.dataset.currentIndex = newIndex;
+                        navigatePopup('next');
                     }
+                }
+            });
+
+            // Close popup when clicking outside of the image, but within the popup overlay
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup || e.target === popupImg) { // Check if click is on the overlay or the image itself
+                    popup.style.display = 'none';
+                    // Keep document.body.style.overflow as 'hidden'
                 }
             });
         }
