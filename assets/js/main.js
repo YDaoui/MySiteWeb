@@ -448,6 +448,27 @@ document.addEventListener('DOMContentLoaded', () => {
    
   
   });
+// Zoom sur image dans la fenêtre 20x15 cm
+const popup = document.getElementById('image-popup');
+const popupImg = document.getElementById('popup-image');
+const popupClose = document.getElementById('popup-close');
+
+document.addEventListener('click', function (e) {
+    if (e.target.matches('.modal-gallery img')) {
+        popupImg.src = e.target.src;
+        popup.style.display = 'block';
+    }
+});
+
+popupClose.addEventListener('click', () => {
+    popup.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === popup) {
+        popup.style.display = 'none';
+    }
+});
 
 
 
