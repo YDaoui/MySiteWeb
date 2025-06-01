@@ -216,20 +216,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     modal.style.display = 'block';
                     document.body.style.overflow = 'hidden';
 
-                    // Add click handlers for gallery images
-                    const modalImages = modalContent.querySelectorAll('.modal-gallery-image');
-                    modalImages.forEach(img => {
-                        img.addEventListener('click', function(e) {
-                            e.stopPropagation();
-                            if (popup && popupImg) {
-                                popupImg.src = this.src;
-                                popup.dataset.currentIndex = this.dataset.index;
-                                popup.dataset.projectId = projectId;
-                                popup.style.display = 'flex';
-                                document.body.style.overflow = 'hidden';
-                            }
-                        });
+                const modalImages = modalContent.querySelectorAll('.modal-gallery-image');
+                modalImages.forEach(img => {
+                    img.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const popup = document.getElementById('image-popup');
+                        const popupImg = document.getElementById('popup-image');
+                        
+                        if (popup && popupImg) {
+                            popupImg.src = this.src;
+                            popup.dataset.currentIndex = this.dataset.index;
+                            popup.dataset.projectId = projectId;
+                            popup.style.display = 'flex';
+                            document.body.style.overflow = 'hidden';
+                        }
                     });
+                });
                 }
             });
         });
@@ -314,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Initialize animations
+   
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
