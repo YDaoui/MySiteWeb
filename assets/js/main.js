@@ -223,77 +223,83 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // Handle project detail clicks
-        document.querySelectorAll('.view-details').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const projectCard = btn.closest('.project-card');
-                if (!projectCard) return;
+        // Handle project detail clicks
+document.querySelectorAll('.view-details').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const projectCard = btn.closest('.project-card');
+        if (!projectCard) return;
 
-                const projectId = projectCard.dataset.projectId;
+        const projectId = projectCard.dataset.projectId;
+        const projectData = getProjectData(projectId);
 
-                // Get project data
-                const projectData = getProjectData(projectId);
+        if (projectData && modalContent) {
+            modalContent.innerHTML = `
+                <h3>${projectData.title}</h3>
+                <div class="modal-gallery">
+                    ${projectData.images.map((img, index) =>
+                        `<img src="${img.src}" alt="${img.alt}" 
+                              class="gallery-image" 
+                              data-index="${index}">`
+                    ).join('')}
+                </div>
+                <div class="modal-description">
+                    <p>${projectData.description}</p>
+                </div>
+                <!-- Reste du contenu modal... -->
+            `;
+            modal.style.display = 'block';
 
-                if (projectData && modalContent) {
-                    modalContent.innerHTML = `
-                        <h3>${projectData.title}</h3>
-                        <div class="modal-gallery">
-                            ${projectData.images.map(img =>
-                                `<img src="${img.src}" alt="${img.alt}" class="clickable-project-image">` // Added a class for targeting
-                            ).join('')}
-                        </div>
-                        <div class="modal-description">
-                            <p>${projectData.description}</p>
-                        </div>
-                        <div class="modal-full-details">
-                            <h4>Détails du projet</h4>
-                            <p>${projectData.fullDetails || 'Plus de détails seront disponibles bientôt.'}</p>
-                            ${projectData.technologies ? `
-                            <div class="modal-technologies">
-                                <h4>Technologies utilisées</h4>
-                                <ul>
-                                    ${projectData.technologies.map(tech => `<li>${tech}</li>`).join('')}
-                                </ul>
-                            </div>
-                            ` : ''}
-                        </div>
-                    `;
-                    modal.style.display = 'block';
-
-                    // --- IMPORTANT CHANGE: Add event listener for images *after* modal content is loaded ---
-                    // This listener is now specific to images within the currently open modal's gallery.
-                    modalContent.querySelectorAll('.modal-gallery img').forEach(img => {
-                        img.addEventListener('click', function() {
-                            if (popup && popupImg) { // Ensure popup elements exist
-                                popupImg.src = this.src;
-                                popup.style.display = 'flex'; // Use 'flex' for better centering
-                                document.body.style.overflow = 'hidden'; // Prevent page scroll
-                            }
-                        });
-                    });
-                    // --- END IMPORTANT CHANGE ---
-                }
-            });
-        });
-
-        // Event listeners for the main image popup (popup-close and outside click)
-        if (popup && popupClose) {
-            popupClose.addEventListener('click', () => {
-                popup.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Reactivate scroll
-            });
-
-            // Added keyboard navigation for the popup
-            document.addEventListener('keydown', function(e) {
-                if (popup.style.display === 'flex') {
-                    if (e.key === 'Escape') {
-                        popup.style.display = 'none';
-                        document.body.style.overflow = 'auto';
+            // Ajouter les écouteurs d'événements pour les images
+            modalContent.querySelectorAll('.gallery-image').forEach(img => {
+                img.addEventListener('click', function() {
+                    if (popup && popupImg) {
+                        popupImg.src = this.src;
+                        popup.dataset.currentIndex = this.dataset.index;
+                        popup.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
                     }
-                }
+                });
             });
         }
-    }
+    });
+});
+
+// Navigation dans la popup d'image
+if (popup) {
+    // Fermeture
+    popupClose.addEventListener('click', () => {
+        popup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+
+    // Navigation avec les flèches du clavier
+    document.addEventListener('keydown', function(e) {
+        if (popup.style.display === 'flex') {
+            const currentIndex = parseInt(popup.dataset.currentIndex || 0);
+            const projectCard = document.querySelector('.project-card[data-project-id]');
+            const projectId = projectCard?.dataset.projectId;
+            const projectData = getProjectData(projectId);
+            
+            if (!projectData) return;
+
+            if (e.key === 'Escape') {
+                popup.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else if (e.key === 'ArrowLeft') {
+                // Image précédente
+                const newIndex = (currentIndex - 1 + projectData.images.length) % projectData.images.length;
+                popupImg.src = projectData.images[newIndex].src;
+                popup.dataset.currentIndex = newIndex;
+            } else if (e.key === 'ArrowRight') {
+                // Image suivante
+                const newIndex = (currentIndex + 1) % projectData.images.length;
+                popupImg.src = projectData.images[newIndex].src;
+                popup.dataset.currentIndex = newIndex;
+            }
+        }
+    });
+}
 
 
     // Scroll animations
