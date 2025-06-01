@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetId = this.getAttribute('href');
             const navbar = document.querySelector('.navbar');
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
-            
+
             // Si c'est un lien du menu mobile, fermer le menu après clic
             if (navbar && navbar.classList.contains('active') && mobileToggle) {
                 navbar.classList.remove('active');
                 mobileToggle.classList.remove('active');
-                
+
                 // Reset mobile menu icon
                 const icon = mobileToggle.querySelector('ion-icon');
                 if (icon) {
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
         mobileToggle.addEventListener('click', function() {
             this.classList.toggle('active');
             navbar.classList.toggle('active');
-            
+
             // Changer l'icône entre hamburger et croix
             const icon = this.querySelector('ion-icon');
             if (icon) {
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
         header.addEventListener('click', () => {
             const card = header.closest('.service-card');
             if (!card) return;
-            
+
             const isActive = card.classList.contains('active');
             const details = card.querySelector('.service-details');
             const arrow = header.querySelector('.service-arrow');
@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             if (arrow) {
                 arrow.classList.toggle('active', !isActive);
-                arrow.innerHTML = !isActive 
-                    ? '<ion-icon name="chevron-up-outline"></ion-icon>' 
+                arrow.innerHTML = !isActive
+                    ? '<ion-icon name="chevron-up-outline"></ion-icon>'
                     : '<ion-icon name="chevron-down-outline"></ion-icon>';
             }
         });
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const prevBtn = gallery.querySelector('.project-nav.prev');
         const nextBtn = gallery.querySelector('.project-nav.next');
         const counter = gallery.querySelector('.slide-counter');
-        
+
         if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
             slides.forEach(slide => {
                 slide.classList.remove('active');
             });
-            
+
             // Show current slide
             slides[currentIndex].classList.add('active');
             counter.textContent = `${currentIndex + 1}/${totalSlides}`;
@@ -187,10 +187,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const modalClose = modal.querySelector('.modal-close');
         const modalContent = modal.querySelector('#modal-content');
 
+        // Image popup functionality (moved here)
+        const popup = document.getElementById('image-popup');
+        const popupImg = document.getElementById('popup-image');
+        const popupClose = document.getElementById('popup-close');
+
         // Close modal
         if (modalClose) {
             modalClose.addEventListener('click', () => {
                 modal.style.display = 'none';
+                // Ensure popup is also closed if open when main modal closes
+                if (popup && popup.style.display === 'flex') {
+                    popup.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Reactivate scroll
+                }
             });
         }
 
@@ -198,8 +208,19 @@ document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.style.display = 'none';
+                // Ensure popup is also closed if open when main modal closes
+                if (popup && popup.style.display === 'flex') {
+                    popup.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Reactivate scroll
+                }
+            }
+            // Only close popup if clicking outside the popup itself, when popup is active
+            if (e.target === popup && popup.style.display === 'flex') {
+                popup.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
         });
+
 
         // Handle project detail clicks
         document.querySelectorAll('.view-details').forEach(btn => {
@@ -207,18 +228,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 e.preventDefault();
                 const projectCard = btn.closest('.project-card');
                 if (!projectCard) return;
-                
+
                 const projectId = projectCard.dataset.projectId;
-                
+
                 // Get project data
                 const projectData = getProjectData(projectId);
-                
+
                 if (projectData && modalContent) {
                     modalContent.innerHTML = `
                         <h3>${projectData.title}</h3>
                         <div class="modal-gallery">
-                            ${projectData.images.map(img => 
-                                `<img src="${img.src}" alt="${img.alt}">`
+                            ${projectData.images.map(img =>
+                                `<img src="${img.src}" alt="${img.alt}" class="clickable-project-image">` // Added a class for targeting
                             ).join('')}
                         </div>
                         <div class="modal-description">
@@ -238,10 +259,42 @@ document.addEventListener('DOMContentLoaded', function () {
                         </div>
                     `;
                     modal.style.display = 'block';
+
+                    // --- IMPORTANT CHANGE: Add event listener for images *after* modal content is loaded ---
+                    // This listener is now specific to images within the currently open modal's gallery.
+                    modalContent.querySelectorAll('.modal-gallery img').forEach(img => {
+                        img.addEventListener('click', function() {
+                            if (popup && popupImg) { // Ensure popup elements exist
+                                popupImg.src = this.src;
+                                popup.style.display = 'flex'; // Use 'flex' for better centering
+                                document.body.style.overflow = 'hidden'; // Prevent page scroll
+                            }
+                        });
+                    });
+                    // --- END IMPORTANT CHANGE ---
                 }
             });
         });
+
+        // Event listeners for the main image popup (popup-close and outside click)
+        if (popup && popupClose) {
+            popupClose.addEventListener('click', () => {
+                popup.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Reactivate scroll
+            });
+
+            // Added keyboard navigation for the popup
+            document.addEventListener('keydown', function(e) {
+                if (popup.style.display === 'flex') {
+                    if (e.key === 'Escape') {
+                        popup.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            });
+        }
     }
+
 
     // Scroll animations
     function animateOnScroll() {
@@ -275,22 +328,22 @@ document.addEventListener('DOMContentLoaded', function () {
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const name = this.querySelector('input[name="name"]')?.value.trim();
             const email = this.querySelector('input[name="email"]')?.value.trim();
             const message = this.querySelector('textarea[name="message"]')?.value.trim();
-            
+
             // Simple validation
             if (!name || !email || !message) {
                 alert('Veuillez remplir tous les champs.');
                 return;
             }
-            
+
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 alert('Veuillez entrer une adresse email valide.');
                 return;
             }
-            
+
             // Here you would typically send the form data to a server
             alert('Message envoyé avec succès! Je vous répondrai dès que possible.');
             this.reset();
@@ -323,7 +376,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const text = "Spécialiste en analyse de données, développement et automatisation de processus";
         const element = document.getElementById('typewriter-text');
         if (!element) return;
-        
+
         element.innerHTML = ''; // Efface le contenu initial
         let i = 0;
         const speed = 50; // Vitesse en ms
@@ -334,12 +387,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 charSpan.className = 'typewriter-char';
                 charSpan.textContent = text.charAt(i);
                 element.appendChild(charSpan);
-                
+
                 // Effet spécial sur le dernier caractère
                 if (i > 0) {
                     element.children[i-1].classList.remove('typewriter-char');
                 }
-                
+
                 i++;
                 setTimeout(typeWriter, speed);
             } else {
@@ -356,44 +409,6 @@ document.addEventListener('DOMContentLoaded', function () {
     animateHeroTitleTyping();
     animateSubtitleTyping();
 
-    // Image popup functionality
-    // Image popup functionality
-const popup = document.getElementById('image-popup');
-const popupImg = document.getElementById('popup-image');
-const popupClose = document.getElementById('popup-close');
-
-if (popup && popupImg && popupClose) {
-    // Handle clicks on modal gallery images
-    document.addEventListener('click', function (e) {
-        if (e.target.matches('.modal-gallery img, .project-gallery img')) {
-            popupImg.src = e.target.src;
-            popup.style.display = 'flex'; // Changez à 'flex' pour un meilleur centrage
-            document.body.style.overflow = 'hidden'; // Empêche le défilement de la page
-        }
-    });
-
-    popupClose.addEventListener('click', () => {
-        popup.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Réactive le défilement
-    });
-
-    window.addEventListener('click', (e) => {
-        if (e.target === popup) {
-            popup.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Réactive le défilement
-        }
-    });
-
-    // Ajoutez également la navigation au clavier
-    document.addEventListener('keydown', function(e) {
-        if (popup.style.display === 'flex') {
-            if (e.key === 'Escape') {
-                popup.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        }
-    });
-}
 
     // Sample project data
     function getProjectData(projectId) {
@@ -481,7 +496,7 @@ if (popup && popupImg && popupClose) {
                 ]
             }
         };
-        
+
         return projects[projectId] || null;
     }
 });
