@@ -1884,52 +1884,76 @@ footer a:hover {
 }
 
 /* Style pour le popup d'image */
-#image-popup {
-    display: none;
+/* Ensure the modal is visible and covers content */
+#project-modal {
+    display: none; /* Hidden by default */
     position: fixed;
-    top: 0;
+    z-index: 1000; /* A high z-index for the modal */
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
+    overflow: auto; /* Enable scrolling for modal content if it overflows */
+    background-color: rgba(0, 0, 0, 0.7); /* Dim background */
+    display: flex; /* Use flex for centering */
     justify-content: center;
     align-items: center;
 }
 
+/* Styles for the image popup overlay */
+#image-popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2000; /* HIGHER than #project-modal, so it's on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Darker background for image popup */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* To stack image and controls if any */
+}
+
 #popup-image {
-    max-width: 80%;
-    max-height: 80%;
-    border: 3px solid white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain; /* Ensures the image fits within the bounds without cropping */
 }
 
 #popup-close {
     position: absolute;
     top: 20px;
     right: 30px;
-    color: white;
+    color: #fff;
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    z-index: 2001; /* Ensure close button is clickable */
 }
 
-#popup-close:hover {
-    color: #f1f1f1;
-}
-
-/* Style pour les images dans la galerie modale */
-.modal-gallery img {
+/* Navigation buttons for the popup (add these to your HTML too) */
+.popup-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 60px; /* Larger icons for easy clicking */
     cursor: pointer;
-    transition: 0.3s;
-    margin: 10px;
-    max-width: 100%;
-    height: auto;
+    z-index: 2001; /* Ensure navigation buttons are clickable */
+    user-select: none; /* Prevent text selection on double-click */
+    background-color: rgba(0, 0, 0, 0.3); /* Slightly visible background */
+    padding: 0 10px;
+    border-radius: 5px;
 }
 
-.modal-gallery img:hover {
-    opacity: 0.7;
+.popup-nav.prev {
+    left: 20px;
+}
+
+.popup-nav.next {
+    right: 20px;
 }
 
 
