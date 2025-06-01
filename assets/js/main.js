@@ -357,29 +357,43 @@ document.addEventListener('DOMContentLoaded', function () {
     animateSubtitleTyping();
 
     // Image popup functionality
-    const popup = document.getElementById('image-popup');
-    const popupImg = document.getElementById('popup-image');
-    const popupClose = document.getElementById('popup-close');
+    // Image popup functionality
+const popup = document.getElementById('image-popup');
+const popupImg = document.getElementById('popup-image');
+const popupClose = document.getElementById('popup-close');
 
-    if (popup && popupImg && popupClose) {
-        // Handle clicks on modal gallery images
-        document.addEventListener('click', function (e) {
-            if (e.target.matches('.modal-gallery img')) {
-                popupImg.src = e.target.src;
-                popup.style.display = 'block';
-            }
-        });
+if (popup && popupImg && popupClose) {
+    // Handle clicks on modal gallery images
+    document.addEventListener('click', function (e) {
+        if (e.target.matches('.modal-gallery img, .project-gallery img')) {
+            popupImg.src = e.target.src;
+            popup.style.display = 'flex'; // Changez à 'flex' pour un meilleur centrage
+            document.body.style.overflow = 'hidden'; // Empêche le défilement de la page
+        }
+    });
 
-        popupClose.addEventListener('click', () => {
+    popupClose.addEventListener('click', () => {
+        popup.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Réactive le défilement
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === popup) {
             popup.style.display = 'none';
-        });
+            document.body.style.overflow = 'auto'; // Réactive le défilement
+        }
+    });
 
-        window.addEventListener('click', (e) => {
-            if (e.target === popup) {
+    // Ajoutez également la navigation au clavier
+    document.addEventListener('keydown', function(e) {
+        if (popup.style.display === 'flex') {
+            if (e.key === 'Escape') {
                 popup.style.display = 'none';
+                document.body.style.overflow = 'auto';
             }
-        });
-    }
+        }
+    });
+}
 
     // Sample project data
     function getProjectData(projectId) {
