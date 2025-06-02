@@ -545,3 +545,65 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialise le formulaire
     initContactForm();
 });
+// Gestion du formulaire de contact
+function initContactForm() {
+    // Les éléments du formulaire sont récupérés ici pour la structure,
+    // mais le submit n'est plus géré par JS pour l'envoi FormSubmit
+    const form = document.getElementById('contactForm');
+    const successPopup = document.getElementById('successPopup');
+    const closePopupBtn = document.querySelector('.close-popup-btn');
+
+    // Vérifie si la pop-up existe pour éviter des erreurs
+    if (!successPopup) {
+        console.warn("Élément 'successPopup' introuvable. La pop-up de succès ne fonctionnera pas.");
+        return; // Sort de la fonction si la pop-up n'est pas trouvée
+    }
+
+    // Écouteur pour le bouton de fermeture de la pop-up
+    if (closePopupBtn) {
+        closePopupBtn.addEventListener('click', () => {
+            successPopup.classList.remove('show-popup');
+            // Nettoie l'URL pour un aspect plus propre après la fermeture manuelle
+            history.replaceState({}, document.title, window.location.pathname);
+        });
+    }
+    // Note: L'événement 'submit' du formulaire n'est PAS intercepté ici.
+    // FormSubmit gère la soumission via les attributs 'action' et 'method' du HTML.
+}
+
+// Fonction pour afficher la pop-up de succès
+function showSuccessPopup() {
+    const successPopup = document.getElementById('successPopup');
+    if (successPopup) {
+        successPopup.classList.add('show-popup'); // Ajoute la classe pour afficher la pop-up
+
+        // Ferme la pop-up automatiquement après 5 secondes
+        setTimeout(() => {
+            successPopup.classList.remove('show-popup');
+            // Nettoie l'URL pour un aspect plus propre après la fermeture automatique
+            history.replaceState({}, document.title, window.location.pathname);
+        }, 5000);
+    }
+}
+
+// Initialisation au chargement du DOM
+document.addEventListener('DOMContentLoaded', function() {
+    // Cache les overlays GSAP si vous les utilisez pour une animation de chargement
+    gsap.set([".first", ".second", ".third"], { top: "-100%" });
+
+    // Initialise le formulaire et les écouteurs de la pop-up
+    initContactForm();
+
+    // Vérifie le paramètre d'URL pour afficher la pop-up après redirection de FormSubmit
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        showSuccessPopup();
+        // Optionnel: Nettoyer l'URL immédiatement pour qu'elle ne soit pas visible longtemps
+        // history.replaceState({}, document.title, window.location.pathname);
+        // La ligne ci-dessus est désormais dans showSuccessPopup et closePopupBtn
+        // pour s'assurer qu'elle est appelée après un délai ou une action utilisateur.
+    }
+
+    // Vos autres initialisations de scripts et animations ici
+    // Exemple : timeline.from(...)
+});
