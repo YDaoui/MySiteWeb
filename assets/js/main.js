@@ -489,6 +489,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Gestion du formulaire de contact
+// Gestion du formulaire de contact
 function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
@@ -496,12 +497,13 @@ function initContactForm() {
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         const button = form.querySelector('button[type="submit"]');
+        const nextPage = form.querySelector('input[name="_next"]').value;
         
         button.disabled = true;
         button.innerHTML = '<span>Envoi en cours...</span>';
         
         try {
-            // Essai avec FormSubmit
+            console.log("Tentative d'envoi via FormSubmit...");
             const response = await fetch(form.action, {
                 method: 'POST',
                 headers: {
@@ -511,14 +513,18 @@ function initContactForm() {
                 body: new URLSearchParams(new FormData(form))
             });
             
+            console.log("Réponse reçue:", response);
+            
             if (response.ok) {
-                window.location.href = form.querySelector('input[name="_next"]').value;
+                console.log("Succès, redirection vers:", nextPage);
+                window.location.href = nextPage;
             } else {
-                throw new Error('Erreur FormSubmit');
+                throw new Error(`Erreur HTTP: ${response.status}`);
             }
         } catch (error) {
             console.error('Erreur avec FormSubmit:', error);
-            // Fallback vers mailto
+            // Fallback vers mailto...
+        
             const name = encodeURIComponent(form.querySelector('[name="name"]').value);
             const email = encodeURIComponent(form.querySelector('[name="email"]').value);
             const subject = encodeURIComponent(form.querySelector('[name="subject"]').value);
