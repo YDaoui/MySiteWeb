@@ -490,97 +490,58 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+
 // Gestion du formulaire de contact
 function initContactForm() {
     const form = document.getElementById('contactForm');
-    // Récupérez la pop-up et le bouton de fermeture
-    const successPopup = document.getElementById('successPopup');
-    const closePopupBtn = document.querySelector('.close-popup-btn');
-
-    // Quittez si le formulaire ou la pop-up n'existent pas
-    if (!form || !successPopup) {
-        console.warn("Élément 'contactForm' ou 'successPopup' introuvable. Le formulaire de contact ne sera pas initialisé correctement.");
-        return;
-    }
+    if (!form) return;
 
     form.addEventListener('submit', async function(e) {
-        e.preventDefault(); // Empêche l'envoi traditionnel du formulaire
+        e.preventDefault();
         const button = form.querySelector('button[type="submit"]');
-
-        button.disabled = true; // Désactive le bouton pour éviter les soumissions multiples
-        button.innerHTML = '<span>Envoi en cours...</span>'; // Change le texte du bouton
-
+        
+        button.disabled = true;
+        button.innerHTML = '<span>Envoi en cours...</span>';
+        
         try {
-            console.log("Tentative d'envoi via FormSubmit...");
-
+            // Essai avec FormSubmit
             const response = await fetch(form.action, {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json', // Pour obtenir une réponse JSON de FormSubmit
-                    'Content-Type': 'application/x-www-form-urlencoded', // Important pour FormSubmit
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: new URLSearchParams(new FormData(form)) // Convertit les données du formulaire en URLSearchParams
+                body: new URLSearchParams(new FormData(form))
             });
-
-            console.log("Réponse reçue:", response);
-
+            
             if (response.ok) {
-                console.log("Message envoyé avec succès ! Affichage de la pop-up.");
-                // Masque les overlays s'ils sont encore visibles (peut arriver si le formulaire est soumis au début)
-                gsap.set([".first", ".second", ".third"], { top: "-100%" });
-
-                // Afficher la pop-up de succès
-                successPopup.classList.add('show-popup');
-                form.reset(); // Réinitialise les champs du formulaire
-
-                // Optionnel: Fermer le pop-up après quelques secondes
-                setTimeout(() => {
-                    successPopup.classList.remove('show-popup');
-                }, 5000); // La pop-up disparaît après 5 secondes
-
+                window.location.href = form.querySelector('input[name="_next"]').value;
             } else {
-                // Si la réponse n'est pas OK (par exemple, erreur 400, 500), FormSubmit renvoie des détails
-                const errorData = await response.json(); // Tente de lire l'erreur JSON
-                throw new Error(`Erreur FormSubmit: ${response.status} - ${errorData.message || response.statusText}`);
+                throw new Error('Erreur FormSubmit');
             }
         } catch (error) {
-            console.error('Erreur lors de l\'envoi du formulaire:', error);
-
-            // Fallback vers mailto en cas d'échec grave du fetch
-            // Ce fallback est moins idéal car il ouvre le client email,
-            // mais c'est une solution de secours.
+            console.error('Erreur avec FormSubmit:', error);
+            // Fallback vers mailto
             const name = encodeURIComponent(form.querySelector('[name="name"]').value);
             const email = encodeURIComponent(form.querySelector('[name="email"]').value);
             const subject = encodeURIComponent(form.querySelector('[name="subject"]').value);
             const message = encodeURIComponent(form.querySelector('[name="message"]').value);
-
+            
             window.location.href = `mailto:daoui00yassine@gmail.com?subject=${subject}&body=Nom: ${name}%0AEmail: ${email}%0A%0AMessage: ${message}`;
-
-            alert("Le formulaire a rencontré un problème technique. Une fenêtre d'email s'est ouverte à la place. Veuillez vérifier si un client de messagerie est configuré pour envoyer le message manuellement.");
-        } finally {
-            // Réactive le bouton et rétablit son texte original, que l'envoi ait réussi ou échoué (sauf en cas de mailto)
+            
             button.disabled = false;
             button.innerHTML = '<span>Envoyer le message</span><ion-icon name="send-outline" class="button__icon"></ion-icon>';
+            
+            alert("Le formulaire a rencontré un problème. Une fenêtre d'email s'est ouverte à la place.");
         }
     });
-
-    // Écouteur pour le bouton de fermeture de la pop-up
-    if (closePopupBtn) {
-        closePopupBtn.addEventListener('click', () => {
-            successPopup.classList.remove('show-popup');
-        });
-    }
 }
 
-// Initialisation au chargement de la page
+// Initialisation au chargement
 document.addEventListener('DOMContentLoaded', function() {
-    // Cache les overlays immédiatement pour éviter l'animation au rechargement
+    // Cache les overlays immédiatement
     gsap.set([".first", ".second", ".third"], { top: "-100%" });
-
-    // Initialise le formulaire de contact
+    
+    // Initialise le formulaire
     initContactForm();
-
-    // Autres initialisations (animations, etc.)
-    // Exemple d'initialisation des animations si vous en avez d'autres
-    // timeline.from(...)
 });
