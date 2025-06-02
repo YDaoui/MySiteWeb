@@ -486,6 +486,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 // Gestion du formulaire de contact
+
+
+// Gestion du formulaire de contact
 function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
