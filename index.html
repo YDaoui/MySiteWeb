@@ -420,22 +420,27 @@
 </section>
 
    ---
-<section id="contact" class="contact">
+
+
+    <section id="contact" class="contact">
     <div class="container">
         <h2>Contactez-moi</h2>
         <form id="contactForm" action="https://formsubmit.co/daoui00yassine@gmail.com" method="POST">
             <input type="text" name="name" placeholder="Votre nom" required>
             <input type="email" name="email" placeholder="Votre email" required>
-            <input type="text" name="subject" placeholder="Sujet" required> <!-- Correction ici -->
-            <textarea name="message" placeholder="Votre message" required></textarea>
+            <input type="text" name="subject" placeholder="Sujet" required> <textarea name="message" placeholder="Votre message" required></textarea>
             <button type="submit" class="btn"><span>Envoyer le message</span><ion-icon name="send-outline" class="button__icon"></ion-icon></button>
-            <input type="hidden" name="_next" value="https://ydaoui.github.io/MySiteWeb/merci.html"> <!-- Mettez votre vraie URL ici -->
-            <input type="hidden" name="_subject" value="Nouveau message de contact !">
-            <input type="hidden" name="_template" value="table"> <!-- Optionnel : meilleur format -->
-            <input type="text" name="_honey" style="display:none"> <!-- Protection anti-spam -->
+            <input type="hidden" name="_subject" value="Nouveau message de contact depuis le portfolio">
+            <input type="hidden" name="_captcha" value="false">
         </form>
     </div>
 </section>
+
+<div id="successPopup" class="success-popup">
+    <p>Message envoyé ! Je vous répondrai sous 48 heures.</p>
+    <button class="close-popup-btn">&times;</button>
+</div>
+ 
     <footer>
         <div class="container">
             <p>&copy; 2025 Yassine Daoui. Tous droits réservés.</p>
