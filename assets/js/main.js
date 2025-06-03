@@ -448,6 +448,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 technologies: ["Python", "Analyse de données", "Optimisation réseau", "Automatisation"],
                 images: [
                     { src: "assets/img/Planning_VBA_Login_Byg.PNG", alt: "Projet Bouygues Telecom - Interface de login" },
+                    { src: "assets/img/Byg_5.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
                     { src: "assets/img/Byg_4.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
                     { src: "assets/img/Byg_2.jpg", alt: "Projet Bouygues Telecom - Architecture" },
                     { src: "assets/img/Byg_3.jpg", alt: "Projet Bouygues Telecom - Analyse" },
