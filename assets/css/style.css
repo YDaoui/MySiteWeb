@@ -1633,7 +1633,7 @@ footer a:hover {
 }
 
 /* Modal styles */
-.modal {
+/* .modal {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -1856,33 +1856,6 @@ footer a:hover {
         align-items: center;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Animation des boutons */
 .btn {
