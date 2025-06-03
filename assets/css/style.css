@@ -2216,11 +2216,6 @@ footer a:hover {
     }
 }
 
-body > .modal:first-child,
-body > #image-popup:first-child,
-body > .popup-container:first-child {
-    display: none !important;
-}
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
