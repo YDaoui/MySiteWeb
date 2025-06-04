@@ -2242,19 +2242,7 @@ footer a:hover {
         font-size: 3rem;
     }
 }
-/* Cache le fond transparent */
-.image-popup {
-    display: none !important; /* Utilise !important pour s'assurer que cette règle prend le dessus */
-    /* Vous pourriez aussi vouloir ajouter: */
-    /* opacity: 0; */
-    /* pointer-events: none; */
-}
 
-/* Cache la croix */
-.image-popup-close,
-#popup-close {
-    display: none !important; /* Cache la croix */
-}
 
 /* Smooth scrolling */
 html {
