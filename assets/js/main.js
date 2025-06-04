@@ -442,12 +442,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             "4": {
-
-                  title: "Optimisation des Évaluations – Leader en Télécommunications",
-                  description: "Automatisation de la collecte des écoutes et évaluation des performances réseau pour améliorer la qualité de service, suivre l’assiduité et optimiser la rentabilité.",
-                  fullDetails: "Mise en place d’un processus automatisé (VBScript & Python) pour la collecte des écoutes réseau et l’évaluation des performances, dans un objectif d’amélioration continue de la qualité de service, de suivi de l’assiduité, et d’optimisation de la rentabilité. Le projet a été conduit en méthode Agile pour favoriser l’intégration continue, la réactivité opérationnelle et les ajustements rapides. Résultats : +30 % de productivité, réduction des erreurs manuelles et amélioration notable de la qualité de service.",
-                  technologies: ["VBScript", "Python", "Analyse de données", "Optimisation réseau", "UX/UI", "Agile (Scrum/Kanban)"]
-                    },
+                title: "Optimisation des évaluations Bouygues Telecom",
+                description: "Automatisation du processus de récupération des écoutes et évaluation des performances réseau pour améliorer la qualité de service et optimiser la rentabilité.",
+                fullDetails: "Ce projet a visé à automatiser la collecte et l'analyse des données d'écoute et de performance réseau pour Bouygues Telecom. J'ai développé des scripts Python pour récupérer automatiquement les données, puis j'ai mis en place des outils d'analyse pour identifier les problèmes de qualité de service et proposer des améliorations. Le but était d'optimiser la rentabilité en améliorant l'efficacité opérationnelle.",
+                technologies: ["Python", "Analyse de données", "Optimisation réseau", "Automatisation"],
                 images: [
                     { src: "assets/img/Planning_VBA_Login_Byg.PNG", alt: "Projet Bouygues Telecom - Interface de login" },
                     { src: "assets/img/Byg_5.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
