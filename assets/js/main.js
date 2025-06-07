@@ -408,6 +408,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
                     { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
                     { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_5.PNG", alt: "Dashboard Power BI - Python" },
                     { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Python" },
                     { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
                     { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" },
