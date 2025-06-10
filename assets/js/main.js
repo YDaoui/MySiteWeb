@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Service cards toggle
     document.querySelectorAll('.service-header').forEach(header => {
         header.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent potential propagation issues
+            // No stopPropagation needed here, as clicks on card headers shouldn't affect parent elements in a way that needs preventing.
             const card = header.closest('.service-card');
             if (!card) return; // Ensure a service card is found
 
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Close modal when close button is clicked
         if (modalClose) {
             modalClose.addEventListener('click', (e) => {
-                e.stopPropagation();
+                // e.stopPropagation(); // Not strictly necessary here as click on close button should just close modal
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto'; // Restore scrolling on body
             });
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.view-details').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault(); // Prevent default link behavior
-                e.stopPropagation(); // Stop propagation to avoid closing modal immediately
+                // e.stopPropagation(); // Removed, as this might interfere with modal closing logic if modal was a parent of this button
                 const projectCard = this.closest('.project-card');
                 if (!projectCard) return;
 
@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="modal-gallery">
                             ${projectData.images.map((img, index) =>
                                 `<img src="${img.src}" alt="${img.alt}"
-                                        class="modal-gallery-image"
-                                        data-index="${index}">`
+                                         class="modal-gallery-image"
+                                         data-index="${index}">`
                             ).join('')}
                         </div>
                         <div class="modal-description">
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const modalImages = modalContent.querySelectorAll('.modal-gallery-image');
                     modalImages.forEach(img => {
                         img.addEventListener('click', function(e) {
-                            e.stopPropagation(); // Stop propagation to prevent modal from closing
+                            e.stopPropagation(); // Stop propagation to prevent modal from closing when image is clicked
                             const popup = document.getElementById('image-popup');
                             const popupImg = document.getElementById('popup-image');
                             
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (popup && popupClose && popupImg) {
         // Close image popup
         popupClose.addEventListener('click', (e) => {
-            e.stopPropagation();
+            // e.stopPropagation(); // Not necessary here, as click on close button should just close popup
             popup.style.display = 'none';
             // Determine if the project modal should remain open or if body scrolling should be restored
             if (modal && modal.style.display === 'block') {
@@ -296,13 +296,13 @@ document.addEventListener('DOMContentLoaded', function () {
         // Event listeners for popup navigation buttons
         if (popupPrev) {
             popupPrev.addEventListener('click', (e) => {
-                e.stopPropagation();
+                e.stopPropagation(); // Prevent propagation that might close the popup
                 navigatePopup('prev');
             });
         }
         if (popupNext) {
             popupNext.addEventListener('click', (e) => {
-                e.stopPropagation();
+                e.stopPropagation(); // Prevent propagation that might close the popup
                 navigatePopup('next');
             });
         }
@@ -432,7 +432,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 element.appendChild(charSpan);
 
                 // Optional: remove class from previous char for a "blinking" effect
-                if (i > 0) element.children[i-1].classList.remove('typewriter-char');
+                if (i > 0) {
+                    const prevChar = element.children[i - 1];
+                    if (prevChar) prevChar.classList.remove('typewriter-char');
+                }
                 i++;
                 setTimeout(typeWriter, 50); // Typing speed for subtitle
             } else {
@@ -486,7 +489,8 @@ document.addEventListener('DOMContentLoaded', function () {
             "3": {
                 title: "Management avec Python",
                 description: "Automatisation de la récupération des demandes de congés, de la planification et du suivi managérial avec Python.",
-                fullDetails: "Développement d'une application de gestion et suivi des ventes et recettes, avec une optimisation de la saisie personnalisée via des accès spécifiques. Conçue avec Python, Java et SQLite3, cette solution permet un suivi transactionnel précis et une analyse des performances. Accès démo : Login = YDaoui / MDP = H800000 (mode hyperviseur). Lien : https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
+                // The link is now directly included in the fullDetails for this project
+                fullDetails: "Développement d'une application de gestion et suivi des ventes et recettes, avec une optimisation de la saisie personnalisée via des accès spécifiques. Conçue avec Python, Java et SQLite3, cette solution permet un suivi transactionnel précis et une analyse des performances. Accès démo : Login = YDaoui / MDP = H800000 (mode hyperviseur). Lien : <a href='https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/' target='_blank' rel='noopener noreferrer'>Voir l'application en direct</a>",
                 technologies: ["Python", "Automatisation", "Gestion RH"],
                 images: [
                     { src: "assets/img/AccorHotels1.PNG", alt: "Interface de gestion des congés" },
