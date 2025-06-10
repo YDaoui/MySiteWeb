@@ -400,26 +400,22 @@ document.addEventListener('DOMContentLoaded', function () {
     function getProjectData(projectId) {
         const projects = {
             "1": {
-                title: "Dashboard Coaching & Ventes",
-                description: "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
-                fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes, et l'intégration de Python a permis d'ajouter des fonctionnalités de gestion dynamique.",
-                technologies: ["Power BI", "DAX", "SQL", "Python", "Streamlit"],
-                images: [
-                    { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
-                    { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
-                    { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Power BI - Python" },
-                    { src: "assets/img/Dentale_5.PNG", alt: "Dashboard Power BI - Python" },
-                    { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Python" },
-                    { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
-                    { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" },
-                    
-                    { src: "assets/img/Dentale_H1.PNG", alt: "Dashboard Power BI - Python" },
-                    { src: "assets/img/Dentale_H15.PNG", alt: "Dashboard Power BI - Python" }
-                   
-                    
-                                            
-                ]
-            },
+                    "title": "Dashboard Coaching & Ventes",
+                    "description": "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
+                    "fullDetails": "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes, et l'intégration de Python a permis d'ajouter des fonctionnalités de gestion dynamique. Vous pouvez tester le tableau de bord en ligne via ce lien : [Global Sales Dashboard](https://global-sales-dashboard.streamlit.app/). Utilisez les identifiants suivants pour accéder à la vue Hyperviseur : **Nom d'utilisateur : YDaoui** et **Mot de passe : H80000**.",
+                    "technologies": ["Power BI", "DAX", "SQL", "Python", "Streamlit"],
+                    "images": [
+                        { "src": "assets/img/Dentale_1.PNG", "alt": "Dashboard principal" },
+                        { "src": "assets/img/Dentale_H.PNG", "alt": "Dashboard Power BI" },
+                        { "src": "assets/img/Dentale_12.PNG", "alt": "Dashboard Power BI - Python" },
+                        { "src": "assets/img/Dentale_5.PNG", "alt": "Dashboard Power BI - Python" },
+                        { "src": "assets/img/Dentale_123.PNG", "alt": "Dashboard Python" },
+                        { "src": "assets/img/Dentale_1234.PNG", "alt": "Dashboard Power BI - Python" },
+                        { "src": "assets/img/Dentale_12345.PNG", "alt": "Dashboard Power BI - Python" },
+                        { "src": "assets/img/Dentale_H1.PNG", "alt": "Dashboard Power BI - Python" },
+                        { "src": "assets/img/Dentale_H15.PNG", "alt": "Dashboard Power BI - Python" }
+                    ]
+                }
             "2": {
                 title: "Dashbord Vente & Recolt",
                 description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
