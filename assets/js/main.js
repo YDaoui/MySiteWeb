@@ -399,24 +399,26 @@ document.addEventListener('DOMContentLoaded', function () {
     // Project data
     function getProjectData(projectId) {
         const projects = {
-           "1": {
-            title: "Dashboard Coaching & Ventes",
-            description: "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
-            fullDetails: `Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings.<br/><a href="https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/" target="_blank" rel="noopener noreferrer" style="color: #0066cc; text-decoration: underline;">Accéder au Dashboard</a>`,
-            technologies: ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)"],
-            link: "https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
-            images: [
-                { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
-                { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI" },
-                { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Power BI - Python" },
-                { src: "assets/img/Dentale_5.PNG", alt: "Dashboard Power BI - Python" },
-                { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Python" },
-                { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
-                { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" },
-                { src: "assets/img/Dentale_H1.PNG", alt: "Dashboard Power BI - Python" },
-                { src: "assets/img/Dentale_H15.PNG", alt: "Dashboard Power BI - Python" }
-            ]
-        },
+           
+  "1": {
+    "title": "Dashboard Coaching & Ventes",
+    "description": "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
+    "fullDetails": "Ce projet consistait à créer un tableau de bord complet pour analyser les **performances de vente** et gérer les **coachings**. J'ai utilisé **Python** avec des bibliothèques telles que **NumPy**, **Pandas**, **Plotly**, et **GeoPandas** pour connecter plusieurs sources de données et effectuer des analyses complexes. Ensuite, j'ai développé une interface interactive avec **Python Streamlit** pour la gestion des coachings. Les technologies **python-dotenv**, **cryptography**, **openpyxl**, et **geopy** ont également été intégrées pour diverses fonctionnalités.<br/><a href=\"https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder au Dashboard</a>",
+    "technologies": ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)", "python-dotenv", "cryptography", "openpyxl", "geopy"],
+    "link": "https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
+    "images": [
+      { "src": "assets/img/Dentale_1.PNG", "alt": "Dashboard principal" },
+      { "src": "assets/img/Dentale_H.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_12.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_5.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_123.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_1234.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_12345.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_H1.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_H15.PNG", "alt": "Dashboard Python" }
+    ]
+  },
+
             "2": {
                 title: "Dashbord Vente & Recolt",
                 description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
