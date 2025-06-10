@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Initialisation des modales - cachées par défaut
     const modal = document.getElementById('project-modal');
-    // const popup = document.getElementById('image-popup'); // Ligne commentée, sera supprimée si elle est décommentée dans votre code
+   // const popup = document.getElementById('image-popup');
     if (modal) modal.style.display = 'none';
-    // Si 'popup' était défini globalement, il pourrait encore exister.
-    // Assurez-vous que l'élément HTML avec l'ID 'image-popup' est complètement supprimé.
-    // Si vous aviez une variable 'popup' globale, elle ne devrait plus être utilisée ici.
+    if (popup) popup.style.display = 'none';
 
     // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -156,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, { passive: true });
     });
 
-    // Project modal
+    // Project modal with enhanced image popup
     if (modal) {
         const modalClose = modal.querySelector('.modal-close');
         const modalContent = modal.querySelector('#modal-content');
@@ -218,22 +216,90 @@ document.addEventListener('DOMContentLoaded', function () {
                     modal.style.display = 'block';
                     document.body.style.overflow = 'hidden';
 
-                    // Suppression du gestionnaire de clic pour l'ouverture de la popup d'image ici
-                    // car la popup d'image est complètement supprimée.
-                    // Si vous aviez une fonction 'setupImagePopup' ou similaire, elle serait supprimée.
+                const modalImages = modalContent.querySelectorAll('.modal-gallery-image');
+                modalImages.forEach(img => {
+                    img.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const popup = document.getElementById('image-popup');
+                        const popupImg = document.getElementById('popup-image');
+                        
+                        if (popup && popupImg) {
+                            popupImg.src = this.src;
+                            popup.dataset.currentIndex = this.dataset.index;
+                            popup.dataset.projectId = projectId;
+                            popup.style.display = 'flex';
+                            document.body.style.overflow = 'hidden';
+                        }
+                    });
+                });
                 }
             });
         });
     }
 
-    // Suppression complète de la section de gestion de la popup d'image
-    // const popupImg = document.getElementById('popup-image');
-    // const popupClose = document.getElementById('popup-close');
-    // const popupPrev = document.getElementById('popup-prev');
-    // const popupNext = document.getElementById('popup-next');
+    // Image popup handling
+    const popupImg = document.getElementById('popup-image');
+    const popupClose = document.getElementById('popup-close');
+    const popupPrev = document.getElementById('popup-prev');
+    const popupNext = document.getElementById('popup-next');
 
-    // if (popup && popupClose && popupImg) { /* ... ce bloc est maintenant supprimé ... */ }
+    if (popup && popupClose && popupImg) {
+        popupClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            popup.style.display = 'none';
+        });
 
+        // Navigation for popup images
+        const navigatePopup = (direction) => {
+            const currentIndex = parseInt(popup.dataset.currentIndex || 0);
+            const projectId = popup.dataset.projectId;
+            const projectData = getProjectData(projectId);
+            
+            if (!projectData || !projectData.images.length) return;
+
+            let newIndex = currentIndex;
+            if (direction === 'prev') {
+                newIndex = (currentIndex - 1 + projectData.images.length) % projectData.images.length;
+            } else if (direction === 'next') {
+                newIndex = (currentIndex + 1) % projectData.images.length;
+            }
+            popupImg.src = projectData.images[newIndex].src;
+            popup.dataset.currentIndex = newIndex;
+        };
+
+        if (popupPrev) {
+            popupPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigatePopup('prev');
+            });
+        }
+        if (popupNext) {
+            popupNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navigatePopup('next');
+            });
+        }
+
+        // Keyboard navigation for popup
+        document.addEventListener('keydown', function(e) {
+            if (popup.style.display === 'flex') {
+                if (e.key === 'Escape') {
+                    popup.style.display = 'none';
+                } else if (e.key === 'ArrowLeft') {
+                    navigatePopup('prev');
+                } else if (e.key === 'ArrowRight') {
+                    navigatePopup('next');
+                }
+            }
+        });
+
+        // Close popup when clicking outside of the image
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+    }
 
     // Scroll animations
     function animateOnScroll() {
@@ -250,6 +316,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+   
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -277,12 +344,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            // Pour une soumission réelle, vous utiliseriez fetch() ici
-            // alert('Message envoyé avec succès! Je vous répondrai dès que possible.');
-            // this.reset();
-
-            // Simule l'envoi et redirige pour afficher la popup de succès
-            window.location.href = this.action + '?success=true';
+            alert('Message envoyé avec succès! Je vous répondrai dès que possible.');
+            this.reset();
         });
     }
 
@@ -337,27 +400,31 @@ document.addEventListener('DOMContentLoaded', function () {
     function getProjectData(projectId) {
         const projects = {
             "1": {
-                "title": "Dashboard Coaching & Ventes",
-                "description": "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
-                "fullDetails": "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes, et l'intégration de Python a permis d'ajouter des fonctionnalités de gestion dynamique. Vous pouvez tester le tableau de bord en ligne via ce lien : [Global Sales Dashboard](https://global-sales-dashboard.streamlit.app/). Utilisez les identifiants suivants pour accéder à la vue Hyperviseur : **Nom d'utilisateur : YDaoui** et **Mot de passe : H80000**.",
-                "technologies": ["Power BI", "DAX", "SQL", "Python", "Streamlit"],
-                "images": [
-                    { "src": "assets/img/Dentale_1.PNG", "alt": "Dashboard principal" },
-                    { "src": "assets/img/Dentale_H.PNG", "alt": "Dashboard Power BI" },
-                    { "src": "assets/img/Dentale_12.PNG", "alt": "Dashboard Power BI - Python" },
-                    { "src": "assets/img/Dentale_5.PNG", "alt": "Dashboard Power BI - Python" },
-                    { "src": "assets/img/Dentale_123.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_1234.PNG", "alt": "Dashboard Power BI - Python" },
-                    { "src": "assets/img/Dentale_12345.PNG", "alt": "Dashboard Power BI - Python" },
-                    { "src": "assets/img/Dentale_H1.PNG", "alt": "Dashboard Power BI - Python" },
-                    { "src": "assets/img/Dentale_H15.PNG", "alt": "Dashboard Power BI - Python" }
+                title: "Dashboard Coaching & Ventes",
+                description: "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
+                fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes, et l'intégration de Python a permis d'ajouter des fonctionnalités de gestion dynamique.",
+                technologies: ["Power BI", "DAX", "SQL", "Python", "Streamlit"],
+                images: [
+                    { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
+                    { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
+                    { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Python" },
+                    { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_H5.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_H1.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_H15.PNG", alt: "Dashboard Power BI - Python" }
+                   
+                    
+                                            
                 ]
             },
             "2": {
-                title: "Dashbord Vente & Recolt",
+                title: "Dashboard Vente & Recolt",
                 description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
-                fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
-                technologies: ["Merise", "Analyse de données", "SQL Server", "Power Query", "Power Bi", "DAX","Logistique"],
+                fullDetails: "Développement d'une application de gestion et suivi des ventes et recettes, avec une optimisation de la saisie personnalisée via des accès spécifiques. Conçue avec Python, Java et SQLite3, cette solution permet un suivi transactionnel précis et une analyse des performances. Accès démo : Login = YDaoui / MDP = H800000 (mode hyperviseur). Lien : https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
+                technologies: ["Python", "Java", "SQLite3", "Streamlit", "Analyse de données", "UI/UX", "Gestion financière"],
+
                 images: [
                     { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
                     { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
@@ -426,7 +493,13 @@ document.addEventListener('DOMContentLoaded', function () {
         return projects[projectId] || null;
     }
 });
+// Gestion du formulaire de contact
 
+
+
+
+
+// Gestion du formulaire de contact
 // Gestion du formulaire de contact
 function initContactForm() {
     const form = document.getElementById('contactForm');
