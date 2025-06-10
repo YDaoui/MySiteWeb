@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Initialisation des modales - cachées par défaut
     const modal = document.getElementById('project-modal');
-   // const popup = document.getElementById('image-popup');
+    const popup = document.getElementById('image-popup');
     if (modal) modal.style.display = 'none';
     if (popup) popup.style.display = 'none';
 
@@ -408,6 +408,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
                     { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
                     { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_5.PNG", alt: "Dashboard Power BI - Python" },
                     { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Python" },
                     { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
                     { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" },
@@ -420,11 +421,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             "2": {
-                title: "Dashboard Vente & Recolt",
+                title: "Dashbord Vente & Recolt",
                 description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
                 fullDetails: "Développement d'une application de gestion et suivi des ventes et recettes, avec une optimisation de la saisie personnalisée via des accès spécifiques. Conçue avec Python, Java et SQLite3, cette solution permet un suivi transactionnel précis et une analyse des performances. Accès démo : Login = YDaoui / MDP = H800000 (mode hyperviseur). Lien : https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
-                technologies: ["Python", "Java", "SQLite3", "Streamlit", "Analyse de données", "UI/UX", "Gestion financière"],
-
+                technologies: ["Merise", "Analyse de données", "SQL Server", "Power Query", "Power Bi", "DAX","Logistique"],
                 images: [
                     { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
                     { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
