@@ -19,13 +19,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (icon) icon.setAttribute('name', 'menu-outline');
             }
 
-            // Check if targetId is just '#' or if the target element doesn't exist
             if (targetId === '#' || !document.querySelector(targetId)) return;
 
             e.preventDefault();
             const targetElement = document.querySelector(targetId);
             const header = document.querySelector('.header');
-            // Calculate header height, defaulting to 0 if header is not found
             const headerHeight = header ? header.offsetHeight : 0;
             const targetPosition = targetElement.offsetTop - headerHeight;
 
@@ -34,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 behavior: 'smooth'
             });
 
-            // Update URL hash for direct linking and better user experience
             if (history.pushState) {
                 history.pushState(null, null, targetId);
             } else {
@@ -48,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.querySelector('.navbar');
     if (mobileToggle && navbar) {
         mobileToggle.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent event from bubbling up and closing the menu immediately
+            e.stopPropagation();
             this.classList.toggle('active');
             navbar.classList.toggle('active');
             const icon = this.querySelector('ion-icon');
@@ -56,17 +53,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 icon.setAttribute('name', this.classList.contains('active') ? 'close-outline' : 'menu-outline');
             }
 
-            // Animate individual menu items when the navbar becomes active
             if (navbar.classList.contains('active')) {
                 document.querySelectorAll('.navbar ul li').forEach((item, index) => {
-                    item.style.opacity = '0'; // Start invisible
-                    item.style.transform = 'translateY(-20px)'; // Start slightly above
-                    // Apply a small delay for a staggered animation effect
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(-20px)';
                     setTimeout(() => {
                         item.style.opacity = '1';
                         item.style.transform = 'translateY(0)';
-                        item.style.transition = `all 0.3s ease ${index * 0.1}s`; // Staggered transition
-                    }, 10); // Small delay to ensure styles are applied before transition
+                        item.style.transition = `all 0.3s ease ${index * 0.1}s`;
+                    }, 10);
                 });
             }
         });
@@ -75,38 +70,34 @@ document.addEventListener('DOMContentLoaded', function () {
     // Service cards toggle
     document.querySelectorAll('.service-header').forEach(header => {
         header.addEventListener('click', (e) => {
-            // No stopPropagation needed here, as clicks on card headers shouldn't affect parent elements in a way that needs preventing.
+            e.stopPropagation();
             const card = header.closest('.service-card');
-            if (!card) return; // Ensure a service card is found
+            if (!card) return;
 
             const isActive = card.classList.contains('active');
             const details = card.querySelector('.service-details');
             const arrow = header.querySelector('.service-arrow');
 
-            // Close other open service cards
             document.querySelectorAll('.service-card').forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.classList.remove('active');
                     const otherDetails = otherCard.querySelector('.service-details');
                     const otherArrow = otherCard.querySelector('.service-header .service-arrow');
-                    if (otherDetails) otherDetails.style.maxHeight = null; // Collapse details
+                    if (otherDetails) otherDetails.style.maxHeight = null;
                     if (otherArrow) {
                         otherArrow.classList.remove('active');
-                        otherArrow.innerHTML = '<ion-icon name="chevron-down-outline"></ion-icon>'; // Reset arrow icon
+                        otherArrow.innerHTML = '<ion-icon name="chevron-down-outline"></ion-icon>';
                     }
                 }
             });
 
-            // Toggle active class on the clicked card
-            card.classList.toggle('active', !isActive); // Explicitly set based on !isActive
-            // Adjust maxHeight for smooth expand/collapse transition
+            card.classList.toggle('active', !isActive);
             if (details) details.style.maxHeight = !isActive ? details.scrollHeight + 'px' : null;
-            // Toggle arrow icon and active class
             if (arrow) {
                 arrow.classList.toggle('active', !isActive);
                 arrow.innerHTML = !isActive
-                    ? '<ion-icon name="chevron-up-outline"></ion-icon>' // Up arrow when active
-                    : '<ion-icon name="chevron-down-outline"></ion-icon>'; // Down arrow when inactive
+                    ? '<ion-icon name="chevron-up-outline"></ion-icon>'
+                    : '<ion-icon name="chevron-down-outline"></ion-icon>';
             }
         });
     });
@@ -122,51 +113,45 @@ document.addEventListener('DOMContentLoaded', function () {
         const nextBtn = gallery.querySelector('.project-nav.next');
         const counter = gallery.querySelector('.slide-counter');
 
-        // Ensure all necessary elements exist before proceeding
         if (!container || !slides.length || !prevBtn || !nextBtn || !counter) return;
 
         let currentIndex = 0;
         const totalSlides = slides.length;
 
-        // Function to update the displayed slide and counter
         function updateGallery() {
-            slides.forEach(slide => slide.classList.remove('active')); // Hide all slides
-            slides[currentIndex].classList.add('active'); // Show the current slide
-            counter.textContent = `${currentIndex + 1}/${totalSlides}`; // Update counter text
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentIndex].classList.add('active');
+            counter.textContent = `${currentIndex + 1}/${totalSlides}`;
         }
 
-        // Event listener for previous button
         prevBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // Loop back if at the beginning
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updateGallery();
         });
 
-        // Event listener for next button
         nextBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            currentIndex = (currentIndex + 1) % totalSlides; // Loop to the beginning if at the end
+            currentIndex = (currentIndex + 1) % totalSlides;
             updateGallery();
         });
 
-        // Initial gallery setup
         updateGallery();
 
-        // Touch support for swiping
+        // Touch support
         let touchStartX = 0, touchEndX = 0;
         container.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true }); // Use passive listener for better performance
+        }, { passive: true });
 
         container.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
-            // Determine if a swipe occurred (threshold of 50 pixels)
             if (Math.abs(touchEndX - touchStartX) > 50) {
-                if (touchEndX < touchStartX) currentIndex = (currentIndex + 1) % totalSlides; // Swipe left for next
-                else currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // Swipe right for previous
+                if (touchEndX < touchStartX) currentIndex = (currentIndex + 1) % totalSlides;
+                else currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 updateGallery();
             }
-        }, { passive: true }); // Use passive listener
+        }, { passive: true });
     });
 
     // Project modal with enhanced image popup
@@ -174,18 +159,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const modalClose = modal.querySelector('.modal-close');
         const modalContent = modal.querySelector('#modal-content');
         
-        // Close modal when close button is clicked
+        // Close modal
         if (modalClose) {
             modalClose.addEventListener('click', (e) => {
-                // e.stopPropagation(); // Not strictly necessary here as click on close button should just close modal
+                e.stopPropagation();
                 modal.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Restore scrolling on body
+                document.body.style.overflow = 'auto';
             });
         }
 
         // Close modal when clicking outside of it
         window.addEventListener('click', (e) => {
-            if (e.target === modal) { // Check if the click occurred directly on the modal overlay
+            if (e.target === modal) {
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
@@ -194,23 +179,22 @@ document.addEventListener('DOMContentLoaded', function () {
         // Project details click handler
         document.querySelectorAll('.view-details').forEach(btn => {
             btn.addEventListener('click', function(e) {
-                e.preventDefault(); // Prevent default link behavior
-                // e.stopPropagation(); // Removed, as this might interfere with modal closing logic if modal was a parent of this button
+                e.preventDefault();
+                e.stopPropagation();
                 const projectCard = this.closest('.project-card');
                 if (!projectCard) return;
 
-                const projectId = projectCard.dataset.projectId; // Get project ID from data attribute
-                const projectData = getProjectData(projectId); // Retrieve project data
+                const projectId = projectCard.dataset.projectId;
+                const projectData = getProjectData(projectId);
 
                 if (projectData && modalContent) {
-                    // Populate modal content with project data
                     modalContent.innerHTML = `
                         <h3>${projectData.title}</h3>
                         <div class="modal-gallery">
                             ${projectData.images.map((img, index) =>
                                 `<img src="${img.src}" alt="${img.alt}"
-                                         class="modal-gallery-image"
-                                         data-index="${index}">`
+                                        class="modal-gallery-image"
+                                        data-index="${index}">`
                             ).join('')}
                         </div>
                         <div class="modal-description">
@@ -227,29 +211,27 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </ul>
                             </div>
                             ` : ''}
-                            ${projectData.link ? `<p><a href="${projectData.link}" target="_blank" rel="noopener noreferrer" class="project-link">Voir le projet en direct</a></p>` : ''}
                         </div>
                     `;
-                    modal.style.display = 'block'; // Show the modal
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling on body
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
 
-                    // Add click listeners to images within the modal for the popup
-                    const modalImages = modalContent.querySelectorAll('.modal-gallery-image');
-                    modalImages.forEach(img => {
-                        img.addEventListener('click', function(e) {
-                            e.stopPropagation(); // Stop propagation to prevent modal from closing when image is clicked
-                            const popup = document.getElementById('image-popup');
-                            const popupImg = document.getElementById('popup-image');
-                            
-                            if (popup && popupImg) {
-                                popupImg.src = this.src; // Set popup image source
-                                popup.dataset.currentIndex = this.dataset.index; // Store current image index
-                                popup.dataset.projectId = projectId; // Store project ID for navigation
-                                popup.style.display = 'flex'; // Show the image popup
-                                document.body.style.overflow = 'hidden'; // Prevent scrolling on body
-                            }
-                        });
+                const modalImages = modalContent.querySelectorAll('.modal-gallery-image');
+                modalImages.forEach(img => {
+                    img.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const popup = document.getElementById('image-popup');
+                        const popupImg = document.getElementById('popup-image');
+                        
+                        if (popup && popupImg) {
+                            popupImg.src = this.src;
+                            popup.dataset.currentIndex = this.dataset.index;
+                            popup.dataset.projectId = projectId;
+                            popup.style.display = 'flex';
+                            document.body.style.overflow = 'hidden';
+                        }
                     });
+                });
                 }
             });
         });
@@ -260,19 +242,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const popupClose = document.getElementById('popup-close');
     const popupPrev = document.getElementById('popup-prev');
     const popupNext = document.getElementById('popup-next');
-    const popup = document.getElementById('image-popup');
 
     if (popup && popupClose && popupImg) {
-        // Close image popup
         popupClose.addEventListener('click', (e) => {
-            // e.stopPropagation(); // Not necessary here, as click on close button should just close popup
+            e.stopPropagation();
             popup.style.display = 'none';
-            // Determine if the project modal should remain open or if body scrolling should be restored
-            if (modal && modal.style.display === 'block') {
-                document.body.style.overflow = 'hidden'; // Keep body overflow hidden if project modal is still open
-            } else {
-                document.body.style.overflow = 'auto'; // Restore body scrolling if no other modal is open
-            }
         });
 
         // Navigation for popup images
@@ -290,33 +264,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 newIndex = (currentIndex + 1) % projectData.images.length;
             }
             popupImg.src = projectData.images[newIndex].src;
-            popup.dataset.currentIndex = newIndex; // Update stored index
+            popup.dataset.currentIndex = newIndex;
         };
 
-        // Event listeners for popup navigation buttons
         if (popupPrev) {
             popupPrev.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent propagation that might close the popup
+                e.stopPropagation();
                 navigatePopup('prev');
             });
         }
         if (popupNext) {
             popupNext.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent propagation that might close the popup
+                e.stopPropagation();
                 navigatePopup('next');
             });
         }
 
         // Keyboard navigation for popup
         document.addEventListener('keydown', function(e) {
-            if (popup.style.display === 'flex') { // Only active if popup is open
+            if (popup.style.display === 'flex') {
                 if (e.key === 'Escape') {
                     popup.style.display = 'none';
-                    if (modal && modal.style.display === 'block') {
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        document.body.style.overflow = 'auto';
-                    }
                 } else if (e.key === 'ArrowLeft') {
                     navigatePopup('prev');
                 } else if (e.key === 'ArrowRight') {
@@ -327,93 +295,77 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Close popup when clicking outside of the image
         popup.addEventListener('click', (e) => {
-            if (e.target === popup) { // Check if the click occurred directly on the popup overlay
+            if (e.target === popup) {
                 popup.style.display = 'none';
-                if (modal && modal.style.display === 'block') {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = 'auto';
-                }
             }
         });
     }
 
     // Scroll animations
     function animateOnScroll() {
-        // Select elements for animation
         const elements = document.querySelectorAll('.service-card, .project-card, .tech-item');
-        const windowHeight = window.innerHeight; // Get current viewport height
+        const windowHeight = window.innerHeight;
 
         elements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top; // Get top position of the element
-            // Check if element is within the viewport with an offset
+            const elementTop = element.getBoundingClientRect().top;
             if (elementTop < windowHeight - 150) {
-                element.classList.add('animated'); // Add 'animated' class to trigger CSS animation
-                // Ensure initial styles are correctly set for transition
+                element.classList.add('animated');
                 element.style.opacity = '1';
                 element.style.transform = 'translateY(0)';
             }
         });
     }
 
-    // Initialize elements for scroll animation (set initial hidden state)
+   
     document.querySelectorAll('.service-card, .project-card, .tech-item').forEach(el => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)'; // Start slightly below
-        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease'; // Define transition properties
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     });
-
-    // Attach scroll event listener and trigger initial check
     window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Run on load in case elements are already in view
+    animateOnScroll();
 
-    // Contact form validation and submission
+    // Contact form
     const contactForm = document.querySelector('.contact form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
-
-            // Get form field values, trimming whitespace
+            e.preventDefault();
             const name = this.querySelector('input[name="name"]')?.value.trim();
             const email = this.querySelector('input[name="email"]')?.value.trim();
             const message = this.querySelector('textarea[name="message"]')?.value.trim();
 
-            // Basic validation
             if (!name || !email || !message) {
                 alert('Veuillez remplir tous les champs.');
                 return;
             }
 
-            // Email format validation using a simple regex
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 alert('Veuillez entrer une adresse email valide.');
                 return;
             }
 
-            // Simulate form submission (in a real application, you'd send this to a server)
             alert('Message envoyé avec succès! Je vous répondrai dès que possible.');
-            this.reset(); // Clear form fields after successful submission
+            this.reset();
         });
     }
 
-    // Typing animations for hero section
+    // Typing animations
     const animateHeroTitleTyping = () => {
         const heroTitle = document.querySelector('.hero h1');
         if (!heroTitle) return;
 
         const originalText = heroTitle.textContent || '';
-        heroTitle.textContent = ''; // Clear text to start typing animation
+        heroTitle.textContent = '';
         let charIndex = 0;
 
-        // Function to type out each character with a delay
         function typeChar() {
             if (charIndex < originalText.length) {
                 heroTitle.textContent += originalText.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeChar, 70); // Adjust typing speed here (milliseconds per character)
+                setTimeout(typeChar, 70);
             }
         }
-        typeChar(); // Start the typing animation
+        typeChar();
     };
 
     const animateSubtitleTyping = () => {
@@ -421,46 +373,38 @@ document.addEventListener('DOMContentLoaded', function () {
         const element = document.getElementById('typewriter-text');
         if (!element) return;
 
-        element.innerHTML = ''; // Clear element content
+        element.innerHTML = '';
         let i = 0;
 
         function typeWriter() {
             if (i < text.length) {
                 const charSpan = document.createElement('span');
-                charSpan.className = 'typewriter-char'; // Add class for potential styling
+                charSpan.className = 'typewriter-char';
                 charSpan.textContent = text.charAt(i);
                 element.appendChild(charSpan);
 
-                // Optional: remove class from previous char for a "blinking" effect
-                if (i > 0) {
-                    const prevChar = element.children[i - 1];
-                    if (prevChar) prevChar.classList.remove('typewriter-char');
-                }
+                if (i > 0) element.children[i-1].classList.remove('typewriter-char');
                 i++;
-                setTimeout(typeWriter, 50); // Typing speed for subtitle
+                setTimeout(typeWriter, 50);
             } else {
-                // Ensure all chars remain visible at the end
                 Array.from(element.children).forEach(el => el.classList.remove('typewriter-char'));
             }
         }
-        setTimeout(typeWriter, 800); // Delay start of subtitle typing
+        setTimeout(typeWriter, 800);
     };
 
-    // Trigger typing animations
     animateHeroTitleTyping();
     animateSubtitleTyping();
 
-    // Project data function
+    // Project data
     function getProjectData(projectId) {
-        // This object acts as a simple database for project information
         const projects = {
             "1": {
                 title: "Dashboard Coaching & Ventes",
                 description: "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
-                fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes, et l'intégration de Python a permis d'ajouter des fonctionnalités de gestion dynamique.",
+                fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé le Python pour connecter plusieurs sources de données avant d les centraliser sur une base Sqlite, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings que vous pouvez y accéder avec : YDaoui  , comme nom d'utilisateur et H800000 comme mode passe . Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes.",
                 link: "https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
                 technologies: ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)"],
-                
                 images: [
                     { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
                     { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
@@ -469,14 +413,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Dentale_123.PNG", alt: "Dashboard Python" },
                     { src: "assets/img/Dentale_1234.PNG", alt: "Dashboard Power BI - Python" },
                     { src: "assets/img/Dentale_12345.PNG", alt: "Dashboard Power BI - Python" },
+                    { src: "assets/img/Dentale_H5.PNG", alt: "Dashboard Power BI - Python" },
                     { src: "assets/img/Dentale_H1.PNG", alt: "Dashboard Power BI - Python" },
                     { src: "assets/img/Dentale_H15.PNG", alt: "Dashboard Power BI - Python" }
+                   
+                    
+                                            
                 ]
             },
             "2": {
-                title: "Dashboard Vente & Recolt",
+                title: "Dashbord Vente & Recolt",
                 description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
-                fullDetails: "Mise en place d'une solution complète en Python pour automatiser le cycle de gestion des congés et le suivi managérial. Le script récupère les demandes de congés, les intègre dans un planning, et génère des rapports pour les managers, améliorant ainsi l'efficacité administrative et le suivi des équipes.",
+                fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
                 technologies: ["Merise", "Analyse de données", "SQL Server", "Power Query", "Power Bi", "DAX","Logistique"],
                 images: [
                     { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
@@ -489,8 +437,7 @@ document.addEventListener('DOMContentLoaded', function () {
             "3": {
                 title: "Management avec Python",
                 description: "Automatisation de la récupération des demandes de congés, de la planification et du suivi managérial avec Python.",
-                // The link is now directly included in the fullDetails for this project
-                fullDetails: "Développement d'une application de gestion et suivi des ventes et recettes, avec une optimisation de la saisie personnalisée via des accès spécifiques. Conçue avec Python, Java et SQLite3, cette solution permet un suivi transactionnel précis et une analyse des performances. Accès démo : Login = YDaoui / MDP = H800000 (mode hyperviseur). Lien : <a href='https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/' target='_blank' rel='noopener noreferrer'>Voir l'application en direct</a>",
+                fullDetails: "Mise en place d'une solution complète en Python pour automatiser le cycle de gestion des congés et le suivi managérial. Le script récupère les demandes de congés, les intègre dans un planning, et génère des rapports pour les managers, améliorant ainsi l'efficacité administrative et le suivi des équipes.",
                 technologies: ["Python", "Automatisation", "Gestion RH"],
                 images: [
                     { src: "assets/img/AccorHotels1.PNG", alt: "Interface de gestion des congés" },
@@ -544,28 +491,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             }
         };
-        return projects[projectId] || null; // Return project data or null if not found
+        return projects[projectId] || null;
     }
 });
+// Gestion du formulaire de contact
 
-// Contact form (moved outside DOMContentLoaded to prevent re-declaration issues if it was called multiple times)
+
+
+
+
+// Gestion du formulaire de contact
+// Gestion du formulaire de contact
 function initContactForm() {
     const form = document.getElementById('contactForm');
     const successPopup = document.getElementById('successPopup');
     const closePopupBtn = document.querySelector('.close-popup-btn');
 
-    if (!form) return; // Exit if the form doesn't exist
+    if (!form) return;
 
-    // Handle popup closing
+    // Gestion de la popup
     if (successPopup && closePopupBtn) {
         closePopupBtn.addEventListener('click', () => {
             successPopup.classList.remove('show-popup');
-            // Clean up URL to remove success parameter
             history.replaceState({}, document.title, window.location.pathname);
         });
     }
 
-    // Check URL parameters to show popup after redirection (e.g., from a server-side submission)
+    // Vérifie si on doit afficher la popup après redirection
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('success') === 'true') {
         showSuccessPopup();
@@ -577,19 +529,18 @@ function showSuccessPopup() {
     if (successPopup) {
         successPopup.classList.add('show-popup');
         
-        // Auto-close popup after 5 seconds
+        // Fermeture automatique après 5s
         setTimeout(() => {
             successPopup.classList.remove('show-popup');
-            history.replaceState({}, document.title, window.location.pathname); // Clean URL
+            history.replaceState({}, document.title, window.location.pathname);
         }, 5000);
     }
 }
 
-// Initialize on DOM content loaded for the contact form and GSAP
+// Initialisation au chargement
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if GSAP is loaded before trying to use it
     if (typeof gsap !== 'undefined') {
         gsap.set([".first", ".second", ".third"], { top: "-100%" });
     }
-    initContactForm(); // Initialize contact form logic
+    initContactForm();
 });
