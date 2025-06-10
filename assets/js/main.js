@@ -403,8 +403,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 title: "Dashboard Coaching & Ventes",
                 description: "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
                 fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes, et l'intégration de Python a permis d'ajouter des fonctionnalités de gestion dynamique.",
-                technologies: ["Power BI", "DAX", "SQL", "Python", "Streamlit"],
-                images: [
+                technologies: ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)"],
+                link: "https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/"
+
+                        images: [
                     { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
                     { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
                     { src: "assets/img/Dentale_12.PNG", alt: "Dashboard Power BI - Python" },
@@ -422,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function () {
             "2": {
                 title: "Dashbord Vente & Recolt",
                 description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
-                fullDetails: "Développement d'une application de gestion et suivi des ventes et recettes, avec une optimisation de la saisie personnalisée via des accès spécifiques. Conçue avec Python, Java et SQLite3, cette solution permet un suivi transactionnel précis et une analyse des performances. Accès démo : Login = YDaoui / MDP = H800000 (mode hyperviseur). Lien : https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
+                fullDetails: "Mise en place d'une solution complète en Python pour automatiser le cycle de gestion des congés et le suivi managérial. Le script récupère les demandes de congés, les intègre dans un planning, et génère des rapports pour les managers, améliorant ainsi l'efficacité administrative et le suivi des équipes.",
                 technologies: ["Merise", "Analyse de données", "SQL Server", "Power Query", "Power Bi", "DAX","Logistique"],
                 images: [
                     { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
@@ -435,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function () {
             "3": {
                 title: "Management avec Python",
                 description: "Automatisation de la récupération des demandes de congés, de la planification et du suivi managérial avec Python.",
-                fullDetails: "Mise en place d'une solution complète en Python pour automatiser le cycle de gestion des congés et le suivi managérial. Le script récupère les demandes de congés, les intègre dans un planning, et génère des rapports pour les managers, améliorant ainsi l'efficacité administrative et le suivi des équipes.",
+                fullDetails: "Développement d'une application de gestion et suivi des ventes et recettes, avec une optimisation de la saisie personnalisée via des accès spécifiques. Conçue avec Python, Java et SQLite3, cette solution permet un suivi transactionnel précis et une analyse des performances. Accès démo : Login = YDaoui / MDP = H800000 (mode hyperviseur). Lien : https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
                 technologies: ["Python", "Automatisation", "Gestion RH"],
                 images: [
                     { src: "assets/img/AccorHotels1.PNG", alt: "Interface de gestion des congés" },
