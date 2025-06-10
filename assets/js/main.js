@@ -456,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 description: "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
                 fullDetails: "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Power BI pour connecter plusieurs sources de données et créer des mesures DAX complexes, puis j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les visualisations interactives permettent aux utilisateurs de filtrer et explorer les données selon différents axes, et l'intégration de Python a permis d'ajouter des fonctionnalités de gestion dynamique.",
                 technologies: ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)"],
-                link: "https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
+                link: ["https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/"],
                 images: [
                     { src: "assets/img/Dentale_1.PNG", alt: "Dashboard principal" },
                     { src: "assets/img/Dentale_H.PNG", alt: "Dashboard Power BI " },
