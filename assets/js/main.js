@@ -408,14 +408,18 @@ document.addEventListener('DOMContentLoaded', function () {
     "link": "https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
     "images": [
       { "src": "assets/img/Dentale_1.PNG", "alt": "Dashboard principal" },
-      { "src": "assets/img/Dentale_H.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_12.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_2.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_3.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_4.PNG", "alt": "Dashboard Python" },
       { "src": "assets/img/Dentale_5.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_123.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_1234.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_12345.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_H1.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_H15.PNG", "alt": "Dashboard Python" }
+      { "src": "assets/img/Dentale_6.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_7.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_8.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_9.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_10.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_11.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_12.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_123.PNG", "alt": "Dashboard Python" }
     ]
   },
 
