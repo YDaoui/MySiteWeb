@@ -471,13 +471,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     fullDetails: "Développement d'une application d'analyse décisionnelle sous R Shiny pour Total, connectée à une base SQL Server. La solution permet le suivi temps réel des opérations de vente et de récolte, l'optimisation des circuits logistiques, et génère des rapports automatisés pour les indicateurs clés. J'ai conçu les modules d'analyse financière et RH, implémenté les requêtes SQL optimisées et développé les visualisations interactives.",
                     technologies: ["R Shiny", "SQL Server", "Power Query", "Analyse de données", "Logistique", "DAX", "Merise"],
                     images: [
-
-                                                
-                        { src: "assets/img/Login_Glovo.PNG", alt: "Authentification" },
-                        { src: "assets/img/Dash_Sales_Glovo1.PNG", alt: "Tableau de bord principal" },
-                        { src: "assets/img/Glovo1.PNG", alt: "Analyse des données" },
-                        { src: "assets/img/Glovo2.PNG", alt: "Module logistique" },
-                        { src: "assets/img/Glovo3.PNG", alt: "Reporting financier" }
+                    { src: "assets/img/Login_Glovo.PNG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Dash_Sales_Glovo1.PNG", alt: "Projet Glovo - Tableau de bord des ventes" },
+                    { src: "assets/img/Glovo1.PNG", alt: "Projet Glovo - Interface principale" },
+                    { src: "assets/img/Glovo2.PNG", alt: "Projet Glovo - Suivi des livraisons" },
+                    { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
+                       
                     ]
                 },
             "6": {
