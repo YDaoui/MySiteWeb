@@ -471,11 +471,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     fullDetails: "Développement d'une application d'analyse décisionnelle sous R Shiny pour Total, connectée à une base SQL Server. La solution permet le suivi temps réel des opérations de vente et de récolte, l'optimisation des circuits logistiques, et génère des rapports automatisés pour les indicateurs clés. J'ai conçu les modules d'analyse financière et RH, implémenté les requêtes SQL optimisées et développé les visualisations interactives.",
                     technologies: ["R Shiny", "SQL Server", "Power Query", "Analyse de données", "Logistique", "DAX", "Merise"],
                     images: [
-                        { src: "assets/img/total_login.png", alt: "Authentification" },
-                        { src: "assets/img/total_dashboard.png", alt: "Tableau de bord principal" },
-                        { src: "assets/img/total_analytics.png", alt: "Analyse des données" },
-                        { src: "assets/img/total_logistics.png", alt: "Module logistique" },
-                        { src: "assets/img/total_reports.png", alt: "Reporting financier" }
+
+                                                
+                        { src: "assets/img/Login_Glovo.png", alt: "Authentification" },
+                        { src: "assets/img/Dash_Sales_Glovo1.png", alt: "Tableau de bord principal" },
+                        { src: "assets/img/Glovo1.png", alt: "Analyse des données" },
+                        { src: "assets/img/Glovo2.png", alt: "Module logistique" },
+                        { src: "assets/img/Glovo3.png", alt: "Reporting financier" }
                     ]
                 },
             "6": {
