@@ -466,18 +466,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 ]
             },
             "5": {
-                title: "Application logistique Glovo",
-                description: "Optimisation du suivi des livraisons et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
-                fullDetails: "Création d'une application logistique pour Glovo, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
-                technologies: ["React", "Node.js", "MongoDB", "D3.js", "Logistique", "Analyse de données"],
-                images: [
-                    { src: "assets/img/Login_Glovo.PNG", alt: "Projet Glovo - Login" },
-                    { src: "assets/img/Dash_Sales_Glovo1.PNG", alt: "Projet Glovo - Tableau de bord des ventes" },
-                    { src: "assets/img/Glovo1.PNG", alt: "Projet Glovo - Interface principale" },
-                    { src: "assets/img/Glovo2.PNG", alt: "Projet Glovo - Suivi des livraisons" },
-                    { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
-                ]
-            },
+                    title: "Dashboard Vente & Suivie Performances",
+                    description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
+                    fullDetails: "Développement d'une application d'analyse décisionnelle sous R Shiny pour Total, connectée à une base SQL Server. La solution permet le suivi temps réel des opérations de vente et de récolte, l'optimisation des circuits logistiques, et génère des rapports automatisés pour les indicateurs clés. J'ai conçu les modules d'analyse financière et RH, implémenté les requêtes SQL optimisées et développé les visualisations interactives.",
+                    technologies: ["R Shiny", "SQL Server", "Power Query", "Analyse de données", "Logistique", "DAX", "Merise"],
+                    images: [
+                        { src: "assets/img/total_login.png", alt: "Authentification" },
+                        { src: "assets/img/total_dashboard.png", alt: "Tableau de bord principal" },
+                        { src: "assets/img/total_analytics.png", alt: "Analyse des données" },
+                        { src: "assets/img/total_logistics.png", alt: "Module logistique" },
+                        { src: "assets/img/total_reports.png", alt: "Reporting financier" }
+                    ]
+                },
             "6": {
                 title: "Scheduler VBScript & Python",
                 description: "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
