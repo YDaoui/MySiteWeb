@@ -473,11 +473,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     images: [
 
                                                 
-                        { src: "assets/img/Login_Glovo.png", alt: "Authentification" },
-                        { src: "assets/img/Dash_Sales_Glovo1.png", alt: "Tableau de bord principal" },
-                        { src: "assets/img/Glovo1.png", alt: "Analyse des données" },
-                        { src: "assets/img/Glovo2.png", alt: "Module logistique" },
-                        { src: "assets/img/Glovo3.png", alt: "Reporting financier" }
+                        { src: "assets/img/Login_Glovo.PNG", alt: "Authentification" },
+                        { src: "assets/img/Dash_Sales_Glovo1.PNG", alt: "Tableau de bord principal" },
+                        { src: "assets/img/Glovo1.PNG", alt: "Analyse des données" },
+                        { src: "assets/img/Glovo2.PNG", alt: "Module logistique" },
+                        { src: "assets/img/Glovo3.PNG", alt: "Reporting financier" }
                     ]
                 },
             "6": {
