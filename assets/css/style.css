@@ -1,16 +1,18 @@
 :root {
-    --primary: #3a86ff;
-    --primary-dark: #2667cc;
-    --secondary: #8338ec;
-    --dark: #1a1a2e;
-    --darker: #16213e;
-    --light: #e6f1ff;
-    --gray: #4a4e69;
-    --light-gray: #f8f9fa;
-    --success: #06d6a0;
-    --warning: #ffbe0b;
-    --danger: #ef476f;
+    --primary: #2962ff; /* Bleu professionnel */
+    --primary-dark: #0039cb; /* Bleu plus foncé */
+    --secondary: #7c4dff; /* Violet doux */
+    --dark: #f5f7fa; /* Fond clair */
+    --darker: #e6e9f0; /* Fond légèrement plus foncé */
+    --light: #263238; /* Texte foncé */
+    --gray: #607d8b; /* Gris pour textes secondaires */
+    --light-gray: #eceff1; /* Gris très clair */
+    --success: #00c853; /* Vert */
+    --warning: #ffab00; /* Jaune */
+    --danger: #ff5252; /* Rouge */
 }
+
+/* Le reste de votre code CSS reste exactement le même... */
 
 /* Reset et styles de base */
 *,
