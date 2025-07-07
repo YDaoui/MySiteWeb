@@ -1,28 +1,44 @@
 :root {
-    --primary: #2F5249; /* Vert foncé sophistiqué (votre base) */
-    --primary-dark: #1F3D36; /* Version plus sombre pour les survols */
-    --secondary: #437057; /* Vert moyen naturel */
-    --dark: #F5F7F6; /* Fond très clair légèrement teinté */
-    --darker: #E8EBEA; /* Fond alternatif */
-    --light: #2A2F2D; /* Noir vert pour texte - contraste 12:1 */
-    --gray: #6B7F78; /* Gris vertisé */
-    --light-gray: #F0F3F2; 
-    --accent: #97B067; /* Vert clair pour accents */
-    --highlight: #E3DE61; /* Jaune pour éléments importants */
-    --success: #4C8C4A; 
-    --warning: #E3DE61; /* Réutilise votre jaune */
-    --danger: #D96459;
+    /* Votre palette de base */
+    --light-accent: #E7EFC7;  /* Fond clair/accents */
+    --medium-green: #AEC8A4;  /* Vert moyen */
+    --warm-brown: #8A784E;    /* Couleur terreuse */
+    --deep-dark: #3B3B1A;     /* Couleur sombre */
+
+    /* Adaptation pour un site professionnel */
+    --primary: #5A7247;       /* Vert assombri (mélange de #AEC8A4 et #3B3B1A) */
+    --primary-dark: #3B3B1A;  /* Utilisation de votre couleur sombre */
+    --secondary: #8A784E;     /* Votre brun comme couleur secondaire */
+    
+    --dark: #F8F9FA;         /* Fond très clair */
+    --darker: #E7EFC7;       /* Votre vert clair comme fond alternatif */
+    --light: #2B2A22;        /* Noir teinté pour texte (accessible) */
+    
+    /* Couleurs fonctionnelles */
+    --success: #4A7247;      /* Vert harmonisé */
+    --warning: #C9A227;      /* Jaune-Or */
+    --danger: #C45B4A;       /* Rouge terreux */
+    --info: #5D7C8A;         /* Bleu-vert discret */
+
+    /* Textes et bordures */
+    --text-primary: #2B2A22; /* Pour le texte principal */
+    --text-secondary: #5A5D56; /* Pour le texte secondaire */
+    --border: #D1D9C7;       /* Bordure discrète */
 }
 
-/* Ajustements complémentaires pour l'harmonie */
+/* Application des couleurs */
 body {
-    color: var(--light);
+    color: var(--text-primary);
     background-color: var(--dark);
 }
 
 .header {
-    background-color: rgba(245, 247, 246, 0.95);
-    border-bottom: 1px solid rgba(47, 82, 73, 0.1);
+    background-color: rgba(247, 249, 242, 0.95);
+    border-bottom: 1px solid var(--border);
+}
+
+h1, h2, h3, h4 {
+    color: var(--primary);
 }
 
 .btn {
@@ -30,14 +46,10 @@ body {
     color: white;
 }
 
-.btn-outline {
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-.service-card, .project-card {
+.service-card {
     background: white;
-    border: 1px solid rgba(67, 112, 87, 0.1);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(59, 59, 26, 0.08);
 }
 
 *::before,
