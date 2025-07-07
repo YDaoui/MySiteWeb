@@ -1,57 +1,19 @@
 :root {
-    /* Votre palette de base */
-    --light-accent: #E7EFC7;  /* Fond clair/accents */
-    --medium-green: #AEC8A4;  /* Vert moyen */
-    --warm-brown: #8A784E;    /* Couleur terreuse */
-    --deep-dark: #3B3B1A;     /* Couleur sombre */
-
-    /* Adaptation pour un site professionnel */
-    --primary: #5A7247;       /* Vert assombri (mélange de #AEC8A4 et #3B3B1A) */
-    --primary-dark: #3B3B1A;  /* Utilisation de votre couleur sombre */
-    --secondary: #8A784E;     /* Votre brun comme couleur secondaire */
-    
-    --dark: #F8F9FA;         /* Fond très clair */
-    --darker: #E7EFC7;       /* Votre vert clair comme fond alternatif */
-    --light: #2B2A22;        /* Noir teinté pour texte (accessible) */
-    
-    /* Couleurs fonctionnelles */
-    --success: #4A7247;      /* Vert harmonisé */
-    --warning: #C9A227;      /* Jaune-Or */
-    --danger: #C45B4A;       /* Rouge terreux */
-    --info: #5D7C8A;         /* Bleu-vert discret */
-
-    /* Textes et bordures */
-    --text-primary: #2B2A22; /* Pour le texte principal */
-    --text-secondary: #5A5D56; /* Pour le texte secondaire */
-    --border: #D1D9C7;       /* Bordure discrète */
+    --primary: #3a86ff;
+    --primary-dark: #2667cc;
+    --secondary: #8338ec;
+    --dark: #1a1a2e;
+    --darker: #16213e;
+    --light: #e6f1ff;
+    --gray: #4a4e69;
+    --light-gray: #f8f9fa;
+    --success: #06d6a0;
+    --warning: #ffbe0b;
+    --danger: #ef476f;
 }
 
-/* Application des couleurs */
-body {
-    color: var(--text-primary);
-    background-color: var(--dark);
-}
-
-.header {
-    background-color: rgba(247, 249, 242, 0.95);
-    border-bottom: 1px solid var(--border);
-}
-
-h1, h2, h3, h4 {
-    color: var(--primary);
-}
-
-.btn {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-}
-
-.service-card {
-    background: white;
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 8px rgba(59, 59, 26, 0.08);
-}
-
+/* Reset et styles de base */
+*,
 *::before,
 *::after {
     margin: 0;
