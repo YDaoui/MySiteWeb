@@ -262,185 +262,237 @@
 <section id="projects" class="projects">
     <div class="container">
         <h2>Mes Projets</h2>
+        
+        <!-- Filtres par catégorie -->
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="data">Data Analysis</button>
+            <button class="filter-btn" data-filter="bi">Business Intelligence</button>
+            <button class="filter-btn" data-filter="automation">Automatisation</button>
+            <button class="filter-btn" data-filter="web">Applications Web</button>
+        </div>
+        
         <div class="projects-grid">
-            <!-- Projet 1 -->
-            <div class="project-card" data-category="data" data-project-id="1">
+            <!-- Projet 1 - Dentale (Data Analysis) -->
+            <div class="project-card" data-category="data bi">
                 <div class="project-gallery">
                     <div class="gallery-container">
                         <img src="assets/img/Dentale_1.PNG" alt="Dashboard Power BI et Python" class="gallery-slide active">
-                        <img src="assets/img/Dentale_2.PNG" alt="Dashboard Power BI - Python" class="gallery-slide active">
-                        <img src="assets/img/Dentale_3.PNG" alt="Dashboard Power BI " class="gallery-slide active">
-                        <img src="assets/img/Dentale_4.PNG" alt="Dashboard Power BI " class="gallery-slide active">
-                        <img src="assets/img/Dentale_5.PNG" alt="Dashboard Python" class="gallery-slide active">
-                        <img src="assets/img/Dentale_6.PNG" alt="Dashboard Power BI - Python" class="gallery-slide active">
-                        <img src="assets/img/Dentale_7.PNG" alt="Dashboard Power BI - Python" class="gallery-slide active">
-                        <img src="assets/img/Dentale_8.PNG" alt="Dashboard Power BI - Python" class="gallery-slide active">
-                        <img src="assets/img/Dentale_9.PNG" alt="Dashboard Power BI - Python" class="gallery-slide active">
-                        <img src="assets/img/Dentale_10.PNG" alt="Dashboard Power BI - Python" class="gallery-slide active">
-                        <img src="assets/img/Dentale_11.PNG" alt="Dashboard Power BI - Python" class="gallery-slide active">
-                        <img src="assets/img/Dentale_12.PNG" alt="Dashboard Power BI - Python" class="gallery-slide active">
-                        <img src="assets/img/Dentale_123.PNG" alt="Dashboard Power BI - Python" class="gallery-slide active">
-                       
-
+                        <img src="assets/img/Dentale_2.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                        <img src="assets/img/Dentale_3.PNG" alt="Dashboard Power BI" class="gallery-slide">
+                        <img src="assets/img/Dentale_4.PNG" alt="Dashboard Power BI" class="gallery-slide">
+                        <img src="assets/img/Dentale_5.PNG" alt="Dashboard Python" class="gallery-slide">
+                        <img src="assets/img/Dentale_6.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                        <img src="assets/img/Dentale_7.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                        <img src="assets/img/Dentale_8.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                        <img src="assets/img/Dentale_9.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                        <img src="assets/img/Dentale_10.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                        <img src="assets/img/Dentale_11.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                        <img src="assets/img/Dentale_12.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                        <img src="assets/img/Dentale_123.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
                     </div>
                     <button class="project-nav prev" aria-label="Image précédente">‹</button>
                     <button class="project-nav next" aria-label="Image suivante">›</button>
                     <span class="slide-counter">1/13</span>
                 </div>
-                <!-- Projet ajouter MitFarhten -->
-                 <div class="project-card" data-category="data" data-project-id="1">
+                <div class="project-info">
+                    <h3>Analyse de Données Dentaires (Power BI & Python)</h3>
+                    <p>Solution complète d'analyse de données pour cabinet dentaire avec visualisations interactives et prédictions.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Data Visualization</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn view-details">Voir les détails</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projet 2 - MitFarhten (Application Web) -->
+            <div class="project-card" data-category="web data">
                 <div class="project-gallery">
                     <div class="gallery-container">
-                        <img src="assets/img/Mit1.PNG" alt="Dashboard Power BI et Python" class="gallery-slide active">
-                        <img src="assets/img/Mit2.PNG" alt="Dashboard Power BI - Python" class="gallery-slide active">
-                        <img src="assets/img/Mit3.PNG" alt="Dashboard Power BI " class="gallery-slide active">
-                        <img src="assets/img/Mit4.PNG" alt="Dashboard Power BI " class="gallery-slide active">
-                        
-                       
-
+                        <img src="assets/img/Mit1.PNG" alt="Site de covoiturage - Page d'accueil" class="gallery-slide active">
+                        <img src="assets/img/Mit2.PNG" alt="Site de covoiturage - Recherche" class="gallery-slide">
+                        <img src="assets/img/Mit3.PNG" alt="Site de covoiturage - Résultats" class="gallery-slide">
+                        <img src="assets/img/Mit4.PNG" alt="Site de covoiturage - Profil" class="gallery-slide">
                     </div>
                     <button class="project-nav prev" aria-label="Image précédente">‹</button>
                     <button class="project-nav next" aria-label="Image suivante">›</button>
                     <span class="slide-counter">1/4</span>
                 </div>
                 <div class="project-info">
-                    <h3>Site de Covoiturage(SQL & Python)</h3>
-                    <p>Site web de demnade de covoiturage optimisé avec Python Streamlit</p>
+                    <h3>Plateforme de Covoiturage (SQL & Python Streamlit)</h3>
+                    <p>Site web de mise en relation pour covoiturage avec système de réservation et gestion des trajets.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Web App</span>
+                    </div>
                     <div class="project-links">
-                        <a href="#" class="btn view-details">Détails</a>
+                        <a href="#" class="btn view-details">Voir les détails</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Projet 2 -->
-   <div class="project-card" data-category="logistics" data-project-id="2">
+            <!-- Projet 3 - Total (Business Intelligence) -->
+            <div class="project-card" data-category="bi">
                 <div class="project-gallery">
                     <div class="gallery-container">
-                        <img src="assets/img/Total_Bi_1.JPG" alt="Projet Total - Interface" class="gallery-slide active">
-                        <img src="assets/img/Total_Bi_2.JPG" alt="Projet Total - Interface" class="gallery-slide active">
-                        <img src="assets/img/Total_Bi_3.JPG" alt="Projet Total - Interface" class="gallery-slide active">
-                        <img src="assets/img/Total_Bi_4.JPG" alt="Projet Total - Interface" class="gallery-slide active">
-                     
-                        <img src="assets/img/Total_Bi_Mobile_6.JPG" alt="Projet Total - Interface" class="gallery-slide active">
-                      
-
-
-                        
+                        <img src="assets/img/Total_Bi_1.JPG" alt="Dashboard ventes Total" class="gallery-slide active">
+                        <img src="assets/img/Total_Bi_2.JPG" alt="Analyse régionale" class="gallery-slide">
+                        <img src="assets/img/Total_Bi_3.JPG" alt="Tableau de bord produits" class="gallery-slide">
+                        <img src="assets/img/Total_Bi_4.JPG" alt="Rapports détaillés" class="gallery-slide">
+                        <img src="assets/img/Total_Bi_Mobile_6.JPG" alt="Version mobile" class="gallery-slide">
                     </div>
                     <button class="project-nav prev" aria-label="Image précédente">‹</button>
                     <button class="project-nav next" aria-label="Image suivante">›</button>
                     <span class="slide-counter">1/5</span>
                 </div>
                 <div class="project-info">
-                    <h3>Dashboard de vente & Recolt (Sql & Power BI)</h3>
-                    <p>Dashbords de ventes, ce projet est une migration de Excel Access vers le Power Bi et SQL.</p>
+                    <h3>Dashboard de Ventes & Récolte (SQL & Power BI)</h3>
+                    <p>Migration d'Excel/Access vers une solution BI complète avec reporting automatisé et analyses avancées.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">SQL Server</span>
+                        <span class="tech-tag">Data Migration</span>
+                        <span class="tech-tag">ETL</span>
+                    </div>
                     <div class="project-links">
-                        <a href="#" class="btn view-details">Détails</a>
+                        <a href="#" class="btn view-details">Voir les détails</a>
                     </div>
                 </div>
             </div>
-   
-            <!-- Projet 3 -->
-            <div class="project-card" data-category="automation" data-project-id="3">
+
+            <!-- Projet 4 - AccorHotels (Automatisation) -->
+            <div class="project-card" data-category="automation">
                 <div class="project-gallery">
                     <div class="gallery-container">
-                        <img src="assets/img/AccorHotels1.PNG" alt="Bot RPA" class="gallery-slide active">
-                        <img src="assets/img/AccorHotels2.PNG" alt="Bot RPA" class="gallery-slide active">
-                        <img src="assets/img/AccorHotels3.PNG" alt="Bot RPA" class="gallery-slide active">
-                        <img src="assets/img/AccorHotels4.PNG" alt="Bot RPA" class="gallery-slide active">
-                        <img src="assets/img/AccorHotels5.PNG" alt="Bot RPA" class="gallery-slide active">
-                        <img src="assets/img/AccorHotels6.PNG" alt="Bot RPA" class="gallery-slide active">
-                        <img src="assets/img/AccorHotels7.PNG" alt="Bot RPA" class="gallery-slide active">
+                        <img src="assets/img/AccorHotels1.PNG" alt="Interface gestion RH" class="gallery-slide active">
+                        <img src="assets/img/AccorHotels2.PNG" alt="Processus automatisation" class="gallery-slide">
+                        <img src="assets/img/AccorHotels3.PNG" alt="Tableau de bord congés" class="gallery-slide">
+                        <img src="assets/img/AccorHotels4.PNG" alt="Workflow approbation" class="gallery-slide">
+                        <img src="assets/img/AccorHotels5.PNG" alt="Reporting management" class="gallery-slide">
+                        <img src="assets/img/AccorHotels6.PNG" alt="Analytics RH" class="gallery-slide">
+                        <img src="assets/img/AccorHotels7.PNG" alt="Notifications automatiques" class="gallery-slide">
                     </div>
                     <button class="project-nav prev" aria-label="Image précédente">‹</button>
                     <button class="project-nav next" aria-label="Image suivante">›</button>
                     <span class="slide-counter">1/7</span>
                 </div>
                 <div class="project-info">
-                    <h3>Management Rh (MySql & Python</h3>
-                    <p>Automatisation de la récupération des demandes de congés, de la planification et du suivi managérial avec Python.</p>
+                    <h3>Management RH Automatisé (MySQL & Python)</h3>
+                    <p>Automatisation de la gestion des congés, planification et suivi managérial avec processus d'approbation.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Automatisation</span>
+                        <span class="tech-tag">RPA</span>
+                    </div>
                     <div class="project-links">
-                        <a href="#" class="btn view-details">Détails</a>
+                        <a href="#" class="btn view-details">Voir les détails</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Projet 4 -->
-            <div class="project-card" data-category="telecom" data-project-id="4">
+            <!-- Projet 5 - Bouygues Telecom (Automatisation) -->
+            <div class="project-card" data-category="automation data">
                 <div class="project-gallery">
                     <div class="gallery-container">
-                        <img src="assets/img/Planning_VBA_Login_Byg.PNG" alt="Projet Bouygues Telecom - Dashboard" class="gallery-slide active">  
-                        <img src="assets/img/Byg_5.jpg" alt="Projet Bouygues Telecom - Dashboard" class="gallery-slide active">
-                        <img src="assets/img/Byg_4.jpg" alt="Projet Bouygues Telecom - Dashboard" class="gallery-slide active">
-                        <img src="assets/img/Byg_2.jpg" alt="Projet Bouygues Telecom - Architecture" class="gallery-slide">
-                        <img src="assets/img/Byg_3.jpg" alt="Projet Bouygues Telecom - Analyse" class="gallery-slide">
-                        <img src="assets/img/Byg_1.jpg" alt="Projet Bouygues Telecom - Résultats" class="gallery-slide">
+                        <img src="assets/img/Planning_VBA_Login_Byg.PNG" alt="Interface login" class="gallery-slide active">  
+                        <img src="assets/img/Byg_5.jpg" alt="Dashboard analyse" class="gallery-slide">
+                        <img src="assets/img/Byg_4.jpg" alt="Rapports performances" class="gallery-slide">
+                        <img src="assets/img/Byg_2.jpg" alt="Architecture solution" class="gallery-slide">
+                        <img src="assets/img/Byg_3.jpg" alt="Métriques qualité" class="gallery-slide">
+                        <img src="assets/img/Byg_1.jpg" alt="Résultats optimisation" class="gallery-slide">
                     </div>
                     <button class="project-nav prev" aria-label="Image précédente">‹</button>
                     <button class="project-nav next" aria-label="Image suivante">›</button>
                     <span class="slide-counter">1/6</span>
                 </div>
-               <div class="project-info">
-                    <h3>Optimisation UX/UI via VBScript et Python</h3>
-                    <p>Conception d'un processus automatisé pour analyser les écoutes et évaluer les performances, avec pour objectif l'amélioration de la qualité de service, le suivi de l'assiduité et l'optimisation de la rentabilité.</p>
+                <div class="project-info">
+                    <h3>Optimisation UX/UI (VBScript & Python)</h3>
+                    <p>Processus automatisé d'analyse des écoutes pour amélioration qualité de service et optimisation rentabilité.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">VBScript</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Analyse Performance</span>
+                        <span class="tech-tag">Optimisation</span>
+                    </div>
                     <div class="project-links">
-                        <a href="#" class="btn view-details">Détails</a>
+                        <a href="#" class="btn view-details">Voir les détails</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Projet 5 -->
-            <div class="project-card" data-category="logistics" data-project-id="5">
+            <!-- Projet 6 - Glovo (Business Intelligence) -->
+            <div class="project-card" data-category="bi web">
                 <div class="project-gallery">
                     <div class="gallery-container">
-                        <img src="assets/img/Login_Glovo.PNG" alt="Projet Glovo - Interface" class="gallery-slide active">
-                        <img src="assets/img/Dash_Sales_Glovo1.PNG" alt="Projet Glovo - Interface" class="gallery-slide active">     
-                        <img src="assets/img/Glovo1.PNG" alt="Projet Glovo - Livraison" class="gallery-slide">
-                        <img src="assets/img/Glovo2.PNG" alt="Projet Glovo - Livraison" class="gallery-slide">
-                        <img src="assets/img/Glovo3.PNG" alt="Projet Glovo - Statistiques" class="gallery-slide">
+                        <img src="assets/img/Login_Glovo.PNG" alt="Login application" class="gallery-slide active">
+                        <img src="assets/img/Dash_Sales_Glovo1.PNG" alt="Dashboard ventes" class="gallery-slide">     
+                        <img src="assets/img/Glovo1.PNG" alt="Suivi livraisons" class="gallery-slide">
+                        <img src="assets/img/Glovo2.PNG" alt="Cartographie livraisons" class="gallery-slide">
+                        <img src="assets/img/Glovo3.PNG" alt="Statistiques performance" class="gallery-slide">
                     </div>
                     <button class="project-nav prev" aria-label="Image précédente">‹</button>
                     <button class="project-nav next" aria-label="Image suivante">›</button>
                     <span class="slide-counter">1/5</span>
                 </div>
                 <div class="project-info">
-                    <h3>Application Suivie Livreurs (Sql & RShinny)</h3>
-                    <p>Optimisation du suivi des livraisons et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.</p>
+                    <h3>Application Suivi Livreurs (SQL & RShiny)</h3>
+                    <p>Optimisation du suivi des livraisons avec indicateurs de performance financière et gestion des ressources.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">RShiny</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">BI</span>
+                        <span class="tech-tag">Logistique</span>
+                    </div>
                     <div class="project-links">
-                        <a href="#" class="btn view-details">Détails</a>
+                        <a href="#" class="btn view-details">Voir les détails</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Projet 6 - Maintenant intégré dans la grille -->
-           <div class="project-card" data-category="VBScript" data-project-id="6">
+            <!-- Projet 7 - Planning (Automatisation) -->
+            <div class="project-card" data-category="automation">
                 <div class="project-gallery">
                     <div class="gallery-container">
-                        <img src="assets/img/Planning_VBA_Login.PNG" alt="Code Planning" class="gallery-slide">
-                        <img src="assets/img/Planning_VBA4.PNG" alt="Code Planning" class="gallery-slide">
-                        <img src="assets/img/Planning_VBA.PNG" alt="Planing" class="gallery-slide active">
-                        <img src="assets/img/Planning_VBA1.PNG" alt="Vision Agent" class="gallery-slide">
-                        <img src="assets/img/Planning_VBA2.PNG" alt="Vision Manager" class="gallery-slide">
-                        <img src="assets/img/Planning_VBA3.PNG" alt="Vision Manager" class="gallery-slide">
+                        <img src="assets/img/Planning_VBA_Login.PNG" alt="Interface planning" class="gallery-slide active">
+                        <img src="assets/img/Planning_VBA4.PNG" alt="Code automation" class="gallery-slide">
+                        <img src="assets/img/Planning_VBA.PNG" alt="Visualisation planning" class="gallery-slide">
+                        <img src="assets/img/Planning_VBA1.PNG" alt="Vue agent" class="gallery-slide">
+                        <img src="assets/img/Planning_VBA2.PNG" alt="Vue manager" class="gallery-slide">
+                        <img src="assets/img/Planning_VBA3.PNG" alt="Analytics planning" class="gallery-slide">
                     </div>
                     <button class="project-nav prev" aria-label="Image précédente">‹</button>
                     <button class="project-nav next" aria-label="Image suivante">›</button>
                     <span class="slide-counter">1/6</span>
                 </div>
                 <div class="project-info">
-                    <h3>Scheduler Plannings (VBScript & Python)</h3>
-                    <p>Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et Python.</p>
+                    <h3>Scheduler de Plannings (VBScript & Python)</h3>
+                    <p>Automatisation de la planification des ressources avec génération de plannings optimisés et rapports.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">VBScript</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Automatisation</span>
+                        <span class="tech-tag">Optimisation</span>
+                    </div>
                     <div class="project-links">
-                        <a href="#" class="btn view-details">Détails</a>
+                        <a href="#" class="btn view-details">Voir les détails</a>
                     </div>
                 </div>
             </div>
-             </div>
+        </div>
 
-<div id="project-modal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <div id="modal-content"></div>
+        <div id="project-modal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <div id="modal-content"></div>
+            </div>
         </div>
     </div>
 </section>
@@ -557,6 +609,7 @@
 <script src="assets/js/main.js"></script>
 </body>
 </html>
+
 
 
 
