@@ -1,17 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // CORRECTION: Supprimer tout élément de masquage qui pourrait couvrir la page
-    const problematicElements = document.querySelectorAll('*');
-    problematicElements.forEach(el => {
-        const style = window.getComputedStyle(el);
-        if (style.position === 'fixed' && 
-            el.offsetWidth === window.innerWidth && 
-            el.offsetHeight === window.innerHeight &&
-            el.id !== 'project-modal' && 
-            el.id !== 'image-popup') {
-            el.style.display = 'none';
-            console.log('Élément masquant supprimé:', el);
-        }
-    });
+    // CORRECTION: Ensure any preloader or full-screen overlay is hidden
+    const preloader = document.getElementById('preloader-overlay'); // Adjust this ID to match your HTML
+    if (preloader) {
+        preloader.style.display = 'none';
+    }
 
     // Initialisation des modales - cachées par défaut
     const modal = document.getElementById('project-modal');
@@ -436,64 +428,43 @@ document.addEventListener('DOMContentLoaded', function () {
     animateHeroTitleTyping();
     animateSubtitleTyping();
 
-
-
-
-
-
-
-
-
-
-
-function getProjectData(projectId) {
+    function getProjectData(projectId) {
         const projects = {
-           
-           
-  "1": {
-    "title": "Dashboard Coaching & Ventes",
-    "description": "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
-    "fullDetails": "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Python avec des bibliothèques telles que NumPy, Pandas, Plotly, et Pandas pour connecter plusieurs sources de données parfois avec des Macros en VbScript pour les sources de messageries et effectuer des analyses complexes. Ensuite, j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les technologies python-dotenv, cryptography, openpyxl, et geopy. Je vous laisse les identifiants pour le voir autant qu'Hypervisuer,( Nom d'Utilisateur: 'YDaoui' ,avec le Mot de Passe : 'H800000' ).<br/><a href=\"https://dentalpro-2025.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder au Dashboard en ligne</a>",
-    "technologies": ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)", "python-dotenv", "cryptography", "openpyxl", "geopy"],
-    "link": "https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
-    "images": [
-      { "src": "assets/img/Dentale_1.PNG", "alt": "Dashboard principal" },
-      { "src": "assets/img/Dentale_2.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_3.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_4.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_5.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_6.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_7.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_8.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_9.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_10.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_11.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_12.PNG", "alt": "Dashboard Python" },
-      { "src": "assets/img/Dentale_123.PNG", "alt": "Dashboard Python" }
-    ]
-  },
-"2": {
+            "1": {
+                "title": "Dashboard Coaching & Ventes",
+                "description": "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
+                "fullDetails": "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Python avec des bibliothèques telles que NumPy, Pandas, Plotly, et Pandas pour connecter plusieurs sources de données parfois avec des Macros en VbScript pour les sources de messageries et effectuer des analyses complexes. Ensuite, j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les technologies python-dotenv, cryptography, openpyxl, et geopy. Je vous laisse les identifiants pour le voir autant qu'Hypervisuer,( Nom d'Utilisateur: 'YDaoui' ,avec le Mot de Passe : 'H800000' ).<br/><a href=\"https://dentalpro-2025.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder au Dashboard en ligne</a>",
+                "technologies": ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)", "python-dotenv", "cryptography", "openpyxl", "geopy"],
+                "link": "https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
+                "images": [
+                    { "src": "assets/img/Dentale_1.PNG", "alt": "Dashboard principal" },
+                    { "src": "assets/img/Dentale_2.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_3.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_4.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_5.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_6.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_7.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_8.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_9.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_10.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_11.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_12.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_123.PNG", "alt": "Dashboard Python" }
+                ]
+            },
+            "2": {
                 "title": "Plateforme de Covoiturage",
                 "description": "Site web de covoiturage avec gestion des véhicules, trajets et réservations",
                 "fullDetails": "Développement d'une plateforme complète de covoiturage permettant aux utilisateurs de proposer et de réserver des trajets. Le système inclut la gestion des profils utilisateurs, l'enregistrement des véhicules, la création de trajets et un système de réservation sécurisé. Développé avec Python et connecté à une base de données SQL Azure pour une scalabilité optimale. Les utilisateurs peuvent soit proposer un trajet en tant que conducteur, soit rechercher et réserver un trajet en tant que passager dans le cadre d'un covoiturage écologique et économique.<br/><a href=\"https://covoiturage-platform.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder à la plateforme de covoiturage</a>",
                 "technologies": ["Python", "Streamlit", "SQL Azure", "Pandas", "GeoPandas", "python-dotenv", "cryptography", "authentification"],
                 "link": "https://covoiturage-platform.streamlit.app/",
                 "images": [
-
-                      <img src="assets/img/Mit1.PNG" alt="Site de covoiturage - Page d'accueil" class="gallery-slide active">
-                <img src="assets/img/Mit2.PNG" alt="Site de covoiturage - Recherche" class="gallery-slide">
-                <img src="assets/img/Mit3.PNG" alt="Site de covoiturage - Résultats" class="gallery-slide">
-                <img src="assets/img/Mit4.PNG" alt="Site de covoiturage - Profil" class="gallery-slide">
-
-                    
                     { "src": "assets/img/Mit1.PNG", "alt": "Page d'accueil - Recherche de trajets" },
                     { "src": "assets/img/Mit2.PNG", "alt": "Inscription et authentification" },
                     { "src": "assets/img/Mit3.PNG", "alt": "Gestion du profil véhicule" },
                     { "src": "assets/img/Mit4.PNG", "alt": "Création d'un nouveau trajet" }
-                    
                 ]
             },
-
             "3": {
                 title: "Dashbord Vente & Recolt",
                 description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
@@ -537,19 +508,18 @@ function getProjectData(projectId) {
                 ]
             },
             "6": {
-                    title: "Dashboard Vente & Suivie Performances",
-                    description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
-                    fullDetails: "Développement d'une application d'analyse décisionnelle sous R Shiny pour Total, connectée à une base SQL Server. La solution permet le suivi temps réel des opérations de vente et de récolte, l'optimisation des circuits logistiques, et génère des rapports automatisés pour les indicateurs clés. J'ai conçu les modules d'analyse financière et RH, implémenté les requêtes SQL optimisées et développé les visualisations interactives.",
-                    technologies: ["R Shiny", "SQL Server", "Power Query", "Analyse de données", "Logistique", "DAX", "Merise"],
-                    images: [
+                title: "Dashboard Vente & Suivie Performances",
+                description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
+                fullDetails: "Développement d'une application d'analyse décisionnelle sous R Shiny pour Total, connectée à une base SQL Server. La solution permet le suivi temps réel des opérations de vente et de récolte, l'optimisation des circuits logistiques, et génère des rapports automatisés pour les indicateurs clés. J'ai conçu les modules d'analyse financière et RH, implémenté les requêtes SQL optimisées et développé les visualisations interactives.",
+                technologies: ["R Shiny", "SQL Server", "Power Query", "Analyse de données", "Logistique", "DAX", "Merise"],
+                images: [
                     { src: "assets/img/Login_Glovo.PNG", alt: "Projet Glovo - Login" },
                     { src: "assets/img/Dash_Sales_Glovo1.PNG", alt: "Projet Glovo - Tableau de bord des ventes" },
                     { src: "assets/img/Glovo1.PNG", alt: "Projet Glovo - Interface principale" },
                     { src: "assets/img/Glovo2.PNG", alt: "Projet Glovo - Suivi des livraisons" },
                     { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
-                       
-                    ]
-                },
+                ]
+            },
             "7": {
                 title: "Scheduler VBScript & Python",
                 description: "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
@@ -568,7 +538,7 @@ function getProjectData(projectId) {
         return projects[projectId] || null;
     }
 });
-   
+    
 
 // Gestion du formulaire de contact
 function initContactForm() {
