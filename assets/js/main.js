@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 "description": "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
                 "fullDetails": "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Python avec des bibliothèques telles que NumPy, Pandas, Plotly, et Pandas pour connecter plusieurs sources de données parfois avec des Macros en VbScript pour les sources de messageries et effectuer des analyses complexes. Ensuite, j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les technologies python-dotenv, cryptography, openpyxl, et geopy. Je vous laisse les identifiants pour le voir autant qu'Hypervisuer,( Nom d'Utilisateur: 'YDaoui' ,avec le Mot de Passe : 'H800000' ).<br/><a href=\"https://dentalpro-2025.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder au Dashboard en ligne</a>",
                 "technologies": ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)", "python-dotenv", "cryptography", "openpyxl", "geopy"],
-                "link": "https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
+                "link": "https://dentalpro-2025.streamlit.app/",
                 "images": [
                     { "src": "assets/img/Dentale_1.PNG", "alt": "Dashboard principal" },
                     { "src": "assets/img/Dentale_2.PNG", "alt": "Dashboard Python" },
