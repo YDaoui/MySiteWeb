@@ -191,82 +191,89 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Project details click handler
-        // Project details click handler - CORRIGÉ
-document.querySelectorAll('.view-details').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const projectCard = this.closest('.project-card');
-        if (!projectCard) {
-            console.error('Carte projet non trouvée');
-            return;
-        }
+        document.querySelectorAll('.view-details').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const projectCard = this.closest('.project-card');
+                if (!projectCard) {
+                    console.error('Carte projet non trouvée');
+                    return;
+                }
 
-        const projectId = projectCard.dataset.projectId;
-        console.log('Project ID:', projectId);
-        
-        // Vérifier si les données existent
-        if (!projectId) {
-            console.error('Aucun projectId trouvé sur la carte');
-            return;
-        }
-        
-        const projectData = getProjectData(projectId);
-        console.log('Project Data:', projectData);
+                const projectId = projectCard.dataset.projectId;
+                console.log('Project ID:', projectId);
+                
+                // Vérifier si les données existent
+                if (!projectId) {
+                    console.error('Aucun projectId trouvé sur la carte');
+                    return;
+                }
+                
+                const projectData = getProjectData(projectId);
+                console.log('Project Data:', projectData);
 
-        if (projectData && modalContent) {
-            modalContent.innerHTML = `
-                <h3>${projectData.title}</h3>
-                <div class="modal-gallery">
-                    ${projectData.images.map((img, index) =>
-                        `<img src="${img.src}" alt="${img.alt}"
-                                class="modal-gallery-image"
-                                data-index="${index}">`
-                    ).join('')}
-                </div>
-                <div class="modal-description">
-                    <p>${projectData.description}</p>
-                </div>
-                <div class="modal-full-details">
-                    <h4>Détails du projet</h4>
-                    <p>${projectData.fullDetails || 'Plus de détails seront disponibles bientôt.'}</p>
-                    ${projectData.technologies ? `
-                    <div class="modal-technologies">
-                        <h4>Technologies utilisées</h4>
-                        <ul>
-                            ${projectData.technologies.map(tech => `<li>${tech}</li>`).join('')}
-                        </ul>
-                    </div>
-                    ` : ''}
-                </div>
-            `;
-            
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            console.log('Modal affiché');
-
-            // Ajouter les écouteurs pour les images
-            const modalImages = modalContent.querySelectorAll('.modal-gallery-image');
-            modalImages.forEach(img => {
-                img.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const popup = document.getElementById('image-popup');
-                    const popupImg = document.getElementById('popup-image');
+                if (projectData && modalContent) {
+                    modalContent.innerHTML = `
+                        <h3>${projectData.title}</h3>
+                        <div class="modal-gallery">
+                            ${projectData.images.map((img, index) =>
+                                `<img src="${img.src}" alt="${img.alt}"
+                                        class="modal-gallery-image"
+                                        data-index="${index}">`
+                            ).join('')}
+                        </div>
+                        <div class="modal-description">
+                            <p>${projectData.description}</p>
+                        </div>
+                        <div class="modal-full-details">
+                            <h4>Détails du projet</h4>
+                            <p>${projectData.fullDetails || 'Plus de détails seront disponibles bientôt.'}</p>
+                            ${projectData.technologies ? `
+                            <div class="modal-technologies">
+                                <h4>Technologies utilisées</h4>
+                                <ul>
+                                    ${projectData.technologies.map(tech => `<li>${tech}</li>`).join('')}
+                                </ul>
+                            </div>
+                            ` : ''}
+                            ${projectData.link ? `
+                            <div class="modal-link">
+                                <a href="${projectData.link}" target="_blank" rel="noopener noreferrer" class="btn">
+                                    Voir le projet en ligne
+                                </a>
+                            </div>
+                            ` : ''}
+                        </div>
+                    `;
                     
-                    if (popup && popupImg) {
-                        popupImg.src = this.src;
-                        popup.dataset.currentIndex = this.dataset.index;
-                        popup.dataset.projectId = projectId;
-                        popup.style.display = 'flex';
-                        document.body.style.overflow = 'hidden';
-                    }
-                });
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    console.log('Modal affiché');
+
+                    // Ajouter les écouteurs pour les images
+                    const modalImages = modalContent.querySelectorAll('.modal-gallery-image');
+                    modalImages.forEach(img => {
+                        img.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            const popup = document.getElementById('image-popup');
+                            const popupImg = document.getElementById('popup-image');
+                            
+                            if (popup && popupImg) {
+                                popupImg.src = this.src;
+                                popup.dataset.currentIndex = this.dataset.index;
+                                popup.dataset.projectId = projectId;
+                                popup.style.display = 'flex';
+                                document.body.style.overflow = 'hidden';
+                            }
+                        });
+                    });
+                } else {
+                    console.error('Données projet non trouvées ou modal non disponible');
+                }
             });
-        } else {
-            console.error('Données projet non trouvées ou modal non disponible');
-        }
-    });
-});
+        });
+    }
 
     // Image popup handling
     const popupImg = document.getElementById('popup-image');
@@ -432,7 +439,6 @@ document.querySelectorAll('.view-details').forEach(btn => {
     // Project data
     function getProjectData(projectId) {
         const projects = {
-            
             "1": {
                 "title": "Dashboard Coaching & Ventes",
                 "description": "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
