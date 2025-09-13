@@ -436,32 +436,18 @@ document.addEventListener('DOMContentLoaded', function () {
     animateHeroTitleTyping();
     animateSubtitleTyping();
 
-    // Project data
-    function getProjectData(projectId) {
-        const projects = {
-            "1": {
-                "title": "Dashboard Coaching & Ventes",
-                "description": "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
-                "fullDetails": "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Python avec des bibliothèques telles que NumPy, Pandas, Plotly, et Pandas pour connecter plusieurs sources de données parfois avec des Macros en VbScript pour les sources de messageries et effectuer des analyses complexes. Ensuite, j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les technologies python-dotenv, cryptography, openpyxl, et geopy. Je vous laisse les identifiants pour le voir autant qu'Hypervisuer,( Nom d'Utilisateur: 'YDaoui' ,avec le Mot de Passe : 'H800000' ).<br/><a href=\"https://dentalpro-2025.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder au Dashboard en ligne</a>",
-                "technologies": ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)", "python-dotenv", "cryptography", "openpyxl", "geopy"],
-                "link": "https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
-                "images": [
-                    { "src": "assets/img/Dentale_1.PNG", "alt": "Dashboard principal" },
-                    { "src": "assets/img/Dentale_2.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_3.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_4.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_5.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_6.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_7.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_8.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_9.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_10.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_11.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_12.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_123.PNG", "alt": "Dashboard Python" }
-                ]
-            },
-            "2": {
+
+
+
+
+
+
+
+
+
+
+
+"1": {
                 "title": "Plateforme de Covoiturage",
                 "description": "Site web de covoiturage avec gestion des véhicules, trajets et réservations",
                 "fullDetails": "Développement d'une plateforme complète de covoiturage permettant aux utilisateurs de proposer et de réserver des trajets. Le système inclut la gestion des profils utilisateurs, l'enregistrement des véhicules, la création de trajets et un système de réservation sécurisé. Développé avec Python et connecté à une base de données SQL Azure pour une scalabilité optimale. Les utilisateurs peuvent soit proposer un trajet en tant que conducteur, soit rechercher et réserver un trajet en tant que passager dans le cadre d'un covoiturage écologique et économique.<br/><a href=\"https://covoiturage-platform.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder à la plateforme de covoiturage</a>",
@@ -475,66 +461,105 @@ document.addEventListener('DOMContentLoaded', function () {
                     { "src": "assets/img/Covoiturage5.PNG", "alt": "Réservation et confirmation" }
                 ]
             },
+           
+  "2": {
+    "title": "Dashboard Coaching & Ventes",
+    "description": "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
+    "fullDetails": "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Python avec des bibliothèques telles que NumPy, Pandas, Plotly, et Pandas pour connecter plusieurs sources de données parfois avec des Macros en VbScript pour les sources de messageries et effectuer des analyses complexes. Ensuite, j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les technologies python-dotenv, cryptography, openpyxl, et geopy. Je vous laisse les identifiants pour le voir autant qu'Hypervisuer,( Nom d'Utilisateur: 'YDaoui' ,avec le Mot de Passe : 'H800000' ).<br/><a href=\"https://dentalpro-2025.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder au Dashboard en ligne</a>",
+    "technologies": ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)", "python-dotenv", "cryptography", "openpyxl", "geopy"],
+    "link": "https://dentalpro-uzvwutpfyfsoozqpjm8u76.streamlit.app/",
+    "images": [
+      { "src": "assets/img/Dentale_1.PNG", "alt": "Dashboard principal" },
+      { "src": "assets/img/Dentale_2.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_3.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_4.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_5.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_6.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_7.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_8.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_9.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_10.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_11.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_12.PNG", "alt": "Dashboard Python" },
+      { "src": "assets/img/Dentale_123.PNG", "alt": "Dashboard Python" }
+    ]
+  },
+
             "3": {
-                "title": "Management avec Python",
-                "description": "Automatisation de la récupération des demandes de congés, de la planification et du suivi managérial avec Python.",
-                "fullDetails": "Mise en place d'une solution complète en Python pour automatiser le cycle de gestion des congés et le suivi managérial. Le script récupère les demandes de congés, les intègre dans un planning, et génère des rapports pour les managers, améliorant ainsi l'efficacité administrative et le suivi des équipes.",
-                "technologies": ["Python", "Automatisation", "Gestion RH"],
-                "images": [
-                    { "src": "assets/img/AccorHotels1.PNG", "alt": "Interface de gestion des congés" },
-                    { "src": "assets/img/AccorHotels2.PNG", "alt": "Détail des demandes" },
-                    { "src": "assets/img/AccorHotels3.PNG", "alt": "Planning des équipes" },
-                    { "src": "assets/img/AccorHotels4.PNG", "alt": "Suivi des performances" },
-                    { "src": "assets/img/AccorHotels5.PNG", "alt": "Rapports managériaux" },
-                    { "src": "assets/img/AccorHotels6.PNG", "alt": "Tableau de bord" },
-                    { "src": "assets/img/AccorHotels7.PNG", "alt": "Vue d'ensemble" }
+                title: "Dashbord Vente & Recolt",
+                description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
+                fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
+                technologies: ["Merise", "Analyse de données", "SQL Server", "Power Query", "Power Bi", "DAX","Logistique"],
+                images: [
+                    { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_3.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_4.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_Mobile_6.JPG", alt: "Projet Glovo - Login" }
                 ]
             },
             "4": {
-                "title": "Optimisation des évaluations Bouygues Telecom",
-                "description": "Automatisation du processus de récupération des écoutes et évaluation des performances réseau pour améliorer la qualité de service et optimiser la rentabilité.",
-                "fullDetails": "Ce projet a visé à automatiser la collecte et l'analyse des données d'écoute et de performance réseau pour Bouygues Telecom. J'ai développé des scripts Python pour récupérer automatiquement les données, puis j'ai mis en place des outils d'analyse pour identifier les problèmes de qualité de service et proposer des améliorations. Le but était d'optimiser la rentabilité en améliorant l'efficacité opérationnelle.",
-                "technologies": ["Python", "Analyse de données", "Optimisation réseau", "Automatisation"],
-                "images": [
-                    { "src": "assets/img/Planning_VBA_Login_Byg.PNG", "alt": "Projet Bouygues Telecom - Interface de login" },
-                    { "src": "assets/img/Byg_5.jpg", "alt": "Projet Bouygues Telecom - Dashboard" },
-                    { "src": "assets/img/Byg_4.jpg", "alt": "Projet Bouygues Telecom - Dashboard" },
-                    { "src": "assets/img/Byg_2.jpg", "alt": "Projet Bouygues Telecom - Architecture" },
-                    { "src": "assets/img/Byg_3.jpg", "alt": "Projet Bouygues Telecom - Analyse" },
-                    { "src": "assets/img/Byg_1.jpg", "alt": "Projet Bouygues Telecom - Résultats" }
+                title: "Management avec Python",
+                description: "Automatisation de la récupération des demandes de congés, de la planification et du suivi managérial avec Python.",
+                fullDetails: "Mise en place d'une solution complète en Python pour automatiser le cycle de gestion des congés et le suivi managérial. Le script récupère les demandes de congés, les intègre dans un planning, et génère des rapports pour les managers, améliorant ainsi l'efficacité administrative et le suivi des équipes.",
+                technologies: ["Python", "Automatisation", "Gestion RH"],
+                images: [
+                    { src: "assets/img/AccorHotels1.PNG", alt: "Interface de gestion des congés" },
+                    { src: "assets/img/AccorHotels2.PNG", alt: "Détail des demandes" },
+                    { src: "assets/img/AccorHotels3.PNG", alt: "Planning des équipes" },
+                    { src: "assets/img/AccorHotels4.PNG", alt: "Suivi des performances" },
+                    { src: "assets/img/AccorHotels5.PNG", alt: "Rapports managériaux" },
+                    { src: "assets/img/AccorHotels6.PNG", alt: "Tableau de bord" },
+                    { src: "assets/img/AccorHotels7.PNG", alt: "Vue d'ensemble" }
                 ]
             },
             "5": {
-                "title": "Dashboard Vente & Suivie Performances",
-                "description": "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
-                "fullDetails": "Développement d'une application d'analyse décisionnelle sous R Shiny pour Total, connectée à une base SQL Server. La solution permet le suivi temps réel des opérations de vente et de récolte, l'optimisation des circuits logistiques, et génère des rapports automatisés pour les indicateurs clés. J'ai conçu les modules d'analyse financière et RH, implémenté les requêtes SQL optimisées et développé les visualisations interactives.",
-                "technologies": ["R Shiny", "SQL Server", "Power Query", "Analyse de données", "Logistique", "DAX", "Merise"],
-                "images": [
-                    { "src": "assets/img/Login_Glovo.PNG", "alt": "Projet Glovo - Login" },
-                    { "src": "assets/img/Dash_Sales_Glovo1.PNG", "alt": "Projet Glovo - Tableau de bord des ventes" },
-                    { "src": "assets/img/Glovo1.PNG", "alt": "Projet Glovo - Interface principale" },
-                    { "src": "assets/img/Glovo2.PNG", "alt": "Projet Glovo - Suivi des livraisons" },
-                    { "src": "assets/img/Glovo3.PNG", "alt": "Projet Glovo - Statistiques" }
+                title: "Optimisation des évaluations Bouygues Telecom",
+                description: "Automatisation du processus de récupération des écoutes et évaluation des performances réseau pour améliorer la qualité de service et optimiser la rentabilité.",
+                fullDetails: "Ce projet a visé à automatiser la collecte et l'analyse des données d'écoute et de performance réseau pour Bouygues Telecom. J'ai développé des scripts Python pour récupérer automatiquement les données, puis j'ai mis en place des outils d'analyse pour identifier les problèmes de qualité de service et proposer des améliorations. Le but était d'optimiser la rentabilité en améliorant l'efficacité opérationnelle.",
+                technologies: ["Python", "Analyse de données", "Optimisation réseau", "Automatisation"],
+                images: [
+                    { src: "assets/img/Planning_VBA_Login_Byg.PNG", alt: "Projet Bouygues Telecom - Interface de login" },
+                    { src: "assets/img/Byg_5.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
+                    { src: "assets/img/Byg_4.jpg", alt: "Projet Bouygues Telecom - Dashboard" },
+                    { src: "assets/img/Byg_2.jpg", alt: "Projet Bouygues Telecom - Architecture" },
+                    { src: "assets/img/Byg_3.jpg", alt: "Projet Bouygues Telecom - Analyse" },
+                    { src: "assets/img/Byg_1.jpg", alt: "Projet Bouygues Telecom - Résultats" }
                 ]
             },
             "6": {
-                "title": "Scheduler VBScript & Python",
-                "description": "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
-                "fullDetails": "Développement d'un système d'automatisation pour la planification quotidienne des ressources. J'ai utilisé VBScript pour les interactions avec les applications existantes et Python pour des traitements de données plus complexes et la génération de rapports. Ce projet a permis de réduire considérablement le temps passé sur les tâches répétitives de planification et d'assurer une meilleure allocation des ressources.",
-                "technologies": ["VBScript", "Python", "Automatisation"],
-                "images": [
-                    { "src": "assets/img/Planning_VBA_Login.PNG", "alt": "Login Planing" },
-                    { "src": "assets/img/Planning_VBA4.PNG", "alt": "Interface Planing" },
-                    { "src": "assets/img/Planning_VBA.PNG", "alt": "Planing" },
-                    { "src": "assets/img/Planning_VBA1.PNG", "alt": "Vision Agent" },
-                    { "src": "assets/img/Planning_VBA2.PNG", "alt": "Vision Manager" },
-                    { "src": "assets/img/Planning_VBA3.PNG", "alt": "Vision Manager" }
+                    title: "Dashboard Vente & Suivie Performances",
+                    description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
+                    fullDetails: "Développement d'une application d'analyse décisionnelle sous R Shiny pour Total, connectée à une base SQL Server. La solution permet le suivi temps réel des opérations de vente et de récolte, l'optimisation des circuits logistiques, et génère des rapports automatisés pour les indicateurs clés. J'ai conçu les modules d'analyse financière et RH, implémenté les requêtes SQL optimisées et développé les visualisations interactives.",
+                    technologies: ["R Shiny", "SQL Server", "Power Query", "Analyse de données", "Logistique", "DAX", "Merise"],
+                    images: [
+                    { src: "assets/img/Login_Glovo.PNG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Dash_Sales_Glovo1.PNG", alt: "Projet Glovo - Tableau de bord des ventes" },
+                    { src: "assets/img/Glovo1.PNG", alt: "Projet Glovo - Interface principale" },
+                    { src: "assets/img/Glovo2.PNG", alt: "Projet Glovo - Suivi des livraisons" },
+                    { src: "assets/img/Glovo3.PNG", alt: "Projet Glovo - Statistiques" }
+                       
+                    ]
+                },
+            "7": {
+                title: "Scheduler VBScript & Python",
+                description: "Automatisation de tâche quotidienne de planification de ressources à l'aide du VB Script et (Python).",
+                fullDetails: "Développement d'un système d'automatisation pour la planification quotidienne des ressources. J'ai utilisé VBScript pour les interactions avec les applications existantes et Python pour des traitements de données plus complexes et la génération de rapports. Ce projet a permis de réduire considérablement le temps passé sur les tâches répétitives de planification et d'assurer une meilleure allocation des ressources.",
+                technologies: ["VBScript", "Python", "Automatisation"],
+                images: [
+                    { src: "assets/img/Planning_VBA_Login.PNG", alt: "Login Planing" },
+                    { src: "assets/img/Planning_VBA4.PNG", alt: "Interface Planing" },
+                    { src: "assets/img/Planning_VBA.PNG", alt: "Planing" },
+                    { src: "assets/img/Planning_VBA1.PNG", alt: "Vision Agent" },
+                    { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Manager" },
+                    { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
                 ]
             }
         };
         return projects[projectId] || null;
     }
 });
+   
 
 // Gestion du formulaire de contact
 function initContactForm() {
