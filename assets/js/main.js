@@ -455,9 +455,9 @@ document.addEventListener('DOMContentLoaded', function () {
             "2": {
                 "title": "Plateforme de Covoiturage",
                 "description": "Site web de covoiturage avec gestion des véhicules, trajets et réservations",
-                "fullDetails": "Développement d'une plateforme complète de covoiturage permettant aux utilisateurs de proposer et de réserver des trajets. Le système inclut la gestion des profils utilisateurs, l'enregistrement des véhicules, la création de trajets et un système de réservation sécurisé. Développé avec Python et connecté à une base de données SQL Azure pour une scalabilité optimale. Les utilisateurs peuvent soit proposer un trajet en tant que conducteur, soit rechercher et réserver un trajet en tant que passager dans le cadre d'un covoiturage écologique et économique.<br/><a href=\"https://covoiturage-platform.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder à la plateforme de covoiturage</a>",
+                "fullDetails": "Développement d'une plateforme complète de covoiturage permettant aux utilisateurs de proposer et de réserver des trajets. Le système inclut la gestion des profils utilisateurs, l'enregistrement des véhicules, la création de trajets et un système de réservation sécurisé. Développé avec Python et connecté à une base de données SQL Azure pour une scalabilité optimale. Les utilisateurs peuvent soit proposer un trajet en tant que conducteur, soit rechercher et réserver un trajet en tant que passager dans le cadre d'un covoiturage écologique et économique.<br/><a href=\"https://fahrten.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder à la plateforme de covoiturage</a>",
                 "technologies": ["Python", "Streamlit", "SQL Azure", "Pandas", "GeoPandas", "python-dotenv", "cryptography", "authentification"],
-                "link": "https://covoiturage-platform.streamlit.app/",
+                "link": "https://fahrten.streamlit.app/",
                 "images": [
                     { "src": "assets/img/Mit1.PNG", "alt": "Page d'accueil - Recherche de trajets" },
                     { "src": "assets/img/Mit2.PNG", "alt": "Inscription et authentification" },
