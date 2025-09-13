@@ -479,11 +479,18 @@ function getProjectData(projectId) {
                 "technologies": ["Python", "Streamlit", "SQL Azure", "Pandas", "GeoPandas", "python-dotenv", "cryptography", "authentification"],
                 "link": "https://covoiturage-platform.streamlit.app/",
                 "images": [
-                    { "src": "assets/img/Covoiturage1.PNG", "alt": "Page d'accueil - Recherche de trajets" },
-                    { "src": "assets/img/Covoiturage2.PNG", "alt": "Inscription et authentification" },
-                    { "src": "assets/img/Covoiturage3.PNG", "alt": "Gestion du profil véhicule" },
-                    { "src": "assets/img/Covoiturage4.PNG", "alt": "Création d'un nouveau trajet" },
-                    { "src": "assets/img/Covoiturage5.PNG", "alt": "Réservation et confirmation" }
+
+                      <img src="assets/img/Mit1.PNG" alt="Site de covoiturage - Page d'accueil" class="gallery-slide active">
+                <img src="assets/img/Mit2.PNG" alt="Site de covoiturage - Recherche" class="gallery-slide">
+                <img src="assets/img/Mit3.PNG" alt="Site de covoiturage - Résultats" class="gallery-slide">
+                <img src="assets/img/Mit4.PNG" alt="Site de covoiturage - Profil" class="gallery-slide">
+
+                    
+                    { "src": "assets/img/Mit1.PNG", "alt": "Page d'accueil - Recherche de trajets" },
+                    { "src": "assets/img/Mit2.PNG", "alt": "Inscription et authentification" },
+                    { "src": "assets/img/Mit3.PNG", "alt": "Gestion du profil véhicule" },
+                    { "src": "assets/img/Mit4.PNG", "alt": "Création d'un nouveau trajet" }
+                    
                 ]
             },
 
