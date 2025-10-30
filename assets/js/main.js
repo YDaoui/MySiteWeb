@@ -544,8 +544,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 images: [
                     { src: "assets/img/Kurban1.PNG", alt: "Dashboard Kurban - Vue d'ensemble" },
                     { src: "assets/img/Kurban2.PNG", alt: "Dashboard Kurban - Analyse détaillée" },
-                    { src: "assets/img/kurban3.PNG", alt: "Dashboard Kurban - Métriques" },
-                    { src: "assets/img/kurban4.PNG", alt: "Dashboard Kurban - Rapports" }
+                    { src: "assets/img/Kurban3.PNG", alt: "Dashboard Kurban - Métriques" },
+                    { src: "assets/img/Kurban4.PNG", alt: "Dashboard Kurban - Rapports" }
                 ]
             }
         };
