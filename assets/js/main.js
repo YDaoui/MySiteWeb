@@ -542,8 +542,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 fullDetails: "Développement d'une plateforme digitale pour faciliter les dons de moutons lors des fêtes de sacrifice (Aïd al-Adha). La solution permet de connecter les donateurs avec les organisations responsables de la distribution, avec un système de suivi transparent des dons et des rapports automatisés. La plateforme inclut la gestion des bénéficiaires, le suivi des distributions et un tableau de bord administratif complet.",
                 technologies: ["Power BI", "SQL", "Data Analysis", "Reporting", "Gestion de Dons"],
                 images: [
-                    { src: "assets/img/kurban1.PNG", alt: "Dashboard Kurban - Vue d'ensemble" },
-                    { src: "assets/img/kurban2.PNG", alt: "Dashboard Kurban - Analyse détaillée" },
+                    { src: "assets/img/Kurban1.PNG", alt: "Dashboard Kurban - Vue d'ensemble" },
+                    { src: "assets/img/Kurban2.PNG", alt: "Dashboard Kurban - Analyse détaillée" },
                     { src: "assets/img/kurban3.PNG", alt: "Dashboard Kurban - Métriques" },
                     { src: "assets/img/kurban4.PNG", alt: "Dashboard Kurban - Rapports" }
                 ]
