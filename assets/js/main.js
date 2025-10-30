@@ -429,57 +429,57 @@ document.addEventListener('DOMContentLoaded', function () {
     animateSubtitleTyping();
 
     function getProjectData(projectId) {
-        const projects = {
-            "1": {
-                "title": "Dashboard Coaching & Ventes",
-                "description": "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
-                "fullDetails": "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Python avec des bibliothèques telles que NumPy, Pandas, Plotly, et Pandas pour connecter plusieurs sources de données parfois avec des Macros en VbScript pour les sources de messageries et effectuer des analyses complexes. Ensuite, j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les technologies python-dotenv, cryptography, openpyxl, et geopy. Je vous laisse les identifiants pour le voir autant qu'Hypervisuer,( Nom d'Utilisateur: 'YDaoui' ,avec le Mot de Passe : 'H800000' ).<br/><a href=\"https://dentalpro-2025.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder au Dashboard en ligne</a>",
-                "technologies": ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)", "python-dotenv", "cryptography", "openpyxl", "geopy"],
-                "link": "https://dentalpro-2025.streamlit.app/",
-                "images": [
-                    { "src": "assets/img/Dentale_1.PNG", "alt": "Dashboard principal" },
-                    { "src": "assets/img/Dentale_2.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_3.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_4.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_5.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_6.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_7.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_8.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_9.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_10.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_11.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_12.PNG", "alt": "Dashboard Python" },
-                    { "src": "assets/img/Dentale_123.PNG", "alt": "Dashboard Python" }
-                ]
-            },
-            "2": {
-                "title": "Plateforme de Covoiturage",
-                "description": "Site web de covoiturage avec gestion des véhicules, trajets et réservations",
-                "fullDetails": "Développement d'une plateforme complète de covoiturage permettant aux utilisateurs de proposer et de réserver des trajets. Le système inclut la gestion des profils utilisateurs, l'enregistrement des véhicules, la création de trajets et un système de réservation sécurisé. Développé avec Python et connecté à une base de données SQL Azure pour une scalabilité optimale. Les utilisateurs peuvent soit proposer un trajet en tant que conducteur, soit rechercher et réserver un trajet en tant que passager dans le cadre d'un covoiturage écologique et économique.<br/><a href=\"https://fahrten.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder à la plateforme de covoiturage</a>",
-                "technologies": ["Python", "Streamlit", "SQL Azure", "Pandas", "GeoPandas", "python-dotenv", "cryptography", "authentification"],
-                "link": "https://fahrten.streamlit.app/",
-                "images": [
-                    { "src": "assets/img/Mit1.PNG", "alt": "Page d'accueil - Recherche de trajets" },
-                    { "src": "assets/img/Mit2.PNG", "alt": "Inscription et authentification" },
-                    { "src": "assets/img/Mit3.PNG", "alt": "Gestion du profil véhicule" },
-                    { "src": "assets/img/Mit4.PNG", "alt": "Création d'un nouveau trajet" }
-                ]
-            },
-            "3": {
-                title: "Dashbord Vente & Recolt",
-                description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
-                fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
-                technologies: ["Merise", "Analyse de données", "SQL Server", "Power Query", "Power Bi", "DAX","Logistique"],
-                link: "https://app.powerbi.com/groups/961b6090-5573-4ce6-94d9-2f653b5fd3e8/reports/f71b5d9f-de85-4a5a-8d4c-cc1188c8cf9e/37b596f475cfcf0bcf3f?experience=power-bi",
-                images: [
-                    { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
-                    { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
-                    { src: "assets/img/Total_Bi_3.JPG", alt: "Projet Glovo - Login" },
-                    { src: "assets/img/Total_Bi_4.JPG", alt: "Projet Glovo - Login" },
-                    { src: "assets/img/Total_Bi_Mobile_6.JPG", alt: "Projet Glovo - Login" }
-                ]
-            },
-            
+        const projects = {
+            "1": {
+                "title": "Dashboard Coaching & Ventes",
+                "description": "Gestion des coachings et tableau de bord de vente optimisé avec Python Streamlit",
+                "fullDetails": "Ce projet consistait à créer un tableau de bord complet pour analyser les performances de vente et gérer les coachings. J'ai utilisé Python avec des bibliothèques telles que NumPy, Pandas, Plotly, et Pandas pour connecter plusieurs sources de données parfois avec des Macros en VbScript pour les sources de messageries et effectuer des analyses complexes. Ensuite, j'ai développé une interface interactive avec Python Streamlit pour la gestion des coachings. Les technologies python-dotenv, cryptography, openpyxl, et geopy. Je vous laisse les identifiants pour le voir autant qu'Hypervisuer,( Nom d'Utilisateur: 'YDaoui' ,avec le Mot de Passe : 'H800000' ).<br/><a href=\"https://dentalpro-2025.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder au Dashboard en ligne</a>",
+                "technologies": ["Python", "Streamlit", "NumPy", "Pandas", "Plotly", "GeoPandas", "SQL (SQLite3)", "python-dotenv", "cryptography", "openpyxl", "geopy"],
+                "link": "https://dentalpro-2025.streamlit.app/",
+                "images": [
+                    { "src": "assets/img/Dentale_1.PNG", "alt": "Dashboard principal" },
+                    { "src": "assets/img/Dentale_2.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_3.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_4.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_5.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_6.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_7.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_8.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_9.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_10.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_11.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_12.PNG", "alt": "Dashboard Python" },
+                    { "src": "assets/img/Dentale_123.PNG", "alt": "Dashboard Python" }
+                ]
+            },
+            "2": {
+                "title": "Plateforme de Covoiturage",
+                "description": "Site web de covoiturage avec gestion des véhicules, trajets et réservations",
+                "fullDetails": "Développement d'une plateforme complète de covoiturage permettant aux utilisateurs de proposer et de réserver des trajets. Le système inclut la gestion des profils utilisateurs, l'enregistrement des véhicules, la création de trajets et un système de réservation sécurisé. Développé avec Python et connecté à une base de données SQL Azure pour une scalabilité optimale. Les utilisateurs peuvent soit proposer un trajet en tant que conducteur, soit rechercher et réserver un trajet en tant que passager dans le cadre d'un covoiturage écologique et économique.<br/><a href=\"https://fahrten.streamlit.app/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: #0066cc; text-decoration: underline;\">Accéder à la plateforme de covoiturage</a>",
+                "technologies": ["Python", "Streamlit", "SQL Azure", "Pandas", "GeoPandas", "python-dotenv", "cryptography", "authentification"],
+                "link": "https://fahrten.streamlit.app/",
+                "images": [
+                    { "src": "assets/img/Mit1.PNG", "alt": "Page d'accueil - Recherche de trajets" },
+                    { "src": "assets/img/Mit2.PNG", "alt": "Inscription et authentification" },
+                    { "src": "assets/img/Mit3.PNG", "alt": "Gestion du profil véhicule" },
+                    { "src": "assets/img/Mit4.PNG", "alt": "Création d'un nouveau trajet" }
+                ]
+            },
+            "3": {
+                title: "Dashbord Vente & Recolt",
+                description: "Optimisation du suivi des ventes et amélioration des indicateurs de rentabilité, d'administration financière et RH, en capitalisant sur les ressources existantes.",
+                fullDetails: "Création d'une application logistique pour Total, axée sur l'optimisation des livraisons et l'amélioration des indicateurs clés. L'application permet un suivi en temps réel des coursiers, l'optimisation des itinéraires, et l'analyse des performances pour maximiser la rentabilité et l'efficacité des ressources humaines et financières. J'ai travaillé sur l'intégration de différentes sources de données et la création d'interfaces utilisateur intuitives.",
+                technologies: ["Merise", "Analyse de données", "SQL Server", "Power Query", "Power Bi", "DAX","Logistique"],
+                link: "https://app.powerbi.com/groups/961b6090-5573-4ce6-94d9-2f653b5fd3e8/reports/f71b5d9f-de85-4a5a-8d4c-cc1188c8cf9e/37b596f475cfcf0bcf3f?experience=power-bi",
+                images: [
+                    { src: "assets/img/Total_Bi_1.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_2.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_3.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_4.JPG", alt: "Projet Glovo - Login" },
+                    { src: "assets/img/Total_Bi_Mobile_6.JPG", alt: "Projet Glovo - Login" }
+                ]
+            },
+            
             "4": {
                 title: "Management avec Python",
                 description: "Automatisation de la récupération des demandes de congés, de la planification et du suivi managérial avec Python.",
@@ -535,51 +535,60 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Planning_VBA2.PNG", alt: "Vision Manager" },
                     { src: "assets/img/Planning_VBA3.PNG", alt: "Vision Manager" }
                 ]
+            },
+            "8": {
+                title: "Plateforme de Gestion Kurban",
+                description: "Solution de gestion des dons et suivi des distributions pour les fêtes de sacrifice avec reporting automatisé.",
+                fullDetails: "Développement d'une plateforme digitale pour faciliter les dons de moutons lors des fêtes de sacrifice (Aïd al-Adha). La solution permet de connecter les donateurs avec les organisations responsables de la distribution, avec un système de suivi transparent des dons et des rapports automatisés. La plateforme inclut la gestion des bénéficiaires, le suivi des distributions et un tableau de bord administratif complet.",
+                technologies: ["Power BI", "SQL", "Data Analysis", "Reporting", "Gestion de Dons"],
+                images: [
+                    { src: "assets/img/kurban1.PNG", alt: "Dashboard Kurban - Vue d'ensemble" },
+                    { src: "assets/img/kurban2.PNG", alt: "Dashboard Kurban - Analyse détaillée" },
+                    { src: "assets/img/kurban3.PNG", alt: "Dashboard Kurban - Métriques" },
+                    { src: "assets/img/kurban4.PNG", alt: "Dashboard Kurban - Rapports" }
+                ]
             }
         };
         return projects[projectId] || null;
     }
-});
-    
 
-// Gestion du formulaire de contact
-function initContactForm() {
-    const form = document.getElementById('contactForm');
-    const successPopup = document.getElementById('successPopup');
-    const closePopupBtn = document.querySelector('.close-popup-btn');
+    // Gestion du formulaire de contact
+    function initContactForm() {
+        const form = document.getElementById('contactForm');
+        const successPopup = document.getElementById('successPopup');
+        const closePopupBtn = document.querySelector('.close-popup-btn');
 
-    if (!form) return;
+        if (!form) return;
 
-    // Gestion de la popup
-    if (successPopup && closePopupBtn) {
-        closePopupBtn.addEventListener('click', () => {
-            successPopup.classList.remove('show-popup');
-            history.replaceState({}, document.title, window.location.pathname);
-        });
+        // Gestion de la popup
+        if (successPopup && closePopupBtn) {
+            closePopupBtn.addEventListener('click', () => {
+                successPopup.classList.remove('show-popup');
+                history.replaceState({}, document.title, window.location.pathname);
+            });
+        }
+
+        // Vérifie si on doit afficher la popup après redirection
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            showSuccessPopup();
+        }
     }
 
-    // Vérifie si on doit afficher la popup après redirection
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('success') === 'true') {
-        showSuccessPopup();
+    function showSuccessPopup() {
+        const successPopup = document.getElementById('successPopup');
+        if (successPopup) {
+            successPopup.classList.add('show-popup');
+            
+            // Fermeture automatique après 5s
+            setTimeout(() => {
+                successPopup.classList.remove('show-popup');
+                history.replaceState({}, document.title, window.location.pathname);
+            }, 5000);
+        }
     }
-}
 
-function showSuccessPopup() {
-    const successPopup = document.getElementById('successPopup');
-    if (successPopup) {
-        successPopup.classList.add('show-popup');
-        
-        // Fermeture automatique après 5s
-        setTimeout(() => {
-            successPopup.classList.remove('show-popup');
-            history.replaceState({}, document.title, window.location.pathname);
-        }, 5000);
-    }
-}
-
-// Initialisation au chargement
-document.addEventListener('DOMContentLoaded', function() {
+    // Initialisation au chargement
     if (typeof gsap !== 'undefined') {
         gsap.set([".first", ".second", ".third"], { top: "-100%" });
     }
