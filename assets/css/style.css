@@ -1,6 +1,9 @@
 :root {
-    --primary: #3a86ff;
-    --primary-dark: #2667cc;
+
+
+    
+    --primary: #fcfdfd;
+    --primary-dark: #a3ca9f;
     --secondary: #8338ec;
     --dark: #1a1a2e;
     --darker: #16213e;
@@ -10,6 +13,9 @@
     --success: #06d6a0;
     --warning: #ffbe0b;
     --danger: #ef476f;
+
+    
+
 }
 
 
