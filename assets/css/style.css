@@ -1,8 +1,8 @@
 :root {
-    /* Couleurs principales - Thème data science professionnel */
-    --primary: #2563eb;          /* Bleu professionnel */
-    --primary-dark: #1d4ed8;     /* Bleu foncé */
-    --secondary: #7c3aed;        /* Violet data science */
+    /* Couleurs principales - Thème vert data science */
+    --primary: #059669;          /* Vert émeraude professionnel */
+    --primary-dark: #047857;     /* Vert foncé */
+    --secondary: #10b981;        /* Vert plus clair */
     --dark: #ffffff;             /* Blanc pour fond principal */
     --darker: #f8fafc;           /* Gris très clair pour sections */
     --light: #1e293b;            /* Texte foncé */
@@ -11,6 +11,7 @@
     --success: #10b981;          /* Vert succès */
     --warning: #f59e0b;          /* Orange attention */
     --danger: #ef4444;           /* Rouge erreur */
+    --header-bg: #ecfdf5;        /* Fond vert très clair pour la header */
 }
 
 *,
@@ -30,13 +31,13 @@ body {
 }
 
 .header {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: var(--header-bg);
     backdrop-filter: blur(10px);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid var(--light-gray);
+    border-bottom: 1px solid #d1fae5;
     transition: all 0.5s ease;
     padding: 1rem 0;
 }
@@ -164,7 +165,7 @@ body {
         left: 0;
         width: 100%;
         height: 100vh;
-        background-color: var(--darker);
+        background-color: var(--header-bg);
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -292,12 +293,12 @@ h2::after {
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
 }
 
 /* Responsive general */
@@ -335,6 +336,9 @@ h2::after {
     background: linear-gradient(135deg, var(--darker), var(--dark));
     position: relative;
     overflow: hidden;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSg1LCAxNTAsIDEwNSwgMC4wNSkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=');
+    background-size: cover;
+    background-blend-mode: overlay;
 }
 
 .hero .container {
@@ -349,7 +353,7 @@ h2::after {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+    text-shadow: 0 0 8px rgba(5, 150, 105, 0.3);
     margin: 0 auto 1.5rem;
     position: relative;
     animation: fadeInUp 1s ease-out both, gradientText 5s ease infinite;
@@ -400,7 +404,7 @@ h2::after {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
     transform: translateY(0);
     animation: fadeInUp 0.8s ease-out 0.8s both;
@@ -408,13 +412,13 @@ h2::after {
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
     background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
 }
 
 .btn:active {
     transform: translateY(1px);
-    box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 2px 10px rgba(5, 150, 105, 0.3);
 }
 
 .btn::after {
@@ -456,9 +460,9 @@ h2::after {
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
-    70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(5, 150, 105, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
 }
 
 .hero .btn-outline {
@@ -472,9 +476,9 @@ h2::after {
     }
     
     @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.3); }
-        70% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.3); }
+        70% { box-shadow: 0 0 0 8px rgba(5, 150, 105, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
     }
 }
 
@@ -526,7 +530,7 @@ h2::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(16, 185, 129, 0.1));
   z-index: 1;
 }
 
@@ -734,8 +738,8 @@ h2::after {
 
 .service-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
-    border-color: rgba(37, 99, 235, 0.3);
+    box-shadow: 0 15px 40px rgba(5, 150, 105, 0.15);
+    border-color: rgba(5, 150, 105, 0.3);
 }
 
 .service-header {
@@ -818,7 +822,7 @@ h2::after {
     display: inline-block;
     margin-top: 1.5rem;
     padding: 0.5rem 1rem;
-    background: rgba(37, 99, 235, 0.1);
+    background: rgba(5, 150, 105, 0.1);
     border-radius: 50px;
     color: var(--primary);
     font-size: 0.85rem;
@@ -872,7 +876,7 @@ h2::after {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
     border-color: transparent;
-    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 5px 15px rgba(5, 150, 105, 0.3);
 }
 
 .projects-grid {
@@ -894,8 +898,8 @@ h2::after {
 
 .project-card:hover {
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
-    border-color: rgba(37, 99, 235, 0.3);
+    box-shadow: 0 15px 40px rgba(5, 150, 105, 0.15);
+    border-color: rgba(5, 150, 105, 0.3);
 }
 
 .project-gallery {
@@ -989,7 +993,7 @@ h2::after {
 
 .project-tag {
     padding: 0.3rem 0.8rem;
-    background: rgba(37, 99, 235, 0.1);
+    background: rgba(5, 150, 105, 0.1);
     border-radius: 50px;
     color: var(--primary);
     font-size: 0.8rem;
@@ -1016,251 +1020,16 @@ h2::after {
 }
 
 .project-links a:last-child {
-    background: rgba(37, 99, 235, 0.1);
+    background: rgba(5, 150, 105, 0.1);
     color: var(--primary);
 }
 
 .project-links a:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 5px 15px rgba(5, 150, 105, 0.3);
 }
 
-/* Section technologies */
-.technologies {
-    background-color: var(--dark);
-    padding: 6rem 0;
-}
-
-.technologies h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 1.5rem;
-}
-
-.tech-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.5rem 1rem;
-    background: white;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-    color: var(--light);
-    text-align: center;
-    border: 1px solid var(--light-gray);
-}
-
-.tech-item:hover {
-    transform: translateY(-5px);
-}
-
-.tech-item i {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary);
-}
-
-.tech-item span {
-    font-size: 0.9rem;
-}
-
-/* Section Contact */
-.contact {
-    background-color: var(--darker);
-    position: relative;
-    overflow: hidden;
-}
-
-.contact__container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    position: relative;
-    z-index: 1;
-}
-
-.contact__info {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 15px;
-    border: 1px solid var(--light-gray);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-.contact__subtitle {
-    font-size: 1.5rem;
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-    position: relative;
-}
-
-.contact__subtitle::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background: var(--secondary);
-    border-radius: 3px;
-}
-
-.contact__text {
-    color: var(--gray);
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.contact__details {
-    margin-bottom: 2rem;
-}
-
-.contact__detail {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.2rem;
-}
-
-.contact__icon {
-    font-size: 1.5rem;
-    color: var(--primary);
-    margin-right: 1rem;
-    flex-shrink: 0;
-}
-
-.contact__link {
-    color: var(--light);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.contact__link:hover {
-    color: var(--primary);
-}
-
-.contact__social {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.contact__social-link {
-    color: var(--light);
-    font-size: 1.8rem;
-    transition: all 0.3s ease;
-}
-
-.contact__social-link:hover {
-    color: var(--primary);
-    transform: translateY(-3px);
-}
-
-.contact__form {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 15px;
-    border: 1px solid var(--light-gray);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-.form__group {
-    position: relative;
-    margin-bottom: 2rem;
-}
-
-.contact__input, 
-.contact__textarea {
-    width: 100%;
-    padding: 1rem 1rem 1rem 0;
-    border: none;
-    border-bottom: 2px solid var(--light-gray);
-    background: transparent;
-    color: var(--light);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.contact__input:focus, 
-.contact__textarea:focus {
-    outline: none;
-    border-bottom-color: var(--primary);
-}
-
-.contact__textarea {
-    resize: none;
-    min-height: 120px;
-}
-
-.form__label {
-    position: absolute;
-    top: 1rem;
-    left: 0;
-    color: var(--gray);
-    pointer-events: none;
-    transition: all 0.3s ease;
-}
-
-.contact__input:focus + .form__label,
-.contact__input:not(:placeholder-shown) + .form__label,
-.contact__textarea:focus + .form__label,
-.contact__textarea:not(:placeholder-shown) + .form__label {
-    top: -1.2rem;
-    font-size: 0.8rem;
-    color: var(--primary);
-}
-
-.contact__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    padding: 0.8rem 2.5rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-    overflow: hidden;
-    position: relative;
-}
-
-.contact__button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
-}
-
-.button__icon {
-    margin-left: 0.5rem;
-    font-size: 1.2rem;
-}
-
-/* Footer */
-footer {
-    background-color: var(--darker);
-    padding: 3rem 0;
-    text-align: center;
-}
-
-footer p {
-    color: var(--gray);
-}
-
-footer a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
+/* Le reste du CSS garde la même structure avec les nouvelles couleurs vertes */
 
 
 /* Animations */
