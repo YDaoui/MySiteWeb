@@ -547,10 +547,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     { src: "assets/img/Kurban3.PNG", alt: "Dashboard Kurban - Métriques" },
                     { src: "assets/img/Kurban4.PNG", alt: "Dashboard Kurban - Rapports" }
                 ]
-            }
-        };
-        return projects[projectId] || null;
-    }
+            },
+            "9": {
+            "title": "Consular Service Platform",
+            "description": "Solution automatisée d'envoi d'emails et SMS pour assurer le suivi des demandeurs de visa avec interface de gestion.",
+            "fullDetails": "Développement d'une plateforme complète de suivi des demandes de visa avec automatisation des communications. L'application permet d'envoyer automatiquement des emails et SMS aux demandeurs pour les informer du statut de leur dossier, réduire le temps de traitement et améliorer la satisfaction des usagers. La solution inclut une interface intuitive pour la gestion des demandes et un système de reporting en temps réel.",
+            "technologies": ["Python", "Streamlit", "API Email", "API SMS", "Automatisation"],
+            "images": [
+                { "src": "assets/img/Consular.PNG", "alt": "Interface suivi visa" },
+                { "src": "assets/img/Consular1.PNG", "alt": "Gestion des emails" },
+                { "src": "assets/img/Consular2.PNG", "alt": "Envoi SMS" }
+            ]
+        }
+    };
+    return projects[projectId] || null;
+}
+      
 
     // Gestion du formulaire de contact
     function initContactForm() {
