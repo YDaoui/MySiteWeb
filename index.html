@@ -13,153 +13,126 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body>
     <div class="image-popup" id="image-popup">
-    <span class="image-popup-close" id="popup-close">&times;</span>
-    <img src="" alt="Zoom Image" id="popup-image">
-</div>
-
-<header class="header">
-  <div class="container">
-    <a href="index.html" class="logo">Yassine Daoui<span>Data & Consulting</span></a>
-    
-    <button class="mobile-menu-toggle">
-      <span class="menu-outline"></span>
-      <span class="menu-outline"></span>
-      <span class="menu-outline"></span>
-    </button>
-               <!-- Menu principal (desktop) -->
-       <nav class="navbar">
-            <ul>
-                <li><a href="https://ydaoui.github.io" target="_blank">Portfolio</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projets</a></li>
-                <li><a href="#about">À propos</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <span class="image-popup-close" id="popup-close">&times;</span>
+        <img src="" alt="Zoom Image" id="popup-image">
     </div>
-</header>
+
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">Yassine Daoui<span>Data & Consulting</span></a>
+            
+            <button class="mobile-menu-toggle">
+                <span class="menu-outline"></span>
+                <span class="menu-outline"></span>
+                <span class="menu-outline"></span>
+            </button>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="https://ydaoui.github.io" target="_blank">Portfolio</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projets</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <section class="hero">
-    <div class="container">
-        <h1>Transformez vos données en solutions intelligentes</h1>
-        
-        <p id="typewriter-text">Spécialiste en analyse de données, développement et automatisation de processus</p> <!-- Laissez vide, sera rempli par JS -->
-        <a href="#projects" class="btn">Voir mes projets</a>
-    </div>
-</section>
+        <div class="container">
+            <h1>Transformez vos données en solutions intelligentes</h1>
+            <p id="typewriter-text">Spécialiste en analyse de données, développement et automatisation de processus</p>
+            <a href="#projects" class="btn">Voir mes projets</a>
+        </div>
+    </section>
 
     <section id="about" class="about-section">
-              <div class="container">
+        <div class="container">
             <div class="about-content">
-              <div class="about-img">
-        <img src="assets/img/Myphoto.jpg" alt="Photo de Yassine Daoui" loading="lazy">
-      </div>
+                <div class="about-img">
+                    <img src="assets/img/Myphoto.jpg" alt="Photo de Yassine Daoui" loading="lazy">
+                </div>
+                <div class="about-text">
+                    <h2>Bonjour, je suis Yassine</h2>
+                    <p>
+                        Passionné par la data et l'optimisation des processus, je conçois des solutions sur mesure pour automatiser et simplifier les flux de travail, avec une expertise en 
+                        <span style="color:#1D6F42; font-weight:600">Excel</span>, 
+                        <span style="color:#F2C811; font-weight:600">Power BI</span>, 
+                        <span style="color:var(--secondary); font-weight:600">SQL</span>, 
+                        <span style="color:var(--primary); font-weight:600">Python</span> et outils d'automatisation.
+                    </p>
+                    <p>
+                        Formé initialement en analyse et programmation, puis en gestion managériale informatisée, et titulaire d'un bachelor en science et technologie de l'informatique, j'allie compétences techniques et vision stratégique. 
+                        Avec <strong>plus de 15 ans d'expérience</strong> dans le traitement, l'analyse et la livraison de données, j'ai intervenu dans divers secteurs : 
+                        <strong>télécommunications</strong> (optimisation des flux réseaux), 
+                        <strong>assurance et banques</strong> (reporting financier, détection de fraudes), 
+                        <strong>hôtellerie et énergie</strong> (solutions BI pour la gestion des ressources), 
+                        santé (sécurisation des données médicales), et <strong>consulting</strong> (audit, migration de données on-premise vers le cloud), comme 
+                        <span style="color:#007FFF; font-weight:600">Azure</span>, 
+                        <span style="color:#FF9900; font-weight:600">AWS</span> 
+                        et <span style="color:#4285F4; font-weight:600">Google Cloud</span>.
+                    </p>
+                    <a href="assets/cv/cv.pdf" class="btn" download>Voir mon Parcours</a>
+                </div>
+            </div>
+            
+            <div class="tech-section">
+                <h3>Technologies utilisées</h3>
+                <div class="tech-items-wrapper">
+                    <div class="tech-item"><i class="fab fa-microsoft"></i><span>Power Pivot</span></div>
+                    <div class="tech-item"><i class="fab fa-microsoft"></i><span>Power Query</span></div>
+                    <div class="tech-item"><i class="fas fa-chart-line"></i><span>Power BI</span></div>
+                    <div class="tech-item"><i class="fas fa-file-excel"></i><span>Excel</span></div>
+                    <div class="tech-item"><i class="fab fa-microsoft"></i><span>VBA</span></div>
+                    <div class="tech-item"><i class="fas fa-chart-bar"></i><span>Tableau</span></div>     
+                    <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
+                    <div class="tech-item"><i class="fab fa-r-project"></i><span>RShinny</span></div>
+                    <div class="tech-item"><i class="fab fa-microsoft"></i><span>C#</span></div>
+                    <div class="tech-item"><i class="fab fa-microsoft"></i><span>.NET Core</span></div>
+                    <div class="tech-item"><i class="fas fa-database"></i><span>Access</span></div>
+                    <div class="tech-item"><i class="fas fa-database"></i><span>SQL Server</span></div>
+                    <div class="tech-item"><i class="fas fa-database"></i><span>MySQL</span></div>
+                    <div class="tech-item"><i class="fab fa-aws"></i><span>AWS</span></div>
+                    <div class="tech-item"><i class="fas fa-robot"></i><span>RPA</span></div>
+                    <div class="tech-item"><i class="fab fa-windows"></i><span>Windows</span></div>
+                    <div class="tech-item"><i class="fab fa-windows"></i><span>Windows Server</span></div>
+                    <div class="tech-item"><i class="fab fa-linux"></i><span>Linux</span></div>
+                    <div class="tech-item"><i class="fas fa-desktop"></i><span>Citrix</span></div>
+                    <div class="tech-item"><i class="fas fa-server"></i><span>vSphere</span></div>
+                    <div class="tech-item"><i class="fas fa-server"></i><span>HyperV</span></div>
+                    <div class="tech-item"><i class="fas fa-network-wired"></i><span>Cisco</span></div>
+                    <div class="tech-item"><i class="fas fa-cloud"></i><span>SaaS</span></div>
+                    <div class="tech-item"><i class="fas fa-database"></i><span>Oracle</span></div>
+                    <div class="tech-item"><i class="fas fa-calendar-alt"></i><span>Primavera</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <div class="about-text">
-        <h2>Bonjour, je suis Yassine</h2>
-        <p>
-  Passionné par la data et l'optimisation des processus, je conçois des solutions sur mesure pour automatiser et simplifier les flux de travail, avec une expertise en 
-  <span style="color:#1D6F42; font-weight:600">Excel</span>, 
-  <span style="color:#F2C811; font-weight:600">Power BI</span>, 
-  <span style="color:var(--secondary); font-weight:600">SQL</span>, 
-  <span style="color:var(--primary); font-weight:600">Python</span> et outils d'automatisation.
-</p>
-<p>
-  Formé initialement en analyse et programmation, puis en gestion managériale informatisée, et titulaire d'un bachelor en science et technologie de l'informatique, j'allie compétences techniques et vision stratégique. 
-  Avec <strong>plus de 15 ans d'expérience</strong> dans le traitement, l'analyse et la livraison de données, j'ai intervenu dans divers secteurs : 
-  <strong>télécommunications</strong> (optimisation des flux réseaux), 
-  <strong>assurance et banques</strong> (reporting financier, détection de fraudes), 
-  <strong>hôtellerie et énergie</strong> (solutions BI pour la gestion des ressources), 
-  santé (sécurisation des données médicales), et <strong>consulting</strong> (audit, migration de données on-premise vers le cloud), comme 
-  <span style="color:#007FFF; font-weight:600">Azure</span>, 
-  <span style="color:#FF9900; font-weight:600">AWS</span> 
- et <span style="color:#4285F4; font-weight:600">Google Cloud</span>.
-</p>
-
-        <a href="assets/cv/cv.pdf" class="btn" download>Voir mon Parcours</a>
-      </div>
-    </div>
-
-                  
-  <div class="tech-section">
-    <h3>Technologies utilisées</h3>
-    <div class="tech-items-wrapper">
-     
-      <div class="tech-item"><i class="fab fa-microsoft"></i><span>Power Pivot</span></div>
-      <div class="tech-item"><i class="fab fa-microsoft"></i><span>Power Query</span></div>
-      <div class="tech-item"><i class="fas fa-chart-line"></i><span>Power BI</span></div>
-      <div class="tech-item"><i class="fas fa-file-excel"></i><span>Excel</span></div>
-      <div class="tech-item"><i class="fab fa-microsoft"></i><span>VBA</span></div>
-      <div class="tech-item"><i class="fas fa-chart-bar"></i><span>Tableau</span></div>     
-      <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
-      <div class="tech-item"><i class="fab fa-r-project"></i><span>RShinny</span></div>
-      <div class="tech-item"><i class="fab fa-microsoft"></i><span>C#</span></div>
-      <div class="tech-item"><i class="fab fa-microsoft"></i><span>.NET Core</span></div>
-      <div class="tech-item"><i class="fas fa-database"></i><span>Access</span></div>
-      <div class="tech-item"><i class="fas fa-database"></i><span>SQL Server</span></div>
-      <div class="tech-item"><i class="fas fa-database"></i><span>MySQL</span></div>
-      <div class="tech-item"><i class="fab fa-aws"></i><span>AWS</span></div>
-      <div class="tech-item"><i class="fas fa-robot"></i><span>RPA</span></div>
-      <div class="tech-item"><i class="fab fa-windows"></i><span>Windows</span></div>
-      <div class="tech-item"><i class="fab fa-windows"></i><span>Windows Server</span></div>
-      <div class="tech-item"><i class="fab fa-linux"></i><span>Linux</span></div>
-      <div class="tech-item"><i class="fas fa-desktop"></i><span>Citrix</span></div>
-      <div class="tech-item"><i class="fas fa-server"></i><span>vSphere</span></div>
-      <div class="tech-item"><i class="fas fa-server"></i><span>HyperV</span></div>
-      <div class="tech-item"><i class="fas fa-network-wired"></i><span>Cisco</span></div>
-      <div class="tech-item"><i class="fas fa-cloud"></i><span>SaaS</span></div>
-      <div class="tech-item"><i class="fas fa-database"></i><span>Oracle</span></div>
-      <div class="tech-item"><i class="fas fa-calendar-alt"></i><span>Primavera</span></div>
-    </div>
-  </div>
-</section>
-<!-- Section Compagnies qui nous ont fait confiance -->
-<section class="trust-section">
+    <section class="trust-section">
         <div class="container">
             <h3>Compagnies qui nous ont fait confiance</h3>
             <div class="company-logos-wrapper">
-                <div class="company-logo">
-                    <img src="assets/img/axa-logo.png" alt="AXA" width="160" height="80">
-                </div>
-                <div class="company-logo">
-                    <img src="assets/img/accor-logo.png" alt="ACCOR Hotels" width="160" height="80">
-                </div>
-                <div class="company-logo">
-                    <img src="assets/img/glovo-logo.png" alt="GLOVO" width="160" height="80">
-                </div>
-                <div class="company-logo">
-                    <img src="assets/img/total-logo.png" alt="TOTAL ENERGIE" width="160" height="80">
-                </div>
-                <div class="company-logo">
-                    <img src="assets/img/fujitsu-logo.png" alt="FUJITSU" width="160" height="80">
-                </div>
-                <div class="company-logo">
-                    <img src="assets/img/siemens-logo.png" alt="SIEMENS" width="160" height="80">
-                </div>
-                <div class="company-logo">
-                    <img src="assets/img/direct-energie-logo.png" alt="Direct Energie" width="160" height="80">
-                </div>
-                <div class="company-logo">
-                    <img src="assets/img/club-internet-logo.png" alt="Club Internet" width="160" height="80">
-                </div>
-                <div class="company-logo">
-                    <img src="assets/img/neuf-logo.png" alt="Neuf" width="160" height="80">
-                </div>
-                <div class="company-logo">
-                    <img src="assets/img/bouygues-logo.png" alt="Bouygues Telecom" width="160" height="80">
-                </div>
+                <div class="company-logo"><img src="assets/img/axa-logo.png" alt="AXA" width="160" height="80"></div>
+                <div class="company-logo"><img src="assets/img/accor-logo.png" alt="ACCOR Hotels" width="160" height="80"></div>
+                <div class="company-logo"><img src="assets/img/glovo-logo.png" alt="GLOVO" width="160" height="80"></div>
+                <div class="company-logo"><img src="assets/img/total-logo.png" alt="TOTAL ENERGIE" width="160" height="80"></div>
+                <div class="company-logo"><img src="assets/img/fujitsu-logo.png" alt="FUJITSU" width="160" height="80"></div>
+                <div class="company-logo"><img src="assets/img/siemens-logo.png" alt="SIEMENS" width="160" height="80"></div>
+                <div class="company-logo"><img src="assets/img/direct-energie-logo.png" alt="Direct Energie" width="160" height="80"></div>
+                <div class="company-logo"><img src="assets/img/club-internet-logo.png" alt="Club Internet" width="160" height="80"></div>
+                <div class="company-logo"><img src="assets/img/neuf-logo.png" alt="Neuf" width="160" height="80"></div>
+                <div class="company-logo"><img src="assets/img/bouygues-logo.png" alt="Bouygues Telecom" width="160" height="80"></div>
             </div>
         </div>
     </section>
@@ -169,14 +142,12 @@
             <h2>Mes Services</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <i class="votre-classe-d-icone"></i><div class="service-header" onclick="toggleServiceDetails('analyse-details')">
-                        
+                    <div class="service-header" onclick="toggleServiceDetails('analyse-details')">
                         <ion-icon name="analytics-outline"></ion-icon>
                         <h3>Analyse de Données</h3>
                         <ion-icon name="chevron-down-outline" class="service-arrow"></ion-icon>
                     </div>
                     <p class="service-brief">Extraction, traitement et visualisation avancée de données</p>
-
                     <div id="analyse-details" class="service-details">
                         <ul>
                             <li><strong>Data Mining</strong> : Extraction de insights depuis des sources multiples</li>
@@ -184,9 +155,7 @@
                             <li><strong>Visualisation</strong> : Création de dashboards interactifs</li>
                             <li><strong>Reporting</strong> : Automatisation avec Jupyter et Power BI</li>
                         </ul>
-                        <div class="service-tech">
-                            <span>Stack technique :</span> Python · SQL · Power BI · Tableau · Spark
-                        </div>
+                        <div class="service-tech"><span>Stack technique :</span> Python · SQL · Power BI · Tableau · Spark</div>
                     </div>
                 </div>
 
@@ -197,7 +166,6 @@
                         <ion-icon name="chevron-down-outline" class="service-arrow"></ion-icon>
                     </div>
                     <p class="service-brief">Solutions complètes de BI pour votre entreprise</p>
-
                     <div id="bi-details" class="service-details">
                         <ul>
                             <li><strong>Data Modeling</strong> : Conception de modèles star-schema</li>
@@ -205,9 +173,7 @@
                             <li><strong>KPI Tracking</strong> : Suivi des indicateurs clés</li>
                             <li><strong>Training</strong> : Formation des équipes métiers</li>
                         </ul>
-                        <div class="service-tech">
-                            <span>Outils principaux :</span> Power BI · Tableau · SSIS · DAX · MDX
-                        </div>
+                        <div class="service-tech"><span>Outils principaux :</span> Power BI · Tableau · SSIS · DAX · MDX</div>
                     </div>
                 </div>
 
@@ -218,7 +184,6 @@
                         <ion-icon name="chevron-down-outline" class="service-arrow"></ion-icon>
                     </div>
                     <p class="service-brief">Stratégie data sur mesure pour votre organisation</p>
-
                     <div id="consulting-details" class="service-details">
                         <ul>
                             <li><strong>Data Audit</strong> : Évaluation de votre maturité data</li>
@@ -226,9 +191,7 @@
                             <li><strong>Governance</strong> : Politiques de gestion des données</li>
                             <li><strong>Use Cases</strong> : Identification des cas d'usage</li>
                         </ul>
-                        <div class="service-tech">
-                            <span>Méthodologies :</span> CRISP-DM · TDSP · Data Mesh
-                        </div>
+                        <div class="service-tech"><span>Méthodologies :</span> CRISP-DM · TDSP · Data Mesh</div>
                     </div>
                 </div>
 
@@ -239,7 +202,6 @@
                         <ion-icon name="chevron-down-outline" class="service-arrow"></ion-icon>
                     </div>
                     <p class="service-brief">Transition sécurisée entre systèmes</p>
-
                     <div id="migration-details" class="service-details">
                         <ul>
                             <li><strong>Assessment</strong> : Analyse de compatibilité</li>
@@ -247,9 +209,7 @@
                             <li><strong>Data Transfer</strong> : Migration incrémentale</li>
                             <li><strong>Validation</strong> : Vérification d'intégrité</li>
                         </ul>
-                        <div class="service-tech">
-                            <span>Technologies :</span> Azure Data Factory · AWS DMS · Talend · Informatica
-                        </div>
+                        <div class="service-tech"><span>Technologies :</span> Azure Data Factory · AWS DMS · Talend · Informatica</div>
                     </div>
                 </div>
 
@@ -260,7 +220,6 @@
                         <ion-icon name="chevron-down-outline" class="service-arrow"></ion-icon>
                     </div>
                     <p class="service-brief">Optimisation des processus métiers par l'automatisation</p>
-
                     <div id="automation-details" class="service-details">
                         <ul>
                             <li><strong>Workflows</strong> : Automatisation des processus répétitifs</li>
@@ -268,9 +227,7 @@
                             <li><strong>Scripting</strong> : Développement de scripts sur mesure</li>
                             <li><strong>Monitoring</strong> : Suivi des processus automatisés</li>
                         </ul>
-                        <div class="service-tech">
-                            <span>Outils :</span> Python · UiPath · Power Automate · Zapier · Bash
-                        </div>
+                        <div class="service-tech"><span>Outils :</span> Python · UiPath · Power Automate · Zapier · Bash</div>
                     </div>
                 </div>
 
@@ -281,7 +238,6 @@
                         <ion-icon name="chevron-down-outline" class="service-arrow"></ion-icon>
                     </div>
                     <p class="service-brief">Montée en compétences de vos équipes data</p>
-
                     <div id="training-details" class="service-details">
                         <ul>
                             <li><strong>Workshops</strong> : Sessions pratiques sur outils spécifiques</li>
@@ -289,390 +245,381 @@
                             <li><strong>Coaching</strong> : Accompagnement personnalisé</li>
                             <li><strong>E-learning</strong> : Plateforme de cours en ligne</li>
                         </ul>
-                        <div class="service-tech">
-                            <span>Domaines :</span> Data Literacy · Python avancé · BI · Machine Learning · Data Governance
-                        </div>
+                        <div class="service-tech"><span>Domaines :</span> Data Literacy · Python avancé · BI · Machine Learning · Data Governance</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-<section id="projects" class="projects">
-    <div class="container">
-        <h2>Mes Projets</h2>
-        
-        <!-- Filtres par catégorie -->
-      
-        
-        <div class="projects-grid">
-    <!-- Projet 1 - Dentale (Data Analysis) -->
-    <div class="project-card" data-category="data bi" data-project-id="1">
-        <div class="project-gallery">
-            <div class="gallery-container">
-                <img src="assets/img/Dentale_1.PNG" alt="Dashboard Power BI et Python" class="gallery-slide active">
-                <img src="assets/img/Dentale_2.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
-                <img src="assets/img/Dentale_3.PNG" alt="Dashboard Power BI" class="gallery-slide">
-                <img src="assets/img/Dentale_4.PNG" alt="Dashboard Power BI" class="gallery-slide">
-                <img src="assets/img/Dentale_5.PNG" alt="Dashboard Python" class="gallery-slide">
-                <img src="assets/img/Dentale_6.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
-                <img src="assets/img/Dentale_7.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
-                <img src="assets/img/Dentale_8.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
-                <img src="assets/img/Dentale_9.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
-                <img src="assets/img/Dentale_10.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
-                <img src="assets/img/Dentale_11.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
-                <img src="assets/img/Dentale_12.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
-                <img src="assets/img/Dentale_123.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
-            </div>
-            <button class="project-nav prev" aria-label="Image précédente">‹</button>
-            <button class="project-nav next" aria-label="Image suivante">›</button>
-            <span class="slide-counter">1/13</span>
-        </div>
-        <div class="project-info">
-            <h3>Analyse de Données Dentaires (Power BI & Python)</h3>
-            <p>Solution complète d'analyse de données pour cabinet dentaire avec visualisations interactives et prédictions.</p>
-            <div class="project-tech">
-                <span class="tech-tag">Power BI</span>
-                <span class="tech-tag">Python</span>
-               
-                <span class="tech-tag">Data Visualization</span>
-            </div>
-            <div class="project-links">
-                <a href="#" class="btn view-details">Voir les détails</a>
-            </div>
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Mes Projets</h2>
+            <div class="projects-grid">
+
+                <!-- Projet 1 - Dentale -->
+                <div class="project-card" data-category="data bi" data-project-id="1">
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <img src="assets/img/Dentale_1.PNG" alt="Dashboard Power BI et Python" class="gallery-slide active">
+                            <img src="assets/img/Dentale_2.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                            <img src="assets/img/Dentale_3.PNG" alt="Dashboard Power BI" class="gallery-slide">
+                            <img src="assets/img/Dentale_4.PNG" alt="Dashboard Power BI" class="gallery-slide">
+                            <img src="assets/img/Dentale_5.PNG" alt="Dashboard Python" class="gallery-slide">
+                            <img src="assets/img/Dentale_6.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                            <img src="assets/img/Dentale_7.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                            <img src="assets/img/Dentale_8.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                            <img src="assets/img/Dentale_9.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                            <img src="assets/img/Dentale_10.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                            <img src="assets/img/Dentale_11.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                            <img src="assets/img/Dentale_12.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                            <img src="assets/img/Dentale_123.PNG" alt="Dashboard Power BI - Python" class="gallery-slide">
+                        </div>
+                        <button class="project-nav prev" aria-label="Image précédente">‹</button>
+                        <button class="project-nav next" aria-label="Image suivante">›</button>
+                        <span class="slide-counter">1/13</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Analyse de Données Dentaires (Power BI & Python)</h3>
+                        <p>Solution complète d'analyse de données pour cabinet dentaire avec visualisations interactives et prédictions.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Data Visualization</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn view-details">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 2 - MitFarhten -->
+                <div class="project-card" data-category="web data" data-project-id="2">
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <img src="assets/img/Mit1.PNG" alt="Site de covoiturage - Page d'accueil" class="gallery-slide active">
+                            <img src="assets/img/Mit2.PNG" alt="Site de covoiturage - Recherche" class="gallery-slide">
+                            <img src="assets/img/Mit3.PNG" alt="Site de covoiturage - Résultats" class="gallery-slide">
+                            <img src="assets/img/Mit4.PNG" alt="Site de covoiturage - Profil" class="gallery-slide">
+                        </div>
+                        <button class="project-nav prev" aria-label="Image précédente">‹</button>
+                        <button class="project-nav next" aria-label="Image suivante">›</button>
+                        <span class="slide-counter">1/4</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Plateforme de Covoiturage (SQL & Python Streamlit)</h3>
+                        <p>Site web de mise en relation pour covoiturage avec système de réservation et gestion des trajets.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Web App</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn view-details">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 3 - Total -->
+                <div class="project-card" data-category="bi" data-project-id="3">
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <img src="assets/img/Total_Bi_1.JPG" alt="Dashboard ventes Total" class="gallery-slide active">
+                            <img src="assets/img/Total_Bi_2.JPG" alt="Analyse régionale" class="gallery-slide">
+                            <img src="assets/img/Total_Bi_3.JPG" alt="Tableau de bord produits" class="gallery-slide">
+                            <img src="assets/img/Total_Bi_4.JPG" alt="Rapports détaillés" class="gallery-slide">
+                            <img src="assets/img/Total_Bi_Mobile_6.JPG" alt="Version mobile" class="gallery-slide">
+                        </div>
+                        <button class="project-nav prev" aria-label="Image précédente">‹</button>
+                        <button class="project-nav next" aria-label="Image suivante">›</button>
+                        <span class="slide-counter">1/5</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Dashboard de Ventes & Récoltes en Power Bi (SQL & Power BI)</h3>
+                        <p>Migration d'Excel/Access vers une solution BI complète avec reporting automatisé et analyses avancées.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">Data Migration</span>
+                            <span class="tech-tag">ETL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn view-details">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 4 - AccorHotels -->
+                <div class="project-card" data-category="automation" data-project-id="4">
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <img src="assets/img/AccorHotels1.PNG" alt="Interface gestion RH" class="gallery-slide active">
+                            <img src="assets/img/AccorHotels2.PNG" alt="Processus automatisation" class="gallery-slide">
+                            <img src="assets/img/AccorHotels3.PNG" alt="Tableau de bord congés" class="gallery-slide">
+                            <img src="assets/img/AccorHotels4.PNG" alt="Workflow approbation" class="gallery-slide">
+                            <img src="assets/img/AccorHotels5.PNG" alt="Reporting management" class="gallery-slide">
+                            <img src="assets/img/AccorHotels6.PNG" alt="Analytics RH" class="gallery-slide">
+                            <img src="assets/img/AccorHotels7.PNG" alt="Notifications automatiques" class="gallery-slide">
+                        </div>
+                        <button class="project-nav prev" aria-label="Image précédente">‹</button>
+                        <button class="project-nav next" aria-label="Image suivante">›</button>
+                        <span class="slide-counter">1/7</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Management RH Automatisé (MySQL & Python)</h3>
+                        <p>Automatisation de la gestion des congés, planification et suivi managérial avec processus d'approbation.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Automatisation</span>
+                            <span class="tech-tag">RPA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn view-details">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 5 - Bouygues Telecom -->
+                <div class="project-card" data-category="automation data" data-project-id="5">
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <img src="assets/img/Planning_VBA_Login_Byg.PNG" alt="Interface login" class="gallery-slide active">  
+                            <img src="assets/img/Byg_5.jpg" alt="Dashboard analyse" class="gallery-slide">
+                            <img src="assets/img/Byg_4.jpg" alt="Rapports performances" class="gallery-slide">
+                            <img src="assets/img/Byg_2.jpg" alt="Architecture solution" class="gallery-slide">
+                            <img src="assets/img/Byg_3.jpg" alt="Métriques qualité" class="gallery-slide">
+                            <img src="assets/img/Byg_1.jpg" alt="Résultats optimisation" class="gallery-slide">
+                        </div>
+                        <button class="project-nav prev" aria-label="Image précédente">‹</button>
+                        <button class="project-nav next" aria-label="Image suivante">›</button>
+                        <span class="slide-counter">1/6</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Optimisation UX/UI (VBScript & Python)</h3>
+                        <p>Processus automatisé d'analyse des écoutes pour amélioration qualité de service et optimisation rentabilité.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">VBScript</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Analyse Performance</span>
+                            <span class="tech-tag">Optimisation</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn view-details">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 6 - Glovo -->
+                <div class="project-card" data-category="bi web" data-project-id="6">
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <img src="assets/img/Login_Glovo.PNG" alt="Login application" class="gallery-slide active">
+                            <img src="assets/img/Dash_Sales_Glovo1.PNG" alt="Dashboard ventes" class="gallery-slide">     
+                            <img src="assets/img/Glovo1.PNG" alt="Suivi livraisons" class="gallery-slide">
+                            <img src="assets/img/Glovo2.PNG" alt="Cartographie livraisons" class="gallery-slide">
+                            <img src="assets/img/Glovo3.PNG" alt="Statistiques performance" class="gallery-slide">
+                        </div>
+                        <button class="project-nav prev" aria-label="Image précédente">‹</button>
+                        <button class="project-nav next" aria-label="Image suivante">›</button>
+                        <span class="slide-counter">1/5</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Application Suivi instantané des Livreurs (SQL & RShiny)</h3>
+                        <p>Optimisation du suivi des livraisons avec indicateurs de performance financière et gestion des ressources.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">RShiny</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">BI</span>
+                            <span class="tech-tag">Logistique</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn view-details">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 7 - Planning -->
+                <div class="project-card" data-category="automation" data-project-id="7">
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <img src="assets/img/Planning_VBA_Login.PNG" alt="Interface planning" class="gallery-slide active">
+                            <img src="assets/img/Planning_VBA4.PNG" alt="Code automation" class="gallery-slide">
+                            <img src="assets/img/Planning_VBA.PNG" alt="Visualisation planning" class="gallery-slide">
+                            <img src="assets/img/Planning_VBA1.PNG" alt="Vue agent" class="gallery-slide">
+                            <img src="assets/img/Planning_VBA2.PNG" alt="Vue manager" class="gallery-slide">
+                            <img src="assets/img/Planning_VBA3.PNG" alt="Analytics planning" class="gallery-slide">
+                        </div>
+                        <button class="project-nav prev" aria-label="Image précédente">‹</button>
+                        <button class="project-nav next" aria-label="Image suivante">›</button>
+                        <span class="slide-counter">1/6</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Scheduler de Plannings (VBScript & Python)</h3>
+                        <p>Automatisation de la planification des ressources avec génération de plannings optimisés et rapports.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">VBScript</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Automatisation</span>
+                            <span class="tech-tag">Optimisation</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn view-details">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 8 - Kurban -->
+                <div class="project-card" data-category="data bi" data-project-id="8">
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <img src="assets/img/Kurban1.PNG" alt="Dashboard Kurban - Vue d'ensemble" class="gallery-slide active">
+                            <img src="assets/img/Kurban2.PNG" alt="Dashboard Kurban - Analyse détaillée" class="gallery-slide">
+                            <img src="assets/img/Kurban3.PNG" alt="Dashboard Kurban - Métriques" class="gallery-slide">
+                            <img src="assets/img/Kurban4.PNG" alt="Dashboard Kurban - Rapports" class="gallery-slide">
+                        </div>
+                        <button class="project-nav prev" aria-label="Image précédente">‹</button>
+                        <button class="project-nav next" aria-label="Image suivante">›</button>
+                        <span class="slide-counter">1/4</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Plateforme de Gestion des dons (Html Css Js & SQL)</h3>
+                        <p>Solution de gestion des dons et suivi des distributions pour les fêtes de sacrifice avec reporting automatisé.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Html</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Data Analysis</span>
+                            <span class="tech-tag">Java Script</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn view-details">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== NOUVEAU PROJET 9 – MAROC 2030 ========== -->
+                <div class="project-card" data-category="web design" data-project-id="9">
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <img src="assets/img/Morocco1.png" alt="Maroc 2030 - Accueil" class="gallery-slide active">
+                            <img src="assets/img/Morocco2.png" alt="Maroc 2030 - Événements" class="gallery-slide">
+                            <img src="assets/img/Morocco3.png" alt="Maroc 2030 - Infrastructures" class="gallery-slide">
+                        </div>
+                        <button class="project-nav prev" aria-label="Image précédente">‹</button>
+                        <button class="project-nav next" aria-label="Image suivante">›</button>
+                        <span class="slide-counter">1/3</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Maroc 2030 – Site vitrine pour les grands projets nationaux</h3>
+                        <p>Site web entièrement responsive en HTML5, CSS3 et JavaScript, présentant les initiatives du Maroc à l’horizon 2030 (Coupe du Monde, développement durable, infrastructures, tourisme).</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Responsive</span>
+                            <span class="tech-tag">UI/UX</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn view-details">Voir les détails</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- fin projects-grid -->
+        </div> <!-- fin container -->
+    </section>
+
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modal-content"></div>
         </div>
     </div>
 
-    <!-- Projet 2 - MitFarhten (Application Web) -->
-    <div class="project-card" data-category="web data" data-project-id="2">
-        <div class="project-gallery">
-            <div class="gallery-container">
-                <img src="assets/img/Mit1.PNG" alt="Site de covoiturage - Page d'accueil" class="gallery-slide active">
-                <img src="assets/img/Mit2.PNG" alt="Site de covoiturage - Recherche" class="gallery-slide">
-                <img src="assets/img/Mit3.PNG" alt="Site de covoiturage - Résultats" class="gallery-slide">
-                <img src="assets/img/Mit4.PNG" alt="Site de covoiturage - Profil" class="gallery-slide">
-            </div>
-            <button class="project-nav prev" aria-label="Image précédente">‹</button>
-            <button class="project-nav next" aria-label="Image suivante">›</button>
-            <span class="slide-counter">1/4</span>
-        </div>
-        <div class="project-info">
-            <h3>Plateforme de Covoiturage (SQL & Python Streamlit)</h3>
-            <p>Site web de mise en relation pour covoiturage avec système de réservation et gestion des trajets.</p>
-            <div class="project-tech">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Streamlit</span>
-                <span class="tech-tag">SQL</span>
-                <span class="tech-tag">Web App</span>
-            </div>
-            <div class="project-links">
-                <a href="#" class="btn view-details">Voir les détails</a>
-            </div>
-        </div>
-    </div>
+    <section class="section" id="contact">
+        <div class="bd-grid">
+            <h2 class="section-title anime-text">Contactez-moi</h2>
+            <div class="contact__container">
+                <form id="contactForm" class="contact__form contact-form"
+                      action="https://formsubmit.co/daoui00yassine@gmail.com" 
+                      method="POST"
+                      enctype="multipart/form-data">
+                    
+                    <input type="hidden" name="_subject" value="Message Venant du SiteWeb Perso">
+                    <input type="hidden" name="_autoresponse" value="Merci pour votre message! Je vous répondrai sous 48h.">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://ydaoui.github.io/MySiteWeb/index.html?success=true">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="text" name="_honey" style="display:none">
 
-    <!-- Projet 3 - Total (Business Intelligence) -->
-    <div class="project-card" data-category="bi" data-project-id="3">
-        <div class="project-gallery">
-            <div class="gallery-container">
-                <img src="assets/img/Total_Bi_1.JPG" alt="Dashboard ventes Total" class="gallery-slide active">
-                <img src="assets/img/Total_Bi_2.JPG" alt="Analyse régionale" class="gallery-slide">
-                <img src="assets/img/Total_Bi_3.JPG" alt="Tableau de bord produits" class="gallery-slide">
-                <img src="assets/img/Total_Bi_4.JPG" alt="Rapports détaillés" class="gallery-slide">
-                <img src="assets/img/Total_Bi_Mobile_6.JPG" alt="Version mobile" class="gallery-slide">
-            </div>
-            <button class="project-nav prev" aria-label="Image précédente">‹</button>
-            <button class="project-nav next" aria-label="Image suivante">›</button>
-            <span class="slide-counter">1/5</span>
-        </div>
-        <div class="project-info">
-            <h3>Dashboard de Ventes & Récoltes en Power Bi (SQL & Power BI) </h3>
-            <p>Migration d'Excel/Access vers une solution BI complète avec reporting automatisé et analyses avancées.</p>
-            <div class="project-tech">
-                <span class="tech-tag">Power BI</span>
-                <span class="tech-tag">SQL Server</span>
-                <span class="tech-tag">Data Migration</span>
-                <span class="tech-tag">ETL</span>
-            </div>
-            <div class="project-links">
-                <a href="#" class="btn view-details">Voir les détails</a>
-            </div>
-        </div>
-    </div>
+                    <div class="form__group">
+                        <input type="text" name="Nom" id="name" class="contact__input" required>
+                        <label for="name" class="form__label">Votre nom complet</label>
+                    </div>
 
-    <!-- Projet 4 - AccorHotels (Automatisation) -->
-    <div class="project-card" data-category="automation" data-project-id="4">
-        <div class="project-gallery">
-            <div class="gallery-container">
-                <img src="assets/img/AccorHotels1.PNG" alt="Interface gestion RH" class="gallery-slide active">
-                <img src="assets/img/AccorHotels2.PNG" alt="Processus automatisation" class="gallery-slide">
-                <img src="assets/img/AccorHotels3.PNG" alt="Tableau de bord congés" class="gallery-slide">
-                <img src="assets/img/AccorHotels4.PNG" alt="Workflow approbation" class="gallery-slide">
-                <img src="assets/img/AccorHotels5.PNG" alt="Reporting management" class="gallery-slide">
-                <img src="assets/img/AccorHotels6.PNG" alt="Analytics RH" class="gallery-slide">
-                <img src="assets/img/AccorHotels7.PNG" alt="Notifications automatiques" class="gallery-slide">
-            </div>
-            <button class="project-nav prev" aria-label="Image précédente">‹</button>
-            <button class="project-nav next" aria-label="Image suivante">›</button>
-            <span class="slide-counter">1/7</span>
-        </div>
-        <div class="project-info">
-            <h3>Management RH Automatisé (MySQL & Python)</h3>
-            <p>Automatisation de la gestion des congés, planification et suivi managérial avec processus d'approbation.</p>
-            <div class="project-tech">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">MySQL</span>
-                <span class="tech-tag">Automatisation</span>
-                <span class="tech-tag">RPA</span>
-            </div>
-            <div class="project-links">
-                <a href="#" class="btn view-details">Voir les détails</a>
-            </div>
-        </div>
-    </div>
+                    <div class="form__group">
+                        <input type="email" name="Email" id="email" class="contact__input" required>
+                        <label for="email" class="form__label">Votre email professionnel</label>
+                    </div>
 
-    <!-- Projet 5 - Bouygues Telecom (Automatisation) -->
-    <div class="project-card" data-category="automation data" data-project-id="5">
-        <div class="project-gallery">
-            <div class="gallery-container">
-                <img src="assets/img/Planning_VBA_Login_Byg.PNG" alt="Interface login" class="gallery-slide active">  
-                <img src="assets/img/Byg_5.jpg" alt="Dashboard analyse" class="gallery-slide">
-                <img src="assets/img/Byg_4.jpg" alt="Rapports performances" class="gallery-slide">
-                <img src="assets/img/Byg_2.jpg" alt="Architecture solution" class="gallery-slide">
-                <img src="assets/img/Byg_3.jpg" alt="Métriques qualité" class="gallery-slide">
-                <img src="assets/img/Byg_1.jpg" alt="Résultats optimisation" class="gallery-slide">
-            </div>
-            <button class="project-nav prev" aria-label="Image précédente">‹</button>
-            <button class="project-nav next" aria-label="Image suivante">›</button>
-            <span class="slide-counter">1/6</span>
-        </div>
-        <div class="project-info">
-            <h3>Optimisation UX/UI (VBScript & Python)</h3>
-            <p>Processus automatisé d'analyse des écoutes pour amélioration qualité de service et optimisation rentabilité.</p>
-            <div class="project-tech">
-                <span class="tech-tag">VBScript</span>
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Analyse Performance</span>
-                <span class="tech-tag">Optimisation</span>
-            </div>
-            <div class="project-links">
-                <a href="#" class="btn view-details">Voir les détails</a>
-            </div>
-        </div>
-    </div>
+                    <div class="form__group">
+                        <input type="text" name="Objet" id="subject" class="contact__input" required>
+                        <label for="subject" class="form__label">Objet du message</label>
+                    </div>
 
-    <!-- Projet 6 - Glovo (Business Intelligence) -->
-    <div class="project-card" data-category="bi web" data-project-id="6">
-        <div class="project-gallery">
-            <div class="gallery-container">
-                <img src="assets/img/Login_Glovo.PNG" alt="Login application" class="gallery-slide active">
-                <img src="assets/img/Dash_Sales_Glovo1.PNG" alt="Dashboard ventes" class="gallery-slide">     
-                <img src="assets/img/Glovo1.PNG" alt="Suivi livraisons" class="gallery-slide">
-                <img src="assets/img/Glovo2.PNG" alt="Cartographie livraisons" class="gallery-slide">
-                <img src="assets/img/Glovo3.PNG" alt="Statistiques performance" class="gallery-slide">
-            </div>
-            <button class="project-nav prev" aria-label="Image précédente">‹</button>
-            <button class="project-nav next" aria-label="Image suivante">›</button>
-            <span class="slide-counter">1/5</span>
-        </div>
-        <div class="project-info">
-            <h3>Application Suivi instantané des Livreurs (SQL & RShiny)</h3>
-            <p>Optimisation du suivi des livraisons avec indicateurs de performance financière et gestion des ressources.</p>
-            <div class="project-tech">
-                <span class="tech-tag">RShiny</span>
-                <span class="tech-tag">SQL</span>
-                <span class="tech-tag">BI</span>
-                <span class="tech-tag">Logistique</span>
-            </div>
-            <div class="project-links">
-                <a href="#" class="btn view-details">Voir les détails</a>
-            </div>
-        </div>
-    </div>
+                    <div class="form__group">
+                        <textarea name="Message" id="message" rows="5" class="contact__input contact__textarea" required></textarea>
+                        <label for="message" class="form__label">Décrivez votre projet ou demande</label>
+                    </div>
 
-    <!-- Projet 7 - Planning (Automatisation) -->
-    <div class="project-card" data-category="automation" data-project-id="7">
-        <div class="project-gallery">
-            <div class="gallery-container">
-                <img src="assets/img/Planning_VBA_Login.PNG" alt="Interface planning" class="gallery-slide active">
-                <img src="assets/img/Planning_VBA4.PNG" alt="Code automation" class="gallery-slide">
-                <img src="assets/img/Planning_VBA.PNG" alt="Visualisation planning" class="gallery-slide">
-                <img src="assets/img/Planning_VBA1.PNG" alt="Vue agent" class="gallery-slide">
-                <img src="assets/img/Planning_VBA2.PNG" alt="Vue manager" class="gallery-slide">
-                <img src="assets/img/Planning_VBA3.PNG" alt="Analytics planning" class="gallery-slide">
-            </div>
-            <button class="project-nav prev" aria-label="Image précédente">‹</button>
-            <button class="project-nav next" aria-label="Image suivante">›</button>
-            <span class="slide-counter">1/6</span>
-        </div>
-        <div class="project-info">
-            <h3>Scheduler de Plannings (VBScript & Python)</h3>
-            <p>Automatisation de la planification des ressources avec génération de plannings optimisés et rapports.</p>
-            <div class="project-tech">
-                <span class="tech-tag">VBScript</span>
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Automatisation</span>
-                <span class="tech-tag">Optimisation</span>
-            </div>
-            <div class="project-links">
-                <a href="#" class="btn view-details">Voir les détails</a>
-            </div>
-        </div>
-    </div>
-
-<!-- Projet 8 - Kurban (Data Analysis) -->
-<div class="project-card" data-category="data bi" data-project-id="8">
-    <div class="project-gallery">
-        <div class="gallery-container">
-            <img src="assets/img/Kurban1.PNG" alt="Dashboard Kurban - Vue d'ensemble" class="gallery-slide active">
-            <img src="assets/img/Kurban2.PNG" alt="Dashboard  de Kurban - Analyse détaillée" class="gallery-slide">
-            <img src="assets/img/Kurban3.PNG" alt="Dashboard Kurban1 - Métriques" class="gallery-slide">
-            <img src="assets/img/Kurban4.PNG" alt="Dashboard Kurban2 - Rapports" class="gallery-slide">
-        </div>
-        <button class="project-nav prev" aria-label="Image précédente">‹</button>
-        <button class="project-nav next" aria-label="Image suivante">›</button>
-        <span class="slide-counter">1/4</span>
-    </div>
-    <div class="project-info">
-        <h3>Plateforme de Gestion des dons (Html Css Js & SQL)</h3>
-        <p>Solution de gestion des dons et suivi des distributions pour les fêtes de sacrifice avec reporting automatisé.</p>
-        <div class="project-tech">
-            <span class="tech-tag">Html</span>
-            <span class="tech-tag">SQL</span>
-            <span class="tech-tag">Data Analysis</span>
-            <span class="tech-tag">Java Script</span>
-        </div>
-        <div class="project-links">
-            <a href="#" class="btn view-details">Voir les détails</a>
-        </div>
-    </div>
-</div>
-   <!-- Projet 9 - Maroc 2030 (Site Web HTML/CSS/JS) -->
-<div class="project-card" data-category="web design" data-project-id="9">
-    <div class="project-gallery">
-        <div class="gallery-container">
-            <img src="assets/img/maroc2030_1.jpg" alt="Page d'accueil - Maroc 2030" class="gallery-slide active">
-            <img src="assets/img/maroc2030_2.jpg" alt="Section événements & compétitions" class="gallery-slide">
-            <img src="assets/img/maroc2030_3.jpg" alt="Présentation des infrastructures" class="gallery-slide">
-            <img src="assets/img/maroc2030_4.jpg" alt="Galerie interactive & actualités" class="gallery-slide">
-        </div>
-        <button class="project-nav prev" aria-label="Image précédente">‹</button>
-        <button class="project-nav next" aria-label="Image suivante">›</button>
-        <span class="slide-counter">1/4</span>
-    </div>
-    <div class="project-info">
-        <h3>Maroc 2030 – Site vitrine pour les grands projets nationaux</h3>
-        <p>Site web entièrement responsive en HTML5, CSS3 et JavaScript, présentant les initiatives du Maroc à l’horizon 2030 (Coupe du Monde, développement durable, infrastructures, tourisme). Animations au scroll, carrousel d’actualités et formulaire de contact intégré.</p>
-        <div class="project-tech">
-            <span class="tech-tag">HTML5</span>
-            <span class="tech-tag">CSS3</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">Responsive</span>
-            <span class="tech-tag">UI/UX</span>
-        </div>
-        <div class="project-links">
-            <a href="#" class="btn view-details">Voir les détails</a>
-        </div>
-    </div>
-</div>         
-
-
-<div id="project-modal" class="modal">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <div id="modal-content"></div>
-    </div>
-</div>
-</section>
-
-<section class="section" id="contact">
-    <div class="bd-grid">
-        <h2 class="section-title anime-text">Contactez-moi</h2>
-        
-        <div class="contact__container">
-            <!-- Formulaire de contact -->
-            <form id="contactForm" class="contact__form contact-form"
-                  action="https://formsubmit.co/daoui00yassine@gmail.com" 
-                  method="POST"
-                  enctype="multipart/form-data">
+                    <div class="form__footer">
+                        <button type="submit" class="contact__button">
+                            <span>Envoyer le message</span>
+                            <ion-icon name="send-outline" class="button__icon"></ion-icon>
+                        </button>
+                    </div>
+                </form>
                 
-                <input type="hidden" name="_subject" value="Message Venant du SiteWeb Perso">
-                <input type="hidden" name="_autoresponse" value="Merci pour votre message! Je vous répondrai sous 48h.">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://ydaoui.github.io/MySiteWeb/index.html?success=true">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="text" name="_honey" style="display:none">
-
-                <div class="form__group">
-                    <input type="text" name="Nom" id="name" class="contact__input" required>
-                    <label for="name" class="form__label">Votre nom complet</label>
-                </div>
-
-                <div class="form__group">
-                    <input type="email" name="Email" id="email" class="contact__input" required>
-                    <label for="email" class="form__label">Votre email professionnel</label>
-                </div>
-
-                <div class="form__group">
-                    <input type="text" name="Objet" id="subject" class="contact__input" required>
-                    <label for="subject" class="form__label">Objet du message</label>
-                </div>
-
-                <div class="form__group">
-                    <textarea name="Message" id="message" rows="5" class="contact__input contact__textarea" required></textarea>
-                    <label for="message" class="form__label">Décrivez votre projet ou demande</label>
-                </div>
-
-                <div class="form__footer">
-                    <button type="submit" class="contact__button">
-                        <span>Envoyer le message</span>
-                        <ion-icon name="send-outline" class="button__icon"></ion-icon>
-                    </button>
-                </div>
-            </form>
-            
-            <!-- Colonne d'informations -->
-            <div class="contact__info">
-                <h3 class="contact__subtitle">Collaborons ensemble</h3>
-                <p class="contact__text">Je suis disponible pour discuter de vos projets data, répondre à vos questions.</p>
-                
-                <div class="contact__details">
-                    <div class="contact__detail">
-                        <ion-icon name="mail-outline" class="contact__icon"></ion-icon>
-                        <a href="mailto:daoui00yassine@gmail.com" class="contact__link">daoui00yassine@gmail.com</a>
+                <div class="contact__info">
+                    <h3 class="contact__subtitle">Collaborons ensemble</h3>
+                    <p class="contact__text">Je suis disponible pour discuter de vos projets data, répondre à vos questions.</p>
+                    
+                    <div class="contact__details">
+                        <div class="contact__detail">
+                            <ion-icon name="mail-outline" class="contact__icon"></ion-icon>
+                            <a href="mailto:daoui00yassine@gmail.com" class="contact__link">daoui00yassine@gmail.com</a>
+                        </div>
+                        <div class="contact__detail">
+                            <ion-icon name="call-outline" class="contact__icon"></ion-icon>
+                            <span>+33 644 677 871</span>
+                        </div>
+                        <div class="contact__detail">
+                            <ion-icon name="location-outline" class="contact__icon"></ion-icon>
+                            <span>Paris, France (Remote possible)</span>
+                        </div>
+                        <div class="contact__detail">
+                            <ion-icon name="calendar-outline" class="contact__icon"></ion-icon>
+                            <span>Disponibilité : Immédiate</span>
+                        </div>
                     </div>
-                    <div class="contact__detail">
-                        <ion-icon name="call-outline" class="contact__icon"></ion-icon>
-                        <span>+33 644 677 871</span>
+                    
+                    <div class="contact__social">
+                        <a href="https://www.linkedin.com/in/yassine-daoui-56a7ab1a0/" class="contact__social-link" aria-label="LinkedIn">
+                            <ion-icon name="logo-linkedin"></ion-icon>
+                        </a>
+                        <a href="https://github.com/YDaoui/YDaoui" class="contact__social-link" aria-label="GitHub">
+                            <ion-icon name="logo-github"></ion-icon>
+                        </a>
+                        <a href="https://ydaoui.github.io" class="contact__social-link" aria-label="Site Web">
+                            <ion-icon name="globe-outline"></ion-icon>
+                        </a>
                     </div>
-                    <div class="contact__detail">
-                        <ion-icon name="location-outline" class="contact__icon"></ion-icon>
-                        <span>Paris, France (Remote possible)</span>
-                    </div>
-                    <div class="contact__detail">
-                        <ion-icon name="calendar-outline" class="contact__icon"></ion-icon>
-                        <span>Disponibilité : Immédiate</span>
-                    </div>
-                </div>
-                
-                <div class="contact__social">
-                    <a href="https://www.linkedin.com/in/yassine-daoui-56a7ab1a0/" class="contact__social-link" aria-label="LinkedIn">
-                        <ion-icon name="logo-linkedin"></ion-icon>
-                    </a>
-                    <a href="https://github.com/YDaoui/YDaoui" class="contact__social-link" aria-label="GitHub">
-                        <ion-icon name="logo-github"></ion-icon>
-                    </a>
-                    <a href="https://ydaoui.github.io" class="contact__social-link" aria-label="Site Web">
-                        <ion-icon name="globe-outline"></ion-icon>
-                    </a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-    
+    </section>
 
- 
     <footer>
         <div class="container">
             <p>&copy; 2025 Yassine Daoui. Tous droits réservés.</p>
@@ -680,22 +627,20 @@
     </footer>
 
     <div id="successPopup" class="popup-container">
-    <div class="popup-content">
-        <ion-icon name="checkmark-circle-outline" class="popup-icon"></ion-icon>
-        <h3 class="popup-title">Message envoyé avec succès !</h3>
-        <p class="popup-message">Merci pour votre message. Je m'engage à vous répondre sous 48 heures.</p>
-        <button class="btn close-popup-btn">
-            <span>Fermer</span>
-            <ion-icon name="close-outline" class="button__icon"></ion-icon>
-        </button>
+        <div class="popup-content">
+            <ion-icon name="checkmark-circle-outline" class="popup-icon"></ion-icon>
+            <h3 class="popup-title">Message envoyé avec succès !</h3>
+            <p class="popup-message">Merci pour votre message. Je m'engage à vous répondre sous 48 heures.</p>
+            <button class="btn close-popup-btn">
+                <span>Fermer</span>
+                <ion-icon name="close-outline" class="button__icon"></ion-icon>
+            </button>
+        </div>
     </div>
-</div>
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-<script src="assets/js/main.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
-
-
